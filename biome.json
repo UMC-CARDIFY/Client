@@ -69,6 +69,6 @@
     }
   },
   "files": {
-    "ignore": ["**/.gitignore", "**/build/*", "**/coverage/*", "**/dist/*", "**/node_modules/*"]
+    "ignore": ["**/.gitignore", "**/build/*", "**/coverage/*", "**/dist/*", "**/node_modules/*", "*storybook.log"]
   }
 }

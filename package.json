@@ -11,7 +11,9 @@
     "preview": "vite preview",
     "format": "biome format --write .",
     "format:check": "biome format --check .",
-    "clean": "rm -rf node_modules dist"
+    "clean": "rm -rf node_modules dist",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -21,15 +23,25 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@chromatic-com/storybook": "3.2.3",
+    "@storybook/addon-essentials": "8.4.7",
+    "@storybook/addon-interactions": "8.4.7",
+    "@storybook/addon-onboarding": "8.4.7",
+    "@storybook/blocks": "8.4.7",
+    "@storybook/builder-vite": "^8.4.7",
+    "@storybook/react": "8.4.7",
+    "@storybook/react-vite": "8.4.7",
+    "@storybook/test": "8.4.7",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.20",
+    "storybook": "8.4.7",
     "tailwindcss": "^3.4.16",
     "typescript": "~5.6.2",
-    "vite": "^6.0.1",
+    "vite": "^6.0.3",
     "vite-plugin-biome": "^1.0.12",
     "vite-plugin-svgr": "^4.3.0"
   },
