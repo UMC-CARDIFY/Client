@@ -1,3 +1,11 @@
+---
+name: General Issue
+about: Describe a general issue or feature request
+title: "[태그] 이슈 요약"
+labels: ''
+assignees: ''
+---
+
 <!-- 이슈 제목은 "[태그] 이슈 요약" 형식으로 작성해주세요 -->
 <!-- ex) [feat] 로그인 페이지 UI 구현 -->
 
