@@ -1,7 +1,9 @@
 import { Text } from "@components/typography/Text";
+import { PATHS } from "@routes/paths";
 import { Logo, MypageIcon, SearchIcon } from "@svgs/index";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { NAV_ITEMS } from "./nav";
 
 const NavItem = ({
   to,
@@ -30,12 +32,7 @@ const Header = () => {
       <Logo />
       <div className="gap-4 flex flex-row">
         <div className="gap-4 flex flex-row">
-          {[
-            { name: "홈", path: "/" },
-            { name: "아카이브", path: "/archive" },
-            { name: "플래시 카드", path: "/flashcard" },
-            { name: "자료실", path: "/library" },
-          ].map((item) => (
+          {NAV_ITEMS.map((item) => (
             <NavItem key={item.name} to={item.path}>
               {item.name}
             </NavItem>
@@ -50,11 +47,11 @@ const Header = () => {
               type="text"
               placeholder="통합 검색"
               className="w-full bg-transparent text-gray-700 focus:outline-none"
-            ></input>
+            />
           </Text>
         </div>
         <button
-          onClick={() => navigate("/mypage")}
+          onClick={() => navigate(PATHS.MYPAGE)}
           className="flex w-8 h-8 p-0.5 items-center justify-center flex-shrink-0 rounded-2xl bg-gray-100 cursor-pointer"
         >
           <MypageIcon />
