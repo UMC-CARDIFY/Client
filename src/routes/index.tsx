@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import MainLayout from "../layouts/mainLayout";
 import { Archive, Flashcard, Library, Mypage } from "../pages";
+import { PATHS } from "./paths";
 
 const router = createBrowserRouter([
   {
@@ -9,23 +10,23 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "/",
+        path: PATHS.HOME,
         element: <App />,
       },
       {
-        path: "/archive",
+        path: PATHS.ARCHIVE,
         element: <Archive />,
       },
       {
-        path: "/flashcard",
+        path: PATHS.FLASHCARD,
         element: <Flashcard />,
       },
       {
-        path: "/library",
+        path: PATHS.LIBRARY,
         element: <Library />,
       },
       {
-        path: "/mypage",
+        path: PATHS.MYPAGE,
         element: <Mypage />,
       },
     ],
