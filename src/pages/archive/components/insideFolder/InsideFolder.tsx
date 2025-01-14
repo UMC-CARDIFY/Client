@@ -13,7 +13,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderName, color }) => {
   return (
     <div>
       <div
-        className="w-[188px] py-3 pl-4 pr-2 gap-2 rounded-lg border border-solid border-gray-150 flex flex-row justify-center items-center hover:bg-gray-50 cursor-pointer"
+        className="w-[11.75rem] h-[3rem] py-3 pl-4 pr-2 gap-2 rounded-lg border border-solid border-gray-150 flex flex-row justify-center items-center hover:bg-gray-50 cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
