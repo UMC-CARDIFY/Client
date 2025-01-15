@@ -1,5 +1,5 @@
 import { Text } from "@components/typography/Text";
-import { IcArchiveFolder } from "@svgs/index";
+import { IcArchiveFolder, IcColorCircle, IcColorCircleCheck } from "@svgs/index";
 import React, { useState, useRef } from "react";
 
 interface AddFolderProps {
@@ -75,15 +75,20 @@ export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit 
         <div className="flex items-center mb-12 w-[21rem] h-[3.25rem]">
           <div className="flex flex-wrap gap-x-5 gap-y-3 w-[11.25rem]">
             {colorKeys.map((color) => (
-              <button
+              <div
                 key={color}
-                onClick={() => setSelectedColor(`${color}`)}
-                className={`w-5 h-5 rounded-full border ${
-                  selectedColor === `${color}` ? "border-brand-original" : "border-gray-200"
-                } bg-icon-${color}`}
-              />
+                onClick={() => setSelectedColor(color)}
+                className="cursor-pointer flex justify-center items-center"
+              >
+                {selectedColor === color ? (
+                  <IcColorCircleCheck className={`fill-icon-${color} w-5 h-5`} />
+                ) : (
+                  <IcColorCircle className={`fill-icon-${color} w-5 h-5`} />
+                )}
+              </div>
             ))}
           </div>
+
           <div className="w-[0.0625rem] h-full bg-gray-300 ml-[3.75rem] mr-12"></div>
           <div className="w-[2.5rem] h-[2.5rem]">
             <IcArchiveFolder className={`fill-icon-${selectedColor}`} />
