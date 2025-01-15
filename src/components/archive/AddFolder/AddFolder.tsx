@@ -13,13 +13,13 @@ const colorKeys = ["blue", "ocean", "lavender", "mint", "sage", "gray", "orange"
 export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit }) => {
   const [folderName, setFolderName] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedColor, setSelectedColor] = useState("icon-blue"); // 선택된 색상 상태
+  const [selectedColor, setSelectedColor] = useState("#6698F5"); // 초기 색상
 
   const handleSubmit = () => {
     if (folderName.trim()) {
       onSubmit(folderName, selectedColor);
       setFolderName("");
-      setSelectedColor("icon-blue");
+      setSelectedColor("blue");
       onClose();
     }
   };
@@ -40,7 +40,7 @@ export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
       <div className="w-[27.75rem] h-auto bg-white rounded-lg border border-gray-150 shadow-md p-10 pb-6">
-        <div className="mb-6">
+        <div className="mb-[1.9rem]">
           <Text variant="sub_heading1">폴더 추가</Text>
         </div>
 
@@ -67,30 +67,29 @@ export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit 
         </div>
 
         {/* Color Picker + Icon */}
-        <label className="block mb-4">
+        <label className="block mb-[1.06rem]">
           <Text variant="sub_heading3" className="text-gray-700">
             색상
           </Text>
         </label>
-        <div className="flex items-center mb-12">
-          <div className="flex flex-wrap gap-x-5 gap-y-3 w-[13rem]">
+        <div className="flex items-center mb-12 w-[21rem] h-[3.25rem]">
+          <div className="flex flex-wrap gap-x-5 gap-y-3 w-[11.25rem]">
             {colorKeys.map((color) => (
               <button
                 key={color}
-                onClick={() => setSelectedColor(`icon-${color}`)} // 선택된 색상 업데이트
+                onClick={() => setSelectedColor(`${color}`)}
                 className={`w-5 h-5 rounded-full border ${
-                  selectedColor === `icon-${color}` ? "border-brand-original" : "border-gray-200"
+                  selectedColor === `${color}` ? "border-brand-original" : "border-gray-200"
                 } bg-icon-${color}`}
               />
             ))}
           </div>
+          <div className="w-[0.0625rem] h-full bg-gray-300 ml-[3.75rem] mr-12"></div>
           <div className="w-[2.5rem] h-[2.5rem]">
-            {/* SVG 아이콘의 fill 속성을 동적으로 설정 */}
-            <IcArchiveFolder className={`fill-${selectedColor}`} />
+            <IcArchiveFolder className={`fill-icon-${selectedColor}`} />
           </div>
         </div>
 
-        {/* Actions */}
         <div className="flex justify-end gap-3">
           <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-200">
             <Text variant="sub_heading2" className="text-gray-700">
