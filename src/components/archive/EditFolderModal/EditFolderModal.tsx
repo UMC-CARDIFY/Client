@@ -2,7 +2,7 @@ import { Text } from "@components/typography/Text";
 import { ArchiveFolderIcon, ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import React, { useState, useRef } from "react";
 
-interface AddFolderModalProps {
+interface EditFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderName: string, folderColor: string) => void;
@@ -10,8 +10,8 @@ interface AddFolderModalProps {
 
 const colorKeys = ["blue", "ocean", "lavender", "mint", "sage", "gray", "orange", "coral", "rose", "plum"] as const;
 
-export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
-  const [folderName, setFolderName] = useState("");
+export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
+  const [folderName, setFolderName] = useState("기존 폴더 이름");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [selectedColor, setSelectedColor] = useState("blue"); // 기본 색상
 
@@ -41,7 +41,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
       <div className="w-[27.75rem] h-auto bg-white rounded-lg border border-gray-150 shadow-md p-10 pb-6">
         <div className="mb-[1.9rem]">
-          <Text variant="sub_heading1">폴더 추가</Text>
+          <Text variant="sub_heading1">폴더 수정</Text>
         </div>
 
         {/* Folder Name Input */}
@@ -52,7 +52,6 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
         </label>
         <textarea
           id="folder-name"
-          placeholder="추가할 폴더의 이름을 입력해주세요."
           value={folderName}
           onChange={handleInput}
           maxLength={100}
