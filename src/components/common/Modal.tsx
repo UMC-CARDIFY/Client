@@ -1,5 +1,5 @@
 import { Text } from "@components/typography/Text";
-import { IcCommonAlert } from "@svgs/index";
+import { CommonAlertIcon } from "@svgs/index";
 
 interface ModalProps {
   isOpen: boolean;
