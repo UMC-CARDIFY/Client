@@ -13,7 +13,8 @@
     "format:check": "biome format --check .",
     "clean": "rm -rf node_modules dist",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
