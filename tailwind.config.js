@@ -9,6 +9,9 @@ export default {
       colors: {
         ...colors,
       },
+      fontFamily: {
+        sans: ["Pretendard"],
+      },
     },
   },
   plugins: [],
