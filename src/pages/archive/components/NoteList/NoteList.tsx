@@ -30,7 +30,7 @@ const NoteList = () => {
         title="1차에서 5차까지 오답 노트 총정리"
         createdDate="2024-08-20"
         modifiedDate="2024-08-20"
-        flashcardNum={0}
+        flashcardNum={120}
       />
     </div>
   );
