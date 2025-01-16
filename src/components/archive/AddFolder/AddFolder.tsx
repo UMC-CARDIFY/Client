@@ -5,7 +5,7 @@ import React, { useState, useRef } from "react";
 interface AddFolderProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (folderName: string, folderColor: string) => void;
+  onSubmit: (folderName: string, folderColor: string, bgColor: string) => void;
 }
 
 const colorKeys = ["blue", "ocean", "lavender", "mint", "sage", "gray", "orange", "coral", "rose", "plum"] as const;
@@ -13,13 +13,15 @@ const colorKeys = ["blue", "ocean", "lavender", "mint", "sage", "gray", "orange"
 export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit }) => {
   const [folderName, setFolderName] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedColor, setSelectedColor] = useState("#6698F5"); // 초기 색상
+  const [selectedColor, setSelectedColor] = useState("blue"); // 기본 색상
+  const [selectedBgColor, setSelectedBgColor] = useState("#93AD81"); // 배경 색상
 
   const handleSubmit = () => {
     if (folderName.trim()) {
-      onSubmit(folderName, selectedColor);
+      onSubmit(folderName, selectedColor, selectedBgColor);
       setFolderName("");
       setSelectedColor("blue");
+      setSelectedBgColor("#93AD81");
       onClose();
     }
   };
@@ -77,10 +79,13 @@ export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit 
             {colorKeys.map((color) => (
               <div
                 key={color}
-                onClick={() => setSelectedColor(color)}
+                onClick={() => {
+                  setSelectedColor(`${color}`); // 메인 색상
+                  setSelectedBgColor(`${color}50`); // 배경 색상
+                }}
                 className="cursor-pointer flex justify-center items-center"
               >
-                {selectedColor === color ? (
+                {selectedColor === `${color}` ? (
                   <IcColorCircleCheck className={`fill-icon-${color} w-5 h-5`} />
                 ) : (
                   <IcColorCircle className={`fill-icon-${color} w-5 h-5`} />
@@ -91,7 +96,8 @@ export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit 
 
           <div className="w-[0.0625rem] h-full bg-gray-300 ml-[3.75rem] mr-12"></div>
           <div className="w-[2.5rem] h-[2.5rem]">
-            <IcArchiveFolder className={`fill-icon-${selectedColor}`} />
+            {/* SVG 아이콘의 두 색상을 상태로 동적으로 설정 */}
+            <IcArchiveFolder className={`fill-icon-${selectedColor} fill-iconBg-${selectedBgColor}`} />
           </div>
         </div>
 
