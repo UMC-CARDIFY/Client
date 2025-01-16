@@ -26,13 +26,13 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
-      <div className="flex flex-col justify-center items-center w-[25rem] p-6 pt-10 pb-8 rounded-lg border border-gray-150 bg-white gap-6">
+      <div className="flex flex-col justify-center items-center w-[25rem] p-6 pt-10 pb-8 rounded-lg border border-gray-150 bg-white">
         <div className="flex justify-center items-center">{icon}</div>
-        <Text variant="heading3" className="text-alert-500">
+        <Text variant="heading3" className="text-alert-500 mt-3 mb-4">
           {title}
         </Text>
         <div className="text-center">{description}</div>
-        <div className="flex justify-center gap-3">
+        <div className="flex justify-center gap-2 mt-6">
           <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-200">
             <Text variant="sub_heading2" className="text-gray-700">
               {cancelText}

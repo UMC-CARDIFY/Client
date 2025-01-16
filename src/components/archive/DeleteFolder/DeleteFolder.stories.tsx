@@ -17,7 +17,6 @@ const Template: StoryFn<typeof DeleteFolder> = (args) => {
         폴더 삭제 모달 열기
       </button>
 
-      {/* DeleteFolder 모달 */}
       <DeleteFolder
         {...args}
         isOpen={isOpen}
