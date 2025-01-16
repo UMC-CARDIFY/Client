@@ -1,13 +1,13 @@
 import { Text } from "@components/typography/Text";
 import React, { useState, useRef } from "react";
 
-interface AddSubFolderProps {
+interface AddSubFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderName: string) => void;
 }
 
-export const AddSubFolder: React.FC<AddSubFolderProps> = ({ isOpen, onClose, onSubmit }) => {
+export const AddSubFolderModal: React.FC<AddSubFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [folderName, setFolderName] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 

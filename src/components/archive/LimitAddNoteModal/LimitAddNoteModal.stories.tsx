@@ -1,25 +1,26 @@
 import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
-import { AddSubFolder } from "./AddSubFolder";
+import { LimitAddNoteModal } from "./LimitAddNoteModal";
 
 export default {
-  title: "Archive/AddSubFolder",
-  component: AddSubFolder,
-} as Meta<typeof AddSubFolder>;
+  title: "Archive/LimitAddNoteModal",
+  component: LimitAddNoteModal,
+} as Meta<typeof LimitAddNoteModal>;
 
-const Template: StoryFn<typeof AddSubFolder> = (args) => {
+const Template: StoryFn<typeof LimitAddNoteModal> = (args) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
       <button onClick={() => setIsOpen(true)} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
-        하위 폴더 추가 모달 열기
+        노트 추가 제한 모달 열기
       </button>
-      <AddSubFolder
+
+      <LimitAddNoteModal
         {...args}
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        onSubmit={(folderName) => alert(`하위 폴더 추가됨: ${folderName}`)}
+        onPay={() => alert("결제하기 버튼 클릭됨")}
       />
     </div>
   );

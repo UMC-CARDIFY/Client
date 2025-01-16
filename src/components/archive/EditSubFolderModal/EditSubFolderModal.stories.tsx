@@ -1,26 +1,26 @@
 import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
-import { LimitAddFolder } from "./LimitAddFolder";
+import { EditSubFolderModal } from "./EditSubFolderModal";
 
 export default {
-  title: "Archive/LimitAddFolder",
-  component: LimitAddFolder,
-} as Meta<typeof LimitAddFolder>;
+  title: "Archive/EditSubFolderModal",
+  component: EditSubFolderModal,
+} as Meta<typeof EditSubFolderModal>;
 
-const Template: StoryFn<typeof LimitAddFolder> = (args) => {
+const Template: StoryFn<typeof EditSubFolderModal> = (args) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
       <button onClick={() => setIsOpen(true)} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
-        폴더 추가 제한 모달 열기
+        하위 폴더 수정 모달 열기
       </button>
-
-      <LimitAddFolder
+      <EditSubFolderModal
         {...args}
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        onPay={() => alert("결제하기 버튼 클릭됨")}
+        onSubmit={(folderName) => alert(`하위 폴더 수정됨: ${folderName}`)}
+        currentFolderName="기존 폴더 이름"
       />
     </div>
   );

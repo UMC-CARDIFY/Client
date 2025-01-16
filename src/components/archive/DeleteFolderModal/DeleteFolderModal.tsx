@@ -1,14 +1,14 @@
 import { Modal } from "@components/common/Modal";
 import React from "react";
 
-interface DeleteFolderProps {
+interface DeleteFolderModalProps {
   isOpen: boolean;
   onClose: () => void; // 취소 버튼 클릭 핸들러
   onSubmit: () => void; // 확인 버튼 클릭 핸들러
   folderName: string;
 }
 
-export const DeleteFolder: React.FC<DeleteFolderProps> = ({ isOpen, onClose, onSubmit, folderName }) => {
+export const DeleteFolderModal: React.FC<DeleteFolderModalProps> = ({ isOpen, onClose, onSubmit, folderName }) => {
   return (
     <Modal
       isOpen={isOpen}

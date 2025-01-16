@@ -48,8 +48,4 @@ export const colors = {
     rose: "#ED83B1",
     plum: "#D49AE9",
   },
-  iconBg: {
-    blue: "#93AD81",
-    sage: "#93AD81",
-  },
 } as const;

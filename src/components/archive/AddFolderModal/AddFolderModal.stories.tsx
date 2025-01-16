@@ -1,13 +1,13 @@
 import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
-import { AddFolder } from "./AddFolder";
+import { AddFolderModal } from "./AddFolderModal";
 
 export default {
-  title: "Archive/AddFolder",
-  component: AddFolder,
-} as Meta<typeof AddFolder>;
+  title: "Archive/AddFolderModal",
+  component: AddFolderModal,
+} as Meta<typeof AddFolderModal>;
 
-const Template: StoryFn<typeof AddFolder> = (args) => {
+const Template: StoryFn<typeof AddFolderModal> = (args) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -15,7 +15,7 @@ const Template: StoryFn<typeof AddFolder> = (args) => {
       <button onClick={() => setIsOpen(true)} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
         폴더 추가 모달 열기
       </button>
-      <AddFolder
+      <AddFolderModal
         {...args}
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

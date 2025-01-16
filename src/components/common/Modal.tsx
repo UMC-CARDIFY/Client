@@ -16,7 +16,7 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   title,
   description,
-  icon = <IcCommonAlert className="w-12 h-12 text-red-600" />,
+  icon = <CommonAlertIcon className="w-12 h-12 text-red-600" />,
   onClose,
   onSubmit,
   cancelText = "취소",

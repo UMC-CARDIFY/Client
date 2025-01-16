@@ -1,27 +1,25 @@
 import { Text } from "@components/typography/Text";
-import { IcArchiveFolder, IcColorCircle, IcColorCircleCheck } from "@svgs/index";
+import { ArchiveFolderIcon, ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import React, { useState, useRef } from "react";
 
-interface AddFolderProps {
+interface AddFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (folderName: string, folderColor: string, bgColor: string) => void;
+  onSubmit: (folderName: string, folderColor: string) => void;
 }
 
 const colorKeys = ["blue", "ocean", "lavender", "mint", "sage", "gray", "orange", "coral", "rose", "plum"] as const;
 
-export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit }) => {
+export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [folderName, setFolderName] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [selectedColor, setSelectedColor] = useState("blue"); // 기본 색상
-  const [selectedBgColor, setSelectedBgColor] = useState("#93AD81"); // 배경 색상
 
   const handleSubmit = () => {
     if (folderName.trim()) {
-      onSubmit(folderName, selectedColor, selectedBgColor);
+      onSubmit(folderName, selectedColor);
       setFolderName("");
       setSelectedColor("blue");
-      setSelectedBgColor("#93AD81");
       onClose();
     }
   };
@@ -80,15 +78,14 @@ export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit 
               <div
                 key={color}
                 onClick={() => {
-                  setSelectedColor(`${color}`); // 메인 색상
-                  setSelectedBgColor(`${color}50`); // 배경 색상
+                  setSelectedColor(`${color}`);
                 }}
                 className="cursor-pointer flex justify-center items-center"
               >
                 {selectedColor === `${color}` ? (
-                  <IcColorCircleCheck className={`fill-icon-${color} w-5 h-5`} />
+                  <ColorCircleCheckIcon className={`fill-icon-${color} w-5 h-5`} />
                 ) : (
-                  <IcColorCircle className={`fill-icon-${color} w-5 h-5`} />
+                  <ColorCircleIcon className={`fill-icon-${color} w-5 h-5`} />
                 )}
               </div>
             ))}
@@ -97,7 +94,10 @@ export const AddFolder: React.FC<AddFolderProps> = ({ isOpen, onClose, onSubmit 
           <div className="w-[0.0625rem] h-full bg-gray-300 ml-[3.75rem] mr-12"></div>
           <div className="w-[2.5rem] h-[2.5rem]">
             {/* SVG 아이콘의 두 색상을 상태로 동적으로 설정 */}
-            <IcArchiveFolder className={`fill-icon-${selectedColor} fill-iconBg-${selectedBgColor}`} />
+            <ArchiveFolderIcon
+              fillColor={`var(--icon-${selectedColor})`} // 동적으로 선택된 색상
+              backgroundColor={`var(--icon-${selectedColor}20)`} // 투명도 20% 배경
+            />
           </div>
         </div>
 

@@ -1,22 +1,22 @@
 import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
-import { LimitAddNote } from "./LimitAddNote";
+import { LimitAddFolderModal } from "./LimitAddFolderModal";
 
 export default {
-  title: "Archive/LimitAddNote",
-  component: LimitAddNote,
-} as Meta<typeof LimitAddNote>;
+  title: "Archive/LimitAddFolderModal",
+  component: LimitAddFolderModal,
+} as Meta<typeof LimitAddFolderModal>;
 
-const Template: StoryFn<typeof LimitAddNote> = (args) => {
+const Template: StoryFn<typeof LimitAddFolderModal> = (args) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
       <button onClick={() => setIsOpen(true)} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
-        노트 추가 제한 모달 열기
+        폴더 추가 제한 모달 열기
       </button>
 
-      <LimitAddNote
+      <LimitAddFolderModal
         {...args}
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

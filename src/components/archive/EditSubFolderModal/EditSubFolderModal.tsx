@@ -1,14 +1,19 @@
 import { Text } from "@components/typography/Text";
 import React, { useState, useRef } from "react";
 
-interface EditSubFolderProps {
+interface EditSubFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderName: string) => void;
   currentFolderName?: string; // optional prop with a default value
 }
 
-export const EditSubFolder: React.FC<EditSubFolderProps> = ({ isOpen, onClose, onSubmit, currentFolderName }) => {
+export const EditSubFolderModal: React.FC<EditSubFolderModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  currentFolderName,
+}) => {
   const [folderName, setFolderName] = useState(currentFolderName);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 

@@ -1,7 +1,7 @@
 import { Modal } from "@components/common/Modal";
 import React from "react";
 
-interface DeleteNoteProps {
+interface DeleteNoteModalProps {
   isOpen: boolean;
   onClose: () => void; // 취소 버튼 클릭 핸들러
   onSubmit: () => void; // 확인 버튼 클릭 핸들러
@@ -9,7 +9,13 @@ interface DeleteNoteProps {
   additionalCount: number; // 추가로 삭제되는 노트 개수
 }
 
-export const DeleteNote: React.FC<DeleteNoteProps> = ({ isOpen, onClose, onSubmit, noteName, additionalCount }) => {
+export const DeleteNoteModal: React.FC<DeleteNoteModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  noteName,
+  additionalCount,
+}) => {
   return (
     <Modal
       isOpen={isOpen}
