@@ -12,11 +12,7 @@ export const LimitAddNoteModal: React.FC<LimitAddNoteModalProps> = ({ isOpen, on
     <Modal
       isOpen={isOpen}
       title="노트 추가 제한"
-      description={
-        <>
-          <p>추가할 수 있는 노트의 개수를 초과했습니다.</p>
-        </>
-      }
+      description={<>추가할 수 있는 노트의 개수를 초과했습니다.</>}
       onClose={onClose}
       onSubmit={onPay}
       cancelText="돌아가기"
