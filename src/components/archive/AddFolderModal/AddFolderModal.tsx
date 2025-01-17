@@ -1,4 +1,6 @@
 import { Text } from "@components/typography/Text";
+import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
+import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import React, { useState, useRef } from "react";
 import { ArchiveFolderIcon } from "../ArchiveFolderIcon";
@@ -9,32 +11,12 @@ interface AddFolderModalProps {
   onSubmit: (folderName: string, folderColor: string) => void;
 }
 
-const colorMap = {
-  blue: "#6698F5",
-  ocean: "#5AA6C7",
-  lavender: "#949AEC",
-  mint: "#77CEC6",
-  sage: "#AECA99",
-  gray: "#A9A9A9",
-  orange: "#FDB456",
-  coral: "#FD855F",
-  rose: "#ED83B1",
-  plum: "#D49AE9",
-};
-
-// color 값을 어둡게 만드는 함수
-const darkenColor = (hex: string, percent: number): string => {
-  const num = Number.parseInt(hex.slice(1), 16);
-  const r = Math.max(0, Math.min(255, ((num >> 16) - 255 * percent) | 0));
-  const g = Math.max(0, Math.min(255, (((num >> 8) & 0x00ff) - 255 * percent) | 0));
-  const b = Math.max(0, Math.min(255, ((num & 0x0000ff) - 255 * percent) | 0));
-  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
-};
-
 export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [folderName, setFolderName] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [selectedColor, setSelectedColor] = useState<keyof typeof colorMap>("blue"); // 기본 색상
+
+  const { darkenColor } = useColorUtils(); // darkenColor 훅 사용
 
   const handleSubmit = () => {
     if (folderName.trim()) {
@@ -116,7 +98,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
           <div className="w-[2.5rem] h-[2.5rem]">
             <ArchiveFolderIcon
               fillColor={colorMap[selectedColor]}
-              backgroundColor={darkenColor(colorMap[selectedColor], 0.2)}
+              backgroundColor={darkenColor(colorMap[selectedColor], 0.2)} // darkenColor 사용
             />
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { Text } from "@components/typography/Text";
+import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import React, { useState, useRef } from "react";
 import { ArchiveFolderIcon } from "../ArchiveFolderIcon";
@@ -8,19 +9,6 @@ interface EditFolderModalProps {
   onClose: () => void;
   onSubmit: (folderName: string, folderColor: string) => void;
 }
-
-const colorMap = {
-  blue: "#6698F5",
-  ocean: "#5AA6C7",
-  lavender: "#949AEC",
-  mint: "#77CEC6",
-  sage: "#AECA99",
-  gray: "#A9A9A9",
-  orange: "#FDB456",
-  coral: "#FD855F",
-  rose: "#ED83B1",
-  plum: "#D49AE9",
-};
 
 // color 값을 어둡게 만드는 함수
 const darkenColor = (hex: string, percent: number): string => {
