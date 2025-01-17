@@ -1,7 +1,7 @@
 import { Text } from "@components/typography/Text";
 import { CommonXIcon, SearchThinIcon, StarIcon } from "@svgs/index";
 import React, { useState } from "react";
-import { ArchiveFolderIcon } from "../ArchiveFolderIcon";
+import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
 
 interface Folder {
   id: string;

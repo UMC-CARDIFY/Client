@@ -3,7 +3,7 @@ import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
 import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import React, { useState, useRef } from "react";
-import { ArchiveFolderIcon } from "../ArchiveFolderIcon";
+import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
 
 interface AddFolderModalProps {
   isOpen: boolean;
@@ -98,7 +98,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
           <div className="w-[2.5rem] h-[2.5rem]">
             <ArchiveFolderIcon
               fillColor={colorMap[selectedColor]}
-              backgroundColor={darkenColor(colorMap[selectedColor], 0.2)} // darkenColor 사용
+              backgroundColor={darkenColor(colorMap[selectedColor], 0.2)}
             />
           </div>
         </div>

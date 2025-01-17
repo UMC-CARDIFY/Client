@@ -1,8 +1,9 @@
 import { Text } from "@components/typography/Text";
+import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
 import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import React, { useState, useRef } from "react";
-import { ArchiveFolderIcon } from "../ArchiveFolderIcon";
+import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
 
 interface EditFolderModalProps {
   isOpen: boolean;
@@ -10,19 +11,12 @@ interface EditFolderModalProps {
   onSubmit: (folderName: string, folderColor: string) => void;
 }
 
-// color 값을 어둡게 만드는 함수
-const darkenColor = (hex: string, percent: number): string => {
-  const num = Number.parseInt(hex.slice(1), 16);
-  const r = Math.max(0, Math.min(255, ((num >> 16) - 255 * percent) | 0));
-  const g = Math.max(0, Math.min(255, (((num >> 8) & 0x00ff) - 255 * percent) | 0));
-  const b = Math.max(0, Math.min(255, ((num & 0x0000ff) - 255 * percent) | 0));
-  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
-};
-
 export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [folderName, setFolderName] = useState("기존 폴더 이름");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [selectedColor, setSelectedColor] = useState("blue"); // 기본 색상
+
+  const { darkenColor } = useColorUtils(); // darkenColor 훅 사용
 
   const handleSubmit = () => {
     if (folderName.trim()) {
