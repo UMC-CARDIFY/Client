@@ -1,5 +1,5 @@
 import { Text } from "@components/typography/Text";
-import { ArchiveFilledStarIcon, CommonXIcon, SearchThinIcon } from "@svgs/index";
+import { CommonXIcon, SearchThinIcon, StarIcon } from "@svgs/index";
 import React, { useState } from "react";
 import { ArchiveFolderIcon } from "../ArchiveFolderIcon";
 
@@ -77,7 +77,7 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
               onClick={() => onSubmit(folder.id)}
             >
               <div className="w-8 h-8 flex-shrink-0 flex justify-center items-center">
-                {folder.isStarred && <ArchiveFilledStarIcon />}
+                {folder.isStarred && <StarIcon />}
               </div>
               <div className="ml-1 mr-4">
                 <ArchiveFolderIcon
