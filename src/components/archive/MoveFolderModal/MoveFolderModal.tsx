@@ -1,6 +1,6 @@
 import { Text } from "@components/typography/Text";
 import { ArchiveFilledStarIcon, CommonXIcon, SearchThinIcon } from "@svgs/index";
-import React from "react";
+import React, { useState } from "react";
 import { ArchiveFolderIcon } from "../ArchiveFolderIcon";
 
 interface Folder {
@@ -35,6 +35,11 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
   currentFolderName,
   folders,
 }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // 검색어에 따라 폴더 목록 필터링
+  const filteredFolders = folders.filter((folder) => folder.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
   if (!isOpen) return null;
 
   return (
@@ -56,6 +61,8 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
           <SearchThinIcon className="absolute bottom-2 left-2 w-8 h-8" />
           <input
             type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="폴더명을 검색하세요."
             className="w-full pl-12 pb-2 text-[0.875rem] text-gray-700 placeholder-gray-400 focus:outline-none border-b border-gray-200 focus:border-brand-500"
           />
@@ -63,8 +70,12 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
 
         {/* Folder List */}
         <div className="flex flex-col pl-2 overflow-auto w-[45rem] h-[23.4375rem]">
-          {folders.map((folder) => (
-            <div key={folder.id} className="flex items-center h-12">
+          {filteredFolders.map((folder) => (
+            <div
+              key={folder.id}
+              className="flex items-center h-12 cursor-pointer hover:bg-gray-100"
+              onClick={() => onSubmit(folder.id)}
+            >
               <div className="w-8 h-8 flex-shrink-0 flex justify-center items-center">
                 {folder.isStarred && <ArchiveFilledStarIcon />}
               </div>
