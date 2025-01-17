@@ -1,6 +1,7 @@
 import { Text } from "@components/typography/Text";
-import { ArchiveFolderIcon, ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
+import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import React, { useState, useRef } from "react";
+import { ArchiveFolderIcon } from "../ArchiveFolderIcon";
 
 interface EditFolderModalProps {
   isOpen: boolean;
@@ -8,7 +9,27 @@ interface EditFolderModalProps {
   onSubmit: (folderName: string, folderColor: string) => void;
 }
 
-const colorKeys = ["blue", "ocean", "lavender", "mint", "sage", "gray", "orange", "coral", "rose", "plum"] as const;
+const colorMap = {
+  blue: "#6698F5",
+  ocean: "#5AA6C7",
+  lavender: "#949AEC",
+  mint: "#77CEC6",
+  sage: "#AECA99",
+  gray: "#A9A9A9",
+  orange: "#FDB456",
+  coral: "#FD855F",
+  rose: "#ED83B1",
+  plum: "#D49AE9",
+};
+
+// color 값을 어둡게 만드는 함수
+const darkenColor = (hex: string, percent: number): string => {
+  const num = Number.parseInt(hex.slice(1), 16);
+  const r = Math.max(0, Math.min(255, ((num >> 16) - 255 * percent) | 0));
+  const g = Math.max(0, Math.min(255, (((num >> 8) & 0x00ff) - 255 * percent) | 0));
+  const b = Math.max(0, Math.min(255, ((num & 0x0000ff) - 255 * percent) | 0));
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
+};
 
 export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [folderName, setFolderName] = useState("기존 폴더 이름");
@@ -73,18 +94,19 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClos
         </label>
         <div className="flex items-center mb-12 w-[21rem] h-[3.25rem]">
           <div className="flex flex-wrap gap-x-5 gap-y-3 w-[11.25rem]">
-            {colorKeys.map((color) => (
+            {Object.keys(colorMap).map((color) => (
               <div
                 key={color}
-                onClick={() => {
-                  setSelectedColor(`${color}`);
-                }}
+                onClick={() => setSelectedColor(color as keyof typeof colorMap)}
                 className="cursor-pointer flex justify-center items-center"
               >
-                {selectedColor === `${color}` ? (
-                  <ColorCircleCheckIcon className={`fill-icon-${color} w-5 h-5`} />
+                {selectedColor === color ? (
+                  <ColorCircleCheckIcon
+                    className="w-5 h-5"
+                    style={{ fill: colorMap[color as keyof typeof colorMap] }}
+                  />
                 ) : (
-                  <ColorCircleIcon className={`fill-icon-${color} w-5 h-5`} />
+                  <ColorCircleIcon className="w-5 h-5" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
                 )}
               </div>
             ))}
@@ -92,8 +114,10 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClos
 
           <div className="w-[0.0625rem] h-full bg-gray-300 ml-[3.75rem] mr-12"></div>
           <div className="w-[2.5rem] h-[2.5rem]">
-            {/* SVG 아이콘의 두 색상을 상태로 동적으로 설정 */}
-            <ArchiveFolderIcon className={`fill-icon-${selectedColor}`} />
+            <ArchiveFolderIcon
+              fillColor={colorMap[selectedColor]}
+              backgroundColor={darkenColor(colorMap[selectedColor], 0.2)}
+            />
           </div>
         </div>
 
