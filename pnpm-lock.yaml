@@ -75,6 +75,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
+      chromatic:
+        specifier: ^11.23.0
+        version: 11.23.0
       storybook:
         specifier: 8.4.7
         version: 8.4.7
@@ -1072,8 +1075,8 @@ packages:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
 
-  chromatic@11.22.0:
-    resolution: {integrity: sha512-u1kAPR9lj9aFzsCp0iWPXBbsKgcxFU7iJO6mFbgNHGVg+YPBqiJMuvgB8EQHdNbHjk5amFnGnIz/Ww8fK3t9Hw==}
+  chromatic@11.23.0:
+    resolution: {integrity: sha512-9LgsRyLe9FAGpWh2p3A2dec1jrP94+PTVAieQ5mreBAYaqlnmuZ1RC+IIw4WqiSRYmL7WHNBVkuVXVxJk6AUPg==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
@@ -2194,7 +2197,7 @@ snapshots:
 
   '@chromatic-com/storybook@3.2.3(react@18.3.1)(storybook@8.4.7)':
     dependencies:
-      chromatic: 11.22.0
+      chromatic: 11.23.0
       filesize: 10.1.6
       jsonfile: 6.1.0
       react-confetti: 6.2.2(react@18.3.1)
@@ -2997,7 +3000,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  chromatic@11.22.0: {}
+  chromatic@11.23.0: {}
 
   class-variance-authority@0.7.1:
     dependencies:
