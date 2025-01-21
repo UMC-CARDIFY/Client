@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { DeleteNoteModal } from "./DeleteNoteModal";
 
 export default {
-  title: "Archive/DeleteNoteModal",
+  title: "Archive/Modals/DeleteNoteModal",
   component: DeleteNoteModal,
 } as Meta<typeof DeleteNoteModal>;
 

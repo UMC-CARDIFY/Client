@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { LimitAddFolderModal } from "./LimitAddFolderModal";
 
 export default {
-  title: "Archive/LimitAddFolderModal",
+  title: "Archive/Modals/LimitAddFolderModal",
   component: LimitAddFolderModal,
 } as Meta<typeof LimitAddFolderModal>;
 
