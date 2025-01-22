@@ -31,22 +31,22 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({ title, createdDate, not
 
       <KebabIcon className="w-8 h-8 absolute top-6 right-4 cursor-pointer" />
 
-      <Text
-        variant="sub_heading2"
-        className="mt-4 w-[8.75rem] h-[2.25rem] text-base-black cursor-pointer overflow-hidden text-ellipsis line-clamp-2 leading-[18px]"
-      >
-        {title}
-      </Text>
+      <div className="mt-4 w-[8.75rem] h-[2.25rem]">
+        <Text
+          variant="sub_heading2"
+          className="text-base-black cursor-pointer overflow-hidden text-ellipsis line-clamp-2"
+        >
+          {title}
+        </Text>
+      </div>
 
       <div className="flex items-center justify-between text-gray-400 mt-[1.19rem]">
-        <Text variant="sub_heading2" className="pr-8 leading-none">
+        <Text variant="sub_heading2" className="pr-8">
           {createdDate}
         </Text>
-        <div className="flex gap-[0.19rem]">
+        <div className="flex gap-[0.19rem] items-center">
           <ArchiveNoteIcon className="w-4 h-4" />
-          <Text variant="sub_heading2" className="leading-none">
-            {displayNoteCnt}
-          </Text>
+          <Text variant="sub_heading2">{displayNoteCnt}</Text>
         </div>
       </div>
     </div>
