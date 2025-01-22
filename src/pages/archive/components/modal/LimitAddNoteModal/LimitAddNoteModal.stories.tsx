@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { LimitAddNoteModal } from "./LimitAddNoteModal";
 
 export default {
-  title: "Archive/LimitAddNoteModal",
+  title: "Archive/Modals/LimitAddNoteModal",
   component: LimitAddNoteModal,
 } as Meta<typeof LimitAddNoteModal>;
 

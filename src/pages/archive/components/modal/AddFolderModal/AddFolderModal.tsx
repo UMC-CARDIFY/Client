@@ -16,7 +16,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [selectedColor, setSelectedColor] = useState<keyof typeof colorMap>("blue"); // 기본 색상
 
-  const { darkenColor } = useColorUtils(); // darkenColor 훅 사용
+  const { darkenColor } = useColorUtils();
 
   const handleSubmit = () => {
     if (folderName.trim()) {

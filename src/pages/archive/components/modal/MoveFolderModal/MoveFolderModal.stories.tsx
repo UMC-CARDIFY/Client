@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { MoveFolderModal } from "./MoveFolderModal";
 
 export default {
-  title: "Archive/MoveFolderModal",
+  title: "Archive/Modals/MoveFolderModal",
   component: MoveFolderModal,
 } as Meta<typeof MoveFolderModal>;
 
