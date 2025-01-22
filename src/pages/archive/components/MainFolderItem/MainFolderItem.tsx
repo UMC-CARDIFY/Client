@@ -33,7 +33,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({ title, createdDate, not
 
       <Text
         variant="sub_heading2"
-        className="mt-4 w-[8.75rem] text-base-black cursor-pointer overflow-hidden text-ellipsis line-clamp-2 font-pretendard text-[0.875rem] font-medium leading-[18px] h-[2.25rem]"
+        className="mt-4 w-[8.75rem] h-[2.25rem] text-base-black cursor-pointer overflow-hidden text-ellipsis line-clamp-2 leading-[18px]"
       >
         {title}
       </Text>
