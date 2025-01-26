@@ -30,9 +30,3 @@ PathSegments.args = {
   username: "혜성",
   pathSegments: ["카디파이", "프론트엔드"],
 };
-
-export const EmptyPathSegments = Template.bind({});
-EmptyPathSegments.args = {
-  username: "혜성",
-  pathSegments: [],
-};
