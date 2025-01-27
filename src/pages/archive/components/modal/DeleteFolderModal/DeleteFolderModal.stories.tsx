@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { DeleteFolderModal } from "./DeleteFolderModal";
 
 export default {
-  title: "Archive/DeleteFolderModal",
+  title: "Archive/Modals/DeleteFolderModal",
   component: DeleteFolderModal,
 } as Meta<typeof DeleteFolderModal>;
 
