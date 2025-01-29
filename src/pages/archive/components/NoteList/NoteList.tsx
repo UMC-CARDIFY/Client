@@ -5,12 +5,18 @@ import NoteItem from "../NoteItem/NoteItem";
 import EmptyNoteState from "../emptyState/EmptyNoteState";
 
 interface NoteData {
-  id: number;
-  title: string;
-  createdDate: string;
-  modifiedDate: string;
-  flashcardNum: number;
-  color: string;
+  noteId: number;
+  name: string;
+  folderId: number;
+  folderName: string;
+  folderColor: string;
+  markState: boolean;
+  viewAt: string;
+  editDate: string;
+  createdAt: string;
+  isDownload: boolean;
+  isUpload: boolean;
+  flashCardCount: number;
 }
 
 interface NoteListProps {
@@ -50,12 +56,19 @@ const NoteList: React.FC<NoteListProps> = ({ notes = NoteItemData }) => {
         <div className="gap-2 flex flex-col">
           {NoteItemData.map((note) => (
             <NoteItem
-              key={note.id}
-              title={note.title}
-              createdDate={note.createdDate}
-              modifiedDate={note.modifiedDate}
-              flashcardNum={note.flashcardNum}
-              color={note.color}
+              key={note.noteId}
+              noteId={note.noteId}
+              name={note.name}
+              folderId={note.folderId}
+              folderName={note.folderName}
+              folderColor={note.folderColor}
+              markState={note.markState}
+              viewAt={note.viewAt}
+              editDate={note.editDate}
+              createdAt={note.createdAt}
+              isDownload={note.isDownload}
+              isUpload={note.isUpload}
+              flashCardCount={note.flashCardCount}
             />
           ))}
         </div>

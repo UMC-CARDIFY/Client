@@ -1,52 +1,88 @@
 interface NoteItemDataProps {
-  id: number;
-  title: string;
-  createdDate: string;
-  modifiedDate: string;
-  flashcardNum: number;
-  color: string;
+  noteId: number;
+  name: string;
+  folderId: number;
+  folderName: string;
+  folderColor: string;
+  markState: boolean;
+  viewAt: string;
+  editDate: string;
+  createdAt: string;
+  isDownload: boolean;
+  isUpload: boolean;
+  flashCardCount: number;
 }
 
 const NoteItemData: NoteItemDataProps[] = [
   {
-    id: 1,
-    title: "1차에서 5차까지 오답 노트 총정리",
-    createdDate: "2024-08-20",
-    modifiedDate: "2024-08-20",
-    flashcardNum: 0,
-    color: "sage",
+    noteId: 1,
+    name: "1차에서 5차까지 오답 노트 총정리",
+    folderId: 1,
+    folderName: "폴더1",
+    folderColor: "sage",
+    markState: false,
+    viewAt: "2024-08-20",
+    editDate: "2024-08-20",
+    createdAt: "2024-08-20",
+    isDownload: false,
+    isUpload: false,
+    flashCardCount: 0,
   },
   {
-    id: 2,
-    title: "1차에서 5차까지 오답 노트 총정리",
-    createdDate: "2024-08-20",
-    modifiedDate: "2024-08-20",
-    flashcardNum: 5,
-    color: "sage",
+    noteId: 2,
+    name: "1차에서 5차까지 오답 노트 총정리",
+    folderId: 1,
+    folderName: "폴더1",
+    folderColor: "sage",
+    markState: false,
+    viewAt: "2024-08-20",
+    editDate: "2024-08-20",
+    createdAt: "2024-08-20",
+    isDownload: false,
+    isUpload: false,
+    flashCardCount: 1,
   },
   {
-    id: 3,
-    title: "1차에서 5차까지 오답 노트 총정리",
-    createdDate: "2024-08-20",
-    modifiedDate: "2024-08-20",
-    flashcardNum: 50,
-    color: "sage",
+    noteId: 3,
+    name: "1차에서 5차까지 오답 노트 총정리",
+    folderId: 1,
+    folderName: "폴더1",
+    folderColor: "sage",
+    markState: false,
+    viewAt: "2024-08-20",
+    editDate: "2024-08-20",
+    createdAt: "2024-08-20",
+    isDownload: false,
+    isUpload: false,
+    flashCardCount: 50,
   },
   {
-    id: 4,
-    title: "1차에서 5차까지 오답 노트 총정리",
-    createdDate: "2024-08-20",
-    modifiedDate: "2024-08-20",
-    flashcardNum: 99,
-    color: "sage",
+    noteId: 4,
+    name: "1차에서 5차까지 오답 노트 총정리",
+    folderId: 1,
+    folderName: "폴더1",
+    folderColor: "sage",
+    markState: false,
+    viewAt: "2024-08-20",
+    editDate: "2024-08-20",
+    createdAt: "2024-08-20",
+    isDownload: false,
+    isUpload: false,
+    flashCardCount: 99,
   },
   {
-    id: 5,
-    title: "1차에서 5차까지 오답 노트 총정리",
-    createdDate: "2024-08-20",
-    modifiedDate: "2024-08-20",
-    flashcardNum: 100,
-    color: "sage",
+    noteId: 5,
+    name: "1차에서 5차까지 오답 노트 총정리",
+    folderId: 1,
+    folderName: "폴더1",
+    folderColor: "sage",
+    markState: false,
+    viewAt: "2024-08-20",
+    editDate: "2024-08-20",
+    createdAt: "2024-08-20",
+    isDownload: false,
+    isUpload: false,
+    flashCardCount: 100,
   },
 ];
 
