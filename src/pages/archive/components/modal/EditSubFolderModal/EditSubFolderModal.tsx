@@ -70,7 +70,7 @@ export const EditSubFolderModal: React.FC<EditSubFolderModalProps> = ({
           </div>
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-2">
           <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50">
             <Text variant="sub_heading2" className="text-gray-700">
               취소
