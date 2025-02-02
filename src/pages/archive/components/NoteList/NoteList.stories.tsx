@@ -1,7 +1,7 @@
 import NoteList from "./NoteList";
 
 export default {
-  title: "components/NoteList",
+  title: "Archive/components/NoteList",
   component: NoteList,
 };
 
