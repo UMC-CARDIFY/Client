@@ -8,11 +8,11 @@ type Color = keyof typeof colorMap;
 
 interface MainFolderProps {
   id: number;
-  title: string;
-  createdDate: string;
-  noteCnt: number;
-  color: Color;
-  isStarred?: boolean;
+  folderName: string;
+  createdAt: string;
+  noteCount: number;
+  folderColor: Color;
+  markState?: boolean;
 }
 
 interface MainFolderListProps {
@@ -34,11 +34,11 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
           {folders.map((folder) => (
             <MainFolderItem
               key={folder.id}
-              title={folder.title}
-              createdDate={folder.createdDate}
-              noteCnt={folder.noteCnt}
-              color={folder.color}
-              isStarred={folder.isStarred}
+              folderName={folder.folderName}
+              createdAt={folder.createdAt}
+              noteCount={folder.noteCount}
+              folderColor={folder.folderColor}
+              markState={folder.markState}
             />
           ))}
         </div>

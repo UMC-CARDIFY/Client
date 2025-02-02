@@ -7,22 +7,29 @@ import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 type Color = keyof typeof colorMap;
 
 interface MainFolderItemProps {
-  title: string;
-  createdDate: string;
-  noteCnt: number;
-  color: Color;
-  isStarred?: boolean;
+  id: number;
+  folderName: string;
+  createdAt: string;
+  noteCount: number;
+  folderColor: Color;
+  markState?: boolean;
 }
 
-const MainFolderItem: React.FC<MainFolderItemProps> = ({ title, createdDate, noteCnt, color, isStarred }) => {
-  const displayNoteCnt = noteCnt > 99 ? "99+" : noteCnt;
+const MainFolderItem: React.FC<MainFolderItemProps> = ({
+  folderName,
+  createdAt,
+  noteCount,
+  folderColor,
+  markState,
+}) => {
+  const displayNoteCnt = noteCount > 99 ? "99+" : noteCount;
 
   return (
     <div className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150">
       <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
-        <ArchiveMainFolderIcon fillColor={colorMap[color]} />
+        <ArchiveMainFolderIcon fillColor={colorMap[folderColor]} />
 
-        {isStarred ? (
+        {markState ? (
           <div className="absolute top-8 right-[0.37rem] w-4 h-4">
             <StarIcon />
           </div>
@@ -38,13 +45,13 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({ title, createdDate, not
           variant="sub_heading2"
           className="text-base-black cursor-pointer overflow-hidden text-ellipsis line-clamp-2"
         >
-          {title}
+          {folderName}
         </Text>
       </div>
 
       <div className="flex items-center justify-between text-gray-400 mt-[1.19rem]">
         <Text variant="sub_heading2" className="pr-8">
-          {createdDate}
+          {createdAt}
         </Text>
         <div className="flex gap-[0.19rem] items-center">
           <ArchiveNoteIcon className="w-4 h-4" />
