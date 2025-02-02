@@ -1,7 +1,7 @@
 import { Text } from "@components/typography/Text";
-import { AddMainFolderIcon } from "@svgs/index";
 import FolderItemData from "src/mocks/FolderItemData";
 import MainFolderItem from "../MainFolderItem/MainFolderItem";
+import NewFolderMain from "../newFolder/NewFolderMain";
 
 interface MainFolderProps {
   title: string;
@@ -26,7 +26,7 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
         </div>
       ) : (
         <div className="gap-4 flex flex-wrap">
-          <AddMainFolderIcon className="cursor-pointer" />
+          <NewFolderMain />
           {folders.map((folder) => (
             <MainFolderItem
               key={folder.title}
