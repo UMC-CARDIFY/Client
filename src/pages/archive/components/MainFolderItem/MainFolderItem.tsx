@@ -4,11 +4,13 @@ import { ArchiveNoteIcon, EmptyStarIcon, KebabIcon } from "@svgs/index";
 import { StarIcon } from "../StarIcon";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 
+type Color = keyof typeof colorMap;
+
 interface MainFolderItemProps {
   title: string;
   createdDate: string;
   noteCnt: number;
-  color: string;
+  color: Color;
   isStarred?: boolean;
 }
 

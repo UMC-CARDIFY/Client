@@ -1,13 +1,17 @@
 import { Text } from "@components/typography/Text";
+import { colorMap } from "@styles/colorMap";
 import FolderItemData from "src/mocks/FolderItemData";
 import MainFolderItem from "../MainFolderItem/MainFolderItem";
 import NewFolderMain from "../newFolder/NewFolderMain";
 
+type Color = keyof typeof colorMap;
+
 interface MainFolderProps {
+  id: number;
   title: string;
   createdDate: string;
   noteCnt: number;
-  color: string;
+  color: Color;
   isStarred?: boolean;
 }
 
@@ -29,7 +33,7 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
           <NewFolderMain />
           {folders.map((folder) => (
             <MainFolderItem
-              key={folder.title}
+              key={folder.id}
               title={folder.title}
               createdDate={folder.createdDate}
               noteCnt={folder.noteCnt}
