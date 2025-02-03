@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
 import MainLayout from "../layouts/mainLayout";
 import { Archive, Flashcard, Home, Library, Mypage } from "../pages";
 import { PATHS } from "./paths";
