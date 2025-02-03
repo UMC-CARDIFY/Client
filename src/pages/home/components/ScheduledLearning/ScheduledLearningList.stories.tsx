@@ -57,8 +57,8 @@ SingleItem.args = {
       folderId: 1,
       folderName: "휴먼미디어인터랙션개론휴먼미디어인터랙션개론",
       folderColor: "blue",
-      completedCards: 10,
-      timeReachedCards: 3,
+      completedCards: 3,
+      timeReachedCards: 10,
     },
   ],
 };
