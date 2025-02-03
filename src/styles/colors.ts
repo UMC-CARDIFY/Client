@@ -20,7 +20,7 @@ export const colors = {
     50: "#F9F9F9",
     100: "#F5F5F5",
     150: "#EEEEEE",
-    200: "#E2E2E2",
+    200: "#ECECEC",
     300: "#DBDBDB",
     350: "#C4C4C4",
     400: "#B1B1B1",
@@ -47,5 +47,55 @@ export const colors = {
     coral: "#FD855F",
     rose: "#ED83B1",
     plum: "#D49AE9",
+  },
+  blue: {
+    100: "#F3F7FF",
+    400: "#C9DBFB",
+    600: "#6698F5",
+  },
+  ocean: {
+    100: "#EDF7FB",
+    400: "#BADBEA",
+    600: "#5AA6C7",
+  },
+  lavender: {
+    100: "#F3F4FD",
+    400: "#D2D5F8",
+    600: "#949AEC",
+  },
+  mint: {
+    100: "#EDF9F8",
+    400: "#C5EBE7",
+    600: "#77CEC6",
+  },
+  sage: {
+    100: "#F0F7EC",
+    400: "#D9E8CF",
+    600: "#AECA99",
+  },
+  icongray: {
+    100: "#F5F5F5",
+    400: "#DADADA",
+    600: "#A9A9A9",
+  },
+  orange: {
+    100: "#FFF5E9",
+    400: "#FEDEB5",
+    600: "#FDB456",
+  },
+  coral: {
+    100: "#FEF2EF",
+    400: "#FECCBD",
+    600: "#FD855F",
+  },
+  rose: {
+    100: "#FEF5F9",
+    400: "#F8CDE0",
+    600: "#ED83B1",
+  },
+  plum: {
+    100: "#FAF2FC",
+    400: "#ECD3F5",
+    600: "#D49AE9",
   },
 } as const;
