@@ -1,15 +1,16 @@
 import { Text } from "@components/typography/Text";
 import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface ColorPickerProps {
   onSelect: (selectedColors: string[]) => void;
   onClose?: () => void;
+  selectedColors: string[];
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, onClose }) => {
-  const [tempSelectedColors, setTempSelectedColors] = useState<string[]>([]);
+const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, onClose, selectedColors }) => {
+  const [tempSelectedColors, setTempSelectedColors] = useState<string[]>(selectedColors);
 
   const toggleColorSelection = (color: string) => {
     setTempSelectedColors((prev) => (prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]));
@@ -30,7 +31,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, onClose }) => {
         className="ml-6 mr-6 grid"
         style={{
           gridTemplateColumns: "repeat(5, 1fr)",
-          gap: "8px",
+          gap: "0.75rem",
         }}
       >
         {Object.keys(colorMap).map((color) => (
@@ -38,16 +39,13 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, onClose }) => {
             key={color}
             role="button"
             tabIndex={0}
-            className="cursor-pointer flex justify-center items-center w-8 h-8 rounded-full"
+            className="cursor-pointer flex justify-center items-center w-5 h-5 rounded-full"
             onClick={() => toggleColorSelection(color)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") toggleColorSelection(color);
-            }}
           >
             {tempSelectedColors.includes(color) ? (
-              <ColorCircleCheckIcon className="w-6 h-6" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
+              <ColorCircleCheckIcon className="w-5 h-5" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
             ) : (
-              <ColorCircleIcon className="w-6 h-6" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
+              <ColorCircleIcon className="w-5 h-5" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
             )}
           </div>
         ))}
@@ -56,7 +54,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, onClose }) => {
       <div className="mt-4 mb-3 mr-3 flex justify-end">
         <button
           onClick={handleApply}
-          className="inline-flex h-8 px-[20px] py-[6px] justify-center items-center hover:bg-brand-50 transition rounded-md"
+          className="inline-flex px-[1.25rem] py-[0.375rem] justify-center items-center hover:bg-brand-50 transition rounded-md"
         >
           <Text variant="sub_heading3" className="text-brand-700">
             적용
