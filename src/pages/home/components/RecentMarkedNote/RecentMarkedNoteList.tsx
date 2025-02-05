@@ -32,22 +32,9 @@ const RecentMarkedNoteList: React.FC<RecentMarkedNoteListProps> = ({ items = [] 
   return (
     <div className="w-full flex flex-row gap-4">
       {items.map((item) => (
-        <RecentMarkedNoteItem
-          key={item.noteId}
-          noteId={item.noteId}
-          name={item.name}
-          folderId={item.folderId}
-          folderName={item.folderName}
-          folderColor={item.folderColor}
-          markState={item.markState}
-          viewAt={item.viewAt}
-          editDate={item.editDate}
-          createdAt={item.createdAt}
-          isDownload={item.isDownload}
-          isUpload={item.isUpload}
-          flashCardCount={item.flashCardCount}
-          content={item.content}
-        />
+        {items.map((item) => (
+          <RecentMarkedNoteItem key={item.noteId} {...item} />
+        ))}
       ))}
     </div>
   );
