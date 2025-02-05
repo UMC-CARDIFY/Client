@@ -28,12 +28,12 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
     <div className="inline-block text-left">
       <div className="relative">
         <button
-          className={`flex justify-center items-center gap-2 px-3 py-2 rounded-lg transition ${
+          className={`flex justify-center items-center gap-2 rounded-lg transition ${
             isKebab
-              ? "px-0 py-0 hover:bg-gray-100 rounded-md"
+              ? "p-0 hover:bg-gray-100 rounded-md"
               : isNoteFilterActive
-                ? "bg-brand-100 hover:bg-brand-150 text-brand-700"
-                : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                ? "bg-brand-100 hover:bg-brand-150 px-3 py-2 text-brand-700"
+                : "bg-gray-100 hover:bg-gray-200 px-3 py-2 text-gray-700"
           }`}
           onClick={() => setOpenState(!openState)}
         >

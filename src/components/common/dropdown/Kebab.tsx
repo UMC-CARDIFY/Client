@@ -12,8 +12,8 @@ const Kebab: React.FC<KebabProps> = ({ onSelect, withFolderMove }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    ...(withFolderMove ? [{ label: "폴더 이동", value: "move" }] : []),
     { label: "폴더 수정", value: "edit" },
+    ...(withFolderMove ? [{ label: "폴더 이동", value: "move" }] : []),
     { label: "폴더 삭제", value: "delete", danger: true },
   ];
 
