@@ -1,37 +1,34 @@
 import { Text } from "@components/typography/Text";
 import { ArchiveNoteIcon, FlashcardIcon, StarIcon } from "@svgs/index";
 import React from "react";
+import { NoteItemProps } from "../../../../types/note";
 
-interface NoteItemProps {
-  noteId: number;
-  name: string;
-  folderId: number;
-  folderName: string;
-  folderColor: string;
-  markState: boolean;
-  viewAt: string;
-  editDate: string;
-  createdAt: string;
-  isDownload: boolean;
-  isUpload: boolean;
-  flashCardCount: number;
-  content: string;
-}
-
-const RecentMarkedNoteItem: React.FC<NoteItemProps> = ({ name, content, folderColor, editDate, flashCardCount }) => {
+const RecentMarkedNoteItem: React.FC<NoteItemProps> = ({
+  name,
+  content,
+  folderColor,
+  editDate,
+  flashCardCount,
+}) => {
   const displayFlashcardNum = flashCardCount > 99 ? "99+" : flashCardCount;
   return (
     <div className="w-[15.8125rem] h-[17.5rem] shrink-0 px-5 flex flex-col pb-4 border border-solid border-gray-150 rounded-lg cursor-pointer">
       <div className="pr-1 pt-5 mb-3 flex flex-row items-center">
         <StarIcon className="cursor-pointer" />
         <ArchiveNoteIcon className={`mr-2 fill-${folderColor}-600`} />
-        <Text variant={"sub_heading1"} className="w-[9.8125rem] text-base-black truncate">
+        <Text
+          variant={"sub_heading1"}
+          className="w-[9.8125rem] text-base-black truncate"
+        >
           {name}
         </Text>
       </div>
       <hr />
       <div className="flex flex-col flex-1">
-        <Text variant={"body3"} className="mt-3 px-3 h-40 text-gray-500 line-clamp-6 whitespace-normal ">
+        <Text
+          variant={"body3"}
+          className="mt-3 px-3 h-40 text-gray-500 line-clamp-6 whitespace-normal "
+        >
           {content}
         </Text>
 
