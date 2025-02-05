@@ -1,15 +1,6 @@
 import React from "react";
 import ScheduledLearningItem from "./ScheduledLearningItem";
-
-interface ScheduledLearningItemProps {
-  noteid: number;
-  name: string;
-  folderId: number;
-  folderName: string;
-  folderColor: string;
-  completedCards: number; // 학습 완료한 카드 수
-  timeReachedCards: number; // 학습 시간에 도달한 카드 수
-}
+import { ScheduledLearningItemProps } from "../../../../types/scheduledLearning";
 
 interface ScheduledLearningListProps {
   items?: ScheduledLearningItemProps[];

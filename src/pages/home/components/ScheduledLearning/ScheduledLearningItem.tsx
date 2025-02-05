@@ -1,18 +1,9 @@
 import { Text } from "@components/typography/Text";
 import { HomeFlashcardIcon } from "@svgs/index";
 import React from "react";
+import { ScheduledLearningItemProps } from "../../../../types/scheduledLearning";
 
-interface ScheduledLearningProps {
-  noteid: number;
-  name: string;
-  folderId: number;
-  folderName: string;
-  folderColor: string;
-  completedCards: number; // 학습 완료한 카드 수
-  timeReachedCards: number; // 학습 시간에 도달한 카드 수
-}
-
-const ScheduledLearningItem: React.FC<ScheduledLearningProps> = ({
+const ScheduledLearningItem: React.FC<ScheduledLearningItemProps> = ({
   name,
   folderName,
   folderColor,
@@ -26,7 +17,9 @@ const ScheduledLearningItem: React.FC<ScheduledLearningProps> = ({
       className={`w-[16rem] h-[15rem] px-6 py-8 flex flex-col gap-2 bg-${folderColor}-100 rounded-lg cursor-pointer`}
     >
       <div className="flex flex-col flex-1 gap-2">
-        <HomeFlashcardIcon className={`fill-${folderColor}-600 stroke-${folderColor}-600 shrink-0`} />
+        <HomeFlashcardIcon
+          className={`fill-${folderColor}-600 stroke-${folderColor}-600 shrink-0`}
+        />
         <Text variant={"sub_heading3"} className="text-gray-500 mt-2 truncate">
           {folderName}
         </Text>
