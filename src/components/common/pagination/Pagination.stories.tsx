@@ -43,15 +43,3 @@ FewPages.args = {
   currentPage: 1,
   totalPages: 3,
 };
-
-export const ManyPages = Template.bind({});
-ManyPages.args = {
-  currentPage: 5,
-  totalPages: 20,
-};
-
-export const LastPage = Template.bind({});
-LastPage.args = {
-  currentPage: 10,
-  totalPages: 10,
-};
