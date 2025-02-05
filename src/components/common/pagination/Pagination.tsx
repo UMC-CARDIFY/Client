@@ -31,7 +31,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
   return (
     <div className="flex items-center gap-2">
-      {/* First Page Button */}
+      {/* Start */}
       <button
         onClick={() => handlePageChange(1)}
         disabled={currentPage === 1}
@@ -42,7 +42,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         <HalfDoubleArrowBoldIcon width={24} height={24} />
       </button>
 
-      {/* Previous Page Button */}
+      {/* Previous */}
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -66,7 +66,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         </button>
       ))}
 
-      {/* Next Page Button */}
+      {/* Next */}
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
@@ -77,7 +77,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         <HalfArrowBoldIcon width={24} height={24} className="rotate-180" />
       </button>
 
-      {/* Last Page Button */}
+      {/* End */}
       <button
         onClick={() => handlePageChange(totalPages)}
         disabled={currentPage === totalPages}
