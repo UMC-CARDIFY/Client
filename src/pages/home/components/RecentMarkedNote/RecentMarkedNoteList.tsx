@@ -24,7 +24,7 @@ interface RecentMarkedNoteListProps {
 const RecentMarkedNoteList: React.FC<RecentMarkedNoteListProps> = ({
   items = [],
 }) => {
-  if (!items?.length) {
+  if (!items.length) {
     return (
       <div className="flex flex-col w-[52rem] h-60 items-center justify-center text-gray-400">
         즐겨찾기한 노트가 없습니다.
