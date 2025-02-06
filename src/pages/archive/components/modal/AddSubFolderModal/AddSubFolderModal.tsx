@@ -46,6 +46,11 @@ export const AddSubFolderModal: React.FC<AddSubFolderModalProps> = ({ isOpen, on
             placeholder="추가할 폴더의 이름을 입력해주세요."
             value={folderName}
             onChange={handleInput}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+              }
+            }}
             maxLength={100}
             ref={textareaRef}
             className="w-full p-4 rounded-md border border-gray-300 bg-white text-gray-700 text-[0.875rem] focus:outline-none focus:border-brand-500 resize-none overflow-hidden"
@@ -58,13 +63,13 @@ export const AddSubFolderModal: React.FC<AddSubFolderModalProps> = ({ isOpen, on
           </div>
         </div>
 
-        <div className="flex justify-end">
-          <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-200">
+        <div className="flex justify-end gap-3">
+          <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50">
             <Text variant="sub_heading2" className="text-gray-700">
               취소
             </Text>
           </button>
-          <button onClick={handleSubmit} className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-light">
+          <button onClick={handleSubmit} className="h-8 px-5 py-1 rounded-md bg-brand-50">
             <Text variant="sub_heading2" className="text-brand-700">
               확인
             </Text>
