@@ -11,6 +11,9 @@ export default {
     {
       pattern: /fill-icon-(favorite|blue|ocean|lavender|mint|sage|gray|orange|coral|rose|plum)/,
     },
+    {
+      pattern: /(bg|fill|stroke)-(blue|ocean|lavender|mint|sage|icongray|orange|coral|rose|plum)-(100|400|600)/,
+    },
   ],
   theme: {
     extend: {
