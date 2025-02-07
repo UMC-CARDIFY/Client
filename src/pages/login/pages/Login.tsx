@@ -37,7 +37,7 @@ const Login = () => {
 
       {/* 소셜 로그인 버튼 */}
       <motion.div
-        className="flex flex-col gap-4 items-center flex-shrink-0 mt-[2rem]"
+        className="flex flex-col gap-4 items-center mt-[2rem]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
