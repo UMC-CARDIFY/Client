@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import Login from "./Login";
 
 export default {
-  title: "Pages/Login",
+  title: "Login/Pages/LoginPage",
   component: Login,
 } as Meta<typeof Login>;
 
