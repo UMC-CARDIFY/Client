@@ -1,14 +1,12 @@
 import React from "react";
-import ScheduledLearningItem from "./ScheduledLearningItem";
 import { ScheduledLearningItemProps } from "../../../../types/scheduledLearning";
+import ScheduledLearningItem from "./ScheduledLearningItem";
 
 interface ScheduledLearningListProps {
   items?: ScheduledLearningItemProps[];
 }
 
-const ScheduledLearningList: React.FC<ScheduledLearningListProps> = ({
-  items = [],
-}) => {
+const ScheduledLearningList: React.FC<ScheduledLearningListProps> = ({ items = [] }) => {
   if (!items.length) {
     return (
       <div className="flex flex-col w-[52rem] h-60 items-center justify-center text-gray-400">
