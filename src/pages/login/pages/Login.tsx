@@ -1,6 +1,7 @@
 import { Text } from "@components/typography/Text";
-import { GoogleLoginButton, KaKaoLoginButton, LoginGradient, SymbolLogo } from "@svgs/index";
+import { GoogleLoginButton, LoginGradient, SymbolLogo } from "@svgs/index";
 import { motion } from "framer-motion";
+import KakaoButton from "./components/kakaoButton/KakaoButton";
 
 const Login = () => {
   return (
@@ -46,7 +47,7 @@ const Login = () => {
             ease: [0.68, -0.55, 0.27, 1.55],
           }}
         >
-          <KaKaoLoginButton className="cursor-pointer" />
+          <KakaoButton />
           <GoogleLoginButton className="cursor-pointer" />
           <Text variant="body2" className="text-gray-450">
             소셜 계정으로 간편하게 시작하세요.

@@ -4,4 +4,5 @@ export const PATHS = {
   FLASHCARD: "/flashcard",
   LIBRARY: "/library",
   MYPAGE: "/mypage",
+  LOGIN: "/login",
 };
