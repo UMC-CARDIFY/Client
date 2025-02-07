@@ -23,7 +23,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, onClose, selectedCo
 
   return (
     <div className="flex flex-col">
-      <Text variant="sub_heading2" className="mt-6 ml-6 mb-5">
+      <Text variant="sub_heading2" className="mt-6 ml-6 mb-5 text-base-black">
         폴더 색상
       </Text>
 

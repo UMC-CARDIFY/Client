@@ -31,7 +31,7 @@ const Kebab: React.FC<KebabProps> = ({ onSelect, withFolderMove }) => {
           role="button"
           tabIndex={0}
           className={`px-5 py-4 text-center whitespace-nowrap hover:bg-gray-50 border-b border-gray-150 last:border-b-0 ${
-            item.danger ? "text-red-500" : "text-black"
+            item.danger ? "text-alert-500" : "text-base-black"
           }`}
           onClick={() => {
             onSelect(item.value);

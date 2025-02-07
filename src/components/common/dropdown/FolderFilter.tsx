@@ -1,8 +1,8 @@
 import { colorMap } from "@styles/colorMap";
 import { CommonXIcon20, FilteringIcon } from "@svgs/index";
 import { useState } from "react";
-import ColorPicker from "../colorPicker/ColorPicker";
 import DropdownButton from "./DropdownContainer";
+import ColorPicker from "./colorPicker/ColorPicker";
 
 interface FolderFilterProps {
   onSelect: (colors: string[]) => void;
