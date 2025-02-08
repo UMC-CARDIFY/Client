@@ -78,7 +78,7 @@ export const colors = {
     400: "#D9E8CF",
     600: "#AECA99",
   },
-  icongray: {
+  ashy: {
     100: "#F5F5F5",
     150: "#F0F0F0",
     400: "#DADADA",
