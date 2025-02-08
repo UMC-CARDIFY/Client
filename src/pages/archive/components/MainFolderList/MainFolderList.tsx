@@ -1,4 +1,5 @@
 import { Text } from "@components/typography/Text";
+import EmptyState from "@pages/home/components/EmptyState/EmptyState";
 import { colorMap } from "@styles/colorMap";
 import FolderItemData from "src/mocks/FolderItemData";
 import MainFolderItem from "../MainFolderItem/MainFolderItem";
@@ -28,11 +29,15 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
   return (
     <div className="w-[50rem]">
       {folders.length === 0 ? (
-        <div className="mt-12">
-          <Text variant="sub_heading2" className="text-center">
-            폴더가 없습니다.
-          </Text>
-        </div>
+        isHome ? (
+          <EmptyState type="favoriteFolder" />
+        ) : (
+          <div className="mt-12">
+            <Text variant="sub_heading2" className="text-center">
+              폴더가 없습니다.
+            </Text>
+          </div>
+        )
       ) : (
         <div className="gap-4 flex flex-wrap">
           {!isHome && <NewFolderMain />}
