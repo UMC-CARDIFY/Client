@@ -1,14 +1,12 @@
 import React from "react";
-import RecentMarkedNoteItem from "./RecentMarkedNoteItem";
 import { NoteItemProps } from "../../../../types/note";
+import RecentMarkedNoteItem from "./RecentMarkedNoteItem";
 
 interface RecentMarkedNoteListProps {
   items?: NoteItemProps[];
 }
 
-const RecentMarkedNoteList: React.FC<RecentMarkedNoteListProps> = ({
-  items = [],
-}) => {
+const RecentMarkedNoteList: React.FC<RecentMarkedNoteListProps> = ({ items = [] }) => {
   if (!items.length) {
     return (
       <div className="flex flex-col w-[52rem] h-60 items-center justify-center text-gray-400">
