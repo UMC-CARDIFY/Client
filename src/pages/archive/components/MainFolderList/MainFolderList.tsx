@@ -17,9 +17,14 @@ interface MainFolderProps {
 
 interface MainFolderListProps {
   folders?: MainFolderProps[];
+  variant?: "home" | "archive";
+  maxItems?: number;
 }
 
-const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemData }) => {
+const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemData, variant = "archive", maxItems }) => {
+  const displayFolders = maxItems ? folders.slice(0, maxItems) : folders;
+  const isHome = variant === "home";
+
   return (
     <div className="w-[50rem]">
       {folders.length === 0 ? (
@@ -30,16 +35,9 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
         </div>
       ) : (
         <div className="gap-4 flex flex-wrap">
-          <NewFolderMain />
-          {folders.map((folder) => (
-            <MainFolderItem
-              key={folder.id}
-              folderName={folder.folderName}
-              createdAt={folder.createdAt}
-              noteCount={folder.noteCount}
-              folderColor={folder.folderColor}
-              markState={folder.markState}
-            />
+          {!isHome && <NewFolderMain />}
+          {displayFolders.map((folder) => (
+            <MainFolderItem key={folder.id} {...folder} variant={variant} />
           ))}
         </div>
       )}
