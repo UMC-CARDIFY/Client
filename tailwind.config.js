@@ -12,7 +12,8 @@ export default {
       pattern: /fill-icon-(favorite|blue|ocean|lavender|mint|sage|gray|orange|coral|rose|plum)/,
     },
     {
-      pattern: /(bg|fill|stroke)-(blue|ocean|lavender|mint|sage|ashy|orange|coral|rose|plum)-(100|400|600)/,
+      pattern: /(bg|fill|stroke)-(blue|ocean|lavender|mint|sage|ashy|orange|coral|rose|plum)-(100|150|400|600)/,
+      variants: ["hover"],
     },
   ],
   theme: {
