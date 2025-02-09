@@ -81,8 +81,8 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
               </div>
               <div className="ml-1 mr-4">
                 <ArchiveFolderIcon
-                  width={24}
-                  height={24}
+                  width={28}
+                  height={28}
                   fillColor={folder.color}
                   backgroundColor={darkenColor(folder.color, 0.2)}
                 />
