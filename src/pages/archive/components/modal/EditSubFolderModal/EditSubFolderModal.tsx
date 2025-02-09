@@ -49,13 +49,20 @@ export const EditSubFolderModal: React.FC<EditSubFolderModalProps> = ({
           </div>
           <textarea
             id="folder-name"
+            placeholder="추가할 폴더의 이름을 입력해주세요."
             value={folderName}
             onChange={handleInput}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+              }
+            }}
             maxLength={100}
             ref={textareaRef}
-            className="w-full p-4 rounded-md border border-gray-300 bg-white text-gray-700 text-[0.875rem] focus:outline-none focus:border-brand-500 resize-none overflow-hidden"
+            className="flex items-center p-4 rounded-md border border-gray-300 bg-white text-gray-700 text-[0.875rem] w-full focus:outline-none focus:border-brand-500 resize-none overflow-hidden"
             rows={1}
           />
+
           <div className="text-right mb-8 m-0">
             <Text variant="caption" className="text-gray-400">
               {folderName.length}/100
@@ -63,13 +70,13 @@ export const EditSubFolderModal: React.FC<EditSubFolderModalProps> = ({
           </div>
         </div>
 
-        <div className="flex justify-end">
-          <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-200">
+        <div className="flex justify-end gap-2">
+          <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50">
             <Text variant="sub_heading2" className="text-gray-700">
               취소
             </Text>
           </button>
-          <button onClick={handleSubmit} className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-light">
+          <button onClick={handleSubmit} className="h-8 px-5 py-1 rounded-md bg-brand-50">
             <Text variant="sub_heading2" className="text-brand-700">
               확인
             </Text>
