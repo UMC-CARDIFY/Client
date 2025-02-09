@@ -42,7 +42,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({ type }) => {
       </Text>
       <button
         onClick={handleClick}
-        className="w-fit px-5 py-[6px] rounded-lg text-brand-700 bg-brand-50 hover:bg-brand-100"
+        className="w-fit px-5 py-[0.375rem] rounded-lg text-brand-700 bg-brand-50 hover:bg-brand-100"
       >
         <Text variant="sub_heading2">{buttonText}</Text>
       </button>
