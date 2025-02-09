@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Home } from "./index";
 
 export default {
-  title: "Pages/Home",
+  title: "Home/Pages/HomePage",
   component: Home,
   parameters: {
     layout: "fullscreen",
