@@ -33,6 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
     <div className="flex items-center gap-2">
       {/* Start */}
       <button
+        type="button"
         onClick={() => handlePageChange(1)}
         disabled={currentPage === 1}
         className={`rounded-md ${
@@ -44,6 +45,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
       {/* Previous */}
       <button
+        type="button"
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className={`rounded-md ${
@@ -56,6 +58,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       {/* Page Numbers */}
       {visiblePages.map((page) => (
         <button
+          type="button"
           key={page}
           onClick={() => handlePageChange(page)}
           className={`flex justify-center items-center w-6 h-6 rounded-md cursor-pointer ${
@@ -68,6 +71,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
       {/* Next */}
       <button
+        type="button"
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         className={`rounded-md ${
@@ -79,6 +83,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
       {/* End */}
       <button
+        type="button"
         onClick={() => handlePageChange(totalPages)}
         disabled={currentPage === totalPages}
         className={`rounded-md ${
