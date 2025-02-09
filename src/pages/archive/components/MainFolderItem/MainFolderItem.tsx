@@ -49,12 +49,12 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         </Text>
       </div>
 
-      <div className="flex items-center justify-between text-gray-400 mt-[1.19rem]">
+      <div className="flex items-center justify-between text-gray-400 mt-auto">
         <Text variant="sub_heading2" className="pr-8">
           {createdAt}
         </Text>
         <div className="flex gap-[0.19rem] items-center">
-          <ArchiveNoteIcon className="w-4 h-4" />
+          <ArchiveNoteIcon className="w-4 h-4 fill-gray-400" />
           <Text variant="sub_heading2">{displayNoteCnt}</Text>
         </div>
       </div>
