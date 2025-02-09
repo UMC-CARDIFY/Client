@@ -18,4 +18,6 @@ export { default as PlusIcon } from "./ic_archive_plus.svg?react";
 export { default as Logo } from "./logo.svg?react";
 export { default as EmptyStarIcon } from "./ic_archive_emptystar.svg?react";
 export { default as SlashIcon } from "./ic_common_slash.svg?react";
+export { default as HalfArrowBoldIcon } from "./ic_common_halfarrowbold.svg?react";
+export { default as HalfDoubleArrowBoldIcon } from "./ic_common_halfarrowdoublebold.svg?react";
 export { default as HomeFlashcardIcon } from "./ic_home_flashcard.svg?react";
