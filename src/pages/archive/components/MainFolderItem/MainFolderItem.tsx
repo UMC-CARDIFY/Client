@@ -1,7 +1,11 @@
+import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
 import { colorMap } from "@styles/colorMap";
-import { ArchiveNoteIcon, EmptyStarIcon, KebabIcon } from "@svgs/index";
+import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
+import { useState } from "react";
 import { StarIcon } from "../StarIcon";
+import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
+import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 
 type Color = keyof typeof colorMap;
@@ -16,13 +20,23 @@ interface MainFolderItemProps {
 }
 
 const MainFolderItem: React.FC<MainFolderItemProps> = ({
+  id,
   folderName,
   createdAt,
   noteCount,
   folderColor,
   markState,
 }) => {
-  const displayNoteCnt = noteCount > 99 ? "99+" : noteCount;
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleEditFolder = () => {
+    setIsEditModalOpen(false); // 모달 닫기
+  };
+
+  const handleDeleteFolder = () => {
+    setIsDeleteModalOpen(false);
+  };
 
   return (
     <div className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150">
@@ -38,7 +52,18 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         )}
       </div>
 
-      <KebabIcon className="w-8 h-8 absolute top-6 right-4 cursor-pointer" />
+      <div className="absolute top-6 right-4 cursor-pointer z-10">
+        <Kebab
+          onSelect={(value) => {
+            if (value === "edit") {
+              setIsEditModalOpen(true);
+            }
+            if (value === "delete") {
+              setIsDeleteModalOpen(true);
+            }
+          }}
+        />
+      </div>
 
       <div className="mt-4 w-[8.75rem] h-[2.25rem]">
         <Text
@@ -55,9 +80,24 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         </Text>
         <div className="flex gap-[0.19rem] items-center">
           <ArchiveNoteIcon className="w-4 h-4 fill-gray-400" />
-          <Text variant="sub_heading2">{displayNoteCnt}</Text>
+          <Text variant="sub_heading2">{noteCount > 99 ? "99+" : noteCount}</Text>
         </div>
       </div>
+
+      {/* Edit & Delete Folder Modal */}
+      <EditFolderModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onSubmit={handleEditFolder}
+        folderName={folderName}
+        folderColor={folderColor}
+      />
+      <DeleteFolderModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)} // 모달 닫기
+        onSubmit={handleDeleteFolder} // 폴더 삭제 로직
+        folderName={folderName}
+      />
     </div>
   );
 };

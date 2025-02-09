@@ -9,28 +9,34 @@ interface EditFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderName: string, folderColor: string) => void;
+  folderName: string; // 기존 폴더 이름
+  folderColor: keyof typeof colorMap; // 기존 폴더 색상
 }
 
-export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
-  const [folderName, setFolderName] = useState("기존 폴더 이름");
+export const EditFolderModal: React.FC<EditFolderModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  folderName,
+  folderColor,
+}) => {
+  const [editedFolderName, setEditedFolderName] = useState(folderName);
+  const [selectedColor, setSelectedColor] = useState(folderColor);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedColor, setSelectedColor] = useState("blue"); // 기본 색상
 
-  const { darkenColor } = useColorUtils(); // darkenColor 훅 사용
+  const { darkenColor } = useColorUtils();
 
   const handleSubmit = () => {
-    if (folderName.trim()) {
-      onSubmit(folderName, selectedColor);
-      setFolderName("");
-      setSelectedColor("blue");
-      onClose();
+    if (editedFolderName.trim()) {
+      onSubmit(editedFolderName, selectedColor);
+      onClose(); // 모달 닫기
     }
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     if (value.length <= 100) {
-      setFolderName(value);
+      setEditedFolderName(value);
     }
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
@@ -55,8 +61,8 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClos
         </label>
         <textarea
           id="folder-name"
-          placeholder="추가할 폴더의 이름을 입력해주세요."
-          value={folderName}
+          placeholder="폴더 이름을 입력해주세요."
+          value={editedFolderName}
           onChange={handleInput}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -71,7 +77,7 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClos
 
         <div className="text-right mb-8">
           <Text variant="caption" className="text-gray-400">
-            {folderName.length}/100
+            {editedFolderName.length}/100
           </Text>
         </div>
 

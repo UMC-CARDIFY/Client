@@ -18,7 +18,7 @@ export const Archive = () => {
         <Text variant={"heading2"}>사용자의 아카이브</Text>
 
         {/* SortDropdown + FolderFilterDropdown */}
-        <div className="mt-10 flex gap-2">
+        <div className="mt-10 flex gap-2 z-10">
           <Sort onSelect={handleSortSelect} />
           <FolderFilter onSelect={handleFolderFilterSelect} />
         </div>
