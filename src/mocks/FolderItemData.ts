@@ -34,15 +34,15 @@ const FolderItemData: FolderItemDataProps[] = [
   },
 ];
 
-// 4번부터 80번까지 데이터 추가
+// 80번까지 데이터 추가
 for (let i = 4; i <= 100; i++) {
   FolderItemData.push({
     id: i,
     folderName: `폴더 ${i}`,
-    createdAt: `24/08/${String(10 + (i % 20)).padStart(2, "0")}`, // 날짜 랜덤화
-    noteCount: Math.floor(Math.random() * 120), // 노트 개수 랜덤화 (0~120)
-    folderColor: ["blue", "sage", "orange", "rose", "mint", "gray", "plum"][Math.floor(Math.random() * 7)], // 랜덤 색상 선택
-    markState: Math.random() > 0.5, // 50% 확률로 즐겨찾기 활성화
+    createdAt: `24/08/${String(10 + (i % 20)).padStart(2, "0")}`,
+    noteCount: Math.floor(Math.random() * 120),
+    folderColor: ["blue", "sage", "orange", "rose", "mint", "gray", "plum"][Math.floor(Math.random() * 7)],
+    markState: Math.random() > 0.5,
   });
 }
 

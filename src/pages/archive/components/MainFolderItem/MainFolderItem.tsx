@@ -20,7 +20,6 @@ interface MainFolderItemProps {
 }
 
 const MainFolderItem: React.FC<MainFolderItemProps> = ({
-  id,
   folderName,
   createdAt,
   noteCount,

@@ -51,11 +51,12 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
             {currentPage === 1 && <NewFolderMain />}
             {displayedFolders.map((folder) => (
               <MainFolderItem
+                id={folder.id}
                 key={folder.id}
                 folderName={folder.folderName}
                 createdAt={folder.createdAt}
                 noteCount={folder.noteCount}
-                folderColor={folder.folderColor}
+                folderColor={folder.folderColor as Color}
                 markState={folder.markState}
               />
             ))}

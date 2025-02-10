@@ -25,7 +25,7 @@ interface NoteListProps {
   notes?: NoteData[];
 }
 
-const ITEMS_PER_PAGE = 10; // ✅ 한 페이지에 노트 10개씩 표시
+const ITEMS_PER_PAGE = 10; // 한 페이지에 노트 10개씩 표시
 
 const NoteList: React.FC<NoteListProps> = ({ notes = NoteItemData }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -66,21 +66,7 @@ const NoteList: React.FC<NoteListProps> = ({ notes = NoteItemData }) => {
       ) : (
         <div className="gap-2 flex flex-col">
           {paginatedNotes.map((note) => (
-            <NoteItem
-              key={note.noteId}
-              noteId={note.noteId}
-              name={note.name}
-              folderId={note.folderId}
-              folderName={note.folderName}
-              folderColor={note.folderColor}
-              markState={note.markState}
-              viewAt={note.viewAt}
-              editDate={note.editDate}
-              createdAt={note.createdAt}
-              isDownload={note.isDownload}
-              isUpload={note.isUpload}
-              flashCardCount={note.flashCardCount}
-            />
+            <NoteItem key={note.noteId} {...note} />
           ))}
         </div>
       )}
