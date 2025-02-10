@@ -1,4 +1,5 @@
 import { Text } from "@components/typography/Text";
+import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
 import { CommonXIcon, SearchThinIcon, StarIcon } from "@svgs/index";
 import React, { useState } from "react";
 import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
@@ -15,25 +16,16 @@ interface MoveFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderId: string) => void;
-  currentFolderName?: string;
-  folders: Folder[];
+  currentFolderName: string;
+  folders?: Folder[];
 }
-
-// color 값을 어둡게 만드는 함수
-const darkenColor = (hex: string, percent: number): string => {
-  const num = Number.parseInt(hex.slice(1), 16);
-  const r = Math.max(0, Math.min(255, ((num >> 16) - 255 * percent) | 0));
-  const g = Math.max(0, Math.min(255, (((num >> 8) & 0x00ff) - 255 * percent) | 0));
-  const b = Math.max(0, Math.min(255, ((num & 0x0000ff) - 255 * percent) | 0));
-  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
-};
 
 export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
   currentFolderName,
-  folders,
+  folders = [],
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -41,6 +33,8 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
   const filteredFolders = folders.filter((folder) => folder.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   if (!isOpen) return null;
+
+  const { darkenColor } = useColorUtils();
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">

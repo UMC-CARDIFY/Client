@@ -5,7 +5,7 @@ interface EditSubFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderName: string) => void;
-  currentFolderName?: string; // optional prop with a default value
+  currentFolderName: string;
 }
 
 export const EditSubFolderModal: React.FC<EditSubFolderModalProps> = ({
