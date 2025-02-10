@@ -22,6 +22,8 @@ const Template: StoryFn<typeof EditFolderModal> = (args) => {
         onSubmit={(folderName: string, folderColor: string) => {
           alert(`Folder edited: ${folderName}, Color: ${folderColor}`);
         }}
+        folderName="기존 폴더 이름"
+        folderColor="sage"
       />
     </div>
   );
