@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Archive } from "./index";
 
 export default {
-  title: "Archive/Archive",
+  title: "Archive/pages/Archive",
   component: Archive,
 } as Meta<typeof Archive>;
 

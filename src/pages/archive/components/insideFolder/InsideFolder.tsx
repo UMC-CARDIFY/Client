@@ -1,14 +1,15 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { InnerFolderIcon, KebabIcon } from "@svgs/index";
+import { InnerFolderIcon } from "@svgs/index";
 import React, { useState } from "react";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditSubFolderModal } from "../modal/EditSubFolderModal/EditSubFolderModal";
-import { MoveFolderModal } from "../modal/MoveFolderModal/MoveFolderModal";
+import { Folder, MoveFolderModal } from "../modal/MoveFolderModal/MoveFolderModal";
 
 interface InsideFolderProps {
   folderName: string;
   color: string;
+  folders: Folder[];
 }
 
 const InsideFolder: React.FC<InsideFolderProps> = ({ folderName, color }) => {
@@ -81,7 +82,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderName, color }) => {
         onClose={() => setIsMoveModalOpen(false)}
         onSubmit={handleMoveFolder}
         currentFolderName={folderName}
-        folders={folders ?? []}
+        folders={folders}
       />
     </div>
   );
@@ -91,7 +92,7 @@ export default InsideFolder;
 
 // 예제 데이터
 const folders = [
-  { id: "1", name: "1강", color: "#77CEC6", isStarred: true, itemCount: 5 },
-  { id: "2", name: "2강", color: "#AECA99", isStarred: false, itemCount: 3 },
-  { id: "3", name: "3강", color: "#D49AE9", isStarred: true, itemCount: 8 },
+  { id: 1, folderName: "1강", folderColor: "#AECA99", markState: true, noteCount: 5 },
+  { id: 2, folderName: "2강", folderColor: "#AECA99", markState: false, noteCount: 3 },
+  { id: 3, folderName: "3강", folderColor: "#AECA99", markState: true, noteCount: 8 },
 ];

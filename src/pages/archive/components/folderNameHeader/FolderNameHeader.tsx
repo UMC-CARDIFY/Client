@@ -49,20 +49,23 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderName, color }
         />
       </div>
 
-      {/* Edit & Delete Folder Modal */}
-      <EditFolderModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        onSubmit={handleEditFolder}
-        folderName={folderName}
-        folderColor={color as keyof typeof colorMap}
-      />
-      <DeleteFolderModal
-        isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)} // 모달 닫기
-        onSubmit={handleDeleteFolder} // 폴더 삭제 로직
-        folderName={folderName}
-      />
+      {isEditModalOpen && (
+        <EditFolderModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          onSubmit={handleEditFolder}
+          folderName={folderName}
+          folderColor={color as keyof typeof colorMap}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteFolderModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onSubmit={handleDeleteFolder}
+          folderName={folderName}
+        />
+      )}
     </div>
   );
 };

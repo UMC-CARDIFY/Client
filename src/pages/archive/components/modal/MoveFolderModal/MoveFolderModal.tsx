@@ -4,12 +4,12 @@ import { CommonXIcon, SearchThinIcon, StarIcon } from "@svgs/index";
 import React, { useState } from "react";
 import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
 
-interface Folder {
-  id: string;
-  name: string;
-  color: string;
-  isStarred: boolean;
-  itemCount: number;
+export interface Folder {
+  id: number;
+  folderName: string;
+  noteCount: number;
+  folderColor: string;
+  markState?: boolean;
 }
 
 interface MoveFolderModalProps {
@@ -30,7 +30,9 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
   const [searchTerm, setSearchTerm] = useState("");
 
   // 검색어에 따라 폴더 목록 필터링
-  const filteredFolders = folders.filter((folder) => folder.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredFolders = folders.filter((folder) =>
+    folder.folderName.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   if (!isOpen) return null;
 
@@ -68,25 +70,25 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
             <div
               key={folder.id}
               className="flex items-center h-12 cursor-pointer hover:bg-gray-100"
-              onClick={() => onSubmit(folder.id)}
+              onClick={() => onSubmit(folder.id.toString())}
             >
               <div className="w-8 h-8 flex-shrink-0 flex justify-center items-center">
-                {folder.isStarred && <StarIcon />}
+                {folder.markState && <StarIcon />}
               </div>
               <div className="ml-1 mr-4">
                 <ArchiveFolderIcon
                   width={28}
                   height={28}
-                  fillColor={folder.color}
-                  backgroundColor={darkenColor(folder.color, 0.2)}
+                  fillColor={folder.folderColor}
+                  backgroundColor={darkenColor(folder.folderColor, 0.2)}
                 />
               </div>
               <div className="flex gap-1">
                 <Text variant="sub_heading2" className="text-black">
-                  {folder.name}
+                  {folder.folderName}
                 </Text>
                 <Text variant="sub_heading2" className="text-gray-400">
-                  ({folder.itemCount})
+                  ({folder.noteCount})
                 </Text>
               </div>
             </div>

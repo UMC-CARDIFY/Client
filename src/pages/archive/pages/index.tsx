@@ -1,7 +1,7 @@
 import FolderFilter from "@components/common/dropdown/FolderFilter";
 import Sort from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
-import MainFolderList from "./components/MainFolderList/MainFolderList";
+import MainFolderList from "../components/MainFolderList/MainFolderList";
 
 const handleSortSelect = (value: string) => {
   console.log("Sort selected:", value);

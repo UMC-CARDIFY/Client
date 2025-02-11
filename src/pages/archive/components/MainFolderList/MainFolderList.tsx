@@ -30,44 +30,41 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
 
   // 현재 페이지에 해당하는 폴더 목록 가져오기
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  let displayedFolders = folders.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const adjustedItemsPerPage = currentPage === 1 ? ITEMS_PER_PAGE - 1 : ITEMS_PER_PAGE;
+  const displayedFolders = folders.slice(startIndex, startIndex + adjustedItemsPerPage);
 
-  if (currentPage === 1) {
-    displayedFolders = folders.slice(startIndex, startIndex + (ITEMS_PER_PAGE - 1));
+  if (displayedFolders.length === 0) {
+    return (
+      <div className="mt-12">
+        <Text variant="sub_heading2" className="text-center">
+          폴더가 없습니다.
+        </Text>
+      </div>
+    );
   }
 
   return (
     <div className="w-[50rem]">
-      {folders.length === 0 ? (
-        <div className="mt-12">
-          <Text variant="sub_heading2" className="text-center">
-            폴더가 없습니다.
-          </Text>
-        </div>
-      ) : (
-        <>
-          <div className="gap-4 flex flex-wrap">
-            {/* 첫 페이지에만 NewFolderMain 추가 */}
-            {currentPage === 1 && <NewFolderMain />}
-            {displayedFolders.map((folder) => (
-              <MainFolderItem
-                id={folder.id}
-                key={folder.id}
-                folderName={folder.folderName}
-                createdAt={folder.createdAt}
-                noteCount={folder.noteCount}
-                folderColor={folder.folderColor as Color}
-                markState={folder.markState}
-              />
-            ))}
-          </div>
+      <div className="gap-4 flex flex-wrap">
+        {/* 첫 페이지에만 NewFolderMain 추가 */}
+        {currentPage === 1 && <NewFolderMain />}
+        {displayedFolders.map((folder) => (
+          <MainFolderItem
+            key={folder.id}
+            folderId={folder.id}
+            folderName={folder.folderName}
+            createdAt={folder.createdAt}
+            noteCount={folder.noteCount}
+            folderColor={folder.folderColor as Color}
+            markState={folder.markState}
+          />
+        ))}
+      </div>
 
-          {folders.length > ITEMS_PER_PAGE - 1 && (
-            <div className="mt-14 mb-[4.69rem] flex justify-center">
-              <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-            </div>
-          )}
-        </>
+      {folders.length > ITEMS_PER_PAGE - 1 && (
+        <div className="mt-14 mb-[4.69rem] flex justify-center">
+          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+        </div>
       )}
     </div>
   );

@@ -11,7 +11,7 @@ import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 type Color = keyof typeof colorMap;
 
 interface MainFolderItemProps {
-  id: number;
+  folderId: number;
   folderName: string;
   createdAt: string;
   noteCount: number;
@@ -84,19 +84,23 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
       </div>
 
       {/* Edit & Delete Folder Modal */}
-      <EditFolderModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        onSubmit={handleEditFolder}
-        folderName={folderName}
-        folderColor={folderColor}
-      />
-      <DeleteFolderModal
-        isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)} // 모달 닫기
-        onSubmit={handleDeleteFolder} // 폴더 삭제 로직
-        folderName={folderName}
-      />
+      {isEditModalOpen && (
+        <EditFolderModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          onSubmit={handleEditFolder}
+          folderName={folderName}
+          folderColor={folderColor}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteFolderModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onSubmit={handleDeleteFolder}
+          folderName={folderName}
+        />
+      )}
     </div>
   );
 };
