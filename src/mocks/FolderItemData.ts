@@ -1,15 +1,17 @@
+import { colorMap } from "@styles/colorMap";
+
 interface FolderItemDataProps {
-  id: number;
+  folderId: number;
   folderName: string;
   createdAt: string;
   noteCount: number;
-  folderColor: string;
+  folderColor: keyof typeof colorMap;
   markState?: boolean;
 }
 
 const FolderItemData: FolderItemDataProps[] = [
   {
-    id: 1,
+    folderId: 1,
     folderName: "포근한 핫팩",
     createdAt: "24/08/20",
     noteCount: 10,
@@ -17,7 +19,7 @@ const FolderItemData: FolderItemDataProps[] = [
     markState: false,
   },
   {
-    id: 2,
+    folderId: 2,
     folderName: "휴먼미디어인터랙션디자인개론",
     createdAt: "24/08/20",
     noteCount: 100,
@@ -25,7 +27,7 @@ const FolderItemData: FolderItemDataProps[] = [
     markState: true,
   },
   {
-    id: 3,
+    folderId: 3,
     folderName: "웹 디자인 잘하는 방법",
     createdAt: "24/08/20",
     noteCount: 100,
@@ -37,11 +39,13 @@ const FolderItemData: FolderItemDataProps[] = [
 // 80번까지 데이터 추가
 for (let i = 4; i <= 100; i++) {
   FolderItemData.push({
-    id: i,
+    folderId: i,
     folderName: `폴더 ${i}`,
     createdAt: `24/08/${String(10 + (i % 20)).padStart(2, "0")}`,
     noteCount: Math.floor(Math.random() * 120),
-    folderColor: ["blue", "sage", "orange", "rose", "mint", "gray", "plum"][Math.floor(Math.random() * 7)],
+    folderColor: ["blue", "ocean", "lavender", "mint", "sage", "gray", "orange", "coral", "rose", "plum"][
+      Math.floor(Math.random() * 10)
+    ] as keyof typeof colorMap,
     markState: Math.random() > 0.5,
   });
 }

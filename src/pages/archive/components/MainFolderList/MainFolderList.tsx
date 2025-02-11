@@ -1,24 +1,13 @@
 import Pagination from "@components/common/pagination/Pagination";
 import { Text } from "@components/typography/Text";
-import { colorMap } from "@styles/colorMap";
 import { useState } from "react";
 import FolderItemData from "src/mocks/FolderItemData";
+import { MainFolderItemProps } from "../../../../types/folder";
 import MainFolderItem from "../MainFolderItem/MainFolderItem";
 import NewFolderMain from "../newFolder/NewFolderMain";
 
-type Color = keyof typeof colorMap;
-
-interface MainFolderProps {
-  id: number;
-  folderName: string;
-  createdAt: string;
-  noteCount: number;
-  folderColor: Color;
-  markState?: boolean;
-}
-
 interface MainFolderListProps {
-  folders?: MainFolderProps[];
+  folders?: MainFolderItemProps[];
 }
 
 const ITEMS_PER_PAGE = 16; // 한 페이지당 표시할 폴더 개수
@@ -49,15 +38,7 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
         {/* 첫 페이지에만 NewFolderMain 추가 */}
         {currentPage === 1 && <NewFolderMain />}
         {displayedFolders.map((folder) => (
-          <MainFolderItem
-            key={folder.id}
-            folderId={folder.id}
-            folderName={folder.folderName}
-            createdAt={folder.createdAt}
-            noteCount={folder.noteCount}
-            folderColor={folder.folderColor as Color}
-            markState={folder.markState}
-          />
+          <MainFolderItem key={folder.folderId} {...folder} />
         ))}
       </div>
 

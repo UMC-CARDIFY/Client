@@ -3,21 +3,11 @@ import { Text } from "@components/typography/Text";
 import { colorMap } from "@styles/colorMap";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { useState } from "react";
+import { MainFolderItemProps } from "../../../../types/folder";
 import { StarIcon } from "../StarIcon";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
-
-type Color = keyof typeof colorMap;
-
-interface MainFolderItemProps {
-  folderId: number;
-  folderName: string;
-  createdAt: string;
-  noteCount: number;
-  folderColor: Color;
-  markState?: boolean;
-}
 
 const MainFolderItem: React.FC<MainFolderItemProps> = ({
   folderName,
