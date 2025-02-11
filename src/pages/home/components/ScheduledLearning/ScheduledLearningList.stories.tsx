@@ -1,10 +1,18 @@
 import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import ScheduledLearningList from "./ScheduledLearningList";
 
 export default {
   title: "Home/Components/ScheduledLearningList",
   component: ScheduledLearningList,
+  decorators: [
+    (Story) => (
+      <BrowserRouter>
+        <Story />
+      </BrowserRouter>
+    ),
+  ],
   argTypes: {
     items: {
       control: { type: "object" },

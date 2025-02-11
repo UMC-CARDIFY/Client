@@ -2,6 +2,7 @@ export const colors = {
   brand: {
     original: "#1062FE",
     light: "#79A5F8",
+    20: "#F9FBFF",
     50: "#F3F7FF",
     100: "#EBF1FD",
     150: "#E4EAF5",
@@ -50,51 +51,61 @@ export const colors = {
   },
   blue: {
     100: "#F3F7FF",
+    150: "#ECF2FE",
     400: "#C9DBFB",
     600: "#6698F5",
   },
   ocean: {
     100: "#EDF7FB",
+    150: "#E6F3F8",
     400: "#BADBEA",
     600: "#5AA6C7",
   },
   lavender: {
     100: "#F3F4FD",
+    150: "#EEEFFC",
     400: "#D2D5F8",
     600: "#949AEC",
   },
   mint: {
     100: "#EDF9F8",
+    150: "#E4F6F4",
     400: "#C5EBE7",
     600: "#77CEC6",
   },
   sage: {
     100: "#F0F7EC",
+    150: "#EBF3E5",
     400: "#D9E8CF",
     600: "#AECA99",
   },
-  icongray: {
+  ashy: {
     100: "#F5F5F5",
+    150: "#F0F0F0",
     400: "#DADADA",
     600: "#A9A9A9",
   },
   orange: {
     100: "#FFF5E9",
+    150: "#FFF1E0",
     400: "#FEDEB5",
     600: "#FDB456",
   },
   coral: {
     100: "#FEF2EF",
+    150: "#FEEDE8",
     400: "#FECCBD",
     600: "#FD855F",
   },
   rose: {
     100: "#FEF5F9",
+    150: "#FDEFF5",
     400: "#F8CDE0",
     600: "#ED83B1",
   },
   plum: {
     100: "#FAF2FC",
+    150: "#F7ECFB",
     400: "#ECD3F5",
     600: "#D49AE9",
   },
