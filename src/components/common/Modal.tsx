@@ -33,13 +33,13 @@ export const Modal: React.FC<ModalProps> = ({
         </Text>
         <div className="text-center">{description}</div>
         <div className="flex justify-center gap-2 mt-6">
-          <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-200">
+          <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50">
             <Text variant="sub_heading2" className="text-gray-700">
               {cancelText}
             </Text>
           </button>
           {onSubmit && (
-            <button onClick={onSubmit} className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-light">
+            <button onClick={onSubmit} className="h-8 px-5 py-1 rounded-md bg-brand-50">
               <Text variant="sub_heading2" className="text-brand-700">
                 {confirmText}
               </Text>

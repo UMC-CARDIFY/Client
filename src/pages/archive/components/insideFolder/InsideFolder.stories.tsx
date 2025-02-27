@@ -24,3 +24,9 @@ Default.args = {
   folderName: "1강 빈칸 채우기",
   color: "sage",
 };
+
+export const LongNameFolder = Template.bind({});
+LongNameFolder.args = {
+  folderName: "긴폴더이름긴폴더이름",
+  color: "sage",
+};

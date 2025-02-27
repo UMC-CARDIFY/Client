@@ -4,6 +4,7 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ develop ]
+permissions: write-all
 
 jobs:
   chromatic:
@@ -28,9 +29,19 @@ jobs:
         run: pnpm install
 
       - name: Publish to Chromatic
+        id: chromatic
         uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true 
           exitOnceUploaded: true
-          
+
+      - name: Comment PR
+        if: github.event_name == 'pull_request'
+        uses: thollander/actions-comment-pull-request@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with:
+          comment_tag: ${{github.event.number}}-storybook
+          message: '✨ Storybook 확인: 🔗 ${{ steps.chromatic.outputs.storybookUrl }}'
+          edit_mode: update
