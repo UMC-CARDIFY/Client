@@ -8,18 +8,20 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center w-full h-screen">
       {/* 로고 */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{
-          delay: 0.1,
-          duration: 0.4,
-          ease: [0.68, -0.55, 0.27, 1.55],
-        }}
-        className="mr-[0.88rem]"
-      >
-        <SymbolLogo />
-      </motion.div>
+      <div className="overflow-hidden">
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "0%" }}
+          transition={{
+            delay: 0.1,
+            duration: 0.4,
+            ease: [0.4, 0.0, 0.2, 1],
+          }}
+          className="mr-[0.88rem]"
+        >
+          <SymbolLogo />
+        </motion.div>
+      </div>
 
       {/* 그라디언트 */}
       <motion.div
@@ -27,7 +29,7 @@ const Login = () => {
         animate={{ scaleX: 1 }}
         transition={{
           delay: 0.3,
-          duration: 0.5,
+          duration: 0.3,
           ease: [0.4, 0.0, 0.2, 1],
         }}
         className="mr-[3.31rem] origin-left"
@@ -41,8 +43,8 @@ const Login = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
-          delay: 0.4,
-          duration: 0.7,
+          delay: 0.3,
+          duration: 0.5,
           ease: [0.68, -0.55, 0.27, 1.55],
         }}
       >
