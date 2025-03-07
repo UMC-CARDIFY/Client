@@ -1,8 +1,9 @@
 import { GoogleLoginButton } from "@svgs/index";
 
-const GoogleButton = () => {
-  const GOOGLE_URL = `http://localhost:8080/oauth2/authorization/google`;
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+const GOOGLE_URL = `${SERVER_URL}/oauth2/authorization/google`;
 
+const GoogleButton = () => {
   const handleLogin = () => {
     window.location.href = GOOGLE_URL;
   };
