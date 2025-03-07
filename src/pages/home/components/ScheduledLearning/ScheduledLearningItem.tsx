@@ -14,7 +14,7 @@ const ScheduledLearningItem: React.FC<ScheduledLearningItemProps> = ({
 
   return (
     <div
-      className={`w-[16rem] h-[15rem] px-6 py-8 flex flex-col gap-2 bg-${folderColor}-100 rounded-lg cursor-pointer`}
+      className={`w-[16rem] h-[15rem] px-6 py-8 flex flex-col gap-2 bg-${folderColor}-100 hover:bg-${folderColor}-150 rounded-lg cursor-pointer`}
     >
       <div className="flex flex-col flex-1 gap-2">
         <HomeFlashcardIcon className={`fill-${folderColor}-600 stroke-${folderColor}-600 shrink-0`} />

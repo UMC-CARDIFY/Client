@@ -11,7 +11,7 @@ const NotesInsideFolderPage = () => {
   const [folderName, setFolderName] = useState("INSIDE ENGLISH4");
 
   return (
-    <div className=" w-full flex justify-center">
+    <div className="w-full flex justify-center">
       <div className="w-[50rem] mt-[2.5rem] flex flex-col">
         {/* Breadcrumbs */}
         <div className="self-start">
@@ -23,7 +23,7 @@ const NotesInsideFolderPage = () => {
           <FolderNameHeader folderName={folderName} color="sage" />
         </div>
 
-        {/* InsideFolderList */}
+        {/* InsideFolderList + SortDropdown + FolderFilterDropdown */}
         <div className="flex flex-col mt-[2.5rem] gap-[1rem]">
           <Text variant="sub_heading3" className="text-base-black ml-[0.5rem]">
             폴더
