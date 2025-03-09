@@ -3,7 +3,6 @@ import { Text } from "@components/typography/Text";
 import { colorMap } from "@styles/colorMap";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { useState } from "react";
-import { MainFolderItemProps } from "../../../../types/folder";
 import { StarIcon } from "../StarIcon";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
@@ -41,7 +40,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   const handleDeleteFolder = () => {
     setIsDeleteModalOpen(false);
   };
-  
+
   return (
     <div className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer">
       <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">

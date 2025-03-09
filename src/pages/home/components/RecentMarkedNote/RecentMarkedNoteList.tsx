@@ -1,9 +1,6 @@
 import React from "react";
 import { NoteItemProps } from "../../../../types/note";
-<<<<<<< HEAD
-=======
 import EmptyState from "../EmptyState/EmptyState";
->>>>>>> 2ed292607373876b825871ff7894c25462ca4954
 import RecentMarkedNoteItem from "./RecentMarkedNoteItem";
 
 interface RecentMarkedNoteListProps {

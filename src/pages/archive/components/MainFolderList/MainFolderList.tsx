@@ -26,11 +26,11 @@ interface MainFolderListProps {
 const ITEMS_PER_PAGE = 16; // 한 페이지당 표시할 폴더 개수
 
 const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemData, variant = "archive", maxItems }) => {
-  const displayFolders = maxItems ? folders.slice(0, maxItems) : folders;
   const isHome = variant === "home";
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  const totalItems = maxItems ? Math.min(folders.length, maxItems) : folders.length;
   const totalPages = Math.ceil((folders.length + 1) / ITEMS_PER_PAGE);
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -38,7 +38,9 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
   const displayedFolders = folders.slice(startIndex, startIndex + adjustedItemsPerPage);
 
   if (folders.length === 0) {
-    return isHome ? <EmptyState type="favoriteFolder" /> : (
+    return isHome ? (
+      <EmptyState type="favoriteFolder" />
+    ) : (
       <div className="mt-12">
         <Text variant="sub_heading2" className="text-center">
           폴더가 없습니다.
