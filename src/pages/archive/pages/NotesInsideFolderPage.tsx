@@ -1,7 +1,7 @@
 import NoteFilter from "@components/common/dropdown/NoteFilter";
 import Sort from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
-import React, { useState } from "react";
+import { useState } from "react";
 import AddNoteButton from "../AddNoteButton/AddNoteButton";
 import NoteList from "../components/NoteList/NoteList";
 import Breadcrumbs from "../components/breadcrumbs/Breadcrumbs";
@@ -9,15 +9,15 @@ import FolderNameHeader from "../components/folderNameHeader/FolderNameHeader";
 import InsideFolderList from "../components/insideFolderList/InsideFolderList";
 
 const handleFolderSortSelect = (value: string) => {
-  console.log("Sort selected:", value);
+  // TODO: 폴더 정렬 기능 구현
 };
 
 const handleNoteSortSelect = (value: string) => {
-  console.log("Note Sort selected:", value);
+  // TODO: 노트 정렬 기능 구현
 };
 
 const handleNoteFilterSelect = (value: string | null) => {
-  console.log("Note Filter selected:", value);
+  // TODO: 노트 필터링 기능 구현
 };
 
 const NotesInsideFolderPage = () => {

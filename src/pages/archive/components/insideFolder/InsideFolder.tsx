@@ -2,6 +2,7 @@ import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
 import { InnerFolderIcon } from "@svgs/index";
 import React, { useState } from "react";
+import InsideFolderItemData from "src/mocks/InsideFolderItemData";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditSubFolderModal } from "../modal/EditSubFolderModal/EditSubFolderModal";
 import { Folder, MoveFolderModal } from "../modal/MoveFolderModal/MoveFolderModal";
@@ -13,6 +14,8 @@ interface InsideFolderProps {
 }
 
 const InsideFolder: React.FC<InsideFolderProps> = ({ folderName, color }) => {
+  const folders = InsideFolderItemData;
+
   const [isHovered, setIsHovered] = useState(false);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -94,10 +97,3 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderName, color }) => {
 };
 
 export default InsideFolder;
-
-// 예제 데이터
-const folders = [
-  { id: 1, folderName: "1강", folderColor: "#AECA99", markState: true, noteCount: 5 },
-  { id: 2, folderName: "2강", folderColor: "#AECA99", markState: false, noteCount: 3 },
-  { id: 3, folderName: "3강", folderColor: "#AECA99", markState: true, noteCount: 8 },
-];

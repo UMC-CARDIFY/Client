@@ -29,7 +29,7 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
   const handleSubmit = () => {
     if (editedFolderName.trim()) {
       onSubmit(editedFolderName, selectedColor);
-      onClose(); // 모달 닫기
+      onClose();
     }
   };
 
@@ -53,7 +53,6 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
           <Text variant="sub_heading1">폴더 수정</Text>
         </div>
 
-        {/* Folder Name Input */}
         <label htmlFor="folder-name" className="block mb-4">
           <Text variant="sub_heading3" className="text-gray-700">
             이름
@@ -117,12 +116,16 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
         </div>
 
         <div className="flex justify-end gap-2">
-          <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
+          <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
             <Text variant="sub_heading2" className="text-gray-700">
               취소
             </Text>
           </button>
-          <button onClick={handleSubmit} className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-100">
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-100"
+          >
             <Text variant="sub_heading2" className="text-brand-700">
               확인
             </Text>

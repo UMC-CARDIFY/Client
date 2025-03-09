@@ -71,7 +71,6 @@ const NoteList: React.FC<NoteListProps> = ({ notes = NoteItemData }) => {
         </div>
       )}
 
-      {/* 페이지네이션 */}
       {totalPages > 1 && (
         <div className="mt-14 mb-[2.75rem] flex justify-center">
           <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
