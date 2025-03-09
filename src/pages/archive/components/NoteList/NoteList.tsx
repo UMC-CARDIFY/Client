@@ -3,8 +3,8 @@ import { Text } from "@components/typography/Text";
 import { ArchiveNoteIcon, CheckboxIcon } from "@svgs/index";
 import { useState } from "react";
 import NoteItemData from "src/mocks/NoteItemData";
+import EmptyState from "../EmptyState/EmptyState";
 import NoteItem from "../NoteItem/NoteItem";
-import EmptyNoteState from "../emptyState/EmptyNoteState";
 
 interface NoteData {
   noteId: number;
@@ -61,7 +61,7 @@ const NoteList: React.FC<NoteListProps> = ({ notes = NoteItemData }) => {
 
       {paginatedNotes.length === 0 ? (
         <div className="mt-12">
-          <EmptyNoteState />
+          <EmptyState type="note" />
         </div>
       ) : (
         <div className="gap-2 flex flex-col">

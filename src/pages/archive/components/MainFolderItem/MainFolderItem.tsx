@@ -9,16 +9,31 @@ import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal"
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 
+type Color = keyof typeof colorMap;
+
+interface MainFolderItemProps {
+  id: number;
+  folderName: string;
+  createdAt: string;
+  noteCount: number;
+  folderColor: Color;
+  markState?: boolean;
+  variant?: "home" | "archive";
+}
+
 const MainFolderItem: React.FC<MainFolderItemProps> = ({
   folderName,
   createdAt,
   noteCount,
   folderColor,
   markState,
+  variant = "archive",
 }) => {
+  const displayNoteCnt = noteCount > 99 ? "99+" : noteCount;
+  const isArchive = variant === "archive";
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
   const handleEditFolder = () => {
     setIsEditModalOpen(false);
   };
@@ -26,9 +41,9 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   const handleDeleteFolder = () => {
     setIsDeleteModalOpen(false);
   };
-
+  
   return (
-    <div className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150">
+    <div className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer">
       <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
         <ArchiveMainFolderIcon fillColor={colorMap[folderColor]} />
 
@@ -41,24 +56,23 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         )}
       </div>
 
-      <div className="absolute top-6 right-4 cursor-pointer z-10">
-        <Kebab
-          onSelect={(value) => {
-            if (value === "edit") {
-              setIsEditModalOpen(true);
-            }
-            if (value === "delete") {
-              setIsDeleteModalOpen(true);
-            }
-          }}
-        />
-      </div>
+      {isArchive && (
+        <div className="absolute top-6 right-4 cursor-pointer z-10">
+          <Kebab
+            onSelect={(value) => {
+              if (value === "edit") {
+                setIsEditModalOpen(true);
+              }
+              if (value === "delete") {
+                setIsDeleteModalOpen(true);
+              }
+            }}
+          />
+        </div>
+      )}
 
       <div className="mt-4 w-[8.75rem] h-[2.25rem]">
-        <Text
-          variant="sub_heading2"
-          className="text-base-black cursor-pointer overflow-hidden text-ellipsis line-clamp-2"
-        >
+        <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
           {folderName}
         </Text>
       </div>
@@ -69,7 +83,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         </Text>
         <div className="flex gap-[0.19rem] items-center">
           <ArchiveNoteIcon className="w-4 h-4 fill-gray-400" />
-          <Text variant="sub_heading2">{noteCount > 99 ? "99+" : noteCount}</Text>
+          <Text variant="sub_heading2">{displayNoteCnt}</Text>
         </div>
       </div>
 

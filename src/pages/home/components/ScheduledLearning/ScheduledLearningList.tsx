@@ -1,5 +1,6 @@
 import React from "react";
 import { ScheduledLearningItemProps } from "../../../../types/scheduledLearning";
+import EmptyState from "../EmptyState/EmptyState";
 import ScheduledLearningItem from "./ScheduledLearningItem";
 
 interface ScheduledLearningListProps {
@@ -8,11 +9,7 @@ interface ScheduledLearningListProps {
 
 const ScheduledLearningList: React.FC<ScheduledLearningListProps> = ({ items = [] }) => {
   if (!items.length) {
-    return (
-      <div className="flex flex-col w-[52rem] h-60 items-center justify-center text-gray-400">
-        예정된 학습이 없습니다.
-      </div>
-    );
+    return <EmptyState type="scheduledLearning" />;
   }
 
   return (
