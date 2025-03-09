@@ -20,7 +20,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderName, color }) => {
   const [isMoveModalOpen, setIsMoveModalOpen] = useState(false);
 
   const handleEditFolder = () => {
-    setIsEditModalOpen(false); // 모달 닫기
+    setIsEditModalOpen(false);
   };
 
   const handleDeleteFolder = () => {
@@ -64,26 +64,31 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderName, color }) => {
         />
       </div>
 
-      {/* Folder Modal */}
-      <EditSubFolderModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        onSubmit={handleEditFolder}
-        currentFolderName={folderName}
-      />
-      <DeleteFolderModal
-        isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
-        onSubmit={handleDeleteFolder}
-        folderName={folderName}
-      />
-      <MoveFolderModal
-        isOpen={isMoveModalOpen}
-        onClose={() => setIsMoveModalOpen(false)}
-        onSubmit={handleMoveFolder}
-        currentFolderName={folderName}
-        folders={folders}
-      />
+      {isEditModalOpen && (
+        <EditSubFolderModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          onSubmit={handleEditFolder}
+          currentFolderName={folderName}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteFolderModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onSubmit={handleDeleteFolder}
+          folderName={folderName}
+        />
+      )}
+      {isMoveModalOpen && (
+        <MoveFolderModal
+          isOpen={isMoveModalOpen}
+          onClose={() => setIsMoveModalOpen(false)}
+          onSubmit={handleMoveFolder}
+          currentFolderName={folderName}
+          folders={folders}
+        />
+      )}
     </div>
   );
 };

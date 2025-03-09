@@ -20,7 +20,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleEditFolder = () => {
-    setIsEditModalOpen(false); // 모달 닫기
+    setIsEditModalOpen(false);
   };
 
   const handleDeleteFolder = () => {
@@ -73,7 +73,6 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         </div>
       </div>
 
-      {/* Edit & Delete Folder Modal */}
       {isEditModalOpen && (
         <EditFolderModal
           isOpen={isEditModalOpen}

@@ -29,7 +29,6 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // 검색어에 따라 폴더 목록 필터링
   const filteredFolders = folders.filter((folder) =>
     folder.folderName.toLowerCase().includes(searchTerm.toLowerCase()),
   );
@@ -52,7 +51,6 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
           </Text>
         </div>
 
-        {/* Search Bar */}
         <div className="relative mb-2 w-[45rem] py-1">
           <SearchThinIcon className="absolute bottom-2 left-2 w-8 h-8" />
           <input
@@ -64,7 +62,6 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
           />
         </div>
 
-        {/* Folder List */}
         <div className="flex flex-col pl-2 overflow-auto w-[45rem] h-[23.4375rem]">
           {filteredFolders.map((folder) => (
             <div

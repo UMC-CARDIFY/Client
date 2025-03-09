@@ -17,7 +17,6 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
 
   const totalPages = Math.ceil((folders.length + 1) / ITEMS_PER_PAGE);
 
-  // 현재 페이지에 해당하는 폴더 목록 가져오기
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const adjustedItemsPerPage = currentPage === 1 ? ITEMS_PER_PAGE - 1 : ITEMS_PER_PAGE;
   const displayedFolders = folders.slice(startIndex, startIndex + adjustedItemsPerPage);
@@ -35,7 +34,6 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
   return (
     <div className="w-[50rem]">
       <div className="gap-4 flex flex-wrap">
-        {/* 첫 페이지에만 NewFolderMain 추가 */}
         {currentPage === 1 && <NewFolderMain />}
         {displayedFolders.map((folder) => (
           <MainFolderItem key={folder.folderId} {...folder} />
