@@ -12,9 +12,27 @@ const Template: StoryFn<typeof MoveFolderModal> = (args) => {
 
   // 예제 데이터
   const folders = [
-    { id: "1", name: "1강", color: "#77CEC6", isStarred: true, itemCount: 5 },
-    { id: "2", name: "2강", color: "#AECA99", isStarred: false, itemCount: 3 },
-    { id: "3", name: "3강", color: "#D49AE9", isStarred: true, itemCount: 8 },
+    {
+      id: "1",
+      folderName: "1강",
+      noteCount: 5,
+      folderColor: "#AECA99",
+      markState: true,
+    },
+    {
+      id: "2",
+      folderName: "2강",
+      noteCount: 3,
+      folderColor: "#AECA99",
+      markState: false,
+    },
+    {
+      id: "3",
+      folderName: "3강",
+      noteCount: 8,
+      folderColor: "#AECA99",
+      markState: false,
+    },
   ];
 
   return (

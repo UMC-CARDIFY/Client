@@ -1,46 +1,41 @@
 import { Text } from "@components/typography/Text";
+import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
 import { CommonXIcon, SearchThinIcon, StarIcon } from "@svgs/index";
 import React, { useState } from "react";
 import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
 
-interface Folder {
-  id: string;
-  name: string;
-  color: string;
-  isStarred: boolean;
-  itemCount: number;
+export interface Folder {
+  id: number;
+  folderName: string;
+  noteCount: number;
+  folderColor: string;
+  markState?: boolean;
 }
 
 interface MoveFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderId: string) => void;
-  currentFolderName?: string;
-  folders: Folder[];
+  currentFolderName: string;
+  folders?: Folder[];
 }
-
-// color 값을 어둡게 만드는 함수
-const darkenColor = (hex: string, percent: number): string => {
-  const num = Number.parseInt(hex.slice(1), 16);
-  const r = Math.max(0, Math.min(255, ((num >> 16) - 255 * percent) | 0));
-  const g = Math.max(0, Math.min(255, (((num >> 8) & 0x00ff) - 255 * percent) | 0));
-  const b = Math.max(0, Math.min(255, ((num & 0x0000ff) - 255 * percent) | 0));
-  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
-};
 
 export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
   currentFolderName,
-  folders,
+  folders = [],
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // 검색어에 따라 폴더 목록 필터링
-  const filteredFolders = folders.filter((folder) => folder.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredFolders = folders.filter((folder) =>
+    folder.folderName.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   if (!isOpen) return null;
+
+  const { darkenColor } = useColorUtils();
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
@@ -56,7 +51,6 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
           </Text>
         </div>
 
-        {/* Search Bar */}
         <div className="relative mb-2 w-[45rem] py-1">
           <SearchThinIcon className="absolute bottom-2 left-2 w-8 h-8" />
           <input
@@ -68,31 +62,30 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
           />
         </div>
 
-        {/* Folder List */}
         <div className="flex flex-col pl-2 overflow-auto w-[45rem] h-[23.4375rem]">
           {filteredFolders.map((folder) => (
             <div
               key={folder.id}
               className="flex items-center h-12 cursor-pointer hover:bg-gray-100"
-              onClick={() => onSubmit(folder.id)}
+              onClick={() => onSubmit(folder.id.toString())}
             >
               <div className="w-8 h-8 flex-shrink-0 flex justify-center items-center">
-                {folder.isStarred && <StarIcon />}
+                {folder.markState && <StarIcon />}
               </div>
               <div className="ml-1 mr-4">
                 <ArchiveFolderIcon
-                  width={24}
-                  height={24}
-                  fillColor={folder.color}
-                  backgroundColor={darkenColor(folder.color, 0.2)}
+                  width={28}
+                  height={28}
+                  fillColor={folder.folderColor}
+                  backgroundColor={darkenColor(folder.folderColor, 0.2)}
                 />
               </div>
               <div className="flex gap-1">
                 <Text variant="sub_heading2" className="text-black">
-                  {folder.name}
+                  {folder.folderName}
                 </Text>
                 <Text variant="sub_heading2" className="text-gray-400">
-                  ({folder.itemCount})
+                  ({folder.noteCount})
                 </Text>
               </div>
             </div>

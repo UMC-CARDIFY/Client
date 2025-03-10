@@ -9,20 +9,26 @@ interface EditFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderName: string, folderColor: string) => void;
+  folderName: string; // 기존 폴더 이름
+  folderColor: keyof typeof colorMap; // 기존 폴더 색상
 }
 
-export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
-  const [folderName, setFolderName] = useState("기존 폴더 이름");
+export const EditFolderModal: React.FC<EditFolderModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  folderName,
+  folderColor,
+}) => {
+  const [editedFolderName, setEditedFolderName] = useState(folderName);
+  const [selectedColor, setSelectedColor] = useState(folderColor);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedColor, setSelectedColor] = useState("blue"); // 기본 색상
 
-  const { darkenColor } = useColorUtils(); // darkenColor 훅 사용
+  const { darkenColor } = useColorUtils();
 
   const handleSubmit = () => {
-    if (folderName.trim()) {
-      onSubmit(folderName, selectedColor);
-      setFolderName("");
-      setSelectedColor("blue");
+    if (editedFolderName.trim()) {
+      onSubmit(editedFolderName, selectedColor);
       onClose();
     }
   };
@@ -30,7 +36,7 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClos
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     if (value.length <= 100) {
-      setFolderName(value);
+      setEditedFolderName(value);
     }
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
@@ -47,7 +53,6 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClos
           <Text variant="sub_heading1">폴더 수정</Text>
         </div>
 
-        {/* Folder Name Input */}
         <label htmlFor="folder-name" className="block mb-4">
           <Text variant="sub_heading3" className="text-gray-700">
             이름
@@ -55,8 +60,8 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClos
         </label>
         <textarea
           id="folder-name"
-          placeholder="추가할 폴더의 이름을 입력해주세요."
-          value={folderName}
+          placeholder="폴더 이름을 입력해주세요."
+          value={editedFolderName}
           onChange={handleInput}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -71,7 +76,7 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClos
 
         <div className="text-right mb-8">
           <Text variant="caption" className="text-gray-400">
-            {folderName.length}/100
+            {editedFolderName.length}/100
           </Text>
         </div>
 
@@ -111,12 +116,16 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({ isOpen, onClos
         </div>
 
         <div className="flex justify-end gap-2">
-          <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50">
+          <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
             <Text variant="sub_heading2" className="text-gray-700">
               취소
             </Text>
           </button>
-          <button onClick={handleSubmit} className="h-8 px-5 py-1 rounded-md bg-brand-50">
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-100"
+          >
             <Text variant="sub_heading2" className="text-brand-700">
               확인
             </Text>

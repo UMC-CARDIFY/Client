@@ -5,7 +5,7 @@ interface EditSubFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderName: string) => void;
-  currentFolderName?: string; // optional prop with a default value
+  currentFolderName: string;
 }
 
 export const EditSubFolderModal: React.FC<EditSubFolderModalProps> = ({
@@ -71,12 +71,16 @@ export const EditSubFolderModal: React.FC<EditSubFolderModalProps> = ({
         </div>
 
         <div className="flex justify-end gap-2">
-          <button onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50">
+          <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
             <Text variant="sub_heading2" className="text-gray-700">
               취소
             </Text>
           </button>
-          <button onClick={handleSubmit} className="h-8 px-5 py-1 rounded-md bg-brand-50">
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-100"
+          >
             <Text variant="sub_heading2" className="text-brand-700">
               확인
             </Text>

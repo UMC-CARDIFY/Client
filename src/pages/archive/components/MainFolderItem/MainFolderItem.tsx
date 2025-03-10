@@ -1,7 +1,11 @@
+import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
 import { colorMap } from "@styles/colorMap";
-import { ArchiveNoteIcon, EmptyStarIcon, KebabIcon } from "@svgs/index";
+import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
+import { useState } from "react";
 import { StarIcon } from "../StarIcon";
+import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
+import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 
 type Color = keyof typeof colorMap;
@@ -27,6 +31,16 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   const displayNoteCnt = noteCount > 99 ? "99+" : noteCount;
   const isArchive = variant === "archive";
 
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const handleEditFolder = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const handleDeleteFolder = () => {
+    setIsDeleteModalOpen(false);
+  };
+
   return (
     <div className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer">
       <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
@@ -41,7 +55,21 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         )}
       </div>
 
-      {isArchive && <KebabIcon className="w-8 h-8 absolute top-6 right-4 cursor-pointer" />}
+      {isArchive && (
+        <div className="absolute top-6 right-4 cursor-pointer z-10">
+          <Kebab
+            onSelect={(value) => {
+              if (value === "edit") {
+                setIsEditModalOpen(true);
+              }
+              if (value === "delete") {
+                setIsDeleteModalOpen(true);
+              }
+            }}
+          />
+        </div>
+      )}
+
       <div className="mt-4 w-[8.75rem] h-[2.25rem]">
         <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
           {folderName}
@@ -57,6 +85,24 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           <Text variant="sub_heading2">{displayNoteCnt}</Text>
         </div>
       </div>
+
+      {isEditModalOpen && (
+        <EditFolderModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          onSubmit={handleEditFolder}
+          folderName={folderName}
+          folderColor={folderColor}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteFolderModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onSubmit={handleDeleteFolder}
+          folderName={folderName}
+        />
+      )}
     </div>
   );
 };
