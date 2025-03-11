@@ -1,11 +1,19 @@
 interface StarIconProps {
-  width?: number; // 기본값: 16
-  height?: number; // 기본값: 16
-  fillColor?: string; // 기본값: #FFD338
+  width?: number;
+  height?: number;
+  fillColor?: string;
 }
 
 export const StarIcon: React.FC<StarIconProps> = ({ width = 16, height = 16, fillColor = "#FFD338" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 16 16" fill="none">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    viewBox="0 0 16 16"
+    fill="none"
+    aria-label="즐겨찾기"
+  >
+    <title>즐겨찾기</title>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

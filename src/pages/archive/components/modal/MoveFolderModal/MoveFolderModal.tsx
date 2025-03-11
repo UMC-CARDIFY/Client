@@ -64,7 +64,7 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
 
         <div className="flex flex-col pl-2 overflow-auto w-[45rem] h-[23.4375rem]">
           {filteredFolders.map((folder) => (
-            <div
+            <button
               key={folder.id}
               className="flex items-center h-12 cursor-pointer hover:bg-gray-100"
               onClick={() => onSubmit(folder.id.toString())}
@@ -88,7 +88,7 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
                   ({folder.noteCount})
                 </Text>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>

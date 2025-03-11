@@ -35,9 +35,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, onClose, selectedCo
         }}
       >
         {Object.keys(colorMap).map((color) => (
-          <div
+          <button
             key={color}
-            role="button"
             tabIndex={0}
             className="cursor-pointer flex justify-center items-center w-5 h-5 rounded-full"
             onClick={() => toggleColorSelection(color)}
@@ -47,7 +46,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect, onClose, selectedCo
             ) : (
               <ColorCircleIcon className="w-5 h-5" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
             )}
-          </div>
+          </button>
         ))}
       </div>
 

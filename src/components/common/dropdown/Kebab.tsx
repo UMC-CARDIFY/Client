@@ -26,9 +26,8 @@ const Kebab: React.FC<KebabProps> = ({ onSelect, withFolderMove }) => {
       isKebab={true}
     >
       {menuItems.map((item, index) => (
-        <div
+        <button
           key={index}
-          role="button"
           tabIndex={0}
           className={`px-5 py-4 text-center whitespace-nowrap hover:bg-gray-50 border-b border-gray-150 last:border-b-0 ${
             item.danger ? "text-alert-500" : "text-base-black"
@@ -39,7 +38,7 @@ const Kebab: React.FC<KebabProps> = ({ onSelect, withFolderMove }) => {
           }}
         >
           <Text variant="sub_heading3">{item.label}</Text>
-        </div>
+        </button>
       ))}
     </DropdownButton>
   );

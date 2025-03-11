@@ -75,15 +75,13 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
         </div>
 
         {/* Color Picker + Icon */}
-        <label className="block mb-[1.06rem]">
-          <Text variant="sub_heading3" className="text-gray-700">
-            색상
-          </Text>
-        </label>
+        <Text variant="sub_heading3" className="block text-gray-700 mb-[1.06rem]">
+          색상
+        </Text>
         <div className="flex items-center mb-12 w-[21rem] h-[3.25rem]">
           <div className="flex flex-wrap gap-x-5 gap-y-3 w-[11.25rem]">
             {Object.keys(colorMap).map((color) => (
-              <div
+              <button
                 key={color}
                 onClick={() => setSelectedColor(color as keyof typeof colorMap)}
                 className="cursor-pointer flex justify-center items-center"
@@ -96,7 +94,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
                 ) : (
                   <ColorCircleIcon className="w-5 h-5" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
                 )}
-              </div>
+              </button>
             ))}
           </div>
 
