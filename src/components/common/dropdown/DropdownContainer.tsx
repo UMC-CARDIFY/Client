@@ -47,7 +47,7 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
 
         {openState && (
           <div
-            className="absolute left-0 mt-2 bg-white border border-gray-150 rounded-lg"
+            className="absolute z-10 left-0 mt-2 bg-white border border-gray-150 rounded-lg"
             style={{
               boxShadow: "0px 4px 12px 0px rgba(0, 0, 0, 0.04)",
               width: "auto",
