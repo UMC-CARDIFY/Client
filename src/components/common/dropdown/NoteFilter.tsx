@@ -35,15 +35,14 @@ const NoteFilter: React.FC<NoteFilterProps> = ({ onSelect }) => {
       isNoteFilterActive={!!selectedFilter}
     >
       {filterOptions.map((option) => (
-        <div
+        <button
           key={option.value}
-          role="button"
           tabIndex={0}
           className="px-6 py-4 text-base-black text-center whitespace-nowrap cursor-pointer hover:bg-gray-50 border-b border-gray-150 last:border-b-0"
           onClick={() => handleSelect(option.value, option.label, setSelectedFilter, onSelect, setIsOpen)}
         >
           <Text variant="sub_heading3">{option.label}</Text>
-        </div>
+        </button>
       ))}
     </DropdownButton>
   );
