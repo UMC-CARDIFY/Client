@@ -1,5 +1,5 @@
 import { Text } from "@components/typography/Text";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface DropdownButtonProps {
   label: string;
@@ -24,8 +24,26 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
   const openState = isOpen ?? internalOpen;
   const setOpenState = setIsOpen ?? setInternalOpen;
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenState(false);
+      }
+    }
+
+    if (openState) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openState, setOpenState]);
+
   return (
-    <div className="inline-block text-left">
+    <div className="inline-block text-left" ref={dropdownRef}>
       <div className="relative">
         <button
           className={`flex justify-center items-center gap-2 rounded-lg transition ${
@@ -47,7 +65,7 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
 
         {openState && (
           <div
-            className="absolute left-0 mt-2 bg-white border border-gray-150 rounded-lg"
+            className="absolute z-10 left-0 mt-2 bg-white border border-gray-150 rounded-lg"
             style={{
               boxShadow: "0px 4px 12px 0px rgba(0, 0, 0, 0.04)",
               width: "auto",

@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import Header from "./Header";
 
