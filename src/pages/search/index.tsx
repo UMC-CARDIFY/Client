@@ -20,7 +20,10 @@ export const Search = () => {
     setIsFolderExpanded(false);
   };
 
-  const folderList = mockFolderResults;
+  const folderList = mockFolderResults.map((folder) => ({
+    ...folder,
+    id: folder.folderId,
+  }));
   const noteList = mockNoteResults;
 
   return (

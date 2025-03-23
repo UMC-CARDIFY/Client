@@ -9,6 +9,11 @@ import ScheduledLearningList from "./components/ScheduledLearning/ScheduledLearn
 export const Home = () => {
   const RecentMarkedNoteList = MainNoteList;
 
+  const folderList = FolderItemData.map((folder) => ({
+    ...folder,
+    id: folder.folderId,
+  }));
+
   return (
     <div className="w-[800px] mx-auto pb-20 text-base-black">
       <Text variant={"heading2"} className="mt-10">
@@ -23,7 +28,7 @@ export const Home = () => {
       <Text variant={"sub_heading1"} className="mt-14 mb-6 block">
         최근 즐겨찾기 한 폴더
       </Text>
-      <MainFolderList variant="home" maxItems={4} folders={FolderItemData} />
+      <MainFolderList variant="home" maxItems={4} folders={folderList} />
 
       <Text variant={"sub_heading1"} className="mt-12 mb-6 block">
         최근 즐겨찾기 한 노트
