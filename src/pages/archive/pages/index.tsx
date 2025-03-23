@@ -1,7 +1,8 @@
+import MainFolderList from "@components/common/MainFolderList/MainFolderList";
 import FolderFilter from "@components/common/dropdown/FolderFilter";
 import Sort from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
-import MainFolderList from "../components/MainFolderList/MainFolderList";
+import FolderItemData from "src/mocks/FolderItemData";
 
 const handleSortSelect = (value: string) => {
   console.log("Sort selected:", value);
@@ -25,7 +26,7 @@ export const Archive = () => {
 
         {/* FolderList */}
         <div className="flex mt-8">
-          <MainFolderList />
+          <MainFolderList folders={FolderItemData} variant="archive" containerClassName="w-[50rem]" />
         </div>
       </div>
     </div>

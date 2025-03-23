@@ -1,12 +1,14 @@
+import MainFolderList from "@components/common/MainFolderList/MainFolderList";
+import MainNoteList from "@components/common/MainNoteList/MainNoteList";
 import { Text } from "@components/typography/Text";
 import { mockRecentMarkedNotes } from "@mocks/MockRecentMarkedNotes";
 import { mockScheduledLearningItems } from "@mocks/MockScheduledLearningItems";
-import MainFolderList from "@pages/archive/components/MainFolderList/MainFolderList";
-import React from "react";
-import RecentMarkedNoteList from "./components/RecentMarkedNote/RecentMarkedNoteList";
+import FolderItemData from "src/mocks/FolderItemData";
 import ScheduledLearningList from "./components/ScheduledLearning/ScheduledLearningList";
 
 export const Home = () => {
+  const RecentMarkedNoteList = MainNoteList;
+
   return (
     <div className="w-[800px] mx-auto pb-20 text-base-black">
       <Text variant={"heading2"} className="mt-10">
@@ -21,12 +23,12 @@ export const Home = () => {
       <Text variant={"sub_heading1"} className="mt-14 mb-6 block">
         최근 즐겨찾기 한 폴더
       </Text>
-      <MainFolderList variant="home" maxItems={4} />
+      <MainFolderList variant="home" maxItems={4} folders={FolderItemData} />
 
       <Text variant={"sub_heading1"} className="mt-12 mb-6 block">
         최근 즐겨찾기 한 노트
       </Text>
-      <RecentMarkedNoteList items={mockRecentMarkedNotes} />
+      <RecentMarkedNoteList items={mockRecentMarkedNotes} maxItems={3} variant="home" layout="row" />
     </div>
   );
 };

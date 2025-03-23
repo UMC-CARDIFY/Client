@@ -1,23 +1,23 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
+import { StarIcon } from "@pages/archive/components/StarIcon";
+import { DeleteFolderModal } from "@pages/archive/components/modal/DeleteFolderModal/DeleteFolderModal";
+import { EditFolderModal } from "@pages/archive/components/modal/EditFolderModal/EditFolderModal";
 import { colorMap } from "@styles/colorMap";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { useState } from "react";
-import { StarIcon } from "../StarIcon";
-import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
-import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 
 type Color = keyof typeof colorMap;
 
-interface MainFolderItemProps {
+export interface MainFolderItemProps {
   id: number;
   folderName: string;
   createdAt: string;
   noteCount: number;
   folderColor: Color;
   markState?: boolean;
-  variant?: "home" | "archive";
+  variant?: "home" | "archive" | "search";
 }
 
 const MainFolderItem: React.FC<MainFolderItemProps> = ({
@@ -28,11 +28,12 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   markState,
   variant = "archive",
 }) => {
-  const displayNoteCnt = noteCount > 99 ? "99+" : noteCount;
   const isArchive = variant === "archive";
+  const displayNoteCnt = noteCount > 99 ? "99+" : noteCount;
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const handleEditFolder = () => {
     setIsEditModalOpen(false);
   };
@@ -55,16 +56,13 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         )}
       </div>
 
+      {/* 케밥 메뉴는 archive에서만 노출 */}
       {isArchive && (
         <div className="absolute top-6 right-4 cursor-pointer z-10">
           <Kebab
             onSelect={(value) => {
-              if (value === "edit") {
-                setIsEditModalOpen(true);
-              }
-              if (value === "delete") {
-                setIsDeleteModalOpen(true);
-              }
+              if (value === "edit") setIsEditModalOpen(true);
+              if (value === "delete") setIsDeleteModalOpen(true);
             }}
           />
         </div>
@@ -86,7 +84,8 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         </div>
       </div>
 
-      {isEditModalOpen && (
+      {/* 모달도 archive에서만 */}
+      {isArchive && isEditModalOpen && (
         <EditFolderModal
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(false)}
@@ -95,7 +94,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           folderColor={folderColor}
         />
       )}
-      {isDeleteModalOpen && (
+      {isArchive && isDeleteModalOpen && (
         <DeleteFolderModal
           isOpen={isDeleteModalOpen}
           onClose={() => setIsDeleteModalOpen(false)}
