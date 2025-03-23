@@ -22,6 +22,7 @@ interface MainFolderListProps {
   variant?: "home" | "archive" | "search";
   maxItems?: number;
   containerClassName?: string; // 확장 가능
+  keyword?: string;
 }
 
 const ITEMS_PER_PAGE = 16;
@@ -31,6 +32,7 @@ const MainFolderList: React.FC<MainFolderListProps> = ({
   variant = "archive",
   maxItems,
   containerClassName = "w-full", // 기본값
+  keyword,
 }) => {
   const isHome = variant === "home";
   const isArchive = variant === "archive";
@@ -62,7 +64,7 @@ const MainFolderList: React.FC<MainFolderListProps> = ({
       <div className="gap-4 flex flex-wrap">
         {showNewFolder && currentPage === 1 && <NewFolderMain />}
         {displayedFolders.map((folder) => (
-          <MainFolderItem key={folder.id} {...folder} variant={variant} />
+          <MainFolderItem key={folder.id} {...folder} variant={variant} keyword={keyword} />
         ))}
       </div>
 

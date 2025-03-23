@@ -5,6 +5,7 @@ import { DeleteFolderModal } from "@pages/archive/components/modal/DeleteFolderM
 import { EditFolderModal } from "@pages/archive/components/modal/EditFolderModal/EditFolderModal";
 import { colorMap } from "@styles/colorMap";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
+import { highlightKeyword } from "@utils/highlightKeyword";
 import { useState } from "react";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 
@@ -18,6 +19,7 @@ export interface MainFolderItemProps {
   folderColor: Color;
   markState?: boolean;
   variant?: "home" | "archive" | "search";
+  keyword?: string;
 }
 
 const MainFolderItem: React.FC<MainFolderItemProps> = ({
@@ -27,6 +29,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   folderColor,
   markState,
   variant = "archive",
+  keyword,
 }) => {
   const isArchive = variant === "archive";
   const displayNoteCnt = noteCount > 99 ? "99+" : noteCount;
@@ -56,7 +59,6 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         )}
       </div>
 
-      {/* 케밥 메뉴는 archive에서만 노출 */}
       {isArchive && (
         <div className="absolute top-6 right-4 cursor-pointer z-10">
           <Kebab
@@ -70,7 +72,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
 
       <div className="mt-4 w-[8.75rem] h-[2.25rem]">
         <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
-          {folderName}
+          {variant === "search" && keyword ? highlightKeyword(folderName, keyword) : folderName}
         </Text>
       </div>
 
@@ -84,7 +86,6 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         </div>
       </div>
 
-      {/* 모달도 archive에서만 */}
       {isArchive && isEditModalOpen && (
         <EditFolderModal
           isOpen={isEditModalOpen}

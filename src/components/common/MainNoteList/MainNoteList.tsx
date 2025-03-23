@@ -9,11 +9,12 @@ interface NoteListProps {
   maxItems?: number; // 검색 초기 상태 6개 제한
   variant?: "home" | "search";
   layout?: "grid" | "row"; // 강제 레이아웃 지정 가능
+  keyword?: string;
 }
 
 const ITEMS_PER_PAGE = 12;
 
-const MainNoteList: React.FC<NoteListProps> = ({ items = [], maxItems, variant = "search", layout }) => {
+const MainNoteList: React.FC<NoteListProps> = ({ items = [], maxItems, variant = "search", layout, keyword }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const paginated = !maxItems;
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
@@ -32,7 +33,7 @@ const MainNoteList: React.FC<NoteListProps> = ({ items = [], maxItems, variant =
     <div className="w-full">
       <div className={isGrid ? "grid grid-cols-3 gap-4" : "flex flex-row gap-4"}>
         {displayedItems.map((item) => (
-          <RecentMarkedNoteItem key={item.noteId} {...item} />
+          <RecentMarkedNoteItem key={item.noteId} {...item} keyword={keyword} />
         ))}
       </div>
 
