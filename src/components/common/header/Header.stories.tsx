@@ -8,7 +8,9 @@ export default {
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <Story />
+        <div style={{ overflow: "visible", position: "relative", height: "100vh" }}>
+          <Story />
+        </div>
       </MemoryRouter>
     ),
   ],

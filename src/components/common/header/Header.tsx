@@ -1,8 +1,9 @@
 import { Text } from "@components/typography/Text";
 import { PATHS } from "@routes/paths";
-import { Logo, MypageIcon, SearchIcon } from "@svgs/index";
+import { Logo, MypageIcon } from "@svgs/index";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import SearchInput from "./SearchInput";
 import { NAV_ITEMS } from "./nav";
 
 const NavItem = ({
@@ -28,28 +29,17 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-screen justify-between px-20 py-5 flex flex-row">
+    <div className="w-screen justify-between px-20 py-5 flex flex-row relative z-20 overflow-visible">
       <Logo />
       <div className="gap-4 flex flex-row">
-        <div className="gap-4 flex flex-row">
-          {NAV_ITEMS.map((item) => (
-            <NavItem key={item.name} to={item.path}>
-              {item.name}
-            </NavItem>
-          ))}
-        </div>
+        {NAV_ITEMS.map((item) => (
+          <NavItem key={item.name} to={item.path}>
+            {item.name}
+          </NavItem>
+        ))}
       </div>
       <div className="flex flex-row gap-2.5 items-center justify-center">
-        <div className="flex flex-row gap-3 w-60 py-1.5 px-6 bg-gray-100 items-center rounded-2xl">
-          <SearchIcon />
-          <Text variant="body3" className="text-gray-700 w-full">
-            <input
-              type="text"
-              placeholder="통합 검색"
-              className="w-full bg-transparent text-gray-700 focus:outline-none"
-            />
-          </Text>
-        </div>
+        <SearchInput />
         <button
           onClick={() => navigate(PATHS.MYPAGE)}
           className="flex w-8 h-8 p-0.5 items-center justify-center flex-shrink-0 rounded-2xl bg-gray-100 cursor-pointer"
