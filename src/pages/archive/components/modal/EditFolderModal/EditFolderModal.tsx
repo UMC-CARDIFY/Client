@@ -2,6 +2,7 @@ import { Text } from "@components/typography/Text";
 import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
 import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
+import { isValidColor } from "@utils/color";
 import React, { useState, useRef } from "react";
 import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
 
@@ -9,8 +10,8 @@ interface EditFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (folderName: string, folderColor: string) => void;
-  folderName: string; // 기존 폴더 이름
-  folderColor: keyof typeof colorMap; // 기존 폴더 색상
+  folderName: string;
+  folderColor: string;
 }
 
 export const EditFolderModal: React.FC<EditFolderModalProps> = ({
@@ -20,11 +21,14 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
   folderName,
   folderColor,
 }) => {
-  const [editedFolderName, setEditedFolderName] = useState(folderName);
-  const [selectedColor, setSelectedColor] = useState(folderColor);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
   const { darkenColor } = useColorUtils();
+
+  const [editedFolderName, setEditedFolderName] = useState(folderName);
+
+  const [selectedColor, setSelectedColor] = useState<keyof typeof colorMap>(
+    isValidColor(folderColor) ? folderColor : "gray",
+  );
 
   const handleSubmit = () => {
     if (editedFolderName.trim()) {
@@ -80,7 +84,7 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
           </Text>
         </div>
 
-        {/* Color Picker + Icon */}
+        {/* Color Picker */}
         <Text variant="sub_heading3" className="block text-gray-700 mb-[1.06rem]">
           색상
         </Text>
@@ -105,6 +109,7 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
           </div>
 
           <div className="w-[0.0625rem] h-full bg-gray-300 ml-[3.75rem] mr-12"></div>
+
           <div className="w-[2.5rem] h-[2.5rem]">
             <ArchiveFolderIcon
               fillColor={colorMap[selectedColor]}
