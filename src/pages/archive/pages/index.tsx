@@ -2,29 +2,24 @@ import FolderFilter from "@components/common/dropdown/FolderFilter";
 import Sort from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
 import { mapToMainFolderProps } from "@utils/folder-mapper";
+import { useState } from "react";
 import MainFolderList from "../components/MainFolderList/MainFolderList";
 import { useFolderList } from "../hooks/use-folder-list";
 
-const handleSortSelect = (value: string) => {
-  console.log("Sort selected:", value);
-};
-
-const handleFolderFilterSelect = (colors: string[]) => {
-  console.log("Filter selected:", colors);
-};
-
 export const Archive = () => {
-  const { foldersList, isLoading, isError } = useFolderList();
+  const [order, setOrder] = useState("edit-newest");
+  const [colors, setColors] = useState<string[]>([]);
 
-  if (isLoading) {
-    return <div>로딩 중...</div>;
-  }
-
-  if (isError) {
-    return <div>에러가 발생했습니다</div>;
-  }
+  const { foldersList, isLoading, isError } = useFolderList({
+    order,
+    color: colors.join(","),
+  });
 
   const transformedFolders = foldersList.map(mapToMainFolderProps);
+
+  //TODO: 로딩 ui 받으면 suspense로 수정 및 에러도 에러바운더리로 리팩토링 예정
+  if (isLoading) return <div>로딩 중...</div>;
+  if (isError) return <div>에러가 발생했습니다</div>;
 
   return (
     <div className="w-full flex justify-center">
@@ -32,8 +27,8 @@ export const Archive = () => {
         <Text variant="heading2">사용자의 아카이브</Text>
 
         <div className="mt-10 flex gap-2 z-10">
-          <Sort onSelect={handleSortSelect} />
-          <FolderFilter onSelect={handleFolderFilterSelect} />
+          <Sort selected={order} onSelect={setOrder} />
+          <FolderFilter selected={colors} onSelect={setColors} />
         </div>
 
         <div className="flex mt-8">
