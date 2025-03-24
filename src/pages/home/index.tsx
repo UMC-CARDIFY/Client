@@ -2,11 +2,13 @@ import { Text } from "@components/typography/Text";
 import { mockRecentMarkedNotes } from "@mocks/MockRecentMarkedNotes";
 import { mockScheduledLearningItems } from "@mocks/MockScheduledLearningItems";
 import MainFolderList from "@pages/archive/components/MainFolderList/MainFolderList";
-import React from "react";
+import { requestAccessTokenOnce } from "@utils/access-token";
 import RecentMarkedNoteList from "./components/RecentMarkedNote/RecentMarkedNoteList";
 import ScheduledLearningList from "./components/ScheduledLearning/ScheduledLearningList";
 
 export const Home = () => {
+  requestAccessTokenOnce();
+
   return (
     <div className="w-[800px] mx-auto pb-20 text-base-black">
       <Text variant={"heading2"} className="mt-10">
