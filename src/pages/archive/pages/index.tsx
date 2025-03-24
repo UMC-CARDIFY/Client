@@ -3,10 +3,11 @@ import Sort from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
 import { mapToMainFolderProps } from "@utils/folder-mapper";
 import { useState } from "react";
+import EmptyState from "../components/EmptyState/EmptyState";
 import MainFolderList from "../components/MainFolderList/MainFolderList";
 import { useFolderList } from "../hooks/use-folder-list";
 
-export const Archive = () => {
+const Archive = () => {
   const [order, setOrder] = useState("edit-newest");
   const [colors, setColors] = useState<string[]>([]);
 
@@ -32,9 +33,17 @@ export const Archive = () => {
         </div>
 
         <div className="flex mt-8">
-          <MainFolderList folders={transformedFolders} variant="archive" />
+          {transformedFolders.length === 0 ? (
+            <div className="mt-12 w-full flex justify-center">
+              <EmptyState type="folder" />
+            </div>
+          ) : (
+            <MainFolderList folders={transformedFolders} variant="archive" />
+          )}
         </div>
       </div>
     </div>
   );
 };
+
+export default Archive;
