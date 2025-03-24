@@ -32,7 +32,8 @@
       "@apis/*": ["src/apis/*"],
       "@types/*": ["src/types/*"],
       "@routes/*": ["src/routes/*"],
-      "@mocks/*": ["src/mocks/*"]
+      "@mocks/*": ["src/mocks/*"],
+      "@constants/*": ["src/constants/*"]
     }
   },
   "include": ["src"]
