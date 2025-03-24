@@ -27,16 +27,15 @@ const Sort: React.FC<SortProps> = ({ onSelect }) => {
       setIsOpen={setIsOpen}
     >
       {sortOptions.map((option) => (
-        <button
+        <div
           key={option.value}
+          role="button"
           tabIndex={0}
           className="px-5 py-4 text-base-black hover:bg-gray-50 cursor-pointer border-b border-gray-150 whitespace-nowrap"
-          onClick={
-            () => handleSelect(option.value, option.label, setSelectedSort, onSelect, setIsOpen) // ✅ handleSelect 호출
-          }
+          onClick={() => handleSelect(option.value, option.label, setSelectedSort, onSelect, setIsOpen)}
         >
           <Text variant="sub_heading3">{option.label}</Text>
-        </button>
+        </div>
       ))}
     </DropdownButton>
   );
