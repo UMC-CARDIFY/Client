@@ -30,7 +30,7 @@
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
       "@apis/*": ["src/apis/*"],
-      "@types/*": ["src/types/*"],
+      "@typedefs/*": ["src/types/*"],
       "@routes/*": ["src/routes/*"],
       "@mocks/*": ["src/mocks/*"],
       "@constants/*": ["src/constants/*"]

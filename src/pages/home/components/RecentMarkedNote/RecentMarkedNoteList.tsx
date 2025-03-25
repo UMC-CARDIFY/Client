@@ -1,5 +1,4 @@
-import React from "react";
-import { NoteItemProps } from "../../../../types/note";
+import { NoteItemProps } from "@typedefs/note";
 import EmptyState from "../EmptyState/EmptyState";
 import RecentMarkedNoteItem from "./RecentMarkedNoteItem";
 

@@ -1,6 +1,6 @@
 import { Text } from "@components/typography/Text";
 import { ArchiveNoteIcon, CheckboxIcon, FlashcardIcon, StarIcon } from "@svgs/index";
-import { NoteItemProps } from "../../types/note";
+import { NoteItemProps } from "@typedefs/note";
 
 const NoteItem: React.FC<NoteItemProps> = ({ name, createdAt, editDate, flashCardCount, folderColor }) => {
   const displayFlashcardNum = flashCardCount > 99 ? "99+" : flashCardCount;

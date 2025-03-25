@@ -1,6 +1,6 @@
 import { apiGet } from "@apis/common/methods";
 import { END_POINTS } from "@constants/api";
-import { FolderListResponse } from "../../types/folder-response";
+import { FolderListResponse } from "@typedefs/folder-response";
 
 export interface FetchFoldersParams {
   parentFolderId?: number;
