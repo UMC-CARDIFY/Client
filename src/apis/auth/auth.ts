@@ -1,7 +1,11 @@
-import axiosInstance from "@apis/config/instance";
+import { apiGet } from "@apis/common/methods";
 import { END_POINTS } from "@constants/api";
 
+interface FetchAccessTokenResponse {
+  accessToken: string;
+}
+
 export const fetchAccessToken = async (): Promise<string> => {
-  const response = await axiosInstance.get(END_POINTS.GET_ACCESS_TOKEN);
-  return response.data.accessToken;
+  const { accessToken } = await apiGet<FetchAccessTokenResponse>(END_POINTS.GET_ACCESS_TOKEN);
+  return accessToken;
 };

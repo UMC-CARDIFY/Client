@@ -1,4 +1,4 @@
-import axiosInstance from "@apis/config/instance";
+import { apiGet } from "@apis/common/methods";
 import { END_POINTS } from "@constants/api";
 import { FolderListResponse } from "../../types/folder-response";
 
@@ -10,9 +10,6 @@ export interface FetchFoldersParams {
   color?: string;
 }
 
-export const fetchFolderList = async (params?: FetchFoldersParams): Promise<FolderListResponse> => {
-  const response = await axiosInstance.get(END_POINTS.GET_SORT_FILTER, {
-    params,
-  });
-  return response.data;
+export const fetchFolderList = (params?: FetchFoldersParams) => {
+  return apiGet<FolderListResponse, FetchFoldersParams>(END_POINTS.GET_SORT_FILTER, params);
 };
