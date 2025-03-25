@@ -1,5 +1,5 @@
-import React from "react";
-
-export const Flashcard = () => {
+const Flashcard = () => {
   return <></>;
 };
+
+export default Flashcard;

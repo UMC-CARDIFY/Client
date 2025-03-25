@@ -6,7 +6,7 @@ import { requestAccessTokenOnce } from "@utils/access-token";
 import RecentMarkedNoteList from "./components/RecentMarkedNote/RecentMarkedNoteList";
 import ScheduledLearningList from "./components/ScheduledLearning/ScheduledLearningList";
 
-export const Home = () => {
+const Home = () => {
   requestAccessTokenOnce();
 
   return (
@@ -32,3 +32,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

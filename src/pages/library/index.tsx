@@ -1,5 +1,5 @@
-import React from "react";
-
-export const Library = () => {
+const Library = () => {
   return <></>;
 };
+
+export default Library;
