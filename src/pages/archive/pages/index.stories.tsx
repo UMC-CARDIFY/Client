@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Archive } from "./index";
+import Archive from "./index";
 
 export default {
   title: "Archive/pages/Archive",

@@ -38,15 +38,15 @@ const Sort: React.FC<SortProps> = ({ onSelect, selected }) => {
       setIsOpen={setIsOpen}
     >
       {sortOptions.map((option) => (
-        <div
-          key={option.value}
-          role="button"
-          tabIndex={0}
-          className="px-5 py-4 text-base-black hover:bg-gray-50 cursor-pointer border-b border-gray-150 whitespace-nowrap"
+        <button
+          type="button"
           onClick={() => handleSelect(option.value, option.label)}
+          className="w-full text-left px-5 py-4 text-base-black hover:bg-gray-50 cursor-pointer border-b border-gray-150 whitespace-nowrap appearance-none bg-transparent"
         >
-          <Text variant="sub_heading3">{option.label}</Text>
-        </div>
+          <Text variant="sub_heading3" className="block w-full">
+            {option.label}
+          </Text>
+        </button>
       ))}
     </DropdownButton>
   );
