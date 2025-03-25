@@ -39,6 +39,7 @@ const Sort: React.FC<SortProps> = ({ onSelect, selected }) => {
     >
       {sortOptions.map((option) => (
         <button
+          key={option.value}
           type="button"
           onClick={() => handleSelect(option.value, option.label)}
           className="w-full text-left px-5 py-4 text-base-black hover:bg-gray-50 cursor-pointer border-b border-gray-150 whitespace-nowrap appearance-none bg-transparent"
