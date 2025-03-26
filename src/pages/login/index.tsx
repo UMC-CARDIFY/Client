@@ -1,5 +1,7 @@
 import Login from "./pages/Login";
 
-export const LoginPage = () => {
+const LoginPage = () => {
   return <Login />;
 };
+
+export default LoginPage;

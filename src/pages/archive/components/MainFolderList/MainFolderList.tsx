@@ -1,19 +1,17 @@
 import Pagination from "@components/common/pagination/Pagination";
 import { Text } from "@components/typography/Text";
 import EmptyState from "@pages/home/components/EmptyState/EmptyState";
-import { colorMap } from "@styles/colorMap";
 import { useState } from "react";
 import FolderItemData from "src/mocks/FolderItemData";
 import MainFolderItem from "../MainFolderItem/MainFolderItem";
 import NewFolderMain from "../newFolder/NewFolderMain";
 
-type Color = keyof typeof colorMap;
-interface MainFolderProps {
+export interface MainFolderProps {
   id: number;
   folderName: string;
   createdAt: string;
   noteCount: number;
-  folderColor: Color;
+  folderColor: string;
   markState?: boolean;
 }
 

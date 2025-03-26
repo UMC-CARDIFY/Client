@@ -1,5 +1,4 @@
-import React from "react";
-import { ScheduledLearningItemProps } from "../../../../types/scheduledLearning";
+import { ScheduledLearningItemProps } from "@typedefs/scheduledLearning";
 import EmptyState from "../EmptyState/EmptyState";
 import ScheduledLearningItem from "./ScheduledLearningItem";
 

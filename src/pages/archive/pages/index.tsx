@@ -1,33 +1,49 @@
 import FolderFilter from "@components/common/dropdown/FolderFilter";
 import Sort from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
+import { mapToMainFolderProps } from "@utils/folder-mapper";
+import { useState } from "react";
+import EmptyState from "../components/EmptyState/EmptyState";
 import MainFolderList from "../components/MainFolderList/MainFolderList";
+import { useFolderList } from "../hooks/use-folder-list";
 
-const handleSortSelect = (value: string) => {
-  console.log("Sort selected:", value);
-};
+const Archive = () => {
+  const [order, setOrder] = useState("edit-newest");
+  const [colors, setColors] = useState<string[]>([]);
 
-const handleFolderFilterSelect = (colors: string[]) => {
-  console.log("Filter selected:", colors);
-};
+  const { foldersList, isLoading, isError } = useFolderList({
+    order,
+    color: colors.join(","),
+  });
 
-export const Archive = () => {
+  const transformedFolders = foldersList.map(mapToMainFolderProps);
+
+  //TODO: 로딩 ui 받으면 suspense로 수정 및 에러도 에러바운더리로 리팩토링 예정
+  if (isLoading) return <div>로딩 중...</div>;
+  if (isError) return <div>에러가 발생했습니다</div>;
+
   return (
     <div className="w-full flex justify-center">
       <div className="w-[50rem] mt-10 flex flex-col">
-        <Text variant={"heading2"}>사용자의 아카이브</Text>
+        <Text variant="heading2">사용자의 아카이브</Text>
 
-        {/* SortDropdown + FolderFilterDropdown */}
         <div className="mt-10 flex gap-2 z-10">
-          <Sort onSelect={handleSortSelect} />
-          <FolderFilter onSelect={handleFolderFilterSelect} />
+          <Sort selected={order} onSelect={setOrder} />
+          <FolderFilter selected={colors} onSelect={setColors} />
         </div>
 
-        {/* FolderList */}
         <div className="flex mt-8">
-          <MainFolderList />
+          {transformedFolders.length === 0 ? (
+            <div className="mt-12 w-full flex justify-center">
+              <EmptyState type="folder" />
+            </div>
+          ) : (
+            <MainFolderList folders={transformedFolders} variant="archive" />
+          )}
         </div>
       </div>
     </div>
   );
 };
+
+export default Archive;

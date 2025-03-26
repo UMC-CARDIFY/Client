@@ -11,4 +11,5 @@ const Template: StoryFn<typeof FolderFilter> = (args) => <FolderFilter {...args}
 export const Default = Template.bind({});
 Default.args = {
   onSelect: () => {},
+  selected: [],
 };

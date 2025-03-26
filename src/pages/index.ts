@@ -1,6 +1,6 @@
-export { Home } from "./home";
-export { Archive } from "./archive/pages";
-export { Flashcard } from "./flashcard";
-export { Library } from "./library";
-export { Mypage } from "./mypage";
-export { LoginPage } from "./login";
+export { default as Home } from "./home";
+export { default as Archive } from "./archive/pages";
+export { default as Flashcard } from "./flashcard";
+export { default as Library } from "./library";
+export { default as Mypage } from "./mypage";
+export { default as LoginPage } from "./login";

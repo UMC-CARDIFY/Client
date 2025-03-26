@@ -1,21 +1,19 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { colorMap } from "@styles/colorMap";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
+import { getSafeColor } from "@utils/color";
 import { useState } from "react";
 import { StarIcon } from "../StarIcon";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 
-type Color = keyof typeof colorMap;
-
 interface MainFolderItemProps {
   id: number;
   folderName: string;
   createdAt: string;
   noteCount: number;
-  folderColor: Color;
+  folderColor: string;
   markState?: boolean;
   variant?: "home" | "archive";
 }
@@ -33,18 +31,16 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const handleEditFolder = () => {
-    setIsEditModalOpen(false);
-  };
 
-  const handleDeleteFolder = () => {
-    setIsDeleteModalOpen(false);
-  };
+  const handleEditFolder = () => setIsEditModalOpen(false);
+  const handleDeleteFolder = () => setIsDeleteModalOpen(false);
+
+  const fillColor = getSafeColor(folderColor);
 
   return (
     <div className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer">
       <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
-        <ArchiveMainFolderIcon fillColor={colorMap[folderColor]} />
+        <ArchiveMainFolderIcon fillColor={fillColor} />
 
         {markState ? (
           <div className="absolute top-8 right-[0.37rem] w-4 h-4">
@@ -59,12 +55,8 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         <div className="absolute top-6 right-4 cursor-pointer z-10">
           <Kebab
             onSelect={(value) => {
-              if (value === "edit") {
-                setIsEditModalOpen(true);
-              }
-              if (value === "delete") {
-                setIsDeleteModalOpen(true);
-              }
+              if (value === "edit") setIsEditModalOpen(true);
+              if (value === "delete") setIsDeleteModalOpen(true);
             }}
           />
         </div>

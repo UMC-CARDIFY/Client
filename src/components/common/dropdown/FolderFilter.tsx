@@ -1,16 +1,21 @@
 import { colorMap } from "@styles/colorMap";
 import { CommonXIcon20, FilteringIcon } from "@svgs/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DropdownButton from "./DropdownContainer";
 import ColorPicker from "./colorPicker/ColorPicker";
 
 interface FolderFilterProps {
   onSelect: (colors: string[]) => void;
+  selected: string[];
 }
 
-const FolderFilter: React.FC<FolderFilterProps> = ({ onSelect }) => {
+const FolderFilter: React.FC<FolderFilterProps> = ({ onSelect, selected }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
+
+  useEffect(() => {
+    setSelectedColors(selected);
+  }, [selected]);
 
   const handleColorSelect = (colors: string[]) => {
     setSelectedColors(colors);
