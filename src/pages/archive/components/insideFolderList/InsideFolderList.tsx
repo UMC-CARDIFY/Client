@@ -25,7 +25,7 @@ const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders = defaultFo
       <div className="grid grid-cols-4 gap-4">
         <NewFolder />
         {displayedFolders.map((folder) => (
-          <InsideFolder key={folder.id} folderName={folder.folderName} color={folder.color} />
+          <InsideFolder key={folder.id} folderId={folder.id} folderName={folder.folderName} color={folder.color} />
         ))}
       </div>
       {shouldShowViewAll && (

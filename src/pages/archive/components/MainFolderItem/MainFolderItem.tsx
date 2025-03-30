@@ -9,7 +9,7 @@ import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 
 interface MainFolderItemProps {
-  id: number;
+  folderId: number;
   folderName: string;
   createdAt: string;
   noteCount: number;
@@ -19,6 +19,7 @@ interface MainFolderItemProps {
 }
 
 const MainFolderItem: React.FC<MainFolderItemProps> = ({
+  folderId,
   folderName,
   createdAt,
   noteCount,
@@ -93,6 +94,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           onClose={() => setIsDeleteModalOpen(false)}
           onSubmit={handleDeleteFolder}
           folderName={folderName}
+          folderId={folderId}
         />
       )}
     </div>

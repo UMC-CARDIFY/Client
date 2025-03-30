@@ -10,11 +10,12 @@ import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal"
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 
 interface FolderNameHeaderProps {
+  folderId: number;
   folderName: string;
   color: string;
 }
 
-const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderName, color }) => {
+const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderName, color }) => {
   const colorHexCode = colorMap[color as keyof typeof colorMap];
   const { darkenColor } = useColorUtils();
   const darkenedColor = darkenColor(colorHexCode, 0.2);
@@ -64,6 +65,7 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderName, color }
           onClose={() => setIsDeleteModalOpen(false)}
           onSubmit={handleDeleteFolder}
           folderName={folderName}
+          folderId={folderId}
         />
       )}
     </div>

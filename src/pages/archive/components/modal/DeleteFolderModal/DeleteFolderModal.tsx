@@ -1,14 +1,32 @@
 import { Modal } from "@components/common/Modal";
+import { useDeleteFolderMutation } from "@hooks/folder/use-delete-folder";
 import React from "react";
 
 interface DeleteFolderModalProps {
   isOpen: boolean;
-  onClose: () => void; // 취소 버튼 클릭 핸들러
-  onSubmit: () => void; // 확인 버튼 클릭 핸들러
+  onClose: () => void;
+  onSubmit: () => void;
   folderName: string;
+  folderId: number;
 }
 
-export const DeleteFolderModal: React.FC<DeleteFolderModalProps> = ({ isOpen, onClose, onSubmit, folderName }) => {
+export const DeleteFolderModal: React.FC<DeleteFolderModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  folderName,
+  folderId,
+}) => {
+  const deleteFolderMutation = useDeleteFolderMutation();
+  const handleDeleteFolder = async () => {
+    try {
+      await deleteFolderMutation.mutateAsync(folderId);
+      onSubmit();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -20,7 +38,7 @@ export const DeleteFolderModal: React.FC<DeleteFolderModalProps> = ({ isOpen, on
         </>
       }
       onClose={onClose}
-      onSubmit={onSubmit}
+      onSubmit={handleDeleteFolder}
       cancelText="취소"
       confirmText="확인"
     />

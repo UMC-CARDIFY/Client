@@ -8,12 +8,13 @@ import { EditSubFolderModal } from "../modal/EditSubFolderModal/EditSubFolderMod
 import { Folder, MoveFolderModal } from "../modal/MoveFolderModal/MoveFolderModal";
 
 interface InsideFolderProps {
+  folderId: number;
   folderName: string;
   color: string;
-  folders: Folder[];
+  folders?: Folder[];
 }
 
-const InsideFolder: React.FC<InsideFolderProps> = ({ folderName, color }) => {
+const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color }) => {
   const folders = InsideFolderItemData;
 
   const [isHovered, setIsHovered] = useState(false);
@@ -81,6 +82,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderName, color }) => {
           onClose={() => setIsDeleteModalOpen(false)}
           onSubmit={handleDeleteFolder}
           folderName={folderName}
+          folderId={folderId}
         />
       )}
       {isMoveModalOpen && (
