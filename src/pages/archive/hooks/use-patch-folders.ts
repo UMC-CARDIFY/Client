@@ -1,12 +1,12 @@
-import { FolderData, postFolders } from "@apis/folder/folder";
+import { FolderData, patchFolders } from "@apis/folder/folder";
 import { FOLDER_QUERY_KEY } from "@apis/folder/folder-queries";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export const usePostFolders = () => {
+export const usePatchFolders = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (body: FolderData) => postFolders(body),
+    mutationFn: ({ folderId, body }: { folderId: number; body: FolderData }) => patchFolders(folderId, body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: FOLDER_QUERY_KEY.ALL() });
     },

@@ -19,6 +19,7 @@ interface MainFolderItemProps {
 }
 
 const MainFolderItem: React.FC<MainFolderItemProps> = ({
+  id,
   folderName,
   createdAt,
   noteCount,
@@ -85,6 +86,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           onSubmit={handleEditFolder}
           folderName={folderName}
           folderColor={folderColor}
+          folderId={id}
         />
       )}
       {isDeleteModalOpen && (

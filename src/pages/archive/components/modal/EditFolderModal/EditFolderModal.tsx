@@ -1,4 +1,5 @@
 import { Text } from "@components/typography/Text";
+import { usePatchFolders } from "@pages/archive/hooks/use-patch-folders";
 import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
 import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
@@ -12,6 +13,7 @@ interface EditFolderModalProps {
   onSubmit: (folderName: string, folderColor: string) => void;
   folderName: string;
   folderColor: string;
+  folderId: number;
 }
 
 export const EditFolderModal: React.FC<EditFolderModalProps> = ({
@@ -20,6 +22,7 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
   onSubmit,
   folderName,
   folderColor,
+  folderId,
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { darkenColor } = useColorUtils();
@@ -30,9 +33,16 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
     isValidColor(folderColor) ? folderColor : "gray",
   );
 
+  const { mutate } = usePatchFolders();
+
   const handleSubmit = () => {
     if (editedFolderName.trim()) {
       onSubmit(editedFolderName, selectedColor);
+      mutate({
+        folderId,
+        body: { name: editedFolderName, color: selectedColor },
+      });
+
       onClose();
     }
   };
