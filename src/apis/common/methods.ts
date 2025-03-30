@@ -9,3 +9,8 @@ export const apiPost = async <T, B = undefined>(url: string, body?: B): Promise<
   const response = await axiosInstance.post<T>(url, body);
   return response.data;
 };
+
+export const apiPatch = async <T, B = undefined>(url: string, body?: B): Promise<T> => {
+  const response = await axiosInstance.patch<T>(url, body);
+  return response.data;
+};
