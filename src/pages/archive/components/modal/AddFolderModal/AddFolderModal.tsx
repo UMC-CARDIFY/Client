@@ -1,4 +1,5 @@
 import { Text } from "@components/typography/Text";
+import { usePostFolders } from "@pages/archive/hooks/use-post-folders";
 import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
 import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
@@ -6,21 +7,21 @@ import React, { useState, useRef } from "react";
 import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
 
 interface AddFolderModalProps {
-  isOpen: boolean;
   onClose: () => void;
-  onSubmit: (folderName: string, folderColor: string) => void;
 }
 
-export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
+export const AddFolderModal: React.FC<AddFolderModalProps> = ({ onClose }) => {
   const [folderName, setFolderName] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [selectedColor, setSelectedColor] = useState<keyof typeof colorMap>("blue"); // 기본 색상
 
   const { darkenColor } = useColorUtils();
 
+  const { mutate } = usePostFolders();
+
   const handleSubmit = () => {
     if (folderName.trim()) {
-      onSubmit(folderName, selectedColor);
+      mutate({ name: folderName, color: selectedColor });
       setFolderName("");
       setSelectedColor("blue");
       onClose();
@@ -37,8 +38,6 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
-
-  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
