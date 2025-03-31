@@ -3,19 +3,19 @@ import { useDeleteFolderMutation } from "@hooks/folder/use-delete-folder";
 import React from "react";
 
 interface DeleteFolderModalProps {
+  folderId: number;
   isOpen: boolean;
   onClose: () => void;
   onSubmit: () => void;
   folderName: string;
-  folderId: number;
 }
 
 export const DeleteFolderModal: React.FC<DeleteFolderModalProps> = ({
+  folderId,
   isOpen,
   onClose,
   onSubmit,
   folderName,
-  folderId,
 }) => {
   const deleteFolderMutation = useDeleteFolderMutation();
   const handleDeleteFolder = async () => {

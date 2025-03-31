@@ -3,7 +3,7 @@ import { FolderItem } from "@typedefs/folder-response";
 
 export const mapToMainFolderProps = (folder: FolderItem): MainFolderProps => {
   return {
-    id: folder.folderId,
+    folderId: folder.folderId,
     folderName: folder.name,
     createdAt: folder.createdAt,
     noteCount: folder.getNoteCount,

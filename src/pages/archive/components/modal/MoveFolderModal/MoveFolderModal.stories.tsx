@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { MoveFolderModal } from "./MoveFolderModal";
 
 export default {
@@ -13,21 +13,21 @@ const Template: StoryFn<typeof MoveFolderModal> = (args) => {
   // 예제 데이터
   const folders = [
     {
-      id: "1",
+      folderId: 1,
       folderName: "1강",
       noteCount: 5,
       folderColor: "#AECA99",
       markState: true,
     },
     {
-      id: "2",
+      folderId: 2,
       folderName: "2강",
       noteCount: 3,
       folderColor: "#AECA99",
       markState: false,
     },
     {
-      id: "3",
+      folderId: 3,
       folderName: "3강",
       noteCount: 8,
       folderColor: "#AECA99",
@@ -45,7 +45,7 @@ const Template: StoryFn<typeof MoveFolderModal> = (args) => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         onSubmit={(folderId) =>
-          alert(`폴더가 이동되었습니다: ${folders.find((folder) => folder.id === folderId)?.name}`)
+          alert(`폴더가 이동되었습니다: ${folders.find((folder) => folder.folderId === folderId)?.folderName}`)
         }
         currentFolderName="4강"
         folders={folders}

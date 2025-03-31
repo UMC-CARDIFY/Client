@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
 
 export interface Folder {
-  id: number;
+  folderId: number;
   folderName: string;
   noteCount: number;
   folderColor: string;
@@ -15,7 +15,7 @@ export interface Folder {
 interface MoveFolderModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (folderId: string) => void;
+  onSubmit: (folderId: number) => void;
   currentFolderName: string;
   folders?: Folder[];
 }
@@ -65,9 +65,9 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
         <div className="flex flex-col pl-2 overflow-auto w-[45rem] h-[23.4375rem]">
           {filteredFolders.map((folder) => (
             <button
-              key={folder.id}
+              key={folder.folderId}
               className="flex items-center h-12 cursor-pointer hover:bg-gray-100"
-              onClick={() => onSubmit(folder.id.toString())}
+              onClick={() => onSubmit(folder.folderId)}
             >
               <div className="w-8 h-8 flex-shrink-0 flex justify-center items-center">
                 {folder.markState && <StarIcon />}

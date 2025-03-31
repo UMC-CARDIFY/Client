@@ -4,5 +4,5 @@ export interface MainFolderItemProps {
   createdAt: string;
   noteCount: number;
   folderColor: string;
-  markState?: boolean;
+  markState: boolean;
 }
