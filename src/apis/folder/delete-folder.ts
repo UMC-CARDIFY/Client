@@ -6,6 +6,6 @@ interface DeleteFolderResponse {
 }
 
 export const deleteFolder = async (folderId: number): Promise<DeleteFolderResponse> => {
-  const endpoint = `${END_POINTS.DELETE_FOLDER}/${folderId}`;
+  const endpoint = `${END_POINTS.DELETE_FOLDER(folderId)}`;
   return apiDelete<DeleteFolderResponse>(endpoint);
 };
