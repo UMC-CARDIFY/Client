@@ -41,7 +41,8 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
 
   const fillColor = getSafeColor(folderColor);
 
-  const handleClick = (id: number) => {
+  const handleClick = (id: number, e: React.MouseEvent) => {
+    e.stopPropagation();
     navigate(`${PATHS.ARCHIVE}/${id}`);
   };
 
