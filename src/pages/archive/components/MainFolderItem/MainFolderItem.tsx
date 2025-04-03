@@ -1,8 +1,10 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
+import { PATHS } from "@routes/paths";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { getSafeColor } from "@utils/color";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { StarIcon } from "../StarIcon";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
@@ -27,6 +29,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   markState,
   variant = "archive",
 }) => {
+  const navigate = useNavigate();
   const displayNoteCnt = noteCount > 99 ? "99+" : noteCount;
   const isArchive = variant === "archive";
 
@@ -38,8 +41,15 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
 
   const fillColor = getSafeColor(folderColor);
 
+  const handleClick = (id: number) => {
+    navigate(`${PATHS.ARCHIVE}/${id}`);
+  };
+
   return (
-    <div className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer">
+    <div
+      className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer"
+      onClick={() => handleClick(id)}
+    >
       <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
         <ArchiveMainFolderIcon fillColor={fillColor} />
 
