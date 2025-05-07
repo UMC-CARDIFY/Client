@@ -8,6 +8,5 @@ interface ToggleFolderMarkResponse {
 }
 
 export const toggleFolderMark = async (folderId: number): Promise<ToggleFolderMarkResponse> => {
-  const endpoint = `${END_POINTS.MARK_FOLDER(folderId)}`;
-  return apiPatch<ToggleFolderMarkResponse>(endpoint);
+  return apiPatch<ToggleFolderMarkResponse>(END_POINTS.MARK_FOLDER(folderId));
 };
