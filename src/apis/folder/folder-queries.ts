@@ -1,5 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
-import { FetchFoldersParams, fetchFolderList } from "./folder";
+import { fetchFolderList } from "./folder";
+import { FetchFoldersParams } from "@typedefs/folder";
 
 export const FOLDER_QUERY_KEY = {
   ALL: ["folders"],
