@@ -1,6 +1,6 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { useFolderMark } from "@hooks/folder/use-mark-folder";
+import { useFolderMark } from "@hooks/folder/use-folder";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { getSafeColor } from "@utils/color";
 import { useState } from "react";
@@ -50,7 +50,10 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
       <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
         <ArchiveMainFolderIcon fillColor={fillColor} />
 
-        <button className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer" onClick={handleToggleMark}>
+        <button
+          className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer"
+          onClick={handleToggleMark}
+        >
           {markState ? <StarIcon /> : <EmptyStarIcon />}
         </button>
       </div>
@@ -67,7 +70,10 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
       )}
 
       <div className="mt-4 w-[8.75rem] h-[2.25rem]">
-        <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
+        <Text
+          variant="sub_heading2"
+          className="text-base-black text-ellipsis line-clamp-2 leading-tight"
+        >
           {folderName}
         </Text>
       </div>

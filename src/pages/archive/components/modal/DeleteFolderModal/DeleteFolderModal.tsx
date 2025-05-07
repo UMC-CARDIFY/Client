@@ -1,5 +1,5 @@
 import { Modal } from "@components/common/Modal";
-import { useDeleteFolderMutation } from "@hooks/folder/use-delete-folder";
+import { useDeleteFolderMutation } from "@hooks/folder/use-folder";
 import React from "react";
 
 interface DeleteFolderModalProps {
