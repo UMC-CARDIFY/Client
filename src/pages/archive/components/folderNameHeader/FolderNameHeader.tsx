@@ -14,7 +14,10 @@ interface FolderNameHeaderProps {
   color: string;
 }
 
-const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderName, color }) => {
+const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({
+  folderName,
+  color,
+}) => {
   const colorHexCode = colorMap[color as keyof typeof colorMap];
   const { darkenColor } = useColorUtils();
   const darkenedColor = darkenColor(colorHexCode, 0.2);
@@ -32,7 +35,10 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderName, color }
   return (
     <div className="flex flex-row items-center h-[4rem] relative w-full">
       <StarIcon className="mr-2" />
-      <ArchiveFolderIcon fillColor={colorHexCode} backgroundColor={darkenedColor} />
+      <ArchiveFolderIcon
+        fillColor={colorHexCode}
+        backgroundColor={darkenedColor}
+      />
       <Text variant="heading2" className="text-base-black ml-4">
         {folderName}
       </Text>
