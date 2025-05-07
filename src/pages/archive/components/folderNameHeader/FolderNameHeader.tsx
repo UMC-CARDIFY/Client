@@ -1,6 +1,6 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { useFolderMark } from "@hooks/folder/use-mark-folder";
+import { useFolderMark } from "@hooks/folder/use-folder";
 import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
 import { colorMap } from "@styles/colorMap";
 import { EmptyStarIcon, StarIcon } from "@svgs/index";
@@ -17,7 +17,12 @@ interface FolderNameHeaderProps {
   markState: boolean;
 }
 
-const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderName, color, markState }) => {
+const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({
+  folderId,
+  folderName,
+  color,
+  markState,
+}) => {
   const colorHexCode = colorMap[color as keyof typeof colorMap];
   const { darkenColor } = useColorUtils();
   const darkenedColor = darkenColor(colorHexCode, 0.2);
@@ -45,7 +50,10 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderNam
       <button className="cursor-pointer mr-2" onClick={handleToggleMark}>
         {markState ? <StarIcon /> : <EmptyStarIcon />}
       </button>
-      <ArchiveFolderIcon fillColor={colorHexCode} backgroundColor={darkenedColor} />
+      <ArchiveFolderIcon
+        fillColor={colorHexCode}
+        backgroundColor={darkenedColor}
+      />
       <Text variant="heading2" className="text-base-black ml-4">
         {folderName}
       </Text>
