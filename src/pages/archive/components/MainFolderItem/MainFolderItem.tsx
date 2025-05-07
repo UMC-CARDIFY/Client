@@ -65,7 +65,10 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         </div>
 
         {isArchive && (
-          <div className="absolute top-6 right-4 cursor-pointer z-10" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="absolute top-6 right-4 cursor-pointer z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Kebab
               onSelect={(value) => {
                 if (value === "edit") setIsEditModalOpen(true);
@@ -76,7 +79,10 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         )}
 
         <div className="mt-4 w-[8.75rem] h-[2.25rem]">
-          <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
+          <Text
+            variant="sub_heading2"
+            className="text-base-black text-ellipsis line-clamp-2 leading-tight"
+          >
             {folderName}
           </Text>
         </div>
