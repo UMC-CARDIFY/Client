@@ -3,10 +3,11 @@ import React from "react";
 
 interface DeleteNoteModalProps {
   isOpen: boolean;
-  onClose: () => void; // 취소 버튼 클릭 핸들러
-  onSubmit: () => void; // 확인 버튼 클릭 핸들러
-  noteName: string; // 대표 노트 이름
-  additionalCount: number; // 추가로 삭제되는 노트 개수
+  onClose: () => void;
+  onSubmit: () => void;
+  noteId: number;
+  noteName: string;
+  additionalCount: number;
 }
 
 export const DeleteNoteModal: React.FC<DeleteNoteModalProps> = ({
