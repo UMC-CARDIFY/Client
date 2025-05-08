@@ -5,4 +5,5 @@ export const PATHS = {
   LIBRARY: "/library",
   MYPAGE: "/mypage",
   LOGIN: "/login",
+  NOTE_EDITOR: "/note-editor",
 };
