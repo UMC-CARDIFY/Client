@@ -3,7 +3,7 @@ import { fetchFolderList } from "./folder";
 import { FetchFoldersParams } from "@typedefs/folder";
 
 export const FOLDER_QUERY_KEY = {
-  ALL: ["folders"],
+  ALL: () => ["folders"],
   LIST: (params?: FetchFoldersParams) => ["folders", "list", params],
 } as const;
 
@@ -12,5 +12,10 @@ export const FOLDER_QUERY_OPTION = {
     queryOptions({
       queryKey: FOLDER_QUERY_KEY.LIST(params),
       queryFn: () => fetchFolderList(params),
+    }),
+  ALL: () =>
+    queryOptions({
+      queryKey: FOLDER_QUERY_KEY.ALL(),
+      queryFn: () => fetchFolderList(),
     }),
 };

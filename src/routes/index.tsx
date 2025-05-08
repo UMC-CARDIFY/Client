@@ -1,3 +1,4 @@
+import NotesInsideFolderPage from "@pages/archive/pages/NotesInsideFolderPage";
 import { createBrowserRouter } from "react-router-dom";
 import NoteLayout from "src/layouts/noteLayout";
 import MainLayout from "../layouts/mainLayout";
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: PATHS.ARCHIVE,
         element: <Archive />,
+      },
+      {
+        path: `${PATHS.ARCHIVE}/:id`,
+        element: <NotesInsideFolderPage />,
       },
       {
         path: PATHS.FLASHCARD,

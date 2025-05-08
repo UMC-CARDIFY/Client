@@ -5,6 +5,7 @@ import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import { isValidColor } from "@utils/color";
 import React, { useState, useRef } from "react";
 import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
+import { usePatchFolders } from "@pages/archive/hooks/use-folder";
 
 interface EditFolderModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface EditFolderModalProps {
   onSubmit: (folderName: string, folderColor: string) => void;
   folderName: string;
   folderColor: string;
+  folderId: number;
 }
 
 export const EditFolderModal: React.FC<EditFolderModalProps> = ({
@@ -20,6 +22,7 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
   onSubmit,
   folderName,
   folderColor,
+  folderId,
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { darkenColor } = useColorUtils();
@@ -27,12 +30,19 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
   const [editedFolderName, setEditedFolderName] = useState(folderName);
 
   const [selectedColor, setSelectedColor] = useState<keyof typeof colorMap>(
-    isValidColor(folderColor) ? folderColor : "gray",
+    isValidColor(folderColor) ? folderColor : "gray"
   );
+
+  const { mutate } = usePatchFolders();
 
   const handleSubmit = () => {
     if (editedFolderName.trim()) {
       onSubmit(editedFolderName, selectedColor);
+      mutate({
+        folderId,
+        body: { name: editedFolderName, color: selectedColor },
+      });
+
       onClose();
     }
   };
@@ -85,7 +95,10 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
         </div>
 
         {/* Color Picker */}
-        <Text variant="sub_heading3" className="block text-gray-700 mb-[1.06rem]">
+        <Text
+          variant="sub_heading3"
+          className="block text-gray-700 mb-[1.06rem]"
+        >
           색상
         </Text>
         <div className="flex items-center mb-12 w-[21rem] h-[3.25rem]">
@@ -102,7 +115,10 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
                     style={{ fill: colorMap[color as keyof typeof colorMap] }}
                   />
                 ) : (
-                  <ColorCircleIcon className="w-5 h-5" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
+                  <ColorCircleIcon
+                    className="w-5 h-5"
+                    style={{ fill: colorMap[color as keyof typeof colorMap] }}
+                  />
                 )}
               </button>
             ))}
@@ -119,7 +135,11 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
         </div>
 
         <div className="flex justify-end gap-2">
-          <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
+          <button
+            type="button"
+            onClick={onClose}
+            className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100"
+          >
             <Text variant="sub_heading2" className="text-gray-700">
               취소
             </Text>

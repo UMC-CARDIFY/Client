@@ -58,7 +58,7 @@
         "useHeadingContent": "error",
         "useHtmlLang": "error",
         "useIframeTitle": "error",
-        "useKeyWithClickEvents": "error",
+        "useKeyWithClickEvents": "off",
         "useKeyWithMouseEvents": "error",
         "useMediaCaption": "error",
         "useValidAnchor": "error",
@@ -69,6 +69,13 @@
     }
   },
   "files": {
-    "ignore": ["**/.gitignore", "**/build/*", "**/coverage/*", "**/dist/*", "**/node_modules/*", "*storybook.log"]
+    "ignore": [
+      "**/.gitignore",
+      "**/build/*",
+      "**/coverage/*",
+      "**/dist/*",
+      "**/node_modules/*",
+      "*storybook.log"
+    ]
   }
 }

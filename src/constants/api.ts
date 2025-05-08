@@ -1,6 +1,8 @@
 export const END_POINTS = {
-  GET_ACCESS_TOKEN: "/api/v1/auth/token",
-  GET_SORT_FILTER: "/api/v1/folders/sort-filter",
-  DELETE_FOLDER: (folderId: number) => `/api/v1/folders/${folderId}`,
-  MARK_FOLDER: (folderId: number) => `/api/v1/folders/${folderId}/mark-folders`,
+  GET_ACCESS_TOKEN: "/auth/token",
+  GET_SORT_FILTER: "/folders/sort-filter",
+  POST_FOLDERS: "/folders/addFolder",
+  PATCH_FOLDERS: (folderId: number) => `/folders/${folderId}`,
+  DELETE_FOLDER: (folderId: number) => `//folders/${folderId}`,
+  MARK_FOLDER: (folderId: number) => `/folders/${folderId}/mark-folders`,
 };

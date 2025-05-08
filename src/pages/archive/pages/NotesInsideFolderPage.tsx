@@ -2,7 +2,7 @@ import NoteFilter from "@components/common/dropdown/NoteFilter";
 import Sort from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
 import { useState } from "react";
-import AddNoteButton from "../AddNoteButton/AddNoteButton";
+import AddNoteButton from "../components/AddNoteButton/AddNoteButton";
 import NoteList from "../components/NoteList/NoteList";
 import Breadcrumbs from "../components/breadcrumbs/Breadcrumbs";
 import FolderNameHeader from "../components/folderNameHeader/FolderNameHeader";
