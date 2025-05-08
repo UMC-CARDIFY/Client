@@ -1,10 +1,10 @@
 import { apiDelete, apiGet, apiPatch } from "@apis/common/methods";
 import { END_POINTS } from "@constants/api";
 import {
-  FetchFoldersParams,
   DeleteFolderResponse,
-  ToggleFolderMarkResponse,
+  FetchFoldersParams,
   FolderListResponse,
+  ToggleFolderMarkResponse,
 } from "@typedefs/folder";
 
 export const fetchFolderList = (params?: FetchFoldersParams) => {
