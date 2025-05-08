@@ -1,5 +1,6 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
+import { useFolderMark } from "@hooks/folder/use-folder";
 import { PATHS } from "@routes/paths";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { getSafeColor } from "@utils/color";
@@ -11,7 +12,7 @@ import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 import { ArchiveMainFolderIcon } from "./ArchiveMainFolderIcon";
 
 interface MainFolderItemProps {
-  id: number;
+  folderId: number;
   folderName: string;
   createdAt: string;
   noteCount: number;
@@ -21,7 +22,7 @@ interface MainFolderItemProps {
 }
 
 const MainFolderItem: React.FC<MainFolderItemProps> = ({
-  id,
+  folderId,
   folderName,
   createdAt,
   noteCount,
@@ -35,9 +36,15 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
+  const markFolderMutation = useFolderMark();
   const handleEditFolder = () => setIsEditModalOpen(false);
   const handleDeleteFolder = () => setIsDeleteModalOpen(false);
+  const handleToggleMark = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!markFolderMutation.isPending) {
+      markFolderMutation.mutate(folderId);
+    }
+  };
 
   const fillColor = getSafeColor(folderColor);
 
@@ -55,14 +62,13 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
           <ArchiveMainFolderIcon fillColor={fillColor} />
 
-          {markState ? (
-            <div className="absolute top-8 right-[0.37rem] w-4 h-4">
-              <StarIcon />
-            </div>
-          ) : (
-            <EmptyStarIcon className="absolute top-8 right-[0.37rem] w-4 h-4" />
-          )}
-        </div>
+        <button
+          className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer"
+          onClick={handleToggleMark}
+        >
+          {markState ? <StarIcon /> : <EmptyStarIcon />}
+        </button>
+      </div>
 
         {isArchive && (
           <div
@@ -78,14 +84,14 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           </div>
         )}
 
-        <div className="mt-4 w-[8.75rem] h-[2.25rem]">
-          <Text
-            variant="sub_heading2"
-            className="text-base-black text-ellipsis line-clamp-2 leading-tight"
-          >
-            {folderName}
-          </Text>
-        </div>
+      <div className="mt-4 w-[8.75rem] h-[2.25rem]">
+        <Text
+          variant="sub_heading2"
+          className="text-base-black text-ellipsis line-clamp-2 leading-tight"
+        >
+          {folderName}
+        </Text>
+      </div>
 
         <div className="flex items-center justify-between text-gray-400 mt-auto">
           <Text variant="sub_heading2" className="pr-8">
@@ -113,6 +119,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           onClose={() => setIsDeleteModalOpen(false)}
           onSubmit={handleDeleteFolder}
           folderName={folderName}
+          folderId={folderId}
         />
       )}
     </>

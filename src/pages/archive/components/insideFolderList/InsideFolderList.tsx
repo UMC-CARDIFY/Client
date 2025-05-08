@@ -4,7 +4,7 @@ import InsideFolder from "../insideFolder/InsideFolder";
 import NewFolder from "../newFolder/NewFolder";
 
 interface FolderData {
-  id: number;
+  folderId: number;
   folderName: string;
   color: string;
 }
@@ -25,7 +25,12 @@ const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders = defaultFo
       <div className="grid grid-cols-4 gap-4">
         <NewFolder />
         {displayedFolders.map((folder) => (
-          <InsideFolder key={folder.id} folderName={folder.folderName} color={folder.color} />
+          <InsideFolder
+            key={folder.folderId}
+            folderId={folder.folderId}
+            folderName={folder.folderName}
+            color={folder.color}
+          />
         ))}
       </div>
       {shouldShowViewAll && (
@@ -41,14 +46,14 @@ const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders = defaultFo
 };
 
 const defaultFolders: FolderData[] = [
-  { id: 1, folderName: "1강 빈칸 채우기", color: "sage" },
-  { id: 2, folderName: "2강 빈칸 채우기", color: "sage" },
-  { id: 3, folderName: "3강 빈칸 채우기", color: "sage" },
-  { id: 4, folderName: "4강 빈칸 채우기", color: "sage" },
-  { id: 5, folderName: "5강 빈칸 채우기", color: "sage" },
-  { id: 6, folderName: "6강 빈칸 채우기", color: "sage" },
-  { id: 7, folderName: "긴폴더이름긴폴더이름", color: "sage" },
-  { id: 8, folderName: "8강 빈칸 채우기", color: "sage" },
+  { folderId: 1, folderName: "1강 빈칸 채우기", color: "sage" },
+  { folderId: 2, folderName: "2강 빈칸 채우기", color: "sage" },
+  { folderId: 3, folderName: "3강 빈칸 채우기", color: "sage" },
+  { folderId: 4, folderName: "4강 빈칸 채우기", color: "sage" },
+  { folderId: 5, folderName: "5강 빈칸 채우기", color: "sage" },
+  { folderId: 6, folderName: "6강 빈칸 채우기", color: "sage" },
+  { folderId: 7, folderName: "긴폴더이름긴폴더이름", color: "sage" },
+  { folderId: 8, folderName: "8강 빈칸 채우기", color: "sage" },
 ];
 
 export default InsideFolderList;

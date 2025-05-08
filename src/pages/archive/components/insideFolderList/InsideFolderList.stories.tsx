@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from "@storybook/react";
-import React from "react";
 import * as InsideFolderStories from "../insideFolder/InsideFolder.stories";
 import InsideFolderList from "./InsideFolderList";
 
@@ -16,22 +15,22 @@ const Template: StoryFn<typeof InsideFolderList> = (args) => <InsideFolderList {
 export const Default = Template.bind({});
 Default.args = {
   folders: [
-    { id: 1, ...InsideFolderStories.Default.args },
-    { id: 2, ...InsideFolderStories.Default.args },
-    { id: 3, ...InsideFolderStories.LongNameFolder.args },
+    { folderId: 1, folderName: "1강 빈칸 채우기", color: "sage" },
+    { folderId: 2, folderName: "2강 빈칸 채우기", color: "sage" },
+    { folderId: 3, folderName: "3강 빈칸 채우기", color: "sage" },
   ],
 };
 
 export const ManyFolders = Template.bind({});
 ManyFolders.args = {
   folders: [
-    { id: 1, ...InsideFolderStories.Default.args },
-    { id: 2, ...InsideFolderStories.Default.args },
-    { id: 3, ...InsideFolderStories.Default.args },
-    { id: 4, ...InsideFolderStories.Default.args },
-    { id: 5, ...InsideFolderStories.Default.args },
-    { id: 6, ...InsideFolderStories.LongNameFolder.args },
-    { id: 7, ...InsideFolderStories.LongNameFolder.args },
-    { id: 8, ...InsideFolderStories.Default.args },
+    { folderId: 1, folderName: "1강 빈칸 채우기", color: "sage" },
+    { folderId: 2, folderName: "2강 빈칸 채우기", color: "sage" },
+    { folderId: 3, folderName: "3강 빈칸 채우기", color: "sage" },
+    { folderId: 4, folderName: "4강 빈칸 채우기", color: "sage" },
+    { folderId: 5, folderName: "5강 빈칸 채우기", color: "sage" },
+    { folderId: 6, folderName: "6강 빈칸 채우기", color: "sage" },
+    { folderId: 7, folderName: "긴폴더이름긴폴더이름", color: "sage" },
+    { folderId: 8, folderName: "긴폴더이름긴폴더이름", color: "sage" },
   ],
 };

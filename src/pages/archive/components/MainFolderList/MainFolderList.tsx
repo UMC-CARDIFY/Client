@@ -7,7 +7,7 @@ import MainFolderItem from "../MainFolderItem/MainFolderItem";
 import NewFolderMain from "../newFolder/NewFolderMain";
 
 export interface MainFolderProps {
-  id: number;
+  folderId: number;
   folderName: string;
   createdAt: string;
   noteCount: number;
@@ -51,7 +51,7 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
       <div className="gap-4 flex flex-wrap">
         {currentPage === 1 && <NewFolderMain />}
         {displayedFolders.map((folder) => (
-          <MainFolderItem key={folder.id} {...folder} variant={variant} />
+          <MainFolderItem key={folder.folderId} {...folder} variant={variant} />
         ))}
       </div>
 
