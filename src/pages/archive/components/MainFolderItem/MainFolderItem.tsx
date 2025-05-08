@@ -51,7 +51,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         <ArchiveMainFolderIcon fillColor={fillColor} />
 
         <button className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer" onClick={handleToggleMark}>
-          {markState ? <StarIcon /> : <EmptyStarIcon />}
+          {markState ? <StarIcon /> : <EmptyStarIcon className="text-white" />}
         </button>
       </div>
 
