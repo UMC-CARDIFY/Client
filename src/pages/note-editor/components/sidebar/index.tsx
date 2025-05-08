@@ -1,5 +1,5 @@
 const Sidebar = () => {
-  return <div className="w-[352px] min-h-full bg-white border">Sidebar</div>;
+  return <div className="w-[22rem] min-h-full bg-white border">Sidebar</div>;
 };
 
 export default Sidebar;
