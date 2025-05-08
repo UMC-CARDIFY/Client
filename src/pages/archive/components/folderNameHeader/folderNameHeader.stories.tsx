@@ -13,6 +13,10 @@ export default {
       control: { type: "text" },
       description: "폴더 색상",
     },
+    markState: {
+      control: "boolean",
+      description: "즐겨찾기",
+    },
   },
 } as Meta<typeof FolderNameHeader>;
 
@@ -20,6 +24,8 @@ const Template: StoryFn<typeof FolderNameHeader> = (args) => <FolderNameHeader {
 
 export const Default = Template.bind({});
 Default.args = {
+  folderId: 1,
   folderName: "INSIDE ENGLISH 4",
   color: "sage",
+  markState: false,
 };
