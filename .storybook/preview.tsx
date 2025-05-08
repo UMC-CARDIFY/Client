@@ -2,6 +2,7 @@ import type { Preview } from "@storybook/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "../src/index.css";
 import React from "react";
+import { BrowserRouter } from "react-router";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,7 +17,9 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <QueryClientProvider client={queryClient}>
-        <Story />
+        <BrowserRouter>
+          <Story />
+        </BrowserRouter>
       </QueryClientProvider>
     ),
   ],
