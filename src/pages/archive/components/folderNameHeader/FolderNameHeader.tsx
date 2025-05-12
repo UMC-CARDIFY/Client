@@ -1,6 +1,6 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { useFolderMark } from "@hooks/folder/use-folder";
+import { useFolderMark } from "@pages/archive/hooks/use-folder";
 import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
 import { colorMap } from "@styles/colorMap";
 import { EmptyStarIcon, StarIcon } from "@svgs/index";

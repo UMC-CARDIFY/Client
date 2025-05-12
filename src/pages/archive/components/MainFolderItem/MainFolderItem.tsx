@@ -1,9 +1,10 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { useFolderMark } from "@hooks/folder/use-folder";
+import { useFolderMark } from "@pages/archive/hooks/use-folder";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { getSafeColor } from "@utils/color";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { StarIcon } from "../StarIcon";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
@@ -28,14 +29,17 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   markState,
   variant = "archive",
 }) => {
+  const navigate = useNavigate();
   const displayNoteCnt = noteCount > 99 ? "99+" : noteCount;
   const isArchive = variant === "archive";
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const markFolderMutation = useFolderMark();
+
   const handleEditFolder = () => setIsEditModalOpen(false);
   const handleDeleteFolder = () => setIsDeleteModalOpen(false);
+
   const handleToggleMark = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!markFolderMutation.isPending) {
@@ -43,23 +47,27 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
     }
   };
 
+  const handleClickFolder = () => {
+    navigate(`/folder/${folderId}`);
+  };
+
   const fillColor = getSafeColor(folderColor);
 
   return (
-    <div className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer">
+    <div
+      onClick={handleClickFolder}
+      className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer"
+    >
       <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
         <ArchiveMainFolderIcon fillColor={fillColor} />
 
-        <button
-          className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer"
-          onClick={handleToggleMark}
-        >
+        <button className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer" onClick={handleToggleMark}>
           {markState ? <StarIcon /> : <EmptyStarIcon />}
         </button>
       </div>
 
       {isArchive && (
-        <div className="absolute top-6 right-4 cursor-pointer z-10">
+        <div className="absolute top-6 right-4 cursor-pointer z-10" onClick={(e) => e.stopPropagation()}>
           <Kebab
             onSelect={(value) => {
               if (value === "edit") setIsEditModalOpen(true);
@@ -70,10 +78,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
       )}
 
       <div className="mt-4 w-[8.75rem] h-[2.25rem]">
-        <Text
-          variant="sub_heading2"
-          className="text-base-black text-ellipsis line-clamp-2 leading-tight"
-        >
+        <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
           {folderName}
         </Text>
       </div>

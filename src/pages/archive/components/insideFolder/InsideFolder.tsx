@@ -9,12 +9,12 @@ import { Folder, MoveFolderModal } from "../modal/MoveFolderModal/MoveFolderModa
 
 interface InsideFolderProps {
   folderId: number;
-  folderName: string;
+  name: string;
   color: string;
   folders?: Folder[];
 }
 
-const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color }) => {
+const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, name, color }) => {
   const folders = InsideFolderItemData;
 
   const [isHovered, setIsHovered] = useState(false);
@@ -34,7 +34,9 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
     setIsMoveModalOpen(false);
   };
 
-  const truncateText = (text: string, maxLength = 10) => {
+  const truncateText = (text?: string, maxLength = 10) => {
+    console.log("truncateText called with:", text); // 👈 찍어보자
+    if (!text) return "";
     if (text.length <= maxLength) return text;
     return `${text.slice(0, maxLength)}...`;
   };
@@ -50,7 +52,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
       >
         <InnerFolderIcon className={`fill-icon-${color} mr-2`} />
         <Text variant={isHovered ? "sub_heading2" : "sub_heading3"} className="w-[6rem] text-base-black truncate">
-          {truncateText(folderName)}
+          {truncateText(name)}
         </Text>
         <Kebab
           onSelect={(value) => {
@@ -73,7 +75,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(false)}
           onSubmit={handleEditFolder}
-          currentFolderName={folderName}
+          currentFolderName={name}
         />
       )}
       {isDeleteModalOpen && (
@@ -81,7 +83,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
           isOpen={isDeleteModalOpen}
           onClose={() => setIsDeleteModalOpen(false)}
           onSubmit={handleDeleteFolder}
-          folderName={folderName}
+          folderName={name}
           folderId={folderId}
         />
       )}
@@ -90,7 +92,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
           isOpen={isMoveModalOpen}
           onClose={() => setIsMoveModalOpen(false)}
           onSubmit={handleMoveFolder}
-          currentFolderName={folderName}
+          currentFolderName={name}
           folders={folders}
         />
       )}

@@ -6,4 +6,5 @@ export const PATHS = {
   MYPAGE: "/mypage",
   LOGIN: "/login",
   NOTE_EDITOR: "/note-editor",
+  FOLDER_DETAIL: "/folder/:folderId",
 };
