@@ -1,5 +1,5 @@
 import { Text } from "@components/typography/Text";
-import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
+import { useColorUtils } from "@pages/archive/hooks/use-color-utils";
 import { CommonXIcon, SearchThinIcon, StarIcon } from "@svgs/index";
 import React, { useState } from "react";
 import { ArchiveFolderIcon } from "../../ArchiveFolderIcon";
