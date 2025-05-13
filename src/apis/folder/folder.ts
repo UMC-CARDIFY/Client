@@ -14,8 +14,7 @@ export const fetchFolderList = (params?: FetchFoldersParams) => {
 };
 
 export const deleteFolder = async (folderId: number): Promise<DeleteFolderResponse> => {
-  const endpoint = `${END_POINTS.DELETE_FOLDER(folderId)}`;
-  return apiDelete<DeleteFolderResponse>(endpoint);
+  return apiDelete<DeleteFolderResponse>(END_POINTS.DELETE_FOLDER(folderId));
 };
 
 export const toggleFolderMark = async (folderId: number): Promise<ToggleFolderMarkResponse> => {
