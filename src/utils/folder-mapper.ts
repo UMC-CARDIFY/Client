@@ -1,5 +1,5 @@
 import { MainFolderProps } from "@pages/archive/components/MainFolderList/MainFolderList";
-import { FolderItem } from "@typedefs/folder-response";
+import { FolderItem } from "@typedefs";
 
 export const mapToMainFolderProps = (folder: FolderItem): MainFolderProps => {
   return {

@@ -1,31 +1,17 @@
 import Pagination from "@components/common/pagination/Pagination";
 import { Text } from "@components/typography/Text";
 import { ArchiveNoteIcon, CheckboxIcon } from "@svgs/index";
+import { NoteItemProps } from "@typedefs";
 import { useState } from "react";
 import NoteItemData from "src/mocks/NoteItemData";
 import EmptyState from "../EmptyState/EmptyState";
 import NoteItem from "../NoteItem/NoteItem";
 
-interface NoteData {
-  noteId: number;
-  name: string;
-  folderId: number;
-  folderName: string;
-  folderColor: string;
-  markState: boolean;
-  viewAt: string;
-  editDate: string;
-  createdAt: string;
-  isDownload: boolean;
-  isUpload: boolean;
-  flashCardCount: number;
-}
-
 interface NoteListProps {
-  notes?: NoteData[];
+  notes?: NoteItemProps[];
 }
 
-const ITEMS_PER_PAGE = 10; // 한 페이지에 노트 10개씩 표시
+const ITEMS_PER_PAGE = 10;
 
 const NoteList: React.FC<NoteListProps> = ({ notes = NoteItemData }) => {
   const [currentPage, setCurrentPage] = useState(1);
