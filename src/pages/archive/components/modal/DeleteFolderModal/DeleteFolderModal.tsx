@@ -1,6 +1,6 @@
 import { Modal } from "@components/common/Modal";
-import { useDeleteFolderMutation } from "@hooks/folder/use-folder";
 import React from "react";
+import { useDeleteFolderMutation } from "../../../hooks/use-archive-folder";
 
 interface DeleteFolderModalProps {
   folderId: number;
