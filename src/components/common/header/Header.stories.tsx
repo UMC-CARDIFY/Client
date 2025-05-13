@@ -1,17 +1,10 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { MemoryRouter } from "react-router-dom";
 import Header from "./Header";
 
 export default {
   title: "Components/Header",
   component: Header,
-  decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    ),
-  ],
+  decorators: [(Story) => <Story />],
   parameters: {
     layout: "fullscreen",
   },
