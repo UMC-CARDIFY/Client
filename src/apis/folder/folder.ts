@@ -1,17 +1,16 @@
-import { apiDelete, apiGet, apiPost, apiPatch } from "@apis/common/methods";
+import { apiDelete, apiGet, apiPatch, apiPost } from "@apis/common/methods";
 import { END_POINTS } from "@constants/api";
 import {
-  FetchFoldersParams,
+  CreateFolderRequest,
   DeleteFolderResponse,
-  ToggleFolderMarkResponse,
+  FetchFoldersParams,
   FolderListResponse,
-} from "@typedefs/folder";
+  ToggleFolderMarkResponse,
+  UpdateFolderRequest,
+} from "@typedefs";
 
 export const fetchFolderList = (params?: FetchFoldersParams) => {
-  return apiGet<FolderListResponse, FetchFoldersParams>(
-    END_POINTS.GET_SORT_FILTER,
-    params
-  );
+  return apiGet<FolderListResponse, FetchFoldersParams>(END_POINTS.GET_SORT_FILTER, params);
 };
 
 export const deleteFolder = async (folderId: number): Promise<DeleteFolderResponse> => {
@@ -23,10 +22,10 @@ export const toggleFolderMark = async (folderId: number): Promise<ToggleFolderMa
   return apiPatch<ToggleFolderMarkResponse>(END_POINTS.MARK_FOLDER(folderId));
 };
 
-export const postFolders = (body?: FolderData) => {
+export const postFolders = (body: CreateFolderRequest) => {
   return apiPost(END_POINTS.POST_FOLDERS, body);
 };
 
-export const patchFolders = (folderId: number, body?: FolderData) => {
+export const patchFolders = (folderId: number, body: UpdateFolderRequest) => {
   return apiPatch(END_POINTS.PATCH_FOLDERS(folderId), body);
 };
