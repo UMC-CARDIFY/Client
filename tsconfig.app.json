@@ -30,6 +30,7 @@
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
       "@apis/*": ["src/apis/*"],
+      "@typedefs": ["src/types/index.ts"],
       "@typedefs/*": ["src/types/*"],
       "@routes/*": ["src/routes/*"],
       "@mocks/*": ["src/mocks/*"],
