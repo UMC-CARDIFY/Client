@@ -1,3 +1,4 @@
+import { PATHS } from "@routes/paths";
 import { EmptyStarIcon, KebabIcon, LinkIcon, StarIcon } from "@svgs/index";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +13,7 @@ const Header = () => {
   };
 
   const handleClick = () => {
-    route("/");
+    route(PATHS.ARCHIVE);
   };
   return (
     <header className="py-5 px-8 bg-white border min-w-[68rem] flex justify-between">
