@@ -1,5 +1,5 @@
 import { Text } from "@components/typography/Text";
-import { PATHS } from "@routes/paths";
+import { PATHS } from "@constants/paths";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import { Text } from "@components/typography/Text";
-import { PATHS } from "@routes/paths";
+import { PATHS } from "@constants/paths";
 import { Logo, MypageIcon, SearchIcon } from "@svgs/index";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
