@@ -6,11 +6,11 @@ export { default as SearchIcon } from "./ic_navigation_search.svg?react";
 export { default as MypageIcon } from "./ic_navigation_mypage.svg?react";
 export { default as Logo } from "./logo.svg?react";
 export { default as HomeFlashcardIcon } from "./ic_home_flashcard.svg?react";
-export { default as KaKaoIcon } from "./ic_login_kakao.svg?react";
 export { default as GoogleIcon } from "./ic_login_google.svg?react";
 export { default as SymbolLogo } from "./symbol_logo.svg?react";
 export { default as LoginGradient } from "./ic_login_gradient.svg?react";
-export { default as KaKaoLoginButton } from "./btn_login_kakao.svg?react";
-export { default as GoogleLoginButton } from "./btn_login_google.svg?react";
-export { default as FilteringIcon } from "./ic_achive_filtering.svg?react";
 export { default as LinkIcon } from "./ic_note_link.svg?react";
+
+export * from "./archive";
+export * from "./btn";
+export * from "./common";
