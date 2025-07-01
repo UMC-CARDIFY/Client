@@ -3,7 +3,7 @@ import "../tiptap-templates/simple/simple-editor.scss";
 
 const Editor = () => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex flex-col overflow-hidden">
       <SimpleEditor />
     </div>
   );
