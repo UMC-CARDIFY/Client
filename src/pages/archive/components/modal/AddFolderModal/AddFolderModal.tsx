@@ -14,6 +14,7 @@ interface AddFolderModalProps {
 export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [folderName, setFolderName] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [selectedColor, setSelectedColor] = useState<keyof typeof colorMap>("blue"); // 기본 색상
   const [selectedColor, setSelectedColor] = useState<keyof typeof colorMap>("blue");
 
   const { darkenColor } = useColorUtils();
@@ -74,6 +75,8 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
           </Text>
         </div>
 
+        {/* Color Picker + Icon */}
+        <Text variant="sub_heading3" className="block text-gray-700 mb-[1.06rem]">
         <Text variant="sub_heading3" className="block text-gray-700 mb-[1.06rem]">
           색상
         </Text>
@@ -92,6 +95,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
                   />
                 ) : (
                   <ColorCircleIcon className="w-5 h-5" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
+                  <ColorCircleIcon className="w-5 h-5" style={{ fill: colorMap[color as keyof typeof colorMap] }} />
                 )}
               </button>
             ))}
@@ -107,6 +111,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
         </div>
 
         <div className="flex justify-end gap-3">
+          <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
           <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
             <Text variant="sub_heading2" className="text-gray-700">
               취소

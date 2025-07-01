@@ -63,11 +63,16 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           <ArchiveMainFolderIcon fillColor={fillColor} />
 
           <button className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer" onClick={handleToggleMark}>
+            {markState ? <StarIcon /> : <EmptyStarIcon className="text-white" />}
+          </button>
+        </div>
+          <button className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer" onClick={handleToggleMark}>
             {markState ? <StarIcon /> : <EmptyStarIcon />}
           </button>
         </div>
 
         {isArchive && (
+          <div className="absolute top-6 right-4 cursor-pointer z-10" onClick={(e) => e.stopPropagation()}>
           <div className="absolute top-6 right-4 cursor-pointer z-10" onClick={(e) => e.stopPropagation()}>
             <Kebab
               onSelect={(value) => {
@@ -78,6 +83,11 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           </div>
         )}
 
+        <div className="mt-4 w-[8.75rem] h-[2.25rem]">
+          <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
+            {folderName}
+          </Text>
+        </div>
         <div className="mt-4 w-[8.75rem] h-[2.25rem]">
           <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
             {folderName}
