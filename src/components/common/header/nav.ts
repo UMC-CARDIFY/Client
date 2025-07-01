@@ -1,4 +1,4 @@
-import { PATHS } from "@constants/paths";
+import { PATHS } from "@routes/paths";
 
 export const NAV_ITEMS = [
   { name: "홈", path: PATHS.HOME },

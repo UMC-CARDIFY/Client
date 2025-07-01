@@ -1,5 +1,4 @@
 import { NewfolderImage } from "@images/index";
-import React from "react";
 
 const NewFolder = () => {
   return (

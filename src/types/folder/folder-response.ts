@@ -1,20 +1,3 @@
-export interface MainFolderItemProps {
-  folderId: number;
-  folderName: string;
-  createdAt: string;
-  noteCount: number;
-  folderColor: string;
-  markState: boolean;
-}
-
-export interface FetchFoldersParams {
-  parentFolderId?: number;
-  page?: number;
-  size?: number;
-  order?: string;
-  color?: string;
-}
-
 export interface DeleteFolderResponse {
   isSuccess: boolean;
 }

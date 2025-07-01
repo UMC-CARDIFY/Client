@@ -1,4 +1,4 @@
-import { NoteItemProps } from "@typedefs/note";
+import { NoteItemProps } from "@typedefs";
 import EmptyState from "../EmptyState/EmptyState";
 import RecentMarkedNoteItem from "./RecentMarkedNoteItem";
 
