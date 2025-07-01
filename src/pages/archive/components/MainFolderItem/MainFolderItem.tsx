@@ -37,8 +37,10 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const markFolderMutation = useFolderMark();
+
   const handleEditFolder = () => setIsEditModalOpen(false);
   const handleDeleteFolder = () => setIsDeleteModalOpen(false);
+
   const handleToggleMark = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!markFolderMutation.isPending) {
@@ -54,7 +56,6 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
 
   return (
     <>
-      {" "}
       <div
         className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer"
         onClick={() => handleClick(folderId)}
@@ -66,13 +67,8 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
             {markState ? <StarIcon /> : <EmptyStarIcon className="text-white" />}
           </button>
         </div>
-          <button className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer" onClick={handleToggleMark}>
-            {markState ? <StarIcon /> : <EmptyStarIcon />}
-          </button>
-        </div>
 
         {isArchive && (
-          <div className="absolute top-6 right-4 cursor-pointer z-10" onClick={(e) => e.stopPropagation()}>
           <div className="absolute top-6 right-4 cursor-pointer z-10" onClick={(e) => e.stopPropagation()}>
             <Kebab
               onSelect={(value) => {
@@ -83,11 +79,6 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           </div>
         )}
 
-        <div className="mt-4 w-[8.75rem] h-[2.25rem]">
-          <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
-            {folderName}
-          </Text>
-        </div>
         <div className="mt-4 w-[8.75rem] h-[2.25rem]">
           <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
             {folderName}
@@ -104,6 +95,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           </div>
         </div>
       </div>
+
       {isEditModalOpen && (
         <EditFolderModal
           isOpen={isEditModalOpen}
@@ -114,6 +106,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           folderId={folderId}
         />
       )}
+
       {isDeleteModalOpen && (
         <DeleteFolderModal
           isOpen={isDeleteModalOpen}
