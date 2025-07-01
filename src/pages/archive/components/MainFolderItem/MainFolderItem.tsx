@@ -62,16 +62,13 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
           <ArchiveMainFolderIcon fillColor={fillColor} />
 
-        <button className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer" onClick={handleToggleMark}>
-          {markState ? <StarIcon /> : <EmptyStarIcon className="text-white" />}
-        </button>
-      </div>
+          <button className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer" onClick={handleToggleMark}>
+            {markState ? <StarIcon /> : <EmptyStarIcon className="text-white" />}
+          </button>
+        </div>
 
         {isArchive && (
-          <div
-            className="absolute top-6 right-4 cursor-pointer z-10"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="absolute top-6 right-4 cursor-pointer z-10" onClick={(e) => e.stopPropagation()}>
             <Kebab
               onSelect={(value) => {
                 if (value === "edit") setIsEditModalOpen(true);
@@ -81,11 +78,11 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           </div>
         )}
 
-      <div className="mt-4 w-[8.75rem] h-[2.25rem]">
-        <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
-          {folderName}
-        </Text>
-      </div>
+        <div className="mt-4 w-[8.75rem] h-[2.25rem]">
+          <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
+            {folderName}
+          </Text>
+        </div>
 
         <div className="flex items-center justify-between text-gray-400 mt-auto">
           <Text variant="sub_heading2" className="pr-8">

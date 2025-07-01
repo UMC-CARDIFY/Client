@@ -6,8 +6,7 @@ export const usePatchFolders = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ folderId, body }: { folderId: number; body: FolderData }) =>
-      patchFolders(folderId, body),
+    mutationFn: ({ folderId, body }: { folderId: number; body: FolderData }) => patchFolders(folderId, body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: FOLDER_QUERY_KEY.ALL() });
     },
