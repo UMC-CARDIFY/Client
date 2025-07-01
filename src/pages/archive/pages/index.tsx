@@ -5,7 +5,7 @@ import { mapToMainFolderProps } from "@utils/folder-mapper";
 import { useState } from "react";
 import EmptyState from "../components/EmptyState/EmptyState";
 import MainFolderList from "../components/MainFolderList/MainFolderList";
-import { useFolderList } from "../hooks/use-folder-list";
+import { useFolderList } from "../hooks/use-archive-folder";
 
 const Archive = () => {
   const [order, setOrder] = useState("edit-newest");

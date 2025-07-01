@@ -1,6 +1,6 @@
 import { Text } from "@components/typography/Text";
 import { HomeFlashcardIcon } from "@svgs/index";
-import { ScheduledLearningItemProps } from "@typedefs/scheduledLearning";
+import { ScheduledLearningItemProps } from "@typedefs";
 
 const ScheduledLearningItem: React.FC<ScheduledLearningItemProps> = ({
   name,

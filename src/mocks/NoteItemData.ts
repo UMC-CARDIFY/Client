@@ -1,19 +1,6 @@
-interface NoteItemDataProps {
-  noteId: number;
-  name: string;
-  folderId: number;
-  folderName: string;
-  folderColor: string;
-  markState: boolean;
-  viewAt: string;
-  editDate: string;
-  createdAt: string;
-  isDownload: boolean;
-  isUpload: boolean;
-  flashCardCount: number;
-}
+import { NoteItemProps } from "@typedefs";
 
-const NoteItemData: NoteItemDataProps[] = [
+const NoteItemData: NoteItemProps[] = [
   {
     noteId: 1,
     name: "오답 노트 총정리 1",
@@ -27,6 +14,7 @@ const NoteItemData: NoteItemDataProps[] = [
     isDownload: false,
     isUpload: false,
     flashCardCount: 0,
+    content: "노트 내용 1",
   },
   {
     noteId: 2,
@@ -41,6 +29,7 @@ const NoteItemData: NoteItemDataProps[] = [
     isDownload: true,
     isUpload: false,
     flashCardCount: 10,
+    content: "노트 내용 2",
   },
 ];
 
@@ -59,6 +48,7 @@ for (let i = 3; i <= 95; i++) {
     isDownload: i % 3 === 0,
     isUpload: i % 4 === 0,
     flashCardCount: Math.min(i * 2, 99),
+    content: `노트 내용 ${i}`,
   });
 }
 

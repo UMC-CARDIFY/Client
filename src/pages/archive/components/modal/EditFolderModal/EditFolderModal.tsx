@@ -1,6 +1,6 @@
 import { Text } from "@components/typography/Text";
-import { usePatchFolders } from "@pages/archive/hooks/use-folder";
-import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
+import { usePatchFolders } from "@pages/archive/hooks/use-archive-folder";
+import { useColorUtils } from "@pages/archive/hooks/use-color-utils";
 import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import { isValidColor } from "@utils/color";

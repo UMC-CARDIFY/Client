@@ -30,4 +30,3 @@ export { default as KaKaoLoginButton } from "./btn_login_kakao.svg?react";
 export { default as GoogleLoginButton } from "./btn_login_google.svg?react";
 export { default as FilteringIcon } from "./ic_achive_filtering.svg?react";
 export { default as SortIcon } from "./ic_archive_sort.svg?react";
-export { default as LinkIcon } from "./ic_note_link.svg?react";

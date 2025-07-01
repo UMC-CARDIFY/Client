@@ -1,11 +1,11 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { useFolderMark } from "@hooks/folder/use-folder";
-import { useColorUtils } from "@pages/archive/hooks/useColorUtils";
+import { useColorUtils } from "@pages/archive/hooks/use-color-utils";
 import { colorMap } from "@styles/colorMap";
 import { EmptyStarIcon, StarIcon } from "@svgs/index";
 import React from "react";
 import { useState } from "react";
+import { useFolderMark } from "../../hooks/use-archive-folder";
 import { ArchiveFolderIcon } from "../ArchiveFolderIcon";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
@@ -69,6 +69,7 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderNam
           onSubmit={handleEditFolder}
           folderName={folderName}
           folderColor={color as keyof typeof colorMap}
+          folderId={folderId}
         />
       )}
       {isDeleteModalOpen && (

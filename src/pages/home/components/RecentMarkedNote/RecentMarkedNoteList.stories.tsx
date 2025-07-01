@@ -1,17 +1,10 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { BrowserRouter } from "react-router-dom";
 import RecentMarkedNoteList from "./RecentMarkedNoteList";
 
 export default {
   title: "Home/Components/RecentMarkedNoteList",
   component: RecentMarkedNoteList,
-  decorators: [
-    (Story) => (
-      <BrowserRouter>
-        <Story />
-      </BrowserRouter>
-    ),
-  ],
+  decorators: [(Story) => <Story />],
   argTypes: {
     items: {
       control: { type: "object" },

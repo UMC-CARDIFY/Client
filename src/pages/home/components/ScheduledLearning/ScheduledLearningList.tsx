@@ -1,4 +1,4 @@
-import { ScheduledLearningItemProps } from "@typedefs/scheduledLearning";
+import { ScheduledLearningItemProps } from "@typedefs/home/scheduled-learning";
 import EmptyState from "../EmptyState/EmptyState";
 import ScheduledLearningItem from "./ScheduledLearningItem";
 
