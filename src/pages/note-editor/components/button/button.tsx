@@ -9,7 +9,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export default function Button({ children, className, ...props }: ButtonProps) {
   return (
-    <button className={cn("border flex border-gray-150 py-2 rounded-[4px] hover:", className)} {...props}>
+    <button
+      className={cn("border flex border-gray-150 py-2 rounded-[4px] hover:border-gray-200", className)}
+      {...props}
+    >
       <Text variant="sub_heading4" className="text-gray-700 flex gap-[0.625rem]">
         {children}
       </Text>

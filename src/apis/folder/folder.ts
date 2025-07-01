@@ -1,4 +1,4 @@
-import { apiDelete, apiGet, apiPost, apiPatch } from "@apis/common/methods";
+import { apiDelete, apiGet, apiPatch, apiPost } from "@apis/common/methods";
 import { END_POINTS } from "@constants/api";
 import {
   DeleteFolderResponse,
@@ -8,10 +8,7 @@ import {
 } from "@typedefs/folder";
 
 export const fetchFolderList = (params?: FetchFoldersParams) => {
-  return apiGet<FolderListResponse, FetchFoldersParams>(
-    END_POINTS.GET_SORT_FILTER,
-    params
-  );
+  return apiGet<FolderListResponse, FetchFoldersParams>(END_POINTS.GET_SORT_FILTER, params);
 };
 
 export const deleteFolder = async (folderId: number): Promise<DeleteFolderResponse> => {
