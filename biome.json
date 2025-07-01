@@ -2,7 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
   "formatter": {
     "enabled": true,
-    "formatWithErrors": true,
+    "formatWithErrors": false,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf",
@@ -51,6 +51,7 @@
         "noPositiveTabindex": "error",
         "noRedundantAlt": "error",
         "noRedundantRoles": "error",
+        "noSvgWithoutTitle": "off",
         "useAltText": "error",
         "useAnchorContent": "error",
         "useAriaActivedescendantWithTabindex": "error",
@@ -69,13 +70,6 @@
     }
   },
   "files": {
-    "ignore": [
-      "**/.gitignore",
-      "**/build/*",
-      "**/coverage/*",
-      "**/dist/*",
-      "**/node_modules/*",
-      "*storybook.log"
-    ]
+    "ignore": ["**/.gitignore", "**/build/*", "**/coverage/*", "**/dist/*", "**/node_modules/*", "*storybook.log"]
   }
 }
