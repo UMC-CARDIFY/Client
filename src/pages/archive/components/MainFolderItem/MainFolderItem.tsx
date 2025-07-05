@@ -1,7 +1,7 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { PATHS } from "@constants/paths";
-import { useFolderMark } from "@hooks/folder/use-folder";
+import { useFolderMark } from "@pages/archive/hooks/use-archive-folder";
+import { PATHS } from "@routes/paths";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { getSafeColor } from "@utils/color";
 import { useState } from "react";
