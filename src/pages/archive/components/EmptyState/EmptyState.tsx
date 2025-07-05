@@ -1,6 +1,7 @@
 import { Text } from "@components/typography/Text";
 import { NewFolderIcon } from "@svgs/index";
 import { useState } from "react";
+import { usePostFolders } from "../../hooks/use-archive-folder";
 import { AddFolderModal } from "../modal/AddFolderModal/AddFolderModal";
 
 interface EmptyStateProps {
@@ -20,6 +21,7 @@ const EMPTY_STATE_MESSAGES = {
 
 const EmptyState: React.FC<EmptyStateProps> = ({ type }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { mutate } = usePostFolders();
 
   const messages = EMPTY_STATE_MESSAGES[type];
 
@@ -31,6 +33,11 @@ const EmptyState: React.FC<EmptyStateProps> = ({ type }) => {
     setIsModalOpen(false);
   };
 
+  const handleSubmit = (folderName: string, folderColor: string) => {
+    mutate({ name: folderName, color: folderColor });
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="flex flex-col items-center text-gray-500">
       <NewFolderIcon className="w-12 h-12 mb-2" />
@@ -38,7 +45,8 @@ const EmptyState: React.FC<EmptyStateProps> = ({ type }) => {
         <Text variant="sub_heading2">{messages.title}</Text>
         <Text variant="body3">{messages.description}</Text>
       </div>
-      {type === "folder" ? (
+
+      {type === "folder" && (
         <button
           type="button"
           className="px-4 py-1 bg-brand-50 hover:bg-brand-100 rounded-lg mt-4"
@@ -48,8 +56,9 @@ const EmptyState: React.FC<EmptyStateProps> = ({ type }) => {
             폴더 추가하기
           </Text>
         </button>
-      ) : null}
-      {isModalOpen && <AddFolderModal onClose={handleCloseModal} />}
+      )}
+
+      <AddFolderModal isOpen={isModalOpen} onClose={handleCloseModal} onSubmit={handleSubmit} />
     </div>
   );
 };

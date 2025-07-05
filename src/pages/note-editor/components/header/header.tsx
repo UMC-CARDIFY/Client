@@ -1,4 +1,4 @@
-import { PATHS } from "@constants/paths";
+import { PATHS } from "@routes/paths";
 import { EmptyStarIcon, KebabIcon, LinkIcon, StarIcon } from "@svgs/index";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

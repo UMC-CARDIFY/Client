@@ -1,7 +1,7 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { PATHS } from "@constants/paths";
-import { useFolderMark } from "@hooks/folder/use-folder";
+import { useFolderMark } from "@pages/archive/hooks/use-archive-folder";
+import { PATHS } from "@routes/paths";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { getSafeColor } from "@utils/color";
 import { useState } from "react";
@@ -37,8 +37,10 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const markFolderMutation = useFolderMark();
+
   const handleEditFolder = () => setIsEditModalOpen(false);
   const handleDeleteFolder = () => setIsDeleteModalOpen(false);
+
   const handleToggleMark = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!markFolderMutation.isPending) {
@@ -54,10 +56,9 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
 
   return (
     <>
-      {" "}
       <div
         className="flex flex-col relative w-[11.75rem] h-[11.75rem] p-6 pb-4 bg-white rounded-lg border border-gray-150 hover:bg-brand-20 cursor-pointer"
-        onClick={() => handleClick(id)}
+        onClick={() => handleClick(folderId)}
       >
         <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
           <ArchiveMainFolderIcon fillColor={fillColor} />
@@ -94,6 +95,7 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           </div>
         </div>
       </div>
+
       {isEditModalOpen && (
         <EditFolderModal
           isOpen={isEditModalOpen}
@@ -101,9 +103,10 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
           onSubmit={handleEditFolder}
           folderName={folderName}
           folderColor={folderColor}
-          folderId={id}
+          folderId={folderId}
         />
       )}
+
       {isDeleteModalOpen && (
         <DeleteFolderModal
           isOpen={isDeleteModalOpen}
