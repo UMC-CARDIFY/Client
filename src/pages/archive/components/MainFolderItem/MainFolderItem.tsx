@@ -1,11 +1,11 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { PATHS } from "@routes/paths";
+import { PATHS } from "@constants/paths";
+import { useFolderMark } from "@hooks/folder/use-folder";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { getSafeColor } from "@utils/color";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useFolderMark } from "../../hooks/use-archive-folder";
 import { StarIcon } from "../StarIcon";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
@@ -63,13 +63,23 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         <div className="relative w-[3.75rem] h-[3.75rem] flex-shrink-0">
           <ArchiveMainFolderIcon fillColor={fillColor} />
 
-          <button className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer" onClick={handleToggleMark}>
-            {markState ? <StarIcon /> : <EmptyStarIcon className="text-white" />}
+          <button
+            className="absolute top-8 right-[0.37rem] w-4 h-4 cursor-pointer"
+            onClick={handleToggleMark}
+          >
+            {markState ? (
+              <StarIcon />
+            ) : (
+              <EmptyStarIcon className="text-white" />
+            )}
           </button>
         </div>
 
         {isArchive && (
-          <div className="absolute top-6 right-4 cursor-pointer z-10" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="absolute top-6 right-4 cursor-pointer z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Kebab
               onSelect={(value) => {
                 if (value === "edit") setIsEditModalOpen(true);
@@ -80,7 +90,10 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         )}
 
         <div className="mt-4 w-[8.75rem] h-[2.25rem]">
-          <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
+          <Text
+            variant="sub_heading2"
+            className="text-base-black text-ellipsis line-clamp-2 leading-tight"
+          >
             {folderName}
           </Text>
         </div>
