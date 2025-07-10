@@ -3,7 +3,6 @@ import * as React from "react";
 
 import { Highlight } from "@tiptap/extension-highlight";
 import { Image } from "@tiptap/extension-image";
-import { TextAlign } from "@tiptap/extension-text-align";
 import { Typography } from "@tiptap/extension-typography";
 import { Underline } from "@tiptap/extension-underline";
 // --- Tiptap Core Extensions ---
@@ -38,7 +37,6 @@ import { ImageUploadButton } from "../../tiptap-ui/image-upload-button";
 import { LinkButton, LinkContent, LinkPopover } from "../../tiptap-ui/link-popover";
 import { ListDropdownMenu } from "../../tiptap-ui/list-dropdown-menu";
 import { MarkButton } from "../../tiptap-ui/mark-button";
-import { TextAlignButton } from "../../tiptap-ui/text-align-button";
 import { UndoRedoButton } from "../../tiptap-ui/undo-redo-button";
 
 // --- Icons ---
@@ -97,15 +95,6 @@ const MainToolbarContent = ({
         <MarkButton type="underline" />
         {!isMobile ? <ColorHighlightPopover /> : <ColorHighlightPopoverButton onClick={onHighlighterClick} />}
         {!isMobile ? <LinkPopover /> : <LinkButton onClick={onLinkClick} />}
-      </ToolbarGroup>
-
-      <ToolbarSeparator />
-
-      <ToolbarGroup>
-        <TextAlignButton align="left" />
-        <TextAlignButton align="center" />
-        <TextAlignButton align="right" />
-        <TextAlignButton align="justify" />
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -171,7 +160,6 @@ export function SimpleEditor() {
         code: false,
         blockquote: false,
       }),
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
       Underline,
       Highlight.configure({ multicolor: true }),
       Image,

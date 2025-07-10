@@ -4,7 +4,6 @@
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
         "level": 1
       },
       "content": [
@@ -16,9 +15,6 @@
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null
-      },
       "content": [
         {
           "type": "text",
@@ -73,9 +69,6 @@
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null
-      },
       "content": [
         {
           "type": "text",
@@ -117,7 +110,6 @@
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
         "level": 2
       },
       "content": [
@@ -129,9 +121,6 @@
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      },
       "content": [
         {
           "type": "text",
@@ -171,9 +160,6 @@
           "content": [
             {
               "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
               "content": [
                 {
                   "type": "text",
@@ -197,9 +183,6 @@
           "content": [
             {
               "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
               "content": [
                 {
                   "type": "text",
@@ -239,9 +222,6 @@
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      },
       "content": [
         {
           "type": "text",
@@ -275,7 +255,6 @@
     {
       "type": "heading",
       "attrs": {
-        "textAlign": "left",
         "level": 2
       },
       "content": [
@@ -287,21 +266,12 @@
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      },
       "content": [
         {
           "type": "text",
           "text": "Switch between light and dark modes, and tailor the editor's appearance with customizable CSS to match your style."
         }
       ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      }
     }
   ]
 }
