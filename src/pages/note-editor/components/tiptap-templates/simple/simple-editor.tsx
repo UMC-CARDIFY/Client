@@ -3,8 +3,6 @@ import * as React from "react";
 
 import { Highlight } from "@tiptap/extension-highlight";
 import { Image } from "@tiptap/extension-image";
-import { TaskItem } from "@tiptap/extension-task-item";
-import { TaskList } from "@tiptap/extension-task-list";
 import { TextAlign } from "@tiptap/extension-text-align";
 import { Typography } from "@tiptap/extension-typography";
 import { Underline } from "@tiptap/extension-underline";
@@ -87,7 +85,7 @@ const MainToolbarContent = ({
 
       <ToolbarGroup>
         <HeadingDropdownMenu levels={[1, 2, 3]} />
-        <ListDropdownMenu types={["bulletList", "orderedList", "taskList"]} />
+        <ListDropdownMenu types={["bulletList", "orderedList"]} />
         <BlockQuoteButton />
         <CodeBlockButton />
       </ToolbarGroup>
@@ -176,8 +174,6 @@ export function SimpleEditor() {
       }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       Underline,
-      TaskList,
-      TaskItem.configure({ nested: true }),
       Highlight.configure({ multicolor: true }),
       Image,
       Typography,

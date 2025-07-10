@@ -124,7 +124,7 @@ export function useActiveListIcon(editor: Editor | null, filteredLists: typeof l
 
 export function ListDropdownMenu({
   editor: providedEditor,
-  types = ["bulletList", "orderedList", "taskList"],
+  types = ["bulletList", "orderedList"],
   hideWhenUnavailable = false,
   onOpenChange,
   ...props
