@@ -98,7 +98,6 @@ const MainToolbarContent = ({
         <MarkButton type="bold" />
         <MarkButton type="italic" />
         <MarkButton type="strike" />
-        <MarkButton type="code" />
         <MarkButton type="underline" />
         {!isMobile ? <ColorHighlightPopover /> : <ColorHighlightPopoverButton onClick={onHighlighterClick} />}
         {!isMobile ? <LinkPopover /> : <LinkButton onClick={onLinkClick} />}
@@ -172,7 +171,9 @@ export function SimpleEditor() {
       },
     },
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        code: false,
+      }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       Underline,
       TaskList,

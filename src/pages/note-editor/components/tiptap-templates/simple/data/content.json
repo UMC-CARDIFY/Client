@@ -149,28 +149,10 @@
               "type": "text",
               "marks": [
                 {
-                  "type": "code"
-                }
-              ],
-              "text": "**"
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
                   "type": "italic"
                 }
               ],
               "text": " or use keyboard shortcuts "
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "code"
-                }
-              ],
-              "text": "⌘+B"
             },
             {
               "type": "text",
@@ -279,15 +261,6 @@
                 {
                   "type": "text",
                   "text": ": automatically convert to "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "code"
-                    }
-                  ],
-                  "text": "->"
                 },
                 {
                   "type": "text",
