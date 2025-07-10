@@ -1,0 +1,10 @@
+export { default as ArchiveFolderIcon } from "./ic_archive_folder.svg?react";
+export { default as ArchiveNoteIcon } from "./ic_archive_note.svg?react";
+export { default as StarIcon } from "./ic_archive_star.svg?react";
+export { default as KebabIcon } from "./ic_archive_kebab.svg?react";
+export { default as InnerFolderIcon } from "./ic_archive_innerfolder.svg?react";
+export { default as NewFolderIcon } from "./ic_archive_newfolder.svg?react";
+export { default as PlusIcon } from "./ic_archive_plus.svg?react";
+export { default as EmptyStarIcon } from "./ic_archive_emptystar.svg?react";
+export { default as SortIcon } from "./ic_archive_sort.svg?react";
+export { default as FilteringIcon } from "./ic_archive_filtering.svg?react";

@@ -14,7 +14,7 @@ interface AddFolderModalProps {
 export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [folderName, setFolderName] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedColor, setSelectedColor] = useState<keyof typeof colorMap>("blue");
+  const [selectedColor, setSelectedColor] = useState<keyof typeof colorMap>("blue"); // 기본 색상
 
   const { darkenColor } = useColorUtils();
 
@@ -52,6 +52,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
             이름
           </Text>
         </label>
+
         <textarea
           id="folder-name"
           placeholder="추가할 폴더의 이름을 입력해주세요."
@@ -74,9 +75,11 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
           </Text>
         </div>
 
+        {/* Color Picker + Icon */}
         <Text variant="sub_heading3" className="block text-gray-700 mb-[1.06rem]">
           색상
         </Text>
+
         <div className="flex items-center mb-12 w-[21rem] h-[3.25rem]">
           <div className="flex flex-wrap gap-x-5 gap-y-3 w-[11.25rem]">
             {Object.keys(colorMap).map((color) => (
@@ -98,6 +101,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
           </div>
 
           <div className="w-[0.0625rem] h-full bg-gray-300 ml-[3.75rem] mr-12"></div>
+
           <div className="w-[2.5rem] h-[2.5rem]">
             <ArchiveFolderIcon
               fillColor={colorMap[selectedColor]}
