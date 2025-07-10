@@ -248,50 +248,11 @@
                       "type": "bold"
                     }
                   ],
-                  "text": "Superscript"
+                  "text": "Advanced formatting"
                 },
                 {
                   "type": "text",
-                  "text": " (x"
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "superscript"
-                    }
-                  ],
-                  "text": "2"
-                },
-                {
-                  "type": "text",
-                  "text": ") and "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "bold"
-                    }
-                  ],
-                  "text": "Subscript"
-                },
-                {
-                  "type": "text",
-                  "text": " (H"
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "subscript"
-                    }
-                  ],
-                  "text": "2"
-                },
-                {
-                  "type": "text",
-                  "text": "O) for precision."
+                  "text": " with bold, italic, underline, and strikethrough support."
                 }
               ]
             }

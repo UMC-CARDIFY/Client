@@ -3,8 +3,6 @@ import * as React from "react";
 
 import { Highlight } from "@tiptap/extension-highlight";
 import { Image } from "@tiptap/extension-image";
-import { Subscript } from "@tiptap/extension-subscript";
-import { Superscript } from "@tiptap/extension-superscript";
 import { TaskItem } from "@tiptap/extension-task-item";
 import { TaskList } from "@tiptap/extension-task-list";
 import { TextAlign } from "@tiptap/extension-text-align";
@@ -109,13 +107,6 @@ const MainToolbarContent = ({
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <MarkButton type="superscript" />
-        <MarkButton type="subscript" />
-      </ToolbarGroup>
-
-      <ToolbarSeparator />
-
-      <ToolbarGroup>
         <TextAlignButton align="left" />
         <TextAlignButton align="center" />
         <TextAlignButton align="right" />
@@ -189,9 +180,6 @@ export function SimpleEditor() {
       Highlight.configure({ multicolor: true }),
       Image,
       Typography,
-      Superscript,
-      Subscript,
-
       Selection,
       ImageUploadNode.configure({
         accept: "image/*",
