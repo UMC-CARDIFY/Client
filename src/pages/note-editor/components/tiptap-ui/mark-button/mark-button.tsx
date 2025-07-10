@@ -9,8 +9,6 @@ import { BoldIcon } from "../../tiptap-icons/bold-icon";
 import { Code2Icon } from "../../tiptap-icons/code2-icon";
 import { ItalicIcon } from "../../tiptap-icons/italic-icon";
 import { StrikeIcon } from "../../tiptap-icons/strike-icon";
-import { SubscriptIcon } from "../../tiptap-icons/subscript-icon";
-import { SuperscriptIcon } from "../../tiptap-icons/superscript-icon";
 import { UnderlineIcon } from "../../tiptap-icons/underline-icon";
 
 // --- Lib ---
@@ -20,7 +18,7 @@ import { isMarkInSchema } from "../../../lib/tiptap-utils";
 import type { ButtonProps } from "../../tiptap-ui-primitive/button";
 import { Button } from "../../tiptap-ui-primitive/button";
 
-export type Mark = "bold" | "italic" | "strike" | "code" | "underline" | "superscript" | "subscript";
+export type Mark = "bold" | "italic" | "strike" | "code" | "underline";
 
 export interface MarkButtonProps extends Omit<ButtonProps, "type"> {
   /**
@@ -47,8 +45,6 @@ export const markIcons = {
   underline: UnderlineIcon,
   strike: StrikeIcon,
   code: Code2Icon,
-  superscript: SuperscriptIcon,
-  subscript: SubscriptIcon,
 };
 
 export const markShortcutKeys: Partial<Record<Mark, string>> = {
@@ -57,8 +53,6 @@ export const markShortcutKeys: Partial<Record<Mark, string>> = {
   underline: "Ctrl-u",
   strike: "Ctrl-Shift-s",
   code: "Ctrl-e",
-  superscript: "Ctrl-.",
-  subscript: "Ctrl-,",
 };
 
 export function canToggleMark(editor: Editor | null, type: Mark): boolean {
