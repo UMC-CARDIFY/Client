@@ -1,5 +1,5 @@
 import Editor from "@pages/note-editor/components/editor";
-import Header from "@pages/note-editor/components/header";
+import Header from "@pages/note-editor/components/header/header";
 import Sidebar from "@pages/note-editor/components/sidebar";
 
 const NoteLayout = () => {
