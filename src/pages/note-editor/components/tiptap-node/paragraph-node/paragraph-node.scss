@@ -1,5 +1,4 @@
 .tiptap.ProseMirror {
-  --blockquote-bg-color: var(--tt-gray-light-900);
   --link-text-color: var(--tt-brand-color-500);
   --separator-color: var(--tt-gray-light-a-200);
   --thread-text: var(--tt-gray-light-900);
@@ -10,7 +9,6 @@
   --tiptap-mathematics-border-color: var(--tt-brand-color-500);
 
   .dark & {
-    --blockquote-bg-color: var(--tt-gray-dark-900);
     --link-text-color: var(--tt-brand-color-400);
     --separator-color: var(--tt-gray-dark-a-200);
     --thread-text: var(--tt-gray-dark-900);
@@ -122,36 +120,6 @@
 
   u span {
     text-decoration: underline;
-  }
-}
-
-/* =====================
-     BLOCKQUOTE
-     ===================== */
-.tiptap.ProseMirror {
-  blockquote {
-    position: relative;
-    padding-left: 1em;
-    padding-top: 0.375em;
-    padding-bottom: 0.375em;
-    margin: 1.5rem 0;
-
-    p {
-      margin-top: 0;
-    }
-
-    &::before,
-    &.is-empty::before {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 0.25em;
-      background-color: var(--blockquote-bg-color);
-      content: "";
-      border-radius: 0;
-    }
   }
 }
 

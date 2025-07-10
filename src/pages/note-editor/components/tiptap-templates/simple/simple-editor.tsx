@@ -26,7 +26,6 @@ import "../../tiptap-node/list-node/list-node.scss";
 import "../../tiptap-node/image-node/image-node.scss";
 import "../../tiptap-node/paragraph-node/paragraph-node.scss";
 
-import { BlockQuoteButton } from "../../tiptap-ui/blockquote-button";
 import { CodeBlockButton } from "../../tiptap-ui/code-block-button";
 import {
   ColorHighlightPopover,
@@ -86,7 +85,6 @@ const MainToolbarContent = ({
       <ToolbarGroup>
         <HeadingDropdownMenu levels={[1, 2, 3]} />
         <ListDropdownMenu types={["bulletList", "orderedList"]} />
-        <BlockQuoteButton />
         <CodeBlockButton />
       </ToolbarGroup>
 
@@ -171,6 +169,7 @@ export function SimpleEditor() {
     extensions: [
       StarterKit.configure({
         code: false,
+        blockquote: false,
       }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       Underline,
