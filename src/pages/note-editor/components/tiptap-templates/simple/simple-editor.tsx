@@ -37,7 +37,6 @@ import { ImageUploadButton } from "../../tiptap-ui/image-upload-button";
 import { LinkButton, LinkContent, LinkPopover } from "../../tiptap-ui/link-popover";
 import { ListDropdownMenu } from "../../tiptap-ui/list-dropdown-menu";
 import { MarkButton } from "../../tiptap-ui/mark-button";
-import { UndoRedoButton } from "../../tiptap-ui/undo-redo-button";
 
 // --- Icons ---
 import { ArrowLeftIcon } from "../../tiptap-icons/arrow-left-icon";
@@ -69,13 +68,6 @@ const MainToolbarContent = ({
   return (
     <>
       <Spacer />
-
-      <ToolbarGroup>
-        <UndoRedoButton action="undo" />
-        <UndoRedoButton action="redo" />
-      </ToolbarGroup>
-
-      <ToolbarSeparator />
 
       <ToolbarGroup>
         <HeadingDropdownMenu levels={[1, 2, 3]} />
