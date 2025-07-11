@@ -29,7 +29,7 @@
             {
               "type": "highlight",
               "attrs": {
-                "color": "var(--tt-color-highlight-yellow)"
+                "color": "var(--color-highlight-orange)"
               }
             }
           ],
@@ -132,7 +132,7 @@
             {
               "type": "highlight",
               "attrs": {
-                "color": "var(--tt-color-highlight-blue)"
+                "color": "var(--color-highlight-blue)"
               }
             }
           ],

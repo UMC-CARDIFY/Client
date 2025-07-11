@@ -46,31 +46,16 @@ export interface ColorHighlightPopoverProps extends Omit<ButtonProps, "type"> {
 }
 
 export const DEFAULT_HIGHLIGHT_COLORS: ColorHighlightPopoverColor[] = [
-  {
-    label: "Green",
-    value: "var(--tt-color-highlight-green)",
-    border: "var(--tt-color-highlight-green-contrast)",
-  },
-  {
-    label: "Blue",
-    value: "var(--tt-color-highlight-blue)",
-    border: "var(--tt-color-highlight-blue-contrast)",
-  },
-  {
-    label: "Red",
-    value: "var(--tt-color-highlight-red)",
-    border: "var(--tt-color-highlight-red-contrast)",
-  },
-  {
-    label: "Purple",
-    value: "var(--tt-color-highlight-purple)",
-    border: "var(--tt-color-highlight-purple-contrast)",
-  },
-  {
-    label: "Yellow",
-    value: "var(--tt-color-highlight-yellow)",
-    border: "var(--tt-color-highlight-yellow-contrast)",
-  },
+  { label: "Blue", value: "var(--color-highlight-blue)", border: "var(--color-highlight-blue-contrast)" },
+  { label: "Ocean", value: "var(--color-highlight-ocean)", border: "var(--color-highlight-ocean-contrast)" },
+  { label: "Lavender", value: "var(--color-highlight-lavender)", border: "var(--color-highlight-lavender-contrast)" },
+  { label: "Mint", value: "var(--color-highlight-mint)", border: "var(--color-highlight-mint-contrast)" },
+  { label: "Sage", value: "var(--color-highlight-sage)", border: "var(--color-highlight-sage-contrast)" },
+  { label: "Orange", value: "var(--color-highlight-orange)", border: "var(--color-highlight-orange-contrast)" },
+  { label: "Coral", value: "var(--color-highlight-coral)", border: "var(--color-highlight-coral-contrast)" },
+  { label: "Rose", value: "var(--color-highlight-rose)", border: "var(--color-highlight-rose-contrast)" },
+  { label: "Plum", value: "var(--color-highlight-plum)", border: "var(--color-highlight-plum-contrast)" },
+  { label: "Gray", value: "var(--color-highlight-gray)", border: "var(--color-highlight-gray-contrast)" },
 ];
 
 export const ColorHighlightPopoverButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
