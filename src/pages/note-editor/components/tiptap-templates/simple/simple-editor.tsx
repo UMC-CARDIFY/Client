@@ -13,8 +13,8 @@ import { Link } from "../../tiptap-extension/link-extension";
 import { Selection } from "../../tiptap-extension/selection-extension";
 import { TrailingNode } from "../../tiptap-extension/trailing-node-extension";
 
-import { Toolbar, ToolbarGroup, ToolbarSeparator } from "../../../components/tiptap-ui-primitive/toolbar";
 // --- UI Primitives ---
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from "../../../components/tiptap-ui-primitive/toolbar";
 import { Button } from "../../tiptap-ui-primitive/button";
 import { Spacer } from "../../tiptap-ui-primitive/spacer";
 
@@ -25,26 +25,27 @@ import "../../tiptap-node/list-node/list-node.scss";
 import "../../tiptap-node/image-node/image-node.scss";
 import "../../tiptap-node/paragraph-node/paragraph-node.scss";
 
+// --- Tiptap UI ---
+import { CardButton } from "../../tiptap-ui/card-button";
 import { CodeBlockButton } from "../../tiptap-ui/code-block-button";
 import {
   ColorHighlightPopover,
   ColorHighlightPopoverButton,
   ColorHighlightPopoverContent,
 } from "../../tiptap-ui/color-highlight-popover";
-// --- Tiptap UI ---
 import { HeadingDropdownMenu } from "../../tiptap-ui/heading-dropdown-menu";
-import { ImageUploadButton } from "../../tiptap-ui/image-upload-button";
 import { LinkButton, LinkContent, LinkPopover } from "../../tiptap-ui/link-popover";
-import { ListDropdownMenu } from "../../tiptap-ui/list-dropdown-menu";
+import { ListButton } from "../../tiptap-ui/list-button";
 import { MarkButton } from "../../tiptap-ui/mark-button";
+import { MathBlockButton } from "../../tiptap-ui/math-block-button";
 
 // --- Icons ---
 import { ArrowLeftIcon } from "../../tiptap-icons/arrow-left-icon";
 import { HighlighterIcon } from "../../tiptap-icons/highlighter-icon";
 import { LinkIcon } from "../../tiptap-icons/link-icon";
 
-import { useCursorVisibility } from "../../../hooks/use-cursor-visibility";
 // --- Hooks ---
+import { useCursorVisibility } from "../../../hooks/use-cursor-visibility";
 import { useMobile } from "../../../hooks/use-mobile";
 import { useWindowSize } from "../../../hooks/use-window-size";
 
@@ -71,8 +72,6 @@ const MainToolbarContent = ({
 
       <ToolbarGroup>
         <HeadingDropdownMenu levels={[1, 2, 3]} />
-        <ListDropdownMenu types={["bulletList", "orderedList"]} />
-        <CodeBlockButton />
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -80,16 +79,31 @@ const MainToolbarContent = ({
       <ToolbarGroup>
         <MarkButton type="bold" />
         <MarkButton type="italic" />
-        <MarkButton type="strike" />
         <MarkButton type="underline" />
-        {!isMobile ? <ColorHighlightPopover /> : <ColorHighlightPopoverButton onClick={onHighlighterClick} />}
+        <MarkButton type="strike" />
         {!isMobile ? <LinkPopover /> : <LinkButton onClick={onLinkClick} />}
+        <ListButton type="bulletList" />
+        <ListButton type="orderedList" />
       </ToolbarGroup>
 
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <ImageUploadButton text="Add" />
+        {!isMobile ? <ColorHighlightPopover /> : <ColorHighlightPopoverButton onClick={onHighlighterClick} />}
+      </ToolbarGroup>
+      <ToolbarSeparator />
+
+      <ToolbarGroup>
+        <CodeBlockButton />
+        <MathBlockButton />
+      </ToolbarGroup>
+
+      <ToolbarSeparator />
+      <ToolbarGroup>
+        <CardButton type="voca" />
+        <CardButton type="blank" />
+        <CardButton type="image" />
+        {/*<ImageUploadButton text="Add" />*/}
       </ToolbarGroup>
 
       <Spacer />
