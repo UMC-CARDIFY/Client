@@ -7,6 +7,7 @@ import { useTiptapEditor } from "../../../hooks/use-tiptap-editor";
 
 // --- Icons ---
 import { BanIcon } from "../../tiptap-icons/ban-icon";
+import { ChevronDownIcon } from "../../tiptap-icons/chevron-down-icon";
 import { HighlighterIcon } from "../../tiptap-icons/highlighter-icon";
 
 // --- Lib ---
@@ -208,7 +209,10 @@ export function ColorHighlightPopover({
           data-disabled={isDisabled}
           aria-pressed={isActive}
           {...props}
-        />
+        >
+          <HighlighterIcon className="tiptap-button-icon" />
+          <ChevronDownIcon className="tiptap-button-dropdown-small" />
+        </ColorHighlightPopoverButton>
       </PopoverTrigger>
 
       <PopoverContent aria-label="Highlight colors">
