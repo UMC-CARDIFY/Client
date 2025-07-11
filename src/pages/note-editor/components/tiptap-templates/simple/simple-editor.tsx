@@ -1,8 +1,10 @@
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
 import * as React from "react";
 
+import { Color } from "@tiptap/extension-color";
 import { Highlight } from "@tiptap/extension-highlight";
 import { Image } from "@tiptap/extension-image";
+import { TextStyle } from "@tiptap/extension-text-style";
 import { Typography } from "@tiptap/extension-typography";
 import { Underline } from "@tiptap/extension-underline";
 // --- Tiptap Core Extensions ---
@@ -33,6 +35,7 @@ import {
   ColorHighlightPopoverButton,
   ColorHighlightPopoverContent,
 } from "../../tiptap-ui/color-highlight-popover";
+import { ColorTextPopover } from "../../tiptap-ui/color-text-popover";
 import { HeadingDropdownMenu } from "../../tiptap-ui/heading-dropdown-menu";
 import { LinkButton, LinkContent, LinkPopover } from "../../tiptap-ui/link-popover";
 import { ListButton } from "../../tiptap-ui/list-button";
@@ -89,6 +92,7 @@ const MainToolbarContent = ({
       <ToolbarSeparator />
 
       <ToolbarGroup>
+        <ColorTextPopover />
         {!isMobile ? <ColorHighlightPopover /> : <ColorHighlightPopoverButton onClick={onHighlighterClick} />}
       </ToolbarGroup>
       <ToolbarSeparator />
@@ -160,6 +164,8 @@ export function SimpleEditor() {
       Underline,
       Highlight.configure({ multicolor: true }),
       Image,
+      Color,
+      TextStyle,
       Typography,
       Selection,
       ImageUploadNode.configure({
