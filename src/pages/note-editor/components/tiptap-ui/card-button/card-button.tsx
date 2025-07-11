@@ -48,12 +48,14 @@ export const cardShortcutKeys: Partial<Record<Card, string>> = {
 export function canInsertCard(editor: Editor | null, type: Card): boolean {
   if (!editor) return false;
   // TODO: 실제 카드 삽입 가능 여부 체크 로직 구현
+  console.log(`Checking if ${type} card can be inserted`);
   return true;
 }
 
 export function isCardActive(editor: Editor | null, type: Card): boolean {
   if (!editor) return false;
   // TODO: 실제 카드 활성 상태 체크 로직 구현
+  console.log(`Checking if ${type} card is active`);
   return false;
 }
 
