@@ -8,6 +8,7 @@ import { useTiptapEditor } from "../../../hooks/use-tiptap-editor";
 // --- Icons ---
 import { BanIcon } from "../../tiptap-icons/ban-icon";
 import { ChevronDownIcon } from "../../tiptap-icons/chevron-down-icon";
+import { TextColorIcon } from "../../tiptap-icons/text-color-icon";
 
 // --- Lib ---
 import { isMarkInSchema } from "../../../lib/tiptap-utils";
@@ -56,19 +57,6 @@ export const DEFAULT_TEXT_COLORS: ColorTextPopoverColor[] = [
   { label: "Plum", value: "var(--color-text-plum)" },
   { label: "Gray", value: "var(--color-text-gray)" },
 ];
-
-const TextColorIcon: React.FC = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    className="tiptap-button-icon"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M9 3H15L21 19H18L16.5 15H7.5L6 19H3L9 3ZM8.5 12H15.5L12 5L8.5 12Z" fill="currentColor" />
-  </svg>
-);
 
 export const ColorTextPopoverButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, children, ...props }, ref) => (
@@ -221,7 +209,7 @@ export function ColorTextPopover({
           aria-pressed={isActive}
           {...props}
         >
-          <TextColorIcon />
+          <TextColorIcon className="tiptap-button-icon" style={{ width: "2rem", height: "2rem" }} />
           <ChevronDownIcon className="tiptap-button-dropdown-small" />
         </ColorTextPopoverButton>
       </PopoverTrigger>

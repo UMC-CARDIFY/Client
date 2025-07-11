@@ -210,7 +210,7 @@ export function ColorHighlightPopover({
           aria-pressed={isActive}
           {...props}
         >
-          <HighlighterIcon className="tiptap-button-icon" />
+          <HighlighterIcon className="tiptap-button-icon" style={{ width: "2rem", height: "2rem" }} />
           <ChevronDownIcon className="tiptap-button-dropdown-small" />
         </ColorHighlightPopoverButton>
       </PopoverTrigger>
