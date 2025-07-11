@@ -1,21 +1,21 @@
 .tiptap.ProseMirror {
-  --link-text-color: var(--tt-brand-color-500);
+  --link-text-color: var(--brand-light-500);
   --separator-color: var(--tt-gray-light-a-200);
-  --thread-text: var(--tt-gray-light-900);
+  --thread-text: var(--black);
   --placeholder-color: var(--tt-gray-light-a-400);
 
   // Mathematics variables
   --tiptap-mathematics-bg-color: var(--tt-gray-light-a-200);
-  --tiptap-mathematics-border-color: var(--tt-brand-color-500);
+  --tiptap-mathematics-border-color: var(--brand-light-500);
 
   .dark & {
-    --link-text-color: var(--tt-brand-color-400);
+    --link-text-color: var(--brand-light-400);
     --separator-color: var(--tt-gray-dark-a-200);
     --thread-text: var(--tt-gray-dark-900);
     --placeholder-color: var(--tt-gray-dark-a-400);
 
     --tiptap-mathematics-bg-color: var(--tt-gray-dark-a-200);
-    --tiptap-mathematics-border-color: var(--tt-brand-color-400);
+    --tiptap-mathematics-border-color: var(--brand-light-400);
   }
 }
 
@@ -215,7 +215,7 @@
   &.ProseMirror-focused {
     hr.ProseMirror-selectednode {
       border-radius: 9999px;
-      outline: 3px solid var(--tt-brand-color-500);
+      outline: 3px solid var(--brand-light-500);
       outline-offset: 2px;
     }
   }
@@ -237,7 +237,7 @@
 .tiptap.ProseMirror {
   [data-type="mention"] {
     display: inline-block;
-    color: var(--tt-brand-color-500);
+    color: var(--brand-light-500);
   }
 }
 
