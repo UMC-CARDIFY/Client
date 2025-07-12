@@ -1,6 +1,5 @@
 import { Text } from "@components/typography/Text";
 import { useColorUtils } from "@pages/archive/hooks/use-color-utils";
-import { usePostFolders } from "@pages/archive/hooks/use-folder";
 import { colorMap } from "@styles/colorMap";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import React, { useState, useRef } from "react";

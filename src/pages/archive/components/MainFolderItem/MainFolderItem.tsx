@@ -1,11 +1,11 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
-import { useFolderMark } from "@pages/archive/hooks/use-archive-folder";
 import { PATHS } from "@routes/paths";
 import { ArchiveNoteIcon, EmptyStarIcon } from "@svgs/index";
 import { getSafeColor } from "@utils/color";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useFolderMark } from "../../hooks/use-archive-folder";
 import { StarIcon } from "../StarIcon";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
