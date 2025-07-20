@@ -4,11 +4,8 @@ import * as React from "react";
 // --- Hooks ---
 import { useTiptapEditor } from "../../../hooks/use-tiptap-editor";
 
-import { HeadingFiveIcon } from "../../tiptap-icons/heading-five-icon";
-import { HeadingFourIcon } from "../../tiptap-icons/heading-four-icon";
 // --- Icons ---
 import { HeadingOneIcon } from "../../tiptap-icons/heading-one-icon";
-import { HeadingSixIcon } from "../../tiptap-icons/heading-six-icon";
 import { HeadingThreeIcon } from "../../tiptap-icons/heading-three-icon";
 import { HeadingTwoIcon } from "../../tiptap-icons/heading-two-icon";
 
@@ -19,7 +16,7 @@ import { isNodeInSchema } from "../../../lib/tiptap-utils";
 import type { ButtonProps } from "../../tiptap-ui-primitive/button";
 import { Button } from "../../tiptap-ui-primitive/button";
 
-export type Level = 1 | 2 | 3 | 4 | 5 | 6;
+export type Level = 1 | 2 | 3;
 
 export interface HeadingButtonProps extends Omit<ButtonProps, "type"> {
   /**
@@ -45,18 +42,12 @@ export const headingIcons = {
   1: HeadingOneIcon,
   2: HeadingTwoIcon,
   3: HeadingThreeIcon,
-  4: HeadingFourIcon,
-  5: HeadingFiveIcon,
-  6: HeadingSixIcon,
 };
 
 export const headingShortcutKeys: Partial<Record<Level, string>> = {
   1: "Ctrl-Alt-1",
   2: "Ctrl-Alt-2",
   3: "Ctrl-Alt-3",
-  4: "Ctrl-Alt-4",
-  5: "Ctrl-Alt-5",
-  6: "Ctrl-Alt-6",
 };
 
 export function canToggleHeading(editor: Editor | null, level: Level): boolean {

@@ -1,0 +1,17 @@
+.tiptap-button-text-color {
+  position: relative;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0 -0.175rem;
+  border-radius: var(--tt-radius-xl);
+  background-color: var(--text-color);
+  transition: transform 0.2s ease;
+}
+
+.tiptap-button {
+  &[data-active-state="on"] {
+    .tiptap-button-text-color {
+      transform: scale(1.1);
+    }
+  }
+}

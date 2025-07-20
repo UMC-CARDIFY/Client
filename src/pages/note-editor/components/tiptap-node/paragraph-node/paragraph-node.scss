@@ -1,23 +1,21 @@
 .tiptap.ProseMirror {
-  --blockquote-bg-color: var(--tt-gray-light-900);
-  --link-text-color: var(--tt-brand-color-500);
+  --link-text-color: var(--brand-light-500);
   --separator-color: var(--tt-gray-light-a-200);
-  --thread-text: var(--tt-gray-light-900);
+  --thread-text: var(--black);
   --placeholder-color: var(--tt-gray-light-a-400);
 
   // Mathematics variables
   --tiptap-mathematics-bg-color: var(--tt-gray-light-a-200);
-  --tiptap-mathematics-border-color: var(--tt-brand-color-500);
+  --tiptap-mathematics-border-color: var(--brand-light-500);
 
   .dark & {
-    --blockquote-bg-color: var(--tt-gray-dark-900);
-    --link-text-color: var(--tt-brand-color-400);
+    --link-text-color: var(--brand-light-400);
     --separator-color: var(--tt-gray-dark-a-200);
     --thread-text: var(--tt-gray-dark-900);
     --placeholder-color: var(--tt-gray-dark-a-400);
 
     --tiptap-mathematics-bg-color: var(--tt-gray-dark-a-200);
-    --tiptap-mathematics-border-color: var(--tt-brand-color-400);
+    --tiptap-mathematics-border-color: var(--brand-light-400);
   }
 }
 
@@ -126,36 +124,6 @@
 }
 
 /* =====================
-     BLOCKQUOTE
-     ===================== */
-.tiptap.ProseMirror {
-  blockquote {
-    position: relative;
-    padding-left: 1em;
-    padding-top: 0.375em;
-    padding-bottom: 0.375em;
-    margin: 1.5rem 0;
-
-    p {
-      margin-top: 0;
-    }
-
-    &::before,
-    &.is-empty::before {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 0.25em;
-      background-color: var(--blockquote-bg-color);
-      content: "";
-      border-radius: 0;
-    }
-  }
-}
-
-/* =====================
      COLLABORATION
      ===================== */
 .tiptap.ProseMirror {
@@ -202,8 +170,7 @@
 .tiptap.ProseMirror {
   h1,
   h2,
-  h3,
-  h4 {
+  h3 {
     position: relative;
     color: inherit;
     font-style: inherit;
@@ -231,11 +198,6 @@
     margin-top: 2em;
   }
 
-  h4 {
-    font-size: 1em;
-    font-weight: 600;
-    margin-top: 2em;
-  }
 }
 
 /* =====================
@@ -253,7 +215,7 @@
   &.ProseMirror-focused {
     hr.ProseMirror-selectednode {
       border-radius: 9999px;
-      outline: 3px solid var(--tt-brand-color-500);
+      outline: 3px solid var(--brand-light-500);
       outline-offset: 2px;
     }
   }
@@ -275,7 +237,7 @@
 .tiptap.ProseMirror {
   [data-type="mention"] {
     display: inline-block;
-    color: var(--tt-brand-color-500);
+    color: var(--brand-light-500);
   }
 }
 

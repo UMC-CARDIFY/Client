@@ -4,7 +4,6 @@
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
         "level": 1
       },
       "content": [
@@ -16,9 +15,6 @@
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null
-      },
       "content": [
         {
           "type": "text",
@@ -33,7 +29,7 @@
             {
               "type": "highlight",
               "attrs": {
-                "color": "var(--tt-color-highlight-yellow)"
+                "color": "var(--color-highlight-orange)"
               }
             }
           ],
@@ -73,9 +69,6 @@
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": null
-      },
       "content": [
         {
           "type": "text",
@@ -117,7 +110,6 @@
     {
       "type": "heading",
       "attrs": {
-        "textAlign": null,
         "level": 2
       },
       "content": [
@@ -128,76 +120,7 @@
       ]
     },
     {
-      "type": "blockquote",
-      "content": [
-        {
-          "type": "paragraph",
-          "attrs": {
-            "textAlign": null
-          },
-          "content": [
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "italic"
-                }
-              ],
-              "text": "A fully responsive rich text editor with built-in support for common formatting and layout tools. Type markdown "
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "code"
-                }
-              ],
-              "text": "**"
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "italic"
-                }
-              ],
-              "text": " or use keyboard shortcuts "
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "code"
-                }
-              ],
-              "text": "⌘+B"
-            },
-            {
-              "type": "text",
-              "text": " for "
-            },
-            {
-              "type": "text",
-              "marks": [
-                {
-                  "type": "strike"
-                }
-              ],
-              "text": "most"
-            },
-            {
-              "type": "text",
-              "text": " all common markdown marks. 🪄"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      },
       "content": [
         {
           "type": "text",
@@ -209,7 +132,7 @@
             {
               "type": "highlight",
               "attrs": {
-                "color": "var(--tt-color-highlight-blue)"
+                "color": "var(--color-highlight-blue)"
               }
             }
           ],
@@ -237,9 +160,6 @@
           "content": [
             {
               "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
               "content": [
                 {
                   "type": "text",
@@ -248,50 +168,11 @@
                       "type": "bold"
                     }
                   ],
-                  "text": "Superscript"
+                  "text": "Advanced formatting"
                 },
                 {
                   "type": "text",
-                  "text": " (x"
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "superscript"
-                    }
-                  ],
-                  "text": "2"
-                },
-                {
-                  "type": "text",
-                  "text": ") and "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "bold"
-                    }
-                  ],
-                  "text": "Subscript"
-                },
-                {
-                  "type": "text",
-                  "text": " (H"
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "subscript"
-                    }
-                  ],
-                  "text": "2"
-                },
-                {
-                  "type": "text",
-                  "text": "O) for precision."
+                  "text": " with bold, italic, underline, and strikethrough support."
                 }
               ]
             }
@@ -302,9 +183,6 @@
           "content": [
             {
               "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
               "content": [
                 {
                   "type": "text",
@@ -318,15 +196,6 @@
                 {
                   "type": "text",
                   "text": ": automatically convert to "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "code"
-                    }
-                  ],
-                  "text": "->"
                 },
                 {
                   "type": "text",
@@ -353,9 +222,6 @@
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      },
       "content": [
         {
           "type": "text",
@@ -389,7 +255,6 @@
     {
       "type": "heading",
       "attrs": {
-        "textAlign": "left",
         "level": 2
       },
       "content": [
@@ -401,77 +266,12 @@
     },
     {
       "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      },
       "content": [
         {
           "type": "text",
           "text": "Switch between light and dark modes, and tailor the editor's appearance with customizable CSS to match your style."
         }
       ]
-    },
-    {
-      "type": "taskList",
-      "content": [
-        {
-          "type": "taskItem",
-          "attrs": {
-            "checked": true
-          },
-          "content": [
-            {
-              "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Test template"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "taskItem",
-          "attrs": {
-            "checked": false
-          },
-          "content": [
-            {
-              "type": "paragraph",
-              "attrs": {
-                "textAlign": "left"
-              },
-              "content": [
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "link",
-                      "attrs": {
-                        "href": "https://tiptap.dev/docs/ui-components/templates/simple-editor",
-                        "target": "_blank",
-                        "rel": "noopener noreferrer nofollow",
-                        "class": null
-                      }
-                    }
-                  ],
-                  "text": "Integrate the free template"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "attrs": {
-        "textAlign": "left"
-      }
     }
   ]
 }

@@ -1,13 +1,10 @@
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
 import * as React from "react";
 
+import { Color } from "@tiptap/extension-color";
 import { Highlight } from "@tiptap/extension-highlight";
 import { Image } from "@tiptap/extension-image";
-import { Subscript } from "@tiptap/extension-subscript";
-import { Superscript } from "@tiptap/extension-superscript";
-import { TaskItem } from "@tiptap/extension-task-item";
-import { TaskList } from "@tiptap/extension-task-list";
-import { TextAlign } from "@tiptap/extension-text-align";
+import { TextStyle } from "@tiptap/extension-text-style";
 import { Typography } from "@tiptap/extension-typography";
 import { Underline } from "@tiptap/extension-underline";
 // --- Tiptap Core Extensions ---
@@ -18,8 +15,8 @@ import { Link } from "../../tiptap-extension/link-extension";
 import { Selection } from "../../tiptap-extension/selection-extension";
 import { TrailingNode } from "../../tiptap-extension/trailing-node-extension";
 
-import { Toolbar, ToolbarGroup, ToolbarSeparator } from "../../../components/tiptap-ui-primitive/toolbar";
 // --- UI Primitives ---
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from "../../../components/tiptap-ui-primitive/toolbar";
 import { Button } from "../../tiptap-ui-primitive/button";
 import { Spacer } from "../../tiptap-ui-primitive/spacer";
 
@@ -30,34 +27,30 @@ import "../../tiptap-node/list-node/list-node.scss";
 import "../../tiptap-node/image-node/image-node.scss";
 import "../../tiptap-node/paragraph-node/paragraph-node.scss";
 
-import { BlockQuoteButton } from "../../tiptap-ui/blockquote-button";
+// --- Tiptap UI ---
+import { CardButton } from "../../tiptap-ui/card-button";
 import { CodeBlockButton } from "../../tiptap-ui/code-block-button";
 import {
   ColorHighlightPopover,
   ColorHighlightPopoverButton,
   ColorHighlightPopoverContent,
 } from "../../tiptap-ui/color-highlight-popover";
-// --- Tiptap UI ---
+import { ColorTextPopover } from "../../tiptap-ui/color-text-popover";
 import { HeadingDropdownMenu } from "../../tiptap-ui/heading-dropdown-menu";
-import { ImageUploadButton } from "../../tiptap-ui/image-upload-button";
 import { LinkButton, LinkContent, LinkPopover } from "../../tiptap-ui/link-popover";
-import { ListDropdownMenu } from "../../tiptap-ui/list-dropdown-menu";
+import { ListButton } from "../../tiptap-ui/list-button";
 import { MarkButton } from "../../tiptap-ui/mark-button";
-import { TextAlignButton } from "../../tiptap-ui/text-align-button";
-import { UndoRedoButton } from "../../tiptap-ui/undo-redo-button";
+import { MathBlockButton } from "../../tiptap-ui/math-block-button";
 
 // --- Icons ---
 import { ArrowLeftIcon } from "../../tiptap-icons/arrow-left-icon";
 import { HighlighterIcon } from "../../tiptap-icons/highlighter-icon";
 import { LinkIcon } from "../../tiptap-icons/link-icon";
 
-import { useCursorVisibility } from "../../../hooks/use-cursor-visibility";
 // --- Hooks ---
+import { useCursorVisibility } from "../../../hooks/use-cursor-visibility";
 import { useMobile } from "../../../hooks/use-mobile";
 import { useWindowSize } from "../../../hooks/use-window-size";
-
-// --- Components ---
-import { ThemeToggle } from "../../../components/tiptap-templates/simple/theme-toggle";
 
 // --- Lib ---
 import { MAX_FILE_SIZE, handleImageUpload } from "../../../lib/tiptap-utils";
@@ -81,17 +74,7 @@ const MainToolbarContent = ({
       <Spacer />
 
       <ToolbarGroup>
-        <UndoRedoButton action="undo" />
-        <UndoRedoButton action="redo" />
-      </ToolbarGroup>
-
-      <ToolbarSeparator />
-
-      <ToolbarGroup>
-        <HeadingDropdownMenu levels={[1, 2, 3, 4]} />
-        <ListDropdownMenu types={["bulletList", "orderedList", "taskList"]} />
-        <BlockQuoteButton />
-        <CodeBlockButton />
+        <HeadingDropdownMenu levels={[1, 2, 3]} />
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -99,42 +82,35 @@ const MainToolbarContent = ({
       <ToolbarGroup>
         <MarkButton type="bold" />
         <MarkButton type="italic" />
-        <MarkButton type="strike" />
-        <MarkButton type="code" />
         <MarkButton type="underline" />
-        {!isMobile ? <ColorHighlightPopover /> : <ColorHighlightPopoverButton onClick={onHighlighterClick} />}
+        <MarkButton type="strike" />
         {!isMobile ? <LinkPopover /> : <LinkButton onClick={onLinkClick} />}
+        <ListButton type="bulletList" />
+        <ListButton type="orderedList" />
       </ToolbarGroup>
 
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <MarkButton type="superscript" />
-        <MarkButton type="subscript" />
+        <ColorTextPopover />
+        {!isMobile ? <ColorHighlightPopover /> : <ColorHighlightPopoverButton onClick={onHighlighterClick} />}
       </ToolbarGroup>
-
       <ToolbarSeparator />
 
       <ToolbarGroup>
-        <TextAlignButton align="left" />
-        <TextAlignButton align="center" />
-        <TextAlignButton align="right" />
-        <TextAlignButton align="justify" />
+        <CodeBlockButton />
+        <MathBlockButton />
       </ToolbarGroup>
 
       <ToolbarSeparator />
-
       <ToolbarGroup>
-        <ImageUploadButton text="Add" />
+        <CardButton type="voca" />
+        <CardButton type="blank" />
+        <CardButton type="image" />
+        {/*<ImageUploadButton text="Add" />*/}
       </ToolbarGroup>
 
       <Spacer />
-
-      {isMobile && <ToolbarSeparator />}
-
-      <ToolbarGroup>
-        <ThemeToggle />
-      </ToolbarGroup>
     </>
   );
 };
@@ -181,17 +157,16 @@ export function SimpleEditor() {
       },
     },
     extensions: [
-      StarterKit,
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
+      StarterKit.configure({
+        code: false,
+        blockquote: false,
+      }),
       Underline,
-      TaskList,
-      TaskItem.configure({ nested: true }),
       Highlight.configure({ multicolor: true }),
       Image,
+      Color,
+      TextStyle,
       Typography,
-      Superscript,
-      Subscript,
-
       Selection,
       ImageUploadNode.configure({
         accept: "image/*",

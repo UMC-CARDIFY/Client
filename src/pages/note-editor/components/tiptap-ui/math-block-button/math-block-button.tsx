@@ -5,7 +5,7 @@ import * as React from "react";
 import { useTiptapEditor } from "../../../hooks/use-tiptap-editor";
 
 // --- Icons ---
-import { BlockQuoteIcon } from "../../tiptap-icons/block-quote-icon";
+import { MathBlockIcon } from "../../tiptap-icons/math-block-icon";
 
 // --- Lib ---
 import { isNodeInSchema } from "../../../lib/tiptap-utils";
@@ -14,7 +14,7 @@ import { isNodeInSchema } from "../../../lib/tiptap-utils";
 import type { ButtonProps } from "../../tiptap-ui-primitive/button";
 import { Button } from "../../tiptap-ui-primitive/button";
 
-export interface BlockQuoteButtonProps extends Omit<ButtonProps, "type"> {
+export interface MathBlockButtonProps extends Omit<ButtonProps, "type"> {
   /**
    * The TipTap editor instance.
    */
@@ -30,34 +30,41 @@ export interface BlockQuoteButtonProps extends Omit<ButtonProps, "type"> {
   hideWhenUnavailable?: boolean;
 }
 
-export function canToggleBlockquote(editor: Editor | null): boolean {
+export function canToggleMathBlock(editor: Editor | null): boolean {
   if (!editor) return false;
 
   try {
-    return editor.can().toggleWrap("blockquote");
+    // TODO: 실제 수식 블록 토글 가능 여부 체크 로직 구현
+    // return editor.can().toggleNode("mathBlock", "paragraph");
+    return true;
   } catch {
     return false;
   }
 }
 
-export function isBlockquoteActive(editor: Editor | null): boolean {
+export function isMathBlockActive(editor: Editor | null): boolean {
   if (!editor) return false;
-  return editor.isActive("blockquote");
+  // TODO: 실제 수식 블록 활성 상태 체크 로직 구현
+  // return editor.isActive("mathBlock");
+  return false;
 }
 
-export function toggleBlockquote(editor: Editor | null): boolean {
+export function toggleMathBlock(editor: Editor | null): boolean {
   if (!editor) return false;
-  return editor.chain().focus().toggleWrap("blockquote").run();
+  // TODO: 실제 수식 블록 토글 로직 구현
+  // return editor.chain().focus().toggleNode("mathBlock", "paragraph").run();
+  console.log("Toggling math block");
+  return true;
 }
 
-export function isBlockquoteButtonDisabled(editor: Editor | null, canToggle: boolean, userDisabled = false): boolean {
+export function isMathBlockButtonDisabled(editor: Editor | null, canToggle: boolean, userDisabled = false): boolean {
   if (!editor) return true;
   if (userDisabled) return true;
   if (!canToggle) return true;
   return false;
 }
 
-export function shouldShowBlockquoteButton(params: {
+export function shouldShowMathBlockButton(params: {
   editor: Editor | null;
   hideWhenUnavailable: boolean;
   nodeInSchema: boolean;
@@ -78,16 +85,17 @@ export function shouldShowBlockquoteButton(params: {
   return Boolean(editor?.isEditable);
 }
 
-export function useBlockquoteState(editor: Editor | null, disabled = false, hideWhenUnavailable = false) {
-  const nodeInSchema = isNodeInSchema("blockquote", editor);
+export function useMathBlockState(editor: Editor | null, disabled = false, hideWhenUnavailable = false) {
+  // 임시 "paragraph" 사용
+  const nodeInSchema = isNodeInSchema("paragraph", editor);
 
-  const canToggle = canToggleBlockquote(editor);
-  const isDisabled = isBlockquoteButtonDisabled(editor, canToggle, disabled);
-  const isActive = isBlockquoteActive(editor);
+  const canToggle = canToggleMathBlock(editor);
+  const isDisabled = isMathBlockButtonDisabled(editor, canToggle, disabled);
+  const isActive = isMathBlockActive(editor);
 
   const shouldShow = React.useMemo(
     () =>
-      shouldShowBlockquoteButton({
+      shouldShowMathBlockButton({
         editor,
         hideWhenUnavailable,
         nodeInSchema,
@@ -98,13 +106,13 @@ export function useBlockquoteState(editor: Editor | null, disabled = false, hide
 
   const handleToggle = React.useCallback(() => {
     if (!isDisabled && editor) {
-      return toggleBlockquote(editor);
+      return toggleMathBlock(editor);
     }
     return false;
   }, [editor, isDisabled]);
 
-  const shortcutKey = "Ctrl-Shift-b";
-  const label = "Blockquote";
+  const shortcutKey = "Ctrl-Alt-m";
+  const label = "Math Block";
 
   return {
     nodeInSchema,
@@ -118,7 +126,7 @@ export function useBlockquoteState(editor: Editor | null, disabled = false, hide
   };
 }
 
-export const BlockQuoteButton = React.forwardRef<HTMLButtonElement, BlockQuoteButtonProps>(
+export const MathBlockButton = React.forwardRef<HTMLButtonElement, MathBlockButtonProps>(
   (
     {
       editor: providedEditor,
@@ -134,7 +142,7 @@ export const BlockQuoteButton = React.forwardRef<HTMLButtonElement, BlockQuoteBu
   ) => {
     const editor = useTiptapEditor(providedEditor);
 
-    const { isDisabled, isActive, shouldShow, handleToggle, shortcutKey, label } = useBlockquoteState(
+    const { isDisabled, isActive, shouldShow, handleToggle, shortcutKey, label } = useMathBlockState(
       editor,
       disabled,
       hideWhenUnavailable,
@@ -166,7 +174,7 @@ export const BlockQuoteButton = React.forwardRef<HTMLButtonElement, BlockQuoteBu
         // biome-ignore lint/a11y/useSemanticElements: <explanation>
         role="button"
         tabIndex={-1}
-        aria-label="blockquote"
+        aria-label="mathBlock"
         aria-pressed={isActive}
         tooltip={label}
         shortcutKeys={shortcutKey}
@@ -176,7 +184,7 @@ export const BlockQuoteButton = React.forwardRef<HTMLButtonElement, BlockQuoteBu
       >
         {children || (
           <>
-            <BlockQuoteIcon className="tiptap-button-icon" />
+            <MathBlockIcon className="tiptap-button-icon" />
             {text && <span className="tiptap-button-text">{text}</span>}
           </>
         )}
@@ -185,6 +193,6 @@ export const BlockQuoteButton = React.forwardRef<HTMLButtonElement, BlockQuoteBu
   },
 );
 
-BlockQuoteButton.displayName = "BlockQuoteButton";
+MathBlockButton.displayName = "MathBlockButton";
 
-export default BlockQuoteButton;
+export default MathBlockButton;

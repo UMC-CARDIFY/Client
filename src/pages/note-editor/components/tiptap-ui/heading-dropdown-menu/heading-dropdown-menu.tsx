@@ -39,7 +39,7 @@ export interface HeadingDropdownMenuProps extends Omit<ButtonProps, "type"> {
 
 export function HeadingDropdownMenu({
   editor: providedEditor,
-  levels = [1, 2, 3, 4, 5, 6],
+  levels = [1, 2, 3],
   hideWhenUnavailable = false,
   onOpenChange,
   ...props
