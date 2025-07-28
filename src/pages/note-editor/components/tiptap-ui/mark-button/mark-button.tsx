@@ -102,7 +102,16 @@ export function shouldShowMarkButton(params: {
 }
 
 export function getFormattedMarkName(type: Mark): string {
-  return type.charAt(0).toUpperCase() + type.slice(1);
+  //return type.charAt(0).toUpperCase() + type.slice(1);
+
+  const koreanNames: Record<Mark, string> = {
+    bold: "진하게",
+    italic: "기울임",
+    strike: "취소선",
+    underline: "밑줄",
+  };
+
+  return koreanNames[type] || type.charAt(0).toUpperCase() + type.slice(1);
 }
 
 export function useMarkState(editor: Editor | null, type: Mark, disabled = false) {
