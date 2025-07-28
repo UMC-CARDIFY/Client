@@ -4,6 +4,7 @@ import * as React from "react";
 import { Color } from "@tiptap/extension-color";
 import { Highlight } from "@tiptap/extension-highlight";
 import { Image } from "@tiptap/extension-image";
+import { Placeholder } from "@tiptap/extension-placeholder";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { Typography } from "@tiptap/extension-typography";
 import { Underline } from "@tiptap/extension-underline";
@@ -51,6 +52,9 @@ import { ArrowLeftIcon } from "../../tiptap-icons/arrow-left-icon";
 import { HighlighterIcon } from "../../tiptap-icons/highlighter-icon";
 import { LinkIcon } from "../../tiptap-icons/link-icon";
 
+// --- Components ---
+import { EditorTitle } from "./editor-title";
+
 // --- Hooks ---
 import { useCursorVisibility } from "../../../hooks/use-cursor-visibility";
 import { useMobile } from "../../../hooks/use-mobile";
@@ -61,12 +65,11 @@ import { MAX_FILE_SIZE, handleImageUpload } from "../../../lib/tiptap-utils";
 
 // --- Styles ---
 import "./simple-editor.scss";
-
-import content from "../../../components/tiptap-templates/simple/data/content.json";
+import "./editor-title/editor-title.scss";
 
 const MainToolbarContent = ({
   onHighlighterClick,
-  onLinkClick,
+  //onLinkClick,
   isMobile,
 }: {
   onHighlighterClick: () => void;
@@ -153,6 +156,7 @@ export function SimpleEditor() {
   const isMobile = useMobile();
   const windowSize = useWindowSize();
   const [mobileView, setMobileView] = React.useState<"main" | "highlighter" | "link">("main");
+  const [title, setTitle] = React.useState<string>(""); // 제목 상태 추가
   const toolbarRef = React.useRef<HTMLDivElement>(null);
 
   const editor = useEditor({
@@ -169,6 +173,9 @@ export function SimpleEditor() {
       StarterKit.configure({
         code: false,
         blockquote: false,
+      }),
+      Placeholder.configure({
+        placeholder: "내용을 입력하세요.",
       }),
       Underline,
       Highlight.configure({ multicolor: true }),
@@ -187,7 +194,7 @@ export function SimpleEditor() {
       TrailingNode,
       Link.configure({ openOnClick: false }),
     ],
-    content: content,
+    content: "",
   });
 
   const bodyRect = useCursorVisibility({
@@ -200,6 +207,10 @@ export function SimpleEditor() {
       setMobileView("main");
     }
   }, [isMobile, mobileView]);
+
+  const handleTitleChange = (newTitle: string) => {
+    setTitle(newTitle);
+  };
 
   return (
     <EditorContext.Provider value={{ editor }}>
@@ -228,7 +239,10 @@ export function SimpleEditor() {
       </Toolbar>
 
       <div className="content-wrapper">
-        <EditorContent editor={editor} role="presentation" className="simple-editor-content" />
+        <div className="simple-editor-content">
+          <EditorTitle title={title} onTitleChange={handleTitleChange} />
+          <EditorContent editor={editor} role="presentation" />
+        </div>
       </div>
     </EditorContext.Provider>
   );
