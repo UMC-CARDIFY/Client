@@ -26,6 +26,7 @@ import "../../tiptap-node/code-block-node/code-block-node.scss";
 import "../../tiptap-node/list-node/list-node.scss";
 import "../../tiptap-node/image-node/image-node.scss";
 import "../../tiptap-node/paragraph-node/paragraph-node.scss";
+import "../../tiptap-ui/search-note/search-note.scss";
 
 // --- Tiptap UI ---
 import { CardButton } from "../../tiptap-ui/card-button";
@@ -37,10 +38,13 @@ import {
 } from "../../tiptap-ui/color-highlight-popover";
 import { ColorTextPopover } from "../../tiptap-ui/color-text-popover";
 import { HeadingDropdownMenu } from "../../tiptap-ui/heading-dropdown-menu";
-import { LinkButton, LinkContent, LinkPopover } from "../../tiptap-ui/link-popover";
+import { LinkContent } from "../../tiptap-ui/link-popover";
+//import { LinkButton, LinkPopover } from "../../tiptap-ui/link-popover";
+
 import { ListButton } from "../../tiptap-ui/list-button";
 import { MarkButton } from "../../tiptap-ui/mark-button";
 import { MathBlockButton } from "../../tiptap-ui/math-block-button";
+import { SearchNote } from "../../tiptap-ui/search-note/search-note";
 
 // --- Icons ---
 import { ArrowLeftIcon } from "../../tiptap-icons/arrow-left-icon";
@@ -71,8 +75,6 @@ const MainToolbarContent = ({
 }) => {
   return (
     <>
-      <Spacer />
-
       <ToolbarGroup>
         <HeadingDropdownMenu levels={[1, 2, 3]} />
       </ToolbarGroup>
@@ -84,7 +86,9 @@ const MainToolbarContent = ({
         <MarkButton type="italic" />
         <MarkButton type="underline" />
         <MarkButton type="strike" />
+        {/*}
         {!isMobile ? <LinkPopover /> : <LinkButton onClick={onLinkClick} />}
+        */}
         <ListButton type="bulletList" />
         <ListButton type="orderedList" />
       </ToolbarGroup>
@@ -110,7 +114,12 @@ const MainToolbarContent = ({
         {/*<ImageUploadButton text="Add" />*/}
       </ToolbarGroup>
 
+      <ToolbarSeparator />
       <Spacer />
+
+      <ToolbarGroup>
+        <SearchNote placeholder="노트 내 검색" />
+      </ToolbarGroup>
     </>
   );
 };
