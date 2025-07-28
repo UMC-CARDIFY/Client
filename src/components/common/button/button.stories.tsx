@@ -1,5 +1,5 @@
-import Button from "@pages/note-editor/components/button/button";
 import { Meta, StoryFn } from "@storybook/react";
+import Button from "./Button";
 
 export default {
   title: "Components/Button",
