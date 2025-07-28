@@ -33,7 +33,6 @@ body {
 }
 
 .tiptap.ProseMirror {
-
   font-family: "DM Sans", sans-serif;
 }
 
@@ -66,13 +65,9 @@ body {
   margin: 0 auto;
 }
 
-.simple-editor-content .tiptap.ProseMirror {
-  padding: 3rem 3rem;
-}
-
 @media screen and (max-width: 480px) {
   .simple-editor-content .tiptap.ProseMirror {
-    padding: 1rem 1.5rem;
+    padding: 0 1.5rem 1rem 1.5rem; 
   }
 }
 

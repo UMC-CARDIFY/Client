@@ -2,7 +2,7 @@
   --link-text-color: var(--brand-light-500);
   --separator-color: var(--tt-gray-light-a-200);
   --thread-text: var(--black);
-  --placeholder-color: var(--tt-gray-light-a-400);
+  --placeholder-color: var(--gray-light-350);
 
   // Mathematics variables
   --tiptap-mathematics-bg-color: var(--tt-gray-light-a-200);
@@ -12,7 +12,7 @@
     --link-text-color: var(--brand-light-400);
     --separator-color: var(--tt-gray-dark-a-200);
     --thread-text: var(--tt-gray-dark-900);
-    --placeholder-color: var(--tt-gray-dark-a-400);
+    --placeholder-color: var(--gray-dark-a-350);
 
     --tiptap-mathematics-bg-color: var(--tt-gray-dark-a-200);
     --tiptap-mathematics-border-color: var(--brand-light-400);
@@ -346,7 +346,7 @@
 .is-empty[data-placeholder]:has(
     > .ProseMirror-trailingBreak:only-child
   )::before {
-  content: "Write, type '/' for commands…";
+  content: attr(data-placeholder);
 }
 
 .is-empty[data-placeholder]:has(
@@ -356,8 +356,16 @@
   height: 0;
   position: absolute;
   font-style: italic;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
 }
 
 .is-empty[data-placeholder]:has(> .ProseMirror-trailingBreak):before {
   color: var(--placeholder-color);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
 }
