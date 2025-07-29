@@ -1,10 +1,11 @@
 import { Text, TextProps } from "@components/typography/Text";
 import { cn } from "@utils/cn";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "XS" | "S" | "M" | "L" | "XL" | "UNKNOWN";
   variant: "SIZE" | "NORMAL" | "STROKE" | "FILL" | "SMALL";
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
@@ -25,9 +26,10 @@ const textVariantMap: Record<ButtonProps["variant"], TextProps["variant"]> = {
   SMALL: "sub_heading4",
 };
 
-const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", children, className }) => {
+const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", children, className, ...props }) => {
   return (
     <button
+      type="button"
       className={cn(
         `rounded flex items-center justify-center ${className}`,
         variant === "SIZE" && sizeClassMap[size],
@@ -37,6 +39,7 @@ const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", children, cl
         variant === "FILL" && "gap-[0.5rem] px-4 py-2  hover:bg-gray-100 active:bg-gray-200",
         variant === "SMALL" && "gap-[0.5rem] px-2 py-1 bg-gray-white hover:bg-gray-50 active:bg-gray-100",
       )}
+      {...props}
     >
       <Text
         variant={textVariantMap[variant]}
