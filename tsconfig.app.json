@@ -26,6 +26,7 @@
       "@svgs/*": ["src/assets/svgs/*"],
       "@images/*": ["src/assets/images/*"],
       "@animations/*": ["src/assets/animations/*"],
+      "@contexts/*": ["src/contexts/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@hooks/*": ["src/hooks/*"],
