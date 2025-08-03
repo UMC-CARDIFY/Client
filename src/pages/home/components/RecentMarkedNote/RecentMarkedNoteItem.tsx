@@ -20,7 +20,7 @@ const RecentMarkedNoteItem: React.FC<NoteItemProps> = ({ name, content, folderCo
         </Text>
 
         <div className=" flex flex-row justify-between px-1 mt-auto text-gray-350">
-          <Text variant={"caption"}>{editDate}</Text>
+          <Text variant={"caption1"}>{editDate}</Text>
           <div className="flex flex-row gap-2">
             <FlashcardIcon />
             <Text variant={"sub_heading3"}>{displayFlashcardNum}</Text>

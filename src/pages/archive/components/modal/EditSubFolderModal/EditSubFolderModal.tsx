@@ -64,7 +64,7 @@ export const EditSubFolderModal: React.FC<EditSubFolderModalProps> = ({
           />
 
           <div className="text-right mb-8 m-0">
-            <Text variant="caption" className="text-gray-400">
+            <Text variant="caption1" className="text-gray-400">
               {folderName.length}/100
             </Text>
           </div>
