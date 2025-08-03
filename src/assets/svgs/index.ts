@@ -10,6 +10,7 @@ export { default as GoogleIcon } from "./ic_login_google.svg?react";
 export { default as SymbolLogo } from "./symbol_logo.svg?react";
 export { default as LoginGradient } from "./ic_login_gradient.svg?react";
 export { default as LinkIcon } from "./ic_note_link.svg?react";
+export { default as LogoIcon } from "./ic_logo.svg?react";
 
 export * from "./archive";
 export * from "./btn";
