@@ -9,7 +9,7 @@ const RecentMarkedNoteItem: React.FC<NoteItemProps> = ({ name, content, folderCo
       <div className="pr-1 pt-5 mb-3 flex flex-row items-center">
         <StarIcon className="cursor-pointer" />
         <ArchiveNoteIcon className={`mr-2 fill-${folderColor}-600`} />
-        <Text variant={"sub_heading1"} className="w-[9.8125rem] text-base-black truncate">
+        <Text variant={"sub_heading2"} className="w-[9.8125rem] text-base-black truncate">
           {name}
         </Text>
       </div>

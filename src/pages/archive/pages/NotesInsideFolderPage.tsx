@@ -40,7 +40,7 @@ const NotesInsideFolderPage = () => {
 
         {/* InsideFolderList + SortDropdown + FolderFilterDropdown */}
         <div className="flex flex-col mt-[2.5rem] gap-[1rem]">
-          <Text variant="sub_heading3" className="text-base-black ml-[0.5rem]">
+          <Text variant="sub_heading4" className="text-base-black ml-[0.5rem]">
             폴더
           </Text>
           <div className="z-10">
@@ -51,7 +51,7 @@ const NotesInsideFolderPage = () => {
 
         {/* NoteList */}
         <div className="flex flex-col mt-[4rem] gap-[1rem]">
-          <Text variant="sub_heading3" className="text-base-black ml-[0.5rem]">
+          <Text variant="sub_heading4" className="text-base-black ml-[0.5rem]">
             노트
           </Text>
           <div className="flex justify-between z-10">

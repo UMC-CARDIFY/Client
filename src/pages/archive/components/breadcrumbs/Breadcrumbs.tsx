@@ -11,7 +11,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ username, pathSegments = [] }
   const renderSegment = (segment: string, isUsername?: boolean) => (
     <div className="flex items-center">
       <div className="px-3 py-1 cursor-pointer hover:bg-gray-100 rounded-lg">
-        <Text variant="sub_heading3" className={`text-gray-500 ${isUsername ? "font-semibold" : ""}`}>
+        <Text variant="sub_heading4" className={`text-gray-500 ${isUsername ? "font-semibold" : ""}`}>
           {segment}
         </Text>
       </div>
