@@ -28,8 +28,8 @@ const textVariantMap: Record<ButtonProps["variant"], TextProps["variant"]> = {
 };
 
 const ColorMap: Record<NonNullable<ButtonProps["color"]>, string> = {
-  skyblue: "bg-brand-100 hover:bg-brand-200 active:bg-brand-300 text-brand-700",
-  blue: "bg-brand-original text-base-white",
+  skyblue: "bg-brand-100 hover:bg-brand-150 active:bg-brand-150 text-brand-700",
+  blue: "bg-brand-original hover:bg-brand-800 active:bg-brand-900 text-base-white",
 };
 
 const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", color, children, className }) => {
