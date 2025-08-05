@@ -73,7 +73,7 @@ export const SubscribeCard = ({ type, userSubscription = "free" }: SubscribeCard
         {currentCard.features.map((feature, index) => (
           <div key={index} className="flex flex-row gap-4 self-stretch justify-start items-center">
             <div className={`w-2 h-2 ${currentCard.bulletColor} rotate-45`} />
-            <Text variant="body2" className="justify-start text-gray-700 leading-[17px]">
+            <Text variant="body2" className="justify-start text-gray-700 leading-tight">
               {feature}
             </Text>
           </div>
