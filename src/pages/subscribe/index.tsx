@@ -5,7 +5,7 @@ import { SubscribeCard } from "./components/subscribe-card/subscribe-card";
 
 const Subscribe = () => {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center p-10 bg-brand-10">
+    <div className="w-full flex flex-col items-center p-10 bg-brand-10">
       <LogoIcon className="w-16 h-16 mb-8" />
 
       <div className="mb-8">
@@ -24,7 +24,7 @@ const Subscribe = () => {
           <SubscribeCard type="free" />
           <SubscribeCard type="pro" />
         </div>
-        <Button variant="SIZE" className="w-full bg-brand-original text-base-white px-2 py-3 rounded">
+        <Button variant="LONG" color="blue">
           요금제 구독하기
         </Button>
       </div>
