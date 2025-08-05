@@ -6,7 +6,7 @@ interface SubscribeCardProps {
   userSubscription?: "free" | "pro";
 }
 
-export const SubscribeCard = ({ type, userSubscription = "free" }: SubscribeCardProps) => {
+export const SubscribeCard = ({ type, userSubscription }: SubscribeCardProps) => {
   const isCurrentSubscription = userSubscription === type;
 
   const cardData = {
