@@ -1,6 +1,8 @@
 import { Text } from "@components/typography/Text";
-import React from "react";
+import React, { useState } from "react";
+import { usePostSubFolder } from "../../hooks/use-archive-folder";
 import InsideFolder from "../insideFolder/InsideFolder";
+import { AddSubFolderModal } from "../modal/AddSubFolderModal/AddSubFolderModal";
 import NewFolder from "../newFolder/NewFolder";
 
 interface FolderData {
@@ -10,20 +12,48 @@ interface FolderData {
 }
 
 interface InsideFolderListProps {
-  folders?: FolderData[];
+  folders: FolderData[];
+  parentFolderId: number;
 }
 
-const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders = defaultFolders }) => {
-  if (folders.length === 0) {
+const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders, parentFolderId }) => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const { mutate: createSubFolder } = usePostSubFolder(parentFolderId);
+
+  const handleAddFolderClick = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsAddModalOpen(false);
+  };
+
+  const handleModalSubmit = (folderName: string) => {
+    if (!folderName.trim()) return;
+    createSubFolder({ name: folderName });
+    setIsAddModalOpen(false);
+  };
+
+  if (!folders || folders.length === 0) {
     return <div>empty</div>;
   }
-  const displayedFolders = folders.slice(0, 7);
-  const shouldShowViewAll = folders.length > 7;
+
+  const validFolders = folders.filter(
+    (folder) =>
+      typeof folder.folderName === "string" &&
+      folder.folderName.trim() !== "" &&
+      typeof folder.color === "string" &&
+      folder.color.trim() !== "",
+  );
+
+  const displayedFolders = validFolders.slice(0, 7);
+  const shouldShowViewAll = validFolders.length > 7;
 
   return (
     <div className="w-[50rem] flex flex-col">
       <div className="grid grid-cols-4 gap-4">
-        <NewFolder />
+        <NewFolder onClick={handleAddFolderClick} />
         {displayedFolders.map((folder) => (
           <InsideFolder
             key={folder.folderId}
@@ -33,6 +63,9 @@ const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders = defaultFo
           />
         ))}
       </div>
+
+      <AddSubFolderModal isOpen={isAddModalOpen} onClose={handleModalClose} onSubmit={handleModalSubmit} />
+
       {shouldShowViewAll && (
         <Text
           variant="sub_heading2"
@@ -44,16 +77,5 @@ const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders = defaultFo
     </div>
   );
 };
-
-const defaultFolders: FolderData[] = [
-  { folderId: 1, folderName: "1강 빈칸 채우기", color: "sage" },
-  { folderId: 2, folderName: "2강 빈칸 채우기", color: "sage" },
-  { folderId: 3, folderName: "3강 빈칸 채우기", color: "sage" },
-  { folderId: 4, folderName: "4강 빈칸 채우기", color: "sage" },
-  { folderId: 5, folderName: "5강 빈칸 채우기", color: "sage" },
-  { folderId: 6, folderName: "6강 빈칸 채우기", color: "sage" },
-  { folderId: 7, folderName: "긴폴더이름긴폴더이름", color: "sage" },
-  { folderId: 8, folderName: "8강 빈칸 채우기", color: "sage" },
-];
 
 export default InsideFolderList;
