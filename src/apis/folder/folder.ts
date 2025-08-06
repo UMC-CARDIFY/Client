@@ -5,6 +5,7 @@ import {
   DeleteFolderResponse,
   FetchFoldersParams,
   FolderListResponse,
+  PatchFolderResponse,
   ToggleFolderMarkResponse,
   UpdateFolderRequest,
 } from "@typedefs";
@@ -26,5 +27,9 @@ export const postFolders = (body: CreateFolderRequest) => {
 };
 
 export const patchFolders = (folderId: number, body: UpdateFolderRequest) => {
-  return apiPatch(END_POINTS.PATCH_FOLDERS(folderId), body);
+  return apiPatch<PatchFolderResponse, UpdateFolderRequest>(END_POINTS.PATCH_FOLDERS(folderId), body);
+};
+
+export const postSubFolder = (parentFolderId: number, body: { name: string }) => {
+  return apiPost(END_POINTS.POST_SUB_FOLDER(parentFolderId), body);
 };
