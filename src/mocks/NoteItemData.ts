@@ -7,7 +7,7 @@ const NoteItemData: NoteItemProps[] = [
     folderId: 1,
     folderName: "폴더1",
     folderColor: "sage",
-    markState: false,
+    markState: "INACTIVE",
     viewAt: "2024-08-20",
     editDate: "2024-08-20",
     createdAt: "2024-08-20",
@@ -22,7 +22,7 @@ const NoteItemData: NoteItemProps[] = [
     folderId: 2,
     folderName: "폴더1",
     folderColor: "sage",
-    markState: true,
+    markState: "ACTIVE",
     viewAt: "2024-08-19",
     editDate: "2024-08-19",
     createdAt: "2024-08-19",
@@ -32,24 +32,5 @@ const NoteItemData: NoteItemProps[] = [
     content: "노트 내용 2",
   },
 ];
-
-// 90개 이상의 노트 추가
-for (let i = 3; i <= 95; i++) {
-  NoteItemData.push({
-    noteId: i,
-    name: `오답 노트 총정리 ${i}`,
-    folderId: (i % 10) + 1,
-    folderName: `폴더1`,
-    folderColor: "sage",
-    markState: i % 2 === 0,
-    viewAt: `2024-08-${(i % 30) + 1}`,
-    editDate: `2024-08-${(i % 30) + 1}`,
-    createdAt: `2024-08-${(i % 30) + 1}`,
-    isDownload: i % 3 === 0,
-    isUpload: i % 4 === 0,
-    flashCardCount: Math.min(i * 2, 99),
-    content: `노트 내용 ${i}`,
-  });
-}
 
 export default NoteItemData;

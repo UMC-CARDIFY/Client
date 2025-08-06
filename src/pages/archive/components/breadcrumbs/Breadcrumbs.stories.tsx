@@ -20,12 +20,10 @@ const Template: StoryFn<typeof Breadcrumbs> = (args) => <Breadcrumbs {...args} /
 
 export const Default = Template.bind({});
 Default.args = {
-  username: "혜성",
   pathSegments: ["프로젝트"],
 };
 
 export const PathSegments = Template.bind({});
 PathSegments.args = {
-  username: "혜성",
   pathSegments: ["카디파이", "프론트엔드"],
 };

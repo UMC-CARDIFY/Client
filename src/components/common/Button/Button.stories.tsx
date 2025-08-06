@@ -1,4 +1,3 @@
-import { ArrowLeftIcon } from "@pages/note-editor/components/tiptap-icons/arrow-left-icon";
 import { Meta, StoryFn } from "@storybook/react";
 import Button from "./Button";
 
@@ -27,7 +26,7 @@ Normal.args = {
 
 export const Storke = Template.bind({});
 Storke.args = {
-  variant: "STORKE",
+  variant: "STROKE",
   children: "Storke Button",
 };
 
