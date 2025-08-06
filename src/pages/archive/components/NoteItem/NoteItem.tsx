@@ -1,12 +1,31 @@
 import { Text } from "@components/typography/Text";
-import { ArchiveNoteIcon, CheckboxIcon, FlashcardIcon, StarIcon } from "@svgs/index";
+import { ArchiveNoteIcon, CheckboxIcon, EmptyStarIcon, FlashcardIcon } from "@svgs/index";
 import { NoteItemProps } from "@typedefs";
+import { useNoteMark } from "../../hooks/use-archive-note";
+import { StarIcon } from "../StarIcon";
 
-const NoteItem: React.FC<NoteItemProps> = ({ name, createdAt, editDate, flashCardCount, folderColor }) => {
+const NoteItem: React.FC<NoteItemProps> = ({
+  noteId,
+  name,
+  createdAt,
+  editDate,
+  flashCardCount,
+  folderColor,
+  markState,
+}) => {
   const displayFlashcardNum = flashCardCount > 99 ? "99+" : flashCardCount;
+  const { mutate } = useNoteMark();
+
+  const handleToggleMark = () => {
+    mutate({ noteId, isMark: markState === "INACTIVE" });
+  };
+
   return (
     <div className="flex py-[0.5rem] items-center ml-[0.5rem]">
-      <StarIcon className="mr-[0.5rem] cursor-pointer" />
+      <button className="mr-[1.6rem] cursor-pointer" onClick={handleToggleMark}>
+        {markState === "ACTIVE" ? <StarIcon /> : <EmptyStarIcon className="text-gray-400" />}
+      </button>
+
       <CheckboxIcon className="mr-[1.38rem] cursor-pointer" />
       <ArchiveNoteIcon className={`w-[1.75rem] h-[1.75rem] mr-[1.5rem] fill-icon-${folderColor}`} />
       <div className="bg-gray-150 h-[1.5rem] w-[1px]" />

@@ -1,19 +1,18 @@
 import Pagination from "@components/common/pagination/Pagination";
 import { Text } from "@components/typography/Text";
 import { ArchiveNoteIcon, CheckboxIcon } from "@svgs/index";
-import { NoteItemProps } from "@typedefs";
+import { NoteItem } from "@typedefs";
 import { useState } from "react";
-import NoteItemData from "src/mocks/NoteItemData";
 import EmptyState from "../EmptyState/EmptyState";
-import NoteItem from "../NoteItem/NoteItem";
+import NoteItemComponent from "../NoteItem/NoteItem";
 
 interface NoteListProps {
-  notes?: NoteItemProps[];
+  notes?: NoteItem[];
 }
 
 const ITEMS_PER_PAGE = 10;
 
-const NoteList: React.FC<NoteListProps> = ({ notes = NoteItemData }) => {
+const NoteList: React.FC<NoteListProps> = ({ notes = [] }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(notes.length / ITEMS_PER_PAGE);
@@ -52,7 +51,7 @@ const NoteList: React.FC<NoteListProps> = ({ notes = NoteItemData }) => {
       ) : (
         <div className="gap-2 flex flex-col">
           {paginatedNotes.map((note) => (
-            <NoteItem key={note.noteId} {...note} />
+            <NoteItemComponent key={note.noteId} {...note} />
           ))}
         </div>
       )}
