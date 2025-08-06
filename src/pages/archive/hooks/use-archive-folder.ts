@@ -1,4 +1,4 @@
-import { deleteFolder, patchFolders, postFolders, toggleFolderMark } from "@apis/folder/folder";
+import { deleteFolder, patchFolders, postFolders, postSubFolder, toggleFolderMark } from "@apis/folder/folder";
 import { FOLDER_QUERY_KEY, FOLDER_QUERY_OPTION } from "@apis/folder/folder-queries";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CreateFolderRequest, FetchFoldersParams, UpdateFolderRequest } from "@typedefs";
@@ -9,6 +9,10 @@ export const useFolderList = (params?: FetchFoldersParams) => {
 
   return {
     foldersList: data?.foldersList ?? [],
+    folderId: data?.parentFolderId ?? 0,
+    folderTitle: data?.parentFolderName ?? "",
+    folderColor: data?.parentFolderColor ?? "gray",
+    folderMarkState: data?.parentMarkState ?? "INACTIVE", // 기본값은 비활성화
     isLoading,
     isError,
   };
@@ -62,6 +66,18 @@ export const useFolderMark = () => {
 
   return useMutation({
     mutationFn: (folderId: number) => toggleFolderMark(folderId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: FOLDER_QUERY_KEY.ALL() });
+    },
+  });
+};
+
+/** 하위 폴더 생성 */
+export const usePostSubFolder = (parentFolderId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (body: { name: string }) => postSubFolder(parentFolderId, body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: FOLDER_QUERY_KEY.ALL() });
     },

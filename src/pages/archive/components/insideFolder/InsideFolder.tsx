@@ -3,6 +3,7 @@ import { Text } from "@components/typography/Text";
 import { InnerFolderIcon } from "@svgs/index";
 import React, { useState } from "react";
 import InsideFolderItemData from "src/mocks/InsideFolderItemData";
+import { usePatchFolders } from "../../hooks/use-archive-folder";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditSubFolderModal } from "../modal/EditSubFolderModal/EditSubFolderModal";
 import { Folder, MoveFolderModal } from "../modal/MoveFolderModal/MoveFolderModal";
@@ -18,23 +19,39 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
   const folders = InsideFolderItemData;
 
   const [isHovered, setIsHovered] = useState(false);
-
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isMoveModalOpen, setIsMoveModalOpen] = useState(false);
 
-  const handleEditFolder = () => {
-    setIsEditModalOpen(false);
+  const { mutate: patchFolder } = usePatchFolders();
+
+  const handleEditFolder = (newName: string) => {
+    patchFolder(
+      {
+        folderId,
+        body: {
+          name: newName,
+          color,
+        },
+      },
+      {
+        onSuccess: () => {
+          setIsEditModalOpen(false);
+        },
+      },
+    );
   };
 
   const handleDeleteFolder = () => {
     setIsDeleteModalOpen(false);
   };
+
   const handleMoveFolder = () => {
     setIsMoveModalOpen(false);
   };
 
-  const truncateText = (text: string, maxLength = 10) => {
+  const truncateText = (text?: string, maxLength = 10) => {
+    if (!text) return "";
     if (text.length <= maxLength) return text;
     return `${text.slice(0, maxLength)}...`;
   };

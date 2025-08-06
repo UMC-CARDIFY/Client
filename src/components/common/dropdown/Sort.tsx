@@ -3,12 +3,13 @@ import { SortIcon } from "@svgs/index";
 import { useEffect, useState } from "react";
 import DropdownButton from "./DropdownContainer";
 
+export type SortOrder = "asc" | "desc" | "edit-newest" | "edit-oldest";
 interface SortProps {
-  onSelect: (value: string) => void;
+  onSelect: (value: SortOrder) => void;
   selected: string;
 }
 
-const sortOptions = [
+const sortOptions: { label: string; value: SortOrder }[] = [
   { label: "가나다 순", value: "asc" },
   { label: "가나다 역순", value: "desc" },
   { label: "최근 수정일 순", value: "edit-newest" },
@@ -24,7 +25,7 @@ const Sort: React.FC<SortProps> = ({ onSelect, selected }) => {
     if (matched) setSelectedLabel(matched.label);
   }, [selected]);
 
-  const handleSelect = (value: string, label: string) => {
+  const handleSelect = (value: SortOrder, label: string) => {
     onSelect(value);
     setSelectedLabel(label);
     setIsOpen(false);
