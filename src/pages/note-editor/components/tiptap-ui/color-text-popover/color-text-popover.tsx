@@ -69,7 +69,7 @@ export const ColorTextPopoverButton = React.forwardRef<HTMLButtonElement, Button
       role="button"
       tabIndex={-1}
       aria-label="Change text color"
-      tooltip="Text Color"
+      tooltip="글자색"
       ref={ref}
       {...props}
     >

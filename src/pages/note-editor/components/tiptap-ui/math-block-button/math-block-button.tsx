@@ -112,7 +112,7 @@ export function useMathBlockState(editor: Editor | null, disabled = false, hideW
   }, [editor, isDisabled]);
 
   const shortcutKey = "Ctrl-Alt-m";
-  const label = "Math Block";
+  const label = "수식 블록";
 
   return {
     nodeInSchema,

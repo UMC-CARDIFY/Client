@@ -16,16 +16,18 @@
       --------- POPOVER STYLING SETTINGS -----------
       -------------------------------------------- */
 .tiptap-dropdown-menu {
-  --padding: 0.25rem;
+  //--padding: 0.25rem;
   --border-width: 1px;
 
   z-index: 200;
+  /*
   border-radius: calc(
     var(--padding) + var(--tt-radius-lg) + var(--border-width)
   );
+  */
   border: var(--border-width) solid var(--tt-popover-border-color);
   background-color: var(--tt-popover-bg-color);
-  padding: var(--padding);
+  //padding: var(--padding);
   color: var(--tt-popover-text-color);
   box-shadow: var(--tt-shadow-elevated-md);
   outline: none;
