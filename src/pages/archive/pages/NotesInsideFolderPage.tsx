@@ -5,6 +5,7 @@ import DeleteButton from "@components/common/delete-button/delete-button";
 import NoteFilter from "@components/common/dropdown/NoteFilter";
 import Sort, { SortOrder } from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
+import { PATHS } from "@routes/paths";
 import AddNoteButton from "../components/AddNoteButton/AddNoteButton";
 import NoteList from "../components/NoteList/NoteList";
 import Breadcrumbs from "../components/breadcrumbs/Breadcrumbs";
@@ -80,18 +81,18 @@ const NotesInsideFolderPage = () => {
       }
       setCheckedNoteIds([]);
       closeDeleteModal();
-    } catch (e) {
+    } catch {
       closeDeleteModal();
     }
   };
 
-  const pathSegments = ["사용자의 아카이브", folderTitle];
+  const crumbs = [{ label: "사용자의 아카이브", to: PATHS.ARCHIVE }, { label: folderTitle || "" }];
 
   return (
     <div className="w-full flex justify-center">
       <div className="w-[50rem] mt-[2.5rem] flex flex-col">
         <div className="self-start">
-          <Breadcrumbs pathSegments={pathSegments} />
+          <Breadcrumbs items={crumbs} />
         </div>
 
         <FolderNameHeader

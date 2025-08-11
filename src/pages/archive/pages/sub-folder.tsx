@@ -5,6 +5,7 @@ import DeleteButton from "@components/common/delete-button/delete-button";
 import NoteFilter from "@components/common/dropdown/NoteFilter";
 import Sort, { SortOrder } from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
+import { PATHS } from "@routes/paths";
 import AddNoteButton from "../components/AddNoteButton/AddNoteButton";
 import NoteList from "../components/NoteList/NoteList";
 import Breadcrumbs from "../components/breadcrumbs/Breadcrumbs";
@@ -35,6 +36,7 @@ export default function SubFolderPage() {
     else setNoteFilter(null);
   };
 
+  // 현재 폴더 메타
   const {
     folderTitle: currentFolderTitle,
     folderColor,
@@ -43,12 +45,14 @@ export default function SubFolderPage() {
     isError: isCurrentError,
   } = useFolderList(isValid ? { parentFolderId: currentFolderId, order: "edit-newest" } : undefined);
 
+  // 부모 폴더 메타
   const {
     folderTitle: parentFolderTitle,
     isLoading: isParentLoading,
     isError: isParentError,
   } = useFolderList(isValid ? { parentFolderId, order: "edit-newest" } : undefined);
 
+  // 노트 목록
   const {
     noteList,
     isLoading: isNotesLoading,
@@ -63,6 +67,7 @@ export default function SubFolderPage() {
       : undefined,
   );
 
+  // 삭제 모달 훅
   const {
     isOpen: isDeleteModalOpen,
     open: openDeleteModal,
@@ -88,24 +93,28 @@ export default function SubFolderPage() {
       }
       setCheckedNoteIds([]);
       closeDeleteModal();
-    } catch (e) {
+    } catch {
       closeDeleteModal();
     }
   };
 
-  const pathSegments = ["사용자의 아카이브", parentFolderTitle, currentFolderTitle].filter(Boolean) as string[];
-
-  if (!isValid) return <div className="w-full flex justify-center mt-10">잘못된 경로입니다.</div>; //TODO: fallback UI 요청
+  if (!isValid) return <div className="w-full flex justify-center mt-10">잘못된 경로입니다.</div>; //TODO: fallback UI
   if (isCurrentLoading || isParentLoading || isNotesLoading)
-    return <div className="w-full flex justify-center mt-10">로딩 중...</div>; //TODO: 로딩 컴포넌트로 갈아끼우기
+    return <div className="w-full flex justify-center mt-10">로딩 중...</div>; //TODO: 로딩 컴포넌트
   if (isCurrentError || isParentError || isNotesError)
     return <div className="w-full flex justify-center mt-10">에러가 발생했습니다</div>; //TODO: fallback UI
+
+  const crumbs = [
+    { label: "사용자의 아카이브", to: PATHS.ARCHIVE },
+    { label: parentFolderTitle, to: `${PATHS.ARCHIVE}/${parentFolderId}` },
+    { label: currentFolderTitle },
+  ];
 
   return (
     <div className="w-full flex justify-center">
       <div className="w-[50rem] mt-[2.5rem] flex flex-col">
         <div className="self-start">
-          <Breadcrumbs pathSegments={pathSegments} />
+          <Breadcrumbs items={crumbs} />
         </div>
 
         <FolderNameHeader
