@@ -19,13 +19,18 @@ interface MainFolderListProps {
   folders?: MainFolderProps[];
   variant?: "home" | "archive";
   maxItems?: number;
+  onLimitReached?: () => void;
 }
 
-const ITEMS_PER_PAGE = 16; // 한 페이지당 표시할 폴더 개수
+const ITEMS_PER_PAGE = 16;
 
-const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemData, variant = "archive", maxItems }) => {
+const MainFolderList: React.FC<MainFolderListProps> = ({
+  folders = FolderItemData,
+  variant = "archive",
+  maxItems,
+  onLimitReached,
+}) => {
   const isHome = variant === "home";
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalItems = maxItems ? Math.min(folders.length, maxItems) : folders.length;
@@ -46,10 +51,11 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
       </div>
     );
   }
+
   return (
     <div className="w-[50rem]">
       <div className="gap-4 flex flex-wrap">
-        {currentPage === 1 && <NewFolderMain />}
+        {currentPage === 1 && <NewFolderMain onLimitReached={onLimitReached} />}
         {displayedFolders.map((folder) => (
           <MainFolderItem key={folder.folderId} {...folder} variant={variant} />
         ))}

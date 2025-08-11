@@ -7,9 +7,12 @@ import EmptyState from "../components/EmptyState/EmptyState";
 import MainFolderList from "../components/MainFolderList/MainFolderList";
 import { useFolderList } from "../hooks/use-archive-folder";
 
+import { LimitAddFolderModal } from "../components/modal/LimitAddFolderModal/LimitAddFolderModal";
+
 const Archive = () => {
   const [order, setOrder] = useState("edit-newest");
   const [colors, setColors] = useState<string[]>([]);
+  const [isLimitModalOpen, setIsLimitModalOpen] = useState(false);
 
   const { foldersList, isLoading, isError } = useFolderList({
     order,
@@ -38,9 +41,21 @@ const Archive = () => {
               <EmptyState type="folder" />
             </div>
           ) : (
-            <MainFolderList folders={transformedFolders} variant="archive" />
+            <MainFolderList
+              folders={transformedFolders}
+              variant="archive"
+              onLimitReached={() => setIsLimitModalOpen(true)}
+            />
           )}
         </div>
+
+        <LimitAddFolderModal
+          isOpen={isLimitModalOpen}
+          onClose={() => setIsLimitModalOpen(false)}
+          onPay={() => {
+            setIsLimitModalOpen(false);
+          }}
+        />
       </div>
     </div>
   );

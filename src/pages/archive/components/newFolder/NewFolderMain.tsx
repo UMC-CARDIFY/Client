@@ -1,19 +1,19 @@
 import { NewfolderMainImage } from "@images/index";
+import { isFolderLimitError } from "@utils/errors";
 import { useState } from "react";
 import { usePostFolders } from "../../hooks/use-archive-folder";
 import { AddFolderModal } from "../modal/AddFolderModal/AddFolderModal";
 
-const NewFolderMain = () => {
+type NewFolderMainProps = {
+  onLimitReached?: () => void;
+};
+
+const NewFolderMain: React.FC<NewFolderMainProps> = ({ onLimitReached }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { mutate } = usePostFolders();
 
-  const handleClick = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const handleClick = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
 
   const handleSubmit = (folderName: string, folderColor: string) => {
     mutate(
@@ -21,6 +21,13 @@ const NewFolderMain = () => {
       {
         onSuccess: () => {
           setIsOpen(false);
+        },
+        onError: (err) => {
+          setIsOpen(false);
+          if (isFolderLimitError(err)) {
+            onLimitReached?.();
+          } else {
+          }
         },
       },
     );
@@ -34,7 +41,7 @@ const NewFolderMain = () => {
         alt="new folder"
         className="w-[11.75rem] h-[11.75rem] cursor-pointer"
       />
-      {isOpen && <AddFolderModal isOpen={isOpen} onClose={handleClose} onSubmit={handleSubmit} />}{" "}
+      {isOpen && <AddFolderModal isOpen={isOpen} onClose={handleClose} onSubmit={handleSubmit} />}
     </>
   );
 };
