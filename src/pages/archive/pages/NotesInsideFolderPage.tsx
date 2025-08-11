@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
+import DeleteButton from "@components/common/delete-button/delete-button";
 import NoteFilter from "@components/common/dropdown/NoteFilter";
 import Sort, { SortOrder } from "@components/common/dropdown/Sort";
 import { Text } from "@components/typography/Text";
@@ -9,8 +10,10 @@ import NoteList from "../components/NoteList/NoteList";
 import Breadcrumbs from "../components/breadcrumbs/Breadcrumbs";
 import FolderNameHeader from "../components/folderNameHeader/FolderNameHeader";
 import InsideFolderList from "../components/insideFolderList/InsideFolderList";
+import { DeleteNoteModal } from "../components/modal/DeleteNoteModal/DeleteNoteModal";
 import { useFolderList } from "../hooks/use-archive-folder";
-import { useNoteList } from "../hooks/use-archive-note";
+import { useDeleteNote, useNoteList } from "../hooks/use-archive-note";
+import { useDeleteNoteModal } from "../hooks/use-delete-note-modal";
 
 const NotesInsideFolderPage = () => {
   const { id: paramFolderId } = useParams();
@@ -19,26 +22,24 @@ const NotesInsideFolderPage = () => {
 
   const [folderOrder, setFolderOrder] = useState<SortOrder>("edit-newest");
   const [noteOrder, setNoteOrder] = useState<SortOrder>("edit-newest");
-
   const [noteFilter, setNoteFilter] = useState<string | null>(null);
 
-  const handleFolderSortSelect = (value: SortOrder) => {
-    setFolderOrder(value);
+  const [checkedNoteIds, setCheckedNoteIds] = useState<number[]>([]);
+
+  const handleToggleNoteCheck = (noteId: number) => {
+    setCheckedNoteIds((prev) => (prev.includes(noteId) ? prev.filter((id) => id !== noteId) : [...prev, noteId]));
   };
 
-  const handleNoteSortSelect = (value: SortOrder) => {
-    setNoteOrder(value);
-  };
+  const handleFolderSortSelect = (value: SortOrder) => setFolderOrder(value);
+  const handleNoteSortSelect = (value: SortOrder) => setNoteOrder(value);
 
   const handleNoteFilterSelect = (value: string | null) => {
-    if (value === "withCard") {
-      setNoteFilter("card-most");
-    } else if (value === "withoutCard") {
-      setNoteFilter("card-less");
-    } else {
-      setNoteFilter(null);
-    }
+    if (value === "withCard") setNoteFilter("card-most");
+    else if (value === "withoutCard") setNoteFilter("card-less");
+    else setNoteFilter(null);
   };
+
+  const handleToggleAllCheck = (newCheckedIds: number[]) => setCheckedNoteIds(newCheckedIds);
 
   const { folderTitle, folderColor, folderMarkState, foldersList } = useFolderList(
     isValidId ? { parentFolderId, order: folderOrder } : undefined,
@@ -54,27 +55,52 @@ const NotesInsideFolderPage = () => {
       : undefined,
   );
 
+  const {
+    isOpen: isDeleteModalOpen,
+    open: openDeleteModal,
+    close: closeDeleteModal,
+    noteId,
+    noteName,
+    additionalCount,
+    selectedIds,
+  } = useDeleteNoteModal(noteList, checkedNoteIds);
+
+  const { mutateAsync: deleteNoteMutate } = useDeleteNote();
+
+  const handleConfirmDelete = async () => {
+    try {
+      if (selectedIds.length === 0) {
+        closeDeleteModal();
+        return;
+      }
+      if (selectedIds.length === 1) {
+        await deleteNoteMutate({ noteId: selectedIds[0] });
+      } else {
+        await Promise.allSettled(selectedIds.map((id) => deleteNoteMutate({ noteId: id })));
+      }
+      setCheckedNoteIds([]);
+      closeDeleteModal();
+    } catch (e) {
+      closeDeleteModal();
+    }
+  };
+
   const pathSegments = ["사용자의 아카이브", folderTitle];
 
   return (
     <div className="w-full flex justify-center">
       <div className="w-[50rem] mt-[2.5rem] flex flex-col">
-        {/* 경로 표시 */}
         <div className="self-start">
           <Breadcrumbs pathSegments={pathSegments} />
         </div>
 
-        {/* 상단 폴더 정보 */}
-        <div>
-          <FolderNameHeader
-            folderId={parentFolderId}
-            folderName={folderTitle}
-            color={folderColor}
-            markState={folderMarkState}
-          />
-        </div>
+        <FolderNameHeader
+          folderId={parentFolderId}
+          folderName={folderTitle}
+          color={folderColor}
+          markState={folderMarkState}
+        />
 
-        {/* 하위 폴더 */}
         <div className="flex flex-col mt-[2.5rem] gap-[1rem]">
           <Text variant="sub_heading3" className="text-base-black ml-[0.5rem]">
             폴더
@@ -92,20 +118,38 @@ const NotesInsideFolderPage = () => {
           />
         </div>
 
-        {/* 노트 리스트 */}
         <div className="flex flex-col mt-[4rem] gap-[1rem]">
           <Text variant="sub_heading3" className="text-base-black ml-[0.5rem]">
             노트
           </Text>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div className="flex gap-2">
               <Sort selected={noteOrder} onSelect={handleNoteSortSelect} />
               <NoteFilter onSelect={handleNoteFilterSelect} />
             </div>
-            <AddNoteButton />
+
+            <div className="flex gap-2 items-center">
+              {checkedNoteIds.length > 0 && <DeleteButton onClick={openDeleteModal} />}
+              <AddNoteButton />
+            </div>
           </div>
-          <NoteList notes={noteList} />
+
+          <NoteList
+            notes={noteList}
+            checkedNoteIds={checkedNoteIds}
+            onToggleCheck={handleToggleNoteCheck}
+            onToggleAllCheck={handleToggleAllCheck}
+          />
         </div>
+
+        <DeleteNoteModal
+          isOpen={isDeleteModalOpen}
+          onClose={closeDeleteModal}
+          onSubmit={handleConfirmDelete}
+          noteId={noteId}
+          noteName={noteName}
+          additionalCount={additionalCount}
+        />
       </div>
     </div>
   );
