@@ -37,24 +37,27 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderNam
   };
 
   return (
-    <div className="flex flex-row items-center h-[4rem] relative w-full">
-      <button className="cursor-pointer mr-2" onClick={handleToggleMark}>
-        {markState === "ACTIVE" ? <StarIcon /> : <EmptyStarIcon className="text-gray-400" />}
-      </button>
+    <div className="w-full">
+      <div className="flex items-center w-full py-5">
+        <button className="ml-3 mr-5 cursor-pointer" onClick={handleToggleMark} aria-label="즐겨찾기 토글">
+          {markState === "ACTIVE" ? <StarIcon /> : <EmptyStarIcon className="text-gray-400" />}
+        </button>
 
-      <ArchiveFolderIcon fillColor={colorHexCode} backgroundColor={darkenedColor} />
+        <ArchiveFolderIcon fillColor={colorHexCode} backgroundColor={darkenedColor} />
 
-      <Text variant="heading2" className="text-base-black ml-4">
-        {folderName}
-      </Text>
+        <Text variant="heading2" className="text-base-black ml-6 flex-1 min-w-0 break-words">
+          {folderName}
+        </Text>
 
-      <div className="flex items-center absolute right-0">
-        <Kebab
-          onSelect={(value) => {
-            if (value === "edit") setIsEditModalOpen(true);
-            if (value === "delete") setIsDeleteModalOpen(true);
-          }}
-        />
+        <div className="ml-2 mr-2 flex items-center justify-center">
+          <Kebab
+            withFolderMove
+            onSelect={(value) => {
+              if (value === "edit") setIsEditModalOpen(true);
+              if (value === "delete") setIsDeleteModalOpen(true);
+            }}
+          />
+        </div>
       </div>
 
       {isEditModalOpen && (
