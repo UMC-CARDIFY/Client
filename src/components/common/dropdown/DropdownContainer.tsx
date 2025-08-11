@@ -48,7 +48,7 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
         <button
           className={`flex justify-center items-center gap-2 rounded-lg transition ${
             isKebab
-              ? "p-0 hover:bg-gray-100 rounded-md"
+              ? "p-0 hover:bg-gray-100 rounded-[0.24rem]"
               : isNoteFilterActive
                 ? "bg-brand-100 hover:bg-brand-150 px-3 py-2 text-brand-700"
                 : "bg-gray-100 hover:bg-gray-200 px-3 py-2 text-gray-700"
