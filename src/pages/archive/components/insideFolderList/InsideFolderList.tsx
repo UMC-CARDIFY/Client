@@ -21,23 +21,13 @@ const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders, parentFold
 
   const { mutate: createSubFolder } = usePostSubFolder(parentFolderId);
 
-  const handleAddFolderClick = () => {
-    setIsAddModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsAddModalOpen(false);
-  };
-
+  const handleAddFolderClick = () => setIsAddModalOpen(true);
+  const handleModalClose = () => setIsAddModalOpen(false);
   const handleModalSubmit = (folderName: string) => {
     if (!folderName.trim()) return;
     createSubFolder({ name: folderName });
     setIsAddModalOpen(false);
   };
-
-  if (!folders || folders.length === 0) {
-    return <div>empty</div>;
-  }
 
   const validFolders = folders.filter(
     (folder) =>
@@ -54,6 +44,7 @@ const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders, parentFold
     <div className="w-[50rem] flex flex-col">
       <div className="grid grid-cols-4 gap-4">
         <NewFolder onClick={handleAddFolderClick} />
+
         {displayedFolders.map((folder) => (
           <InsideFolder
             key={folder.folderId}
@@ -71,7 +62,7 @@ const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders, parentFold
           variant="sub_heading2"
           className="text-gray-500 mt-3 mr-2 px-2 py-1 self-end hover:bg-gray-50 rounded cursor-pointer"
         >
-          전체보기
+          전체 보기
         </Text>
       )}
     </div>
