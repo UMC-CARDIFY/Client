@@ -3,7 +3,7 @@ import { FOLDER_QUERY_KEY, FOLDER_QUERY_OPTION } from "@apis/folder/folder-queri
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CreateFolderRequest, FetchFoldersParams, UpdateFolderRequest } from "@typedefs";
 
-/** 폴더 리스트 조회 */
+// 폴더 리스트 조회
 export const useFolderList = (params?: FetchFoldersParams) => {
   const { data, isLoading, isError } = useQuery(FOLDER_QUERY_OPTION.LIST(params));
 
@@ -18,7 +18,7 @@ export const useFolderList = (params?: FetchFoldersParams) => {
   };
 };
 
-/** 폴더 생성 */
+// 폴더 생성
 export const usePostFolders = () => {
   const queryClient = useQueryClient();
 
@@ -30,7 +30,7 @@ export const usePostFolders = () => {
   });
 };
 
-/** 폴더 수정 */
+// 폴더 수정
 export const usePatchFolders = () => {
   const queryClient = useQueryClient();
 
@@ -48,7 +48,7 @@ export const usePatchFolders = () => {
   });
 };
 
-/** 폴더 삭제 */
+// 폴더 삭제
 export const useDeleteFolderMutation = () => {
   const queryClient = useQueryClient();
 
@@ -60,7 +60,7 @@ export const useDeleteFolderMutation = () => {
   });
 };
 
-/** 폴더 즐겨찾기 토글 */
+// 폴더 즐겨찾기
 export const useFolderMark = () => {
   const queryClient = useQueryClient();
 
@@ -72,7 +72,7 @@ export const useFolderMark = () => {
   });
 };
 
-/** 하위 폴더 생성 */
+// 하위 폴더 생성
 export const usePostSubFolder = (parentFolderId: number) => {
   const queryClient = useQueryClient();
 
