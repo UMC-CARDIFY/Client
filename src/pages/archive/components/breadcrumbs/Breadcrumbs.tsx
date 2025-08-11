@@ -1,5 +1,5 @@
 import { Text } from "@components/typography/Text";
-import { SlashIcon } from "@svgs/index";
+import { HalfArrowLightIcon } from "@svgs/index";
 import React from "react";
 
 type BreadcrumbsProps = {
@@ -7,24 +7,25 @@ type BreadcrumbsProps = {
 };
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ pathSegments = [] }) => {
-  const renderSegment = (segment: string, isLast?: boolean) => (
-    <div className="flex items-center">
-      <div className="px-3 py-1 cursor-pointer hover:bg-gray-100 rounded-lg">
-        <Text variant="sub_heading3" className={`text-gray-500 ${isLast ? "font-semibold" : ""}`}>
-          {segment}
-        </Text>
-      </div>
-    </div>
-  );
-
   return (
     <nav className="flex items-center" aria-label="Breadcrumbs">
-      {pathSegments.map((segment, index) => (
-        <React.Fragment key={index}>
-          {index > 0 && <SlashIcon />}
-          {renderSegment(segment, index === pathSegments.length - 1)}
-        </React.Fragment>
-      ))}
+      {pathSegments.map((segment, index) => {
+        const isLast = index === pathSegments.length - 1;
+
+        return (
+          <div key={`${segment}-${index}`} className="flex items-center">
+            <div
+              className="flex items-center justify-center px-3 py-2 gap-2 rounded cursor-pointer hover:bg-gray-100"
+              aria-current={isLast ? "page" : undefined}
+            >
+              <HalfArrowLightIcon className="w-4 h-4 flex" aria-hidden="true" />
+              <Text variant="sub_heading4" className={`text-gray-500 ${isLast ? "font-semibold" : ""}`}>
+                {segment}
+              </Text>
+            </div>
+          </div>
+        );
+      })}
     </nav>
   );
 };
