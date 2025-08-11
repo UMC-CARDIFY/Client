@@ -4,3 +4,5 @@ export { default as Flashcard } from "./flashcard";
 export { default as Library } from "./library";
 export { default as Mypage } from "./mypage";
 export { default as LoginPage } from "./login";
+export { default as NotesInsideFolderPage } from "./archive/pages/NotesInsideFolderPage";
+export { default as SubFolderPage } from "./archive/pages/sub-folder";
