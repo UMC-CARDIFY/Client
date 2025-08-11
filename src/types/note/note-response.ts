@@ -28,3 +28,7 @@ export interface NoteListResponse {
 export interface ToggleNoteMarkResponse {
   isSuccess: boolean;
 }
+
+export interface DeleteNoteResponse {
+  isSuccess: boolean;
+}

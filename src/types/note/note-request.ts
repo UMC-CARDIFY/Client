@@ -11,3 +11,7 @@ export interface ToggleNoteMarkRequest {
   noteId: number;
   isMark: boolean;
 }
+
+export interface DeleteNoteRequest {
+  noteId: number;
+}
