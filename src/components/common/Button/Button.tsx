@@ -54,7 +54,7 @@ const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", color, child
           variant === "STROKE" && "gap-[0.62rem] text-gray-500",
           variant === "FILL" && "gap-2 text-gray-700",
           variant === "SMALL" && "gap-2 text-gray-700",
-          variant == "LONG" && "gap-2",
+          variant === "LONG" && "gap-2",
         )}
       >
         {children}
