@@ -10,7 +10,7 @@ const Home = () => {
   requestAccessTokenOnce();
 
   return (
-    <div className="w-[800px] mx-auto pb-20 text-base-black">
+    <div className="w-[50rem] mx-auto pb-20 text-base-black">
       <Text variant="sub_heading1" className="mt-10">
         홈
       </Text>
