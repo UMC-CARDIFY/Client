@@ -44,7 +44,7 @@ export const SubscribeCard = ({ type, userSubscription }: SubscribeCardProps) =>
         "광고 제거",
       ],
     },
-  };
+  } as const;
 
   const currentCard = cardData[type];
 
