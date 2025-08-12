@@ -89,7 +89,7 @@ export const EditFolderModal: React.FC<EditFolderModalProps> = ({
         />
 
         <div className="text-right mb-8">
-          <Text variant="caption" className="text-gray-400">
+          <Text variant="caption1" className="text-gray-400">
             {editedFolderName.length}/100
           </Text>
         </div>

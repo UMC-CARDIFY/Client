@@ -1,65 +1,112 @@
-import { ArrowLeftIcon } from "@pages/note-editor/components/tiptap-icons/arrow-left-icon";
-import { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import Button from "./Button";
 
-export default {
+const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
   argTypes: {
     variant: {
       control: "select",
-      options: ["SIZE", "NORMAL", "STORKE", "FILL", "SMALL"],
+      options: ["SIZE", "NORMAL", "STROKE", "FILL", "SMALL", "LONG"],
     },
     size: {
       control: "select",
       options: ["XS", "S", "M", "L", "XL", "UNKNOWN"],
     },
+    color: {
+      control: "select",
+      options: ["SKYBLUE", "BLUE"],
+    },
   },
-} as Meta<typeof Button>;
-
-const Template: StoryFn<typeof Button> = (args) => <Button {...args} />;
-
-export const Normal = Template.bind({});
-Normal.args = {
-  variant: "NORMAL",
-  children: "Normal Button",
 };
 
-export const Storke = Template.bind({});
-Storke.args = {
-  variant: "STORKE",
-  children: "Storke Button",
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Normal: Story = {
+  args: {
+    variant: "NORMAL",
+    children: "Normal Button",
+  },
 };
 
-export const Fill = Template.bind({});
-Fill.args = {
-  variant: "FILL",
-  children: "Fill Button",
+export const Stroke: Story = {
+  args: {
+    variant: "STROKE",
+    children: "Stroke Button",
+  },
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  variant: "SMALL",
-  children: "Small Button",
+export const Fill: Story = {
+  args: {
+    variant: "FILL",
+    children: "Fill Button",
+  },
 };
 
-export const SizeXS = Template.bind({});
-SizeXS.args = {
-  variant: "SIZE",
-  size: "XS",
-  children: "xs",
+export const Small: Story = {
+  args: {
+    variant: "SMALL",
+    children: "Small Button",
+  },
 };
 
-export const SizeS = Template.bind({});
-SizeS.args = {
-  variant: "SIZE",
-  size: "S",
-  children: "s",
+export const LongSkyblue: Story = {
+  args: {
+    variant: "LONG",
+    color: "SKYBLUE",
+    children: "Long Skyblue Button",
+  },
 };
 
-export const SizeMedium = Template.bind({});
-SizeMedium.args = {
-  variant: "SIZE",
-  size: "M",
-  children: "m",
+export const LongBlue: Story = {
+  args: {
+    variant: "LONG",
+    color: "BLUE",
+    children: "Long Blue Button",
+  },
+};
+
+export const SizeXS: Story = {
+  args: {
+    variant: "SIZE",
+    size: "XS",
+    children: "xs",
+  },
+};
+
+export const SizeS: Story = {
+  args: {
+    variant: "SIZE",
+    size: "S",
+    children: "s",
+  },
+};
+
+export const SizeM: Story = {
+  args: {
+    variant: "SIZE",
+    size: "M",
+    children: "m",
+  },
+};
+
+export const SizeL: Story = {
+  args: {
+    variant: "SIZE",
+    size: "L",
+    children: "l",
+  },
+};
+
+export const SizeXL: Story = {
+  args: {
+    variant: "SIZE",
+    size: "XL",
+    children: "xl",
+  },
 };
