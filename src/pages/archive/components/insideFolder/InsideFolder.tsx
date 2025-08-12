@@ -49,7 +49,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
         onMouseLeave={() => setIsHovered(false)}
       >
         <InnerFolderIcon className={`fill-icon-${color} mr-2`} />
-        <Text variant={"sub_heading4"} className="w-[6rem] text-base-black truncate">
+        <Text variant="sub_heading4" className="w-[6rem] text-base-black truncate">
           {truncateText(folderName)}
         </Text>
         <Kebab

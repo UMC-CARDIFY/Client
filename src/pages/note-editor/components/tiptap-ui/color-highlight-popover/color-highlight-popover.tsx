@@ -47,16 +47,56 @@ export interface ColorHighlightPopoverProps extends Omit<ButtonProps, "type"> {
 }
 
 export const DEFAULT_HIGHLIGHT_COLORS: ColorHighlightPopoverColor[] = [
-  { label: "Blue", value: "var(--color-highlight-blue)", border: "var(--color-highlight-blue-contrast)" },
-  { label: "Ocean", value: "var(--color-highlight-ocean)", border: "var(--color-highlight-ocean-contrast)" },
-  { label: "Lavender", value: "var(--color-highlight-lavender)", border: "var(--color-highlight-lavender-contrast)" },
-  { label: "Mint", value: "var(--color-highlight-mint)", border: "var(--color-highlight-mint-contrast)" },
-  { label: "Sage", value: "var(--color-highlight-sage)", border: "var(--color-highlight-sage-contrast)" },
-  { label: "Orange", value: "var(--color-highlight-orange)", border: "var(--color-highlight-orange-contrast)" },
-  { label: "Coral", value: "var(--color-highlight-coral)", border: "var(--color-highlight-coral-contrast)" },
-  { label: "Rose", value: "var(--color-highlight-rose)", border: "var(--color-highlight-rose-contrast)" },
-  { label: "Plum", value: "var(--color-highlight-plum)", border: "var(--color-highlight-plum-contrast)" },
-  { label: "Gray", value: "var(--color-highlight-gray)", border: "var(--color-highlight-gray-contrast)" },
+  {
+    label: "Blue",
+    value: "var(--color-highlight-blue)",
+    border: "var(--color-highlight-blue-contrast)",
+  },
+  {
+    label: "Ocean",
+    value: "var(--color-highlight-ocean)",
+    border: "var(--color-highlight-ocean-contrast)",
+  },
+  {
+    label: "Lavender",
+    value: "var(--color-highlight-lavender)",
+    border: "var(--color-highlight-lavender-contrast)",
+  },
+  {
+    label: "Mint",
+    value: "var(--color-highlight-mint)",
+    border: "var(--color-highlight-mint-contrast)",
+  },
+  {
+    label: "Sage",
+    value: "var(--color-highlight-sage)",
+    border: "var(--color-highlight-sage-contrast)",
+  },
+  {
+    label: "Orange",
+    value: "var(--color-highlight-orange)",
+    border: "var(--color-highlight-orange-contrast)",
+  },
+  {
+    label: "Coral",
+    value: "var(--color-highlight-coral)",
+    border: "var(--color-highlight-coral-contrast)",
+  },
+  {
+    label: "Rose",
+    value: "var(--color-highlight-rose)",
+    border: "var(--color-highlight-rose-contrast)",
+  },
+  {
+    label: "Plum",
+    value: "var(--color-highlight-plum)",
+    border: "var(--color-highlight-plum-contrast)",
+  },
+  {
+    label: "Gray",
+    value: "var(--color-highlight-gray)",
+    border: "var(--color-highlight-gray-contrast)",
+  },
 ];
 
 export const ColorHighlightPopoverButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -70,7 +110,7 @@ export const ColorHighlightPopoverButton = React.forwardRef<HTMLButtonElement, B
       role="button"
       tabIndex={-1}
       aria-label="Highlight text"
-      tooltip="Highlight"
+      tooltip="형광펜"
       ref={ref}
       {...props}
     >

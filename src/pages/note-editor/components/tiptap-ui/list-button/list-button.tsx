@@ -47,12 +47,12 @@ export interface ListButtonProps extends Omit<ButtonProps, "type"> {
 
 export const listOptions: ListOption[] = [
   {
-    label: "Bullet List",
+    label: "글머리표",
     type: "bulletList",
     icon: ListIcon,
   },
   {
-    label: "Ordered List",
+    label: "문단 번호",
     type: "orderedList",
     icon: ListOrderedIcon,
   },
