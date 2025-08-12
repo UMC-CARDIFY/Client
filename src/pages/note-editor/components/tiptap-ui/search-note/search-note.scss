@@ -1,0 +1,99 @@
+.search-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+
+  .search-note-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 240px;
+    height: 32px;
+    padding: 6px 16px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 1px solid #EEEEEE;
+    background: #FFFFFF;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+
+    &:focus-within {
+      border-color: #6698F5;
+      outline: none;
+    }
+
+    &:hover {
+      border-color: #DBDBDB;
+    }
+
+    .dark & {
+      border-color: #454545;
+      background: #191919;
+
+      &:focus-within {
+        border-color: #A7C5FF;
+      }
+
+      &:hover {
+        border-color: #464647;
+      }
+    }
+  }
+
+  .search-note-icon {
+    width: 20px;
+    height: 20px;
+    color: #747474;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .dark & {
+      color: #7C7C83;
+    }
+  }
+
+  .search-note-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #525252;
+    font-family: Pretendard, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    &::placeholder {
+      color: var(--text-gray-500, #747474);
+      font-family: Pretendard;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+    }
+
+    .dark & {
+      color: #C0C0C3;
+
+      &::placeholder {
+        color: var(--text-gray-500, #7C7C83);
+        font-family: Pretendard;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+      }
+    }
+  }
+}

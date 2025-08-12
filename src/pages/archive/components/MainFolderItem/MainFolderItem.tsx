@@ -80,18 +80,18 @@ const MainFolderItem: React.FC<MainFolderItemProps> = ({
         )}
 
         <div className="mt-4 w-[8.75rem] h-[2.25rem]">
-          <Text variant="sub_heading2" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
+          <Text variant="sub_heading3" className="text-base-black text-ellipsis line-clamp-2 leading-tight">
             {folderName}
           </Text>
         </div>
 
         <div className="flex items-center justify-between text-gray-400 mt-auto">
-          <Text variant="sub_heading2" className="pr-8">
+          <Text variant="sub_heading3" className="pr-8">
             {createdAt}
           </Text>
           <div className="flex gap-[0.19rem] items-center">
             <ArchiveNoteIcon className="w-4 h-4 fill-gray-400" />
-            <Text variant="sub_heading2">{displayNoteCnt}</Text>
+            <Text variant="sub_heading3">{displayNoteCnt}</Text>
           </div>
         </div>
       </div>

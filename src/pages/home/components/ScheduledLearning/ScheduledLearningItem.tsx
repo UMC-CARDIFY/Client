@@ -17,13 +17,13 @@ const ScheduledLearningItem: React.FC<ScheduledLearningItemProps> = ({
     >
       <div className="flex flex-col flex-1 gap-2">
         <HomeFlashcardIcon className={`fill-${folderColor}-600 stroke-${folderColor}-600 shrink-0`} />
-        <Text variant={"sub_heading3"} className="text-gray-500 mt-2 truncate">
+        <Text variant="sub_heading2" className="text-gray-500 mt-2 truncate">
           {folderName}
         </Text>
-        <Text variant={"sub_heading1"} className="text-base-black truncate">
+        <Text variant="sub_heading2" className="text-base-black truncate">
           {name}
         </Text>
-        <Text variant={"heading3"} className="text-base-black">
+        <Text variant="heading3" className="text-base-black">
           {timeReachedCards}개
         </Text>
       </div>
