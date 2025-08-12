@@ -37,7 +37,7 @@ export const AddSubFolderModal: React.FC<AddSubFolderModalProps> = ({ isOpen, on
       <div className="w-[27.75rem] h-auto bg-white rounded-lg border border-gray-150 shadow-md pt-10 px-4 pb-6">
         <div className="px-6">
           <div className="mb-[1.19rem]">
-            <Text variant="sub_heading1" className="text-black mb-6">
+            <Text variant="sub_heading2" className="text-black mb-6">
               폴더 추가
             </Text>
           </div>
@@ -57,7 +57,7 @@ export const AddSubFolderModal: React.FC<AddSubFolderModalProps> = ({ isOpen, on
             rows={1}
           />
           <div className="text-right mb-8 m-0">
-            <Text variant="caption1" className="text-gray-400">
+            <Text variant="body2" className="text-gray-400">
               {folderName.length}/100
             </Text>
           </div>
@@ -65,7 +65,7 @@ export const AddSubFolderModal: React.FC<AddSubFolderModalProps> = ({ isOpen, on
 
         <div className="flex justify-end gap-3">
           <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
-            <Text variant="sub_heading2" className="text-gray-700">
+            <Text variant="sub_heading3" className="text-gray-700">
               취소
             </Text>
           </button>
@@ -74,7 +74,7 @@ export const AddSubFolderModal: React.FC<AddSubFolderModalProps> = ({ isOpen, on
             onClick={handleSubmit}
             className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-100"
           >
-            <Text variant="sub_heading2" className="text-brand-700">
+            <Text variant="sub_heading3" className="text-brand-700">
               확인
             </Text>
           </button>

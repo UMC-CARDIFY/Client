@@ -18,7 +18,7 @@ const NavItem = ({
       `px-6 py-2 ${isActive ? "bg-brand-50 text-brand-700" : "text-gray-500"} cursor-pointer rounded-lg`
     }
   >
-    <Text variant="heading4" className="whitespace-nowrap">
+    <Text variant="heading5" className="whitespace-nowrap">
       {children}
     </Text>
   </NavLink>

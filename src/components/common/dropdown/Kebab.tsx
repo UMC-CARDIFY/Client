@@ -38,7 +38,7 @@ const Kebab: React.FC<KebabProps> = ({ onSelect, withFolderMove }) => {
             setIsOpen(false);
           }}
         >
-          <Text variant="sub_heading3">{item.label}</Text>
+          <Text variant="sub_heading4">{item.label}</Text>
         </button>
       ))}
     </DropdownButton>

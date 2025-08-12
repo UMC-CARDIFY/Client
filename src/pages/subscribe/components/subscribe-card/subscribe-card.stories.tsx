@@ -19,6 +19,12 @@ const meta: Meta<typeof SubscribeCard> = {
       description: "구독 카드 타입",
       defaultValue: "free",
     },
+    userSubscription: {
+      control: "select",
+      options: ["free", "pro"],
+      description: "현재 사용자 구독 상태",
+      defaultValue: "free",
+    },
   },
   tags: ["autodocs"],
 };
@@ -29,11 +35,13 @@ type Story = StoryObj<typeof meta>;
 export const Free: Story = {
   args: {
     type: "free",
+    userSubscription: "free",
   },
 };
 
 export const Pro: Story = {
   args: {
     type: "pro",
+    userSubscription: "free",
   },
 };

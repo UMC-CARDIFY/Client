@@ -26,19 +26,19 @@ const NoteList: React.FC<NoteListProps> = ({ notes = NoteItemData }) => {
         <CheckboxIcon className="mr-[1.5rem] cursor-pointer" />
         <ArchiveNoteIcon className="mr-[1.62rem] fill-gray-350" />
         <div className="bg-gray-150 h-[1.5rem] w-[1px]" />
-        <Text variant="sub_heading3" className="ml-[1rem] flex-grow text-gray-500">
+        <Text variant="sub_heading4" className="ml-[1rem] flex-grow text-gray-500">
           노트 이름
         </Text>
         <div className="bg-gray-150 h-[1.5rem] w-[1px]" />
-        <Text variant="sub_heading3" className="text-gray-500 pl-[1rem] pr-[1.9rem]">
+        <Text variant="sub_heading4" className="text-gray-500 pl-[1rem] pr-[1.9rem]">
           노트 생성일
         </Text>
         <div className="bg-gray-150 h-[1.5rem] w-[1px]" />
-        <Text variant="sub_heading3" className="text-gray-500 pl-[1rem] pr-[1.9rem]">
+        <Text variant="sub_heading4" className="text-gray-500 pl-[1rem] pr-[1.9rem]">
           최근 수정일
         </Text>
         <div className="bg-gray-150 h-[1.5rem] w-[1px]" />
-        <Text variant="sub_heading3" className="text-gray-500 pl-[1.06rem]">
+        <Text variant="sub_heading4" className="text-gray-500 pl-[1.06rem]">
           플래시 카드
         </Text>
       </div>

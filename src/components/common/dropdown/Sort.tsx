@@ -44,7 +44,7 @@ const Sort: React.FC<SortProps> = ({ onSelect, selected }) => {
           onClick={() => handleSelect(option.value, option.label)}
           className="w-full text-left px-5 py-4 text-base-black hover:bg-gray-50 cursor-pointer border-b border-gray-150 whitespace-nowrap appearance-none bg-transparent"
         >
-          <Text variant="sub_heading3" className="block w-full">
+          <Text variant="sub_heading4" className="block w-full">
             {option.label}
           </Text>
         </button>

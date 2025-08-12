@@ -65,7 +65,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
             page === currentPage ? "bg-gray-100 text-base-black" : "text-gray-400 hover:bg-gray-50"
           }`}
         >
-          <Text variant="sub_heading3">{page}</Text>
+          <Text variant="sub_heading4">{page}</Text>
         </button>
       ))}
 
