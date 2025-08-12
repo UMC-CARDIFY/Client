@@ -19,7 +19,7 @@ const meta: Meta<typeof Button> = {
     },
     color: {
       control: "select",
-      options: ["skyblue", "blue"],
+      options: ["SKYBLUE", "BLUE"],
     },
   },
 };
@@ -58,7 +58,7 @@ export const Small: Story = {
 export const LongSkyblue: Story = {
   args: {
     variant: "LONG",
-    color: "skyblue",
+    color: "SKYBLUE",
     children: "Long Skyblue Button",
   },
 };
@@ -66,7 +66,7 @@ export const LongSkyblue: Story = {
 export const LongBlue: Story = {
   args: {
     variant: "LONG",
-    color: "blue",
+    color: "BLUE",
     children: "Long Blue Button",
   },
 };

@@ -9,7 +9,7 @@ interface SubscribeProps {
 
 const Subscribe = ({ userSubscription = "pro" }: SubscribeProps) => {
   const isFree = userSubscription === "free";
-  const buttonColor = isFree ? "blue" : "skyblue";
+  const buttonColor = isFree ? "BLUE" : "SKYBLUE";
   const buttonText = isFree ? "요금제 구독하기" : "무료 요금제로 돌아가기";
 
   return (
