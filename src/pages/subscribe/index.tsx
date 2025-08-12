@@ -7,10 +7,19 @@ interface SubscribeProps {
   userSubscription?: "free" | "pro";
 }
 
-const Subscribe = ({ userSubscription = "pro" }: SubscribeProps) => {
-  const isFree = userSubscription === "free";
-  const buttonColor = isFree ? "BLUE" : "SKYBLUE";
-  const buttonText = isFree ? "요금제 구독하기" : "무료 요금제로 돌아가기";
+const Subscribe = ({ userSubscription = "free" }: SubscribeProps) => {
+  const SUBSCRIPTION = {
+    free: {
+      buttonColor: "BLUE",
+      buttonText: "요금제 구독하기",
+    },
+    pro: {
+      buttonColor: "SKYBLUE",
+      buttonText: "무료 요금제로 돌아가기",
+    },
+  } as const;
+
+  const { buttonColor, buttonText } = SUBSCRIPTION[userSubscription];
 
   return (
     <div className="w-full flex flex-col items-center p-10 bg-brand-10">
