@@ -6,18 +6,15 @@ import { useTiptapEditor } from "../../../hooks/use-tiptap-editor";
 
 // --- Icons ---
 import { ChevronDownIcon } from "../../tiptap-icons/chevron-down-icon";
-import { HeadingIcon } from "../../tiptap-icons/heading-icon";
 
 // --- Lib ---
 import { isNodeInSchema } from "../../../lib/tiptap-utils";
 
 // --- Tiptap UI ---
-import {
-  HeadingButton,
-  type Level,
-  getFormattedHeadingName,
-  headingIcons,
-} from "../../tiptap-ui/heading-button/heading-button";
+import { type Level } from "../../tiptap-ui/heading-button/heading-button";
+
+// --- Styles ---
+import "./heading-dropdown-menu.scss";
 
 // --- UI Primitives ---
 import type { ButtonProps } from "../../tiptap-ui-primitive/button";
@@ -57,16 +54,19 @@ export function HeadingDropdownMenu({
     [onOpenChange],
   );
 
-  const getActiveIcon = React.useCallback(() => {
-    if (!editor) return <HeadingIcon className="tiptap-button-icon" />;
+  const getActiveText = React.useCallback(() => {
+    if (!editor) return "텍스트";
 
     const activeLevel = levels.find((level) => editor.isActive("heading", { level })) as Level | undefined;
 
-    if (!activeLevel) return <HeadingIcon className="tiptap-button-icon" />;
+    if (!activeLevel) return "텍스트";
 
-    const ActiveIcon = headingIcons[activeLevel];
-    return <ActiveIcon className="tiptap-button-icon" />;
+    return `제목 ${activeLevel}`;
   }, [editor, levels]);
+
+  const getFormattedHeadingName = (level: Level): string => {
+    return `제목 ${level}`;
+  };
 
   const canToggleAnyHeading = React.useCallback((): boolean => {
     if (!editor) return false;
@@ -108,19 +108,44 @@ export function HeadingDropdownMenu({
           tabIndex={-1}
           aria-label="Format text as heading"
           aria-pressed={isAnyHeadingActive}
-          tooltip="Heading"
+          tooltip="스타일"
           {...props}
+          className="heading-dropdown-button"
         >
-          {getActiveIcon()}
+          <span className="heading-dropdown-text">{getActiveText()}</span>
           <ChevronDownIcon className="tiptap-button-dropdown-small" />
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent>
+      <DropdownMenuContent className="heading-dropdown-content">
         <DropdownMenuGroup>
+          {/* 본문 아이템 */}
+          <DropdownMenuItem asChild>
+            <button
+              className="heading-dropdown-item"
+              onClick={() => {
+                editor?.chain().focus().setNode("paragraph").run();
+              }}
+            >
+              본문
+            </button>
+          </DropdownMenuItem>
+
+          {/* 헤딩 아이템들 */}
           {levels.map((level) => (
             <DropdownMenuItem key={`heading-${level}`} asChild>
-              <HeadingButton editor={editor} level={level} text={getFormattedHeadingName(level)} tooltip={""} />
+              <button
+                className="heading-dropdown-item"
+                onClick={() => {
+                  if (editor?.isActive("heading", { level })) {
+                    editor.chain().focus().setNode("paragraph").run();
+                  } else {
+                    editor?.chain().focus().toggleNode("heading", "paragraph", { level }).run();
+                  }
+                }}
+              >
+                {getFormattedHeadingName(level)}
+              </button>
             </DropdownMenuItem>
           ))}
         </DropdownMenuGroup>
