@@ -8,6 +8,17 @@ interface SubscribeProps {
 }
 
 const Subscribe = ({ userSubscription = "free" }: SubscribeProps) => {
+  const HEADINGS = [
+    [
+      { text: "무제한", className: "text-brand-700" },
+      { text: "으로 기록하고, ", className: "text-gray-700" },
+    ],
+    [
+      { text: "무한히 ", className: "text-brand-700" },
+      { text: "성장하세요.", className: "text-gray-700" },
+    ],
+  ] as const;
+
   const SUBSCRIPTION = {
     free: {
       buttonColor: "BLUE",
@@ -26,14 +37,15 @@ const Subscribe = ({ userSubscription = "free" }: SubscribeProps) => {
       <LogoIcon className="w-16 h-16 mb-8" />
 
       <div className="mb-8">
-        <Text variant="heading2" className="leading-tight">
-          <span className="text-brand-700">무제한</span>
-          <span className="text-gray-700">으로 기록하고, </span>
-        </Text>
-        <Text variant="heading2" className="leading-tight">
-          <span className="text-brand-700">무한히 </span>
-          <span className="text-gray-700">성장하세요.</span>
-        </Text>
+        {HEADINGS.map((line, idx) => (
+          <Text key={idx} variant="heading2" className="leading-tight">
+            {line.map((part, i) => (
+              <span key={i} className={part.className}>
+                {part.text}
+              </span>
+            ))}
+          </Text>
+        ))}
       </div>
 
       <div className="w-fit flex flex-col gap-8">
