@@ -50,7 +50,7 @@ export const SubscribeCard = ({ type, userSubscription }: SubscribeCardProps) =>
 
   return (
     <div
-      className={`w-[19.1875rem] h-[24.4375rem] pt-8 pb-10 px-8 relative shrink-0 bg-white rounded-lg outline outline-1 ${currentCard.outlineColor}`}
+      className={`w-[19.18rem] h-[24.43rem] pt-8 pb-10 px-8 relative shrink-0 bg-white rounded-lg outline outline-1 ${currentCard.outlineColor}`}
     >
       <div className="flex flex-col justify-start items-start gap-2">
         <div className="flex flex-row items-center gap-3">
