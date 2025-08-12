@@ -57,7 +57,7 @@ export const SubscribeCard = ({ type, userSubscription }: SubscribeCardProps) =>
           <Text variant="heading4" className={`${currentCard.titleColor} leading-tight`}>
             {currentCard.title}
           </Text>
-          {isCurrentSubscription && <Chip text="구독 중인 요금제" />}
+          {isCurrentSubscription && <Chip text={currentCard.badge} />}
         </div>
 
         <Text variant="caption1" className="justify-start text-gray-400 leading-tight">
