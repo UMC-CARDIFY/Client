@@ -10,14 +10,19 @@ import { StarIcon } from "../StarIcon";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditFolderModal } from "../modal/EditFolderModal/EditFolderModal";
 
+import { deleteFolder } from "@apis/folder/folder";
+import { FOLDER_QUERY_KEY } from "@apis/folder/folder-queries";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 interface FolderNameHeaderProps {
   folderId: number;
   folderName: string;
   color: string;
   markState: "ACTIVE" | "INACTIVE";
+  onDeleted?: () => void;
 }
 
-const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderName, color, markState }) => {
+const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderName, color, markState, onDeleted }) => {
   const colorHexCode = colorMap[color as keyof typeof colorMap];
   const { darkenColor } = useColorUtils();
   const darkenedColor = darkenColor(colorHexCode, 0.2);
@@ -26,8 +31,29 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderNam
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const markFolderMutation = useFolderMark();
 
+  const qc = useQueryClient();
+
+  const { mutateAsync: deleteFolderAsync, isPending: isDeleting } = useMutation({
+    mutationFn: (id: number) => deleteFolder(id),
+  });
+
   const handleEditFolder = () => setIsEditModalOpen(false);
-  const handleDeleteFolder = () => setIsDeleteModalOpen(false);
+
+  const handleDeleteFolder = async () => {
+    if (isDeleting) return;
+    try {
+      onDeleted?.();
+      queueMicrotask(async () => {
+        await deleteFolderAsync(folderId);
+        qc.invalidateQueries({
+          queryKey: FOLDER_QUERY_KEY.ALL(),
+          exact: false,
+        });
+      });
+    } finally {
+      setIsDeleteModalOpen(false);
+    }
+  };
 
   const handleToggleMark = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -49,7 +75,7 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderNam
           {folderName}
         </Text>
 
-        <div className="ml-2 mr-2 flex items-center justify-center">
+        <div className="ml-2 w-6 h-6 flex items-center justify-center shrink-0">
           <Kebab
             withFolderMove
             onSelect={(value) => {
