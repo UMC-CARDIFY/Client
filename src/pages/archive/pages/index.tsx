@@ -5,9 +5,9 @@ import { mapToMainFolderProps } from "@utils/folder-mapper";
 import { useState } from "react";
 import EmptyState from "../components/EmptyState/EmptyState";
 import MainFolderList from "../components/MainFolderList/MainFolderList";
-import { useFolderList } from "../hooks/use-archive-folder";
-
 import { LimitAddFolderModal } from "../components/modal/LimitAddFolderModal/LimitAddFolderModal";
+import NewFolderMain from "../components/newFolder/NewFolderMain";
+import { useFolderList } from "../hooks/use-archive-folder";
 
 const Archive = () => {
   const [order, setOrder] = useState("edit-newest");
@@ -20,8 +20,9 @@ const Archive = () => {
   });
 
   const transformedFolders = foldersList.map(mapToMainFolderProps);
+  const isColorFiltered = colors.length > 0;
 
-  //TODO: 로딩 ui 받으면 suspense로 수정 및 에러도 에러바운더리로 리팩토링 예정
+  // TODO: 로딩 UI 받으면 Suspense로 수정 및 에러도 에러바운더리로 리팩토링 예정
   if (isLoading) return <div>로딩 중...</div>;
   if (isError) return <div>에러가 발생했습니다</div>;
 
@@ -37,9 +38,15 @@ const Archive = () => {
 
         <div className="flex mt-8">
           {transformedFolders.length === 0 ? (
-            <div className="mt-12 w-full flex justify-center">
-              <EmptyState type="folder" />
-            </div>
+            isColorFiltered ? (
+              <div className="w-full">
+                <NewFolderMain onLimitReached={() => setIsLimitModalOpen(true)} />
+              </div>
+            ) : (
+              <div className="mt-[6.25rem] w-full flex justify-center">
+                <EmptyState type="folder" />
+              </div>
+            )
           ) : (
             <MainFolderList
               folders={transformedFolders}
