@@ -48,6 +48,8 @@ const NoteList: React.FC<NoteListProps> = ({ notes = [], checkedNoteIds, onToggl
   return (
     <div className={`w-full ${!hasPagination ? "pb-32" : ""}`}>
       <div className={`${GRID} pl-4 py-3`}>
+        <div />
+        <div />
         <button
           onClick={handleToggleAll}
           className="w-4 h-4 inline-flex items-center justify-center cursor-pointer"
@@ -56,27 +58,22 @@ const NoteList: React.FC<NoteListProps> = ({ notes = [], checkedNoteIds, onToggl
           {allChecked ? <CheckboxFilledIcon className="w-4 h-4" /> : <CheckboxIcon className="w-4 h-4" />}
         </button>
         <div />
-
         <ArchiveNoteIcon className="w-6 h-6 fill-gray-350" />
-
         <div className={`${SEP} before:ml-6 before:mr-4`}>
           <Text variant="sub_heading3" className="text-gray-500">
             노트 이름
           </Text>
         </div>
-
         <div className={`${SEP} before:mr-4`}>
           <Text variant="sub_heading3" className="text-gray-500">
             노트 생성일
           </Text>
         </div>
-
         <div className={`${SEP} before:mr-4`}>
           <Text variant="sub_heading3" className="text-gray-500">
             최근 수정일
           </Text>
         </div>
-
         <div className={`${SEP} before:mr-4`}>
           <Text variant="sub_heading3" className="text-gray-500">
             플래시 카드
