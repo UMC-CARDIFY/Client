@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import DeleteButton from "@components/common/delete-button/delete-button";
 import NoteFilter from "@components/common/dropdown/NoteFilter";
@@ -17,6 +17,7 @@ import { useDeleteNote, useNoteList } from "../hooks/use-archive-note";
 import { useDeleteNoteModal } from "../hooks/use-delete-note-modal";
 
 const NotesInsideFolderPage = () => {
+  const navigate = useNavigate();
   const { id: paramFolderId } = useParams();
   const parentFolderId = Number(paramFolderId);
   const isValidId = !Number.isNaN(parentFolderId);
@@ -100,10 +101,11 @@ const NotesInsideFolderPage = () => {
           folderName={folderTitle}
           color={folderColor}
           markState={folderMarkState}
+          onDeleted={() => navigate(PATHS.ARCHIVE)}
         />
 
-        <div className="flex flex-col mt-[2.5rem] gap-[1rem]">
-          <Text variant="sub_heading3" className="text-base-black ml-[0.5rem]">
+        <div className="flex flex-col mt-10 gap-4">
+          <Text variant="sub_heading3" className="text-base-black ml-2">
             폴더
           </Text>
           <div className="z-10">
@@ -119,7 +121,7 @@ const NotesInsideFolderPage = () => {
           />
         </div>
 
-        <div className="flex flex-col mt-[4rem] gap-[1rem]">
+        <div className="flex flex-col mt-16 gap-4">
           <Text variant="sub_heading3" className="text-base-black ml-[0.5rem]">
             노트
           </Text>

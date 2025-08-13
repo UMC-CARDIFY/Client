@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import DeleteButton from "@components/common/delete-button/delete-button";
 import NoteFilter from "@components/common/dropdown/NoteFilter";
@@ -15,11 +15,13 @@ import { useFolderList } from "../hooks/use-archive-folder";
 import { useDeleteNote, useNoteList } from "../hooks/use-archive-note";
 import { useDeleteNoteModal } from "../hooks/use-delete-note-modal";
 
-export default function SubFolderPage() {
+function SubFolderPage() {
   const { folderId: paramParentFolderId, subFolderId: paramSubFolderId } = useParams();
   const parentFolderId = Number(paramParentFolderId);
   const currentFolderId = Number(paramSubFolderId);
   const isValid = !Number.isNaN(parentFolderId) && !Number.isNaN(currentFolderId);
+
+  const navigate = useNavigate();
 
   const [noteOrder, setNoteOrder] = useState<SortOrder>("edit-newest");
   const [noteFilter, setNoteFilter] = useState<string | null>(null);
@@ -122,6 +124,7 @@ export default function SubFolderPage() {
           folderName={currentFolderTitle}
           color={folderColor}
           markState={folderMarkState}
+          onDeleted={() => navigate(`${PATHS.ARCHIVE}/${parentFolderId}`)}
         />
 
         <div className="flex flex-col mt-[4rem] gap-[1rem]">
@@ -161,3 +164,5 @@ export default function SubFolderPage() {
     </div>
   );
 }
+
+export default SubFolderPage;
