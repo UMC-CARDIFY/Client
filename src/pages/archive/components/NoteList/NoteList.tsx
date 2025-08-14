@@ -1,9 +1,9 @@
 import Pagination from "@components/common/pagination/Pagination";
 import { Text } from "@components/typography/Text";
+import NoteItemData from "@mocks/note-item-data";
 import { ArchiveNoteIcon, CheckboxIcon } from "@svgs/index";
 import { NoteItemProps } from "@typedefs";
 import { useState } from "react";
-import NoteItemData from "src/mocks/NoteItemData";
 import EmptyState from "../EmptyState/EmptyState";
 import NoteItem from "../NoteItem/NoteItem";
 
