@@ -1,5 +1,5 @@
 import { Text } from "@components/typography/Text";
-import { colorMap } from "@styles/colorMap";
+import { colorMap } from "@styles/color-map";
 import { ColorCircleCheckIcon, ColorCircleIcon } from "@svgs/index";
 import { useState } from "react";
 

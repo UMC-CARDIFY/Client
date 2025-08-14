@@ -1,4 +1,4 @@
-import { colorMap } from "@styles/colorMap";
+import { colorMap } from "@styles/color-map";
 
 export function isValidColor(color: string): color is keyof typeof colorMap {
   return color in colorMap;
