@@ -2,7 +2,7 @@ import NotesInsideFolderPage from "@pages/archive/pages/NotesInsideFolderPage";
 import { createBrowserRouter } from "react-router-dom";
 import NoteLayout from "src/layouts/noteLayout";
 import MainLayout from "../layouts/mainLayout";
-import { Archive, Flashcard, Home, Library, Login, Mypage, Subscribe } from "../pages";
+import { Archive, Flashcard, Home, Library, Login, MyPage, Subscribe } from "../pages";
 import { PATHS } from "./paths";
 
 const router = createBrowserRouter([
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: PATHS.MYPAGE,
-        element: <Mypage />,
+        element: <MyPage />,
       },
       {
         path: PATHS.SUBSCRIBE,
