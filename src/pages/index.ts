@@ -6,3 +6,4 @@ export { default as Mypage } from "./mypage";
 export { default as LoginPage } from "./login";
 export { default as NotesInsideFolderPage } from "./archive/pages/NotesInsideFolderPage";
 export { default as SubFolderPage } from "./archive/pages/sub-folder";
+export { default as Subscribe } from "./subscribe";

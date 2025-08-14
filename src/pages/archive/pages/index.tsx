@@ -29,7 +29,7 @@ const Archive = () => {
   return (
     <div className="w-full flex justify-center">
       <div className="w-[50rem] mt-10 flex flex-col">
-        <Text variant="heading2">사용자의 아카이브</Text>
+        <Text variant="sub_heading1">사용자의 아카이브</Text>
 
         <div className="mt-10 flex gap-2 z-10">
           <Sort selected={order} onSelect={setOrder} />

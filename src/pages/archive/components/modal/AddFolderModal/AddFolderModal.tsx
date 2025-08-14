@@ -44,11 +44,11 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
       <div className="w-[27.75rem] h-auto bg-white rounded-lg border border-gray-150 shadow-md p-10 pb-6">
         <div className="mb-[1.9rem]">
-          <Text variant="sub_heading1">폴더 추가</Text>
+          <Text variant="sub_heading2">폴더 추가</Text>
         </div>
 
         <label htmlFor="folder-name" className="block mb-4">
-          <Text variant="sub_heading3" className="text-gray-700">
+          <Text variant="sub_heading4" className="text-gray-700">
             이름
           </Text>
         </label>
@@ -70,13 +70,13 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
         />
 
         <div className="text-right mb-8">
-          <Text variant="caption" className="text-gray-400">
+          <Text variant="body2" className="text-gray-400">
             {folderName.length}/100
           </Text>
         </div>
 
         {/* Color Picker + Icon */}
-        <Text variant="sub_heading3" className="block text-gray-700 mb-[1.06rem]">
+        <Text variant="sub_heading4" className="block text-gray-700 mb-[1.06rem]">
           색상
         </Text>
 
@@ -112,7 +112,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
 
         <div className="flex justify-end gap-3">
           <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
-            <Text variant="sub_heading2" className="text-gray-700">
+            <Text variant="sub_heading3" className="text-gray-700">
               취소
             </Text>
           </button>
@@ -121,7 +121,7 @@ export const AddFolderModal: React.FC<AddFolderModalProps> = ({ isOpen, onClose,
             onClick={handleSubmit}
             className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-100"
           >
-            <Text variant="sub_heading2" className="text-brand-700">
+            <Text variant="sub_heading3" className="text-brand-700">
               확인
             </Text>
           </button>

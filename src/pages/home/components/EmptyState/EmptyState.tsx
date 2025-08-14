@@ -37,14 +37,14 @@ const EmptyState: React.FC<EmptyStateProps> = ({ type }) => {
 
   return (
     <div className="w-fit flex flex-col gap-6">
-      <Text variant="sub_heading2" className="text-gray-500 whitespace-pre-line">
+      <Text variant="sub_heading3" className="text-gray-500 whitespace-pre-line">
         {message}
       </Text>
       <button
         onClick={handleClick}
         className="w-fit px-5 py-[0.375rem] rounded-lg text-brand-700 bg-brand-50 hover:bg-brand-100"
       >
-        <Text variant="sub_heading2">{buttonText}</Text>
+        <Text variant="sub_heading3">{buttonText}</Text>
       </button>
     </div>
   );

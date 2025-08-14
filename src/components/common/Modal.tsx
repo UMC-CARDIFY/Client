@@ -38,7 +38,7 @@ export const Modal: React.FC<ModalProps> = ({
         </div>
         <div className="flex justify-center gap-2 mt-6">
           <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
-            <Text variant="sub_heading2" className="text-gray-700">
+            <Text variant="sub_heading3" className="text-gray-700">
               {cancelText}
             </Text>
           </button>
@@ -48,7 +48,7 @@ export const Modal: React.FC<ModalProps> = ({
               onClick={onSubmit}
               className="h-8 px-5 py-1 rounded-md bg-brand-50 hover:bg-brand-100"
             >
-              <Text variant="sub_heading2" className="text-brand-700">
+              <Text variant="sub_heading3" className="text-brand-700">
                 {confirmText}
               </Text>
             </button>

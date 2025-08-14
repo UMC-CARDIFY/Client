@@ -105,7 +105,7 @@ const NotesInsideFolderPage = () => {
         />
 
         <div className="flex flex-col mt-10 gap-4">
-          <Text variant="sub_heading3" className="text-base-black ml-2">
+          <Text variant="sub_heading4" className="text-base-black ml-2">
             폴더
           </Text>
           <div className="z-10">
@@ -122,7 +122,7 @@ const NotesInsideFolderPage = () => {
         </div>
 
         <div className="flex flex-col mt-16 gap-4">
-          <Text variant="sub_heading3" className="text-base-black ml-[0.5rem]">
+          <Text variant="sub_heading4" className="text-base-black ml-[0.5rem]">
             노트
           </Text>
           <div className="flex justify-between items-center">

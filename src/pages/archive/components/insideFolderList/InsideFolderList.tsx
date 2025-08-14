@@ -59,8 +59,8 @@ const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders, parentFold
 
       {shouldShowViewAll && (
         <Text
-          variant="sub_heading2"
-          className="text-gray-500 mt-3 px-2 py-1 self-end hover:bg-gray-50 rounded cursor-pointer"
+          variant="sub_heading4"
+          className="text-gray-500 mt-3 mr-2 px-2 py-1 self-end hover:bg-gray-50 rounded cursor-pointer"
         >
           전체 보기
         </Text>

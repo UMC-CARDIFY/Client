@@ -75,7 +75,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
       <div className={`${SEP} before:mr-4`}>
         <div className="inline-flex px-3 py-1.5 gap-2 rounded-lg bg-gray-100">
           <FlashcardIcon />
-          <Text variant="sub_heading3" className="text-gray-500">
+          <Text variant="sub_heading4" className="text-gray-500">
             {displayFlashcardNum}
           </Text>
         </div>

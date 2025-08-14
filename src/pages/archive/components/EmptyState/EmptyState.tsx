@@ -43,7 +43,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({ type }) => {
       {type === "folder" ? <NewFolderIcon className="w-12 h-12 mb-2" /> : <EmptyNoteIcon className="w-8 h-8 mb-2" />}
 
       <div className="flex flex-col items-center gap-1">
-        <Text variant="sub_heading2">{messages.title}</Text>
+        <Text variant="sub_heading3">{messages.title}</Text>
         <Text variant="body3">{messages.description}</Text>
       </div>
 
@@ -53,7 +53,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({ type }) => {
           className="px-4 py-1 bg-brand-50 hover:bg-brand-100 rounded-lg mt-4"
           onClick={handleClick}
         >
-          <Text variant="sub_heading2" className="text-brand-original">
+          <Text variant="sub_heading3" className="text-brand-original">
             폴더 추가하기
           </Text>
         </button>

@@ -3,7 +3,8 @@ import { cn } from "@utils/cn";
 
 interface ButtonProps {
   size?: "XS" | "S" | "M" | "L" | "XL" | "UNKNOWN";
-  variant: "SIZE" | "NORMAL" | "STROKE" | "FILL" | "SMALL";
+  variant: "SIZE" | "NORMAL" | "STROKE" | "FILL" | "SMALL" | "LONG";
+  color?: "SKYBLUE" | "BLUE";
   children: React.ReactNode;
   className?: string;
 }
@@ -23,9 +24,15 @@ const textVariantMap: Record<ButtonProps["variant"], TextProps["variant"]> = {
   STROKE: "sub_heading4",
   FILL: "sub_heading4",
   SMALL: "sub_heading4",
+  LONG: "sub_heading4",
 };
 
-const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", children, className }) => {
+const ColorMap: Record<NonNullable<ButtonProps["color"]>, string> = {
+  SKYBLUE: "bg-brand-100 hover:bg-brand-150 active:bg-brand-150 text-brand-700",
+  BLUE: "bg-brand-original hover:bg-brand-800 active:bg-brand-900 text-base-white",
+};
+
+const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", color, children, className }) => {
   return (
     <button
       className={cn(
@@ -34,8 +41,9 @@ const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", children, cl
         variant === "NORMAL" && "px-5 py-2 bg-gray-50 hover:bg-gray-100 active:bg-gray-150",
         variant === "STROKE" &&
           "border border-gray-150 gap-[0.62rem]  px-4 py-2 bg-gray-white hover:bg-gray-50 active:bg-gray-100",
-        variant === "FILL" && "gap-[0.5rem] px-4 py-2  hover:bg-gray-100 active:bg-gray-200",
-        variant === "SMALL" && "gap-[0.5rem] px-2 py-1 bg-gray-white hover:bg-gray-50 active:bg-gray-100",
+        variant === "FILL" && "gap-2 px-4 py-2  hover:bg-gray-100 active:bg-gray-200",
+        variant === "SMALL" && "gap-2 px-2 py-1 bg-gray-white hover:bg-gray-50 active:bg-gray-100",
+        variant === "LONG" && `w-full px-2 py-3 ${color ? ColorMap[color] : ""}`,
       )}
     >
       <Text
@@ -44,8 +52,9 @@ const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", children, cl
           "flex",
           variant === "NORMAL" && "text-gray-700",
           variant === "STROKE" && "gap-[0.62rem] text-gray-500",
-          variant === "FILL" && "gap-[0.5rem] text-gray-700",
-          variant === "SMALL" && "gap-[0.5rem] text-gray-700",
+          variant === "FILL" && "gap-2 text-gray-700",
+          variant === "SMALL" && "gap-2 text-gray-700",
+          variant === "LONG" && "gap-2",
         )}
       >
         {children}

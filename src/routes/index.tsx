@@ -1,7 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import NoteLayout from "src/layouts/noteLayout";
 import MainLayout from "../layouts/mainLayout";
-import { Archive, Flashcard, Home, Library, LoginPage, Mypage, NotesInsideFolderPage, SubFolderPage } from "../pages";
+import {
+  Archive,
+  Flashcard,
+  Home,
+  Library,
+  LoginPage,
+  Mypage,
+  NotesInsideFolderPage,
+  SubFolderPage,
+  Subscribe,
+} from "../pages";
 import { PATHS } from "./paths";
 
 const router = createBrowserRouter([
@@ -36,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: PATHS.MYPAGE,
         element: <Mypage />,
+      },
+      {
+        path: PATHS.SUBSCRIBE,
+        element: <Subscribe />,
       },
     ],
   },
