@@ -55,22 +55,6 @@ export const Small: Story = {
   },
 };
 
-export const LongSkyblue: Story = {
-  args: {
-    variant: "LONG",
-    color: "SKYBLUE",
-    children: "Long Skyblue Button",
-  },
-};
-
-export const LongBlue: Story = {
-  args: {
-    variant: "LONG",
-    color: "BLUE",
-    children: "Long Blue Button",
-  },
-};
-
 export const SizeXS: Story = {
   args: {
     variant: "SIZE",
