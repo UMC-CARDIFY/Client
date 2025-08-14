@@ -1,4 +1,4 @@
-import { colorMap } from "@styles/colorMap";
+import { colorMap } from "@styles/color-map";
 import { CommonXIcon20, FilteringIcon } from "@svgs/index";
 import { useEffect, useState } from "react";
 import DropdownButton from "./DropdownContainer";

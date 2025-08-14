@@ -1,8 +1,8 @@
 import { Text } from "@components/typography/Text";
 import { LoginGradient, SymbolLogo } from "@svgs/index";
 import { motion } from "framer-motion";
-import GoogleButton from "../components/GoogleButton/GoogleButton";
-import KakaoButton from "../components/kakaoButton/KakaoButton";
+import GoogleButton from "../components/google-button/google-button";
+import KakaoButton from "../components/kakao-button/kakao-button";
 
 const Login = () => {
   return (

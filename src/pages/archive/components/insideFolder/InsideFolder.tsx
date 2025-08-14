@@ -1,8 +1,8 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
+import InsideFolderItemData from "@mocks/inside-folder-item-data";
 import { InnerFolderIcon } from "@svgs/index";
 import React, { useState } from "react";
-import InsideFolderItemData from "src/mocks/InsideFolderItemData";
 import { DeleteFolderModal } from "../modal/DeleteFolderModal/DeleteFolderModal";
 import { EditSubFolderModal } from "../modal/EditSubFolderModal/EditSubFolderModal";
 import { Folder, MoveFolderModal } from "../modal/MoveFolderModal/MoveFolderModal";

@@ -1,8 +1,8 @@
 import Pagination from "@components/common/pagination/Pagination";
 import { Text } from "@components/typography/Text";
+import FolderItemData from "@mocks/folder-item-data";
 import EmptyState from "@pages/home/components/EmptyState/EmptyState";
 import { useState } from "react";
-import FolderItemData from "src/mocks/FolderItemData";
 import MainFolderItem from "../MainFolderItem/MainFolderItem";
 import NewFolderMain from "../newFolder/NewFolderMain";
 

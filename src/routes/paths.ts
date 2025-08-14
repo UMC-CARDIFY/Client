@@ -3,7 +3,7 @@ export const PATHS = {
   ARCHIVE: "/archive",
   FLASHCARD: "/flashcard",
   LIBRARY: "/library",
-  MYPAGE: "/mypage",
+  MYPAGE: "/my-page",
   LOGIN: "/login",
   NOTE_EDITOR: "/note-editor",
   SUBSCRIBE: "/subscribe",

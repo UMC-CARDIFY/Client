@@ -1,4 +1,4 @@
-import { Chip } from "@components/common/chip";
+import { Chip } from "@components/common/chip/chip";
 import { Text } from "@components/typography/Text";
 
 interface SubscribeCardProps {

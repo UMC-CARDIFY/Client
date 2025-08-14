@@ -1,7 +1,7 @@
 import Kebab from "@components/common/dropdown/Kebab";
 import { Text } from "@components/typography/Text";
 import { useColorUtils } from "@pages/archive/hooks/use-color-utils";
-import { colorMap } from "@styles/colorMap";
+import { colorMap } from "@styles/color-map";
 import { EmptyStarIcon, StarIcon } from "@svgs/index";
 import React from "react";
 import { useState } from "react";
