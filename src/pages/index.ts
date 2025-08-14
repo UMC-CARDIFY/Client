@@ -3,5 +3,5 @@ export { default as Archive } from "./archive/pages";
 export { default as Flashcard } from "./flashcard";
 export { default as Library } from "./library";
 export { default as Mypage } from "./mypage";
-export { default as LoginPage } from "./login";
+export { default as Login } from "./login/pages/login";
 export { default as Subscribe } from "./subscribe";
