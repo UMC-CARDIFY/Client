@@ -1,7 +1,7 @@
 import Button from "@components/common/Button/Button";
 import { Text } from "@components/typography/Text";
 import { LogoIcon } from "@svgs/index";
-import { SubscribeCard } from "./components/subscribe-card";
+import { SubscribeCard } from "../components/subscribe-card/subscribe-card";
 
 interface SubscribeProps {
   userSubscription?: "free" | "pro";
