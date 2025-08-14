@@ -43,10 +43,10 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
         <CommonXIcon className="absolute top-6 right-6 w-[2.25rem] h-[2.25rem] cursor-pointer" onClick={onClose} />
 
         <div className="mb-4 flex gap-1">
-          <Text variant="heading4" className="text-blue-500">
+          <Text variant="heading5" className="text-blue-500">
             {currentFolderName}
           </Text>
-          <Text variant="sub_heading2" className="text-black">
+          <Text variant="sub_heading3" className="text-black">
             폴더를 이동시킬 위치를 선택해 주세요.
           </Text>
         </div>
@@ -81,10 +81,10 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
                 />
               </div>
               <div className="flex gap-1">
-                <Text variant="sub_heading2" className="text-black">
+                <Text variant="sub_heading3" className="text-black">
                   {folder.folderName}
                 </Text>
-                <Text variant="sub_heading2" className="text-gray-400">
+                <Text variant="sub_heading3" className="text-gray-400">
                   ({folder.noteCount})
                 </Text>
               </div>

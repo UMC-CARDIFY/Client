@@ -104,7 +104,7 @@ export function useCodeBlockState(editor: Editor | null, disabled = false, hideW
   }, [editor, isDisabled]);
 
   const shortcutKey = "Ctrl-Alt-c";
-  const label = "Code Block";
+  const label = "코드 블록";
 
   return {
     nodeInSchema,

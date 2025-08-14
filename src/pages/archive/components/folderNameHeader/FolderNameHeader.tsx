@@ -46,7 +46,7 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderNam
         {markState ? <StarIcon /> : <EmptyStarIcon />}
       </button>
       <ArchiveFolderIcon fillColor={colorHexCode} backgroundColor={darkenedColor} />
-      <Text variant="heading2" className="text-base-black ml-4">
+      <Text variant="sub_heading1" className="text-base-black ml-4">
         {folderName}
       </Text>
       <div className="flex items-center absolute right-0">

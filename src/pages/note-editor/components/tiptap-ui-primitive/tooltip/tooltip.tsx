@@ -53,7 +53,7 @@ interface TooltipContextValue extends UseFloatingReturn<ReferenceType> {
 
 function useTooltip({
   initialOpen = false,
-  placement = "top",
+  placement = "bottom",
   open: controlledOpen,
   onOpenChange: setControlledOpen,
   delay = 600,
