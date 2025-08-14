@@ -1,3 +1,4 @@
+import Button from "@components/common/button/button";
 import { Text } from "@components/typography/Text";
 import { LogoIcon } from "@svgs/index";
 import { SubscribeCard } from "../components/subscribe-card/subscribe-card";
@@ -52,9 +53,9 @@ const Subscribe = ({ userSubscription = "free" }: SubscribeProps) => {
           <SubscribeCard type="free" userSubscription={userSubscription} />
           <SubscribeCard type="pro" userSubscription={userSubscription} />
         </div>
-        <Butto variant="LONG" color={buttonColor}>
+        <Button variant="LONG" color={buttonColor}>
           {buttonText}
-        </Butto>
+        </Button>
       </div>
     </div>
   );
