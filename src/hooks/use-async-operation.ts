@@ -10,6 +10,9 @@ export const useAsyncOperation = () => {
         showLoading();
         const result = await operation();
         return result;
+      } catch (error) {
+        console.log(error);
+        throw error;
       } finally {
         hideLoading();
       }
