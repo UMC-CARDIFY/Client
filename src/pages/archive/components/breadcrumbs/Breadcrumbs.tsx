@@ -22,7 +22,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
         const isLink = !!item.to && !isLast;
 
         const Label = (
-          <Text variant="sub_heading4" className={`text-gray-500 ${isLast ? "font-semibold" : ""}`}>
+          <Text variant="sub_heading4" className="text-gray-500">
             {displayLabel}
           </Text>
         );

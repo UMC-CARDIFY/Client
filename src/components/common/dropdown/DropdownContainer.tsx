@@ -57,7 +57,7 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
         >
           {icon}
           {label && !isKebab && (
-            <Text variant="sub_heading4" className={isNoteFilterActive ? "text-brand-700" : "text-gray-700"}>
+            <Text variant="sub_heading5" className={isNoteFilterActive ? "text-brand-700" : "text-gray-700"}>
               {label}
             </Text>
           )}

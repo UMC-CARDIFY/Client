@@ -42,7 +42,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({ type }) => {
     <div className="flex flex-col items-center text-gray-500">
       {type === "folder" ? <NewFolderIcon className="w-12 h-12 mb-2" /> : <EmptyNoteIcon className="w-8 h-8 mb-2" />}
 
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center gap-1 opacity-50">
         <Text variant="sub_heading3">{messages.title}</Text>
         <Text variant="body3">{messages.description}</Text>
       </div>

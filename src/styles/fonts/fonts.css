@@ -15,6 +15,13 @@
 @font-face {
   font-family: "Pretendard";
   font-style: normal;
+  font-weight: 500;
+  src: url("../../assets/fonts/Pretendard-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
   font-weight: 600;
   src: url("../../assets/fonts/Pretendard-SemiBold.woff2") format("woff2");
 }

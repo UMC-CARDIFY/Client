@@ -71,7 +71,7 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderNam
 
         <ArchiveFolderIcon fillColor={colorHexCode} backgroundColor={darkenedColor} />
 
-        <Text variant="heading2" className="text-base-black ml-6 flex-1 min-w-0 break-words">
+        <Text variant="sub_heading1" className="text-base-black ml-6 flex-1 min-w-0 break-words">
           {folderName}
         </Text>
 

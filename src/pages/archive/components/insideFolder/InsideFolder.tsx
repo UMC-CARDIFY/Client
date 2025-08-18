@@ -19,7 +19,6 @@ interface InsideFolderProps {
 const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color }) => {
   const folders = InsideFolderItemData;
 
-  const [isHovered, setIsHovered] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isMoveModalOpen, setIsMoveModalOpen] = useState(false);
@@ -42,11 +41,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
   };
 
   return (
-    <div
-      className="w-[11.75rem] h-[3rem] pl-4 pr-2 py-2 rounded-lg border border-solid border-gray-150 flex items-center bg-white"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="w-[11.75rem] h-[3rem] pl-4 pr-2 py-2 rounded-lg border border-solid border-gray-150 flex items-center bg-white">
       <Link
         to={`/archive/${parentFolderId}/${folderId}`}
         className="flex items-center gap-2 flex-1 min-w-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 rounded-md"
@@ -54,7 +49,7 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
         title={folderName}
       >
         <InnerFolderIcon className={`mr-2 fill-icon-${color}`} />
-        <Text variant={isHovered ? "sub_heading2" : "sub_heading3"} className="w-[6rem] text-base-black truncate">
+        <Text variant="sub_heading4" className="w-[6rem] text-base-black truncate">
           {truncateText(folderName)}
         </Text>
       </Link>
