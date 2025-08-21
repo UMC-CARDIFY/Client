@@ -5,7 +5,7 @@ export const PATHS = {
   ARCHIVE_SUB_FOLDER: "/archive/:folderId/:subFolderId",
   FLASHCARD: "/flashcard",
   LIBRARY: "/library",
-  MYPAGE: "/mypage",
+  MYPAGE: "/my-page",
   LOGIN: "/login",
   NOTE_EDITOR: "/note-editor",
   SUBSCRIBE: "/subscribe",

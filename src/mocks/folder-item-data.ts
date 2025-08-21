@@ -1,4 +1,4 @@
-import { colorMap } from "@styles/colorMap";
+import { colorMap } from "@styles/color-map";
 
 interface FolderItemDataProps {
   folderId: number;

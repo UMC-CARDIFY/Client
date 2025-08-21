@@ -12,6 +12,9 @@ export { default as SymbolLogo } from "./symbol_logo.svg?react";
 export { default as LoginGradient } from "./ic_login_gradient.svg?react";
 export { default as LinkIcon } from "./ic_note_link.svg?react";
 export { default as LogoIcon } from "./ic_logo.svg?react";
+export { default as InnerFolderIcon } from "./ic_inner_folder.svg?react";
+export { default as DropdownIcon } from "./ic_dropdown.svg?react";
+export { default as FolderIcon } from "./ic_folder.svg?react";
 export { default as FullFlashcardIcon } from "./ic_full_flashcard.svg?react";
 
 export * from "./archive";

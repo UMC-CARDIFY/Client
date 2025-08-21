@@ -1,9 +1,9 @@
 export { default as Home } from "./home";
 export { default as Archive } from "./archive/pages";
-export { default as Flashcard } from "./flashcard";
-export { default as Library } from "./library";
-export { default as Mypage } from "./mypage";
-export { default as LoginPage } from "./login";
+export { default as Flashcard } from "./flashcard/pages/flashcard";
+export { default as Library } from "./library/pages/library";
+export { default as MyPage } from "./my-page/pages/my-page";
+export { default as Login } from "./login/pages/login";
+export { default as Subscribe } from "./subscribe/pages/subscribe";
 export { default as NotesInsideFolderPage } from "./archive/pages/NotesInsideFolderPage";
 export { default as SubFolderPage } from "./archive/pages/sub-folder";
-export { default as Subscribe } from "./subscribe";
