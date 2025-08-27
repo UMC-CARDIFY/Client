@@ -89,6 +89,7 @@ const MainToolbarContent = ({
         <MarkButton type="italic" />
         <MarkButton type="underline" />
         <MarkButton type="strike" />
+        <MarkButton type="code" />
         {/*}
         {!isMobile ? <LinkPopover /> : <LinkButton onClick={onLinkClick} />}
         */}
@@ -171,7 +172,6 @@ export function SimpleEditor() {
     },
     extensions: [
       StarterKit.configure({
-        code: false,
         blockquote: false,
       }),
       Placeholder.configure({
