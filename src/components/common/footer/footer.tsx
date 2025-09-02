@@ -13,12 +13,20 @@ export default function Footer() {
             <Text variant="sub_heading4">개인정보 처리방침</Text>
           </div>
           <div className="flex gap-2">
-            <Button variant="SIZE" size="M" className="bg-gray-200">
-              <TistoryIcon />
-            </Button>
-            <Button variant="SIZE" size="M" className="bg-gray-200">
-              <InstagramIcon />
-            </Button>
+            <a href="https://cardify.tistory.com/" target="_blank" rel="noopener noreferrer">
+              <Button variant="SIZE" size="M" className="bg-gray-200 hover:bg-gray-300">
+                <TistoryIcon />
+              </Button>
+            </a>
+            <a
+              href="https://www.instagram.com/cardify_official?igsh=MXEyMDJqYmZnbjFtbA=="
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="SIZE" size="M" className="bg-gray-200 hover:bg-gray-300">
+                <InstagramIcon />
+              </Button>
+            </a>
           </div>
         </div>
 
