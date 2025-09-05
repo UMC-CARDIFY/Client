@@ -1,7 +1,7 @@
 import { Text, TextProps } from "@components/typography/Text";
 import { cn } from "@utils/cn";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "XS" | "S" | "M" | "L" | "XL" | "UNKNOWN";
   variant: "SIZE" | "NORMAL" | "STROKE" | "FILL" | "SMALL" | "LONG";
   color?: "SKYBLUE" | "BLUE";
@@ -35,6 +35,7 @@ const ColorMap: Record<NonNullable<ButtonProps["color"]>, string> = {
 const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", color, children, className }) => {
   return (
     <button
+      type="button"
       className={cn(
         `rounded flex items-center justify-center ${className}`,
         variant === "SIZE" && sizeClassMap[size],
