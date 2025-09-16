@@ -11,6 +11,7 @@ import { Underline } from "@tiptap/extension-underline";
 // --- Tiptap Core Extensions ---
 import { StarterKit } from "@tiptap/starter-kit";
 
+import { CodeBlockExtension } from "../../code-block";
 // --- Custom Extensions ---
 import { Link } from "../../tiptap-extension/link-extension";
 import { Selection } from "../../tiptap-extension/selection-extension";
@@ -66,6 +67,7 @@ import { MAX_FILE_SIZE, handleImageUpload } from "../../../lib/tiptap-utils";
 // --- Styles ---
 import "./simple-editor.scss";
 import "./editor-title/editor-title.scss";
+import "../../code-block/code-block.scss";
 
 const MainToolbarContent = ({
   onHighlighterClick,
@@ -89,6 +91,7 @@ const MainToolbarContent = ({
         <MarkButton type="italic" />
         <MarkButton type="underline" />
         <MarkButton type="strike" />
+        <MarkButton type="code" />
         {/*}
         {!isMobile ? <LinkPopover /> : <LinkButton onClick={onLinkClick} />}
         */}
@@ -123,6 +126,30 @@ const MainToolbarContent = ({
       <ToolbarGroup>
         <SearchNote placeholder="노트 내 검색" />
       </ToolbarGroup>
+      {/* 
+      <ToolbarSeparator />
+      <ToolbarGroup>
+        <Button
+          data-style="ghost"
+          onClick={() => {
+            if (window.confirm("콘솔에 JSON 데이터를 출력하시겠습니까?")) {
+              const editor = (window as any).__EDITOR__;
+              if (editor) {
+                const editorData = {
+                  title: (document.querySelector(".editor-title input") as HTMLInputElement)?.value || "",
+                  content: editor.getHTML(),
+                  jsonContent: editor.getJSON(),
+                  textContent: editor.getText(),
+                };
+                console.log("Editor Data (JSON):", JSON.stringify(editorData, null, 2));
+                alert("콘솔을 확인하세요! (개발자 도구 > Console)");
+              }
+            }
+          }}
+        >
+          JSON
+        </Button>
+      </ToolbarGroup> */}
     </>
   );
 };
@@ -171,8 +198,8 @@ export function SimpleEditor() {
     },
     extensions: [
       StarterKit.configure({
-        code: false,
         blockquote: false,
+        codeBlock: false,
       }),
       Placeholder.configure({
         placeholder: "내용을 입력하세요.",
@@ -184,6 +211,7 @@ export function SimpleEditor() {
       TextStyle,
       Typography,
       Selection,
+      CodeBlockExtension,
       ImageUploadNode.configure({
         accept: "image/*",
         maxSize: MAX_FILE_SIZE,
@@ -211,6 +239,13 @@ export function SimpleEditor() {
   const handleTitleChange = (newTitle: string) => {
     setTitle(newTitle);
   };
+
+  // 에디터 인스턴스를 전역에 저장 (디버깅용)
+  // React.useEffect(() => {
+  //   if (editor) {
+  //     (window as any).__EDITOR__ = editor;
+  //   }
+  // }, [editor]);
 
   return (
     <EditorContext.Provider value={{ editor }}>
