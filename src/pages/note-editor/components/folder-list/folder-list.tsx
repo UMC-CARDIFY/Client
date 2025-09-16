@@ -31,16 +31,8 @@ export default function FolderList({ color, children, notes = [] }: NoteListProp
           >
             {children}
           </Text>
-          <DropdownIcon className={`m-1 ml-auto transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </div>
       </button>
-      {isOpen && notes?.length > 0 && (
-        <div className="mt-1 ml-6 flex flex-col gap-1">
-          {notes.map((note, idx) => (
-            <NoteList key={idx}>{note}</NoteList>
-          ))}
-        </div>
-      )}
     </>
   );
 }
