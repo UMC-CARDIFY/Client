@@ -4,7 +4,6 @@ import { useState } from "react";
 interface NoteListProps {
   color?: string;
   children: string;
-  notes?: string[];
 }
 
 export default function FolderList({ color, children }: NoteListProps) {
