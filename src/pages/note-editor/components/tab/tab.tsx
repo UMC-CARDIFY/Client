@@ -12,8 +12,8 @@ export default function Tab({ children, isActive, onClick }: TabProps) {
       className={`px-4 py-[0.38rem] rounded-[4px] transition-colors duration-200
         ${
           isActive
-            ? "bg-brand-100 hover:bg-brand-150 active:bg-brand-200 text-brand-700"
-            : "hover:bg-gray-50 active:bg-gray-100"
+            ? "bg-gray-100 hover:bg-gray-50 active:bg-gray-100 text-gray-black"
+            : "hover:bg-gray-50 active:bg-gray-100 bg-gray-white text-gray-500"
         }`}
       onClick={onClick}
     >
