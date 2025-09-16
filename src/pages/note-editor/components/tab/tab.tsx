@@ -9,7 +9,8 @@ interface TabProps {
 export default function Tab({ children, isActive, onClick }: TabProps) {
   return (
     <button
-      className={`px-4 py-[0.38rem] rounded-[4px] transition-colors duration-200
+      type="button"
+      className={`px-4 py-[0.38rem] rounded-[4px] inline-flex items-center justify-center
         ${
           isActive
             ? "bg-gray-100 hover:bg-gray-50 active:bg-gray-100 text-base-black"

@@ -19,14 +19,14 @@ const Sidebar = ({ isCollapsed, onToggle }: SidebarProps) => {
   return (
     <>
       {isCollapsed && (
-        <div className="w-[22rem] min-h-full bg-white border relative h-screen transition-all duration-300 ease-in-out">
-          <div className="py-4 pl-10 pr-4 flex justify-between items-center">
+        <div className="w-[22rem] min-h-full bg-white border-r relative h-screen transition-all duration-300 ease-in-out">
+          <div className="py-4 pl-10 pr-4 flex justify-between items-center border-b border-gray-150 h-[4.5rem]">
             <LogoIcon />
             <Button variant="SIZE" size="XL" onClick={onToggle}>
               <HalfDoubleArrowBoldIcon className="text-gray-400" />
             </Button>
           </div>
-          <div className="flex justify-between py-4 px-10">
+          <div className="flex justify-between py-2 pl-10 pr-3">
             <div className="flex gap-2">
               <Tab isActive={activeTab === "폴더"} onClick={() => setActiveTab("폴더")}>
                 폴더
@@ -36,7 +36,7 @@ const Sidebar = ({ isCollapsed, onToggle }: SidebarProps) => {
               </Tab>
             </div>
 
-            <Button variant="SIZE" size="M">
+            <Button variant="SIZE" size="L">
               <SortIcon className="w-6 h-6" />
             </Button>
           </div>
