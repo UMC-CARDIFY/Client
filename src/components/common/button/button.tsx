@@ -37,7 +37,7 @@ const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", color, child
     <button
       type="button"
       className={cn(
-        `rounded flex items-center justify-center ${className}`,
+        `rounded flex items-center justify-center`,
         variant === "SIZE" && sizeClassMap[size],
         variant === "NORMAL" && "px-5 py-2 bg-gray-50 hover:bg-gray-100 active:bg-gray-150",
         variant === "STROKE" &&
@@ -45,16 +45,17 @@ const Button: React.FC<ButtonProps> = ({ variant, size = "UNKNOWN", color, child
         variant === "FILL" && "gap-2 px-4 py-2  hover:bg-gray-100 active:bg-gray-200",
         variant === "SMALL" && "gap-2 px-2 py-1 bg-gray-white hover:bg-gray-50 active:bg-gray-100",
         variant === "LONG" && `w-full px-2 py-3 ${color ? ColorMap[color] : ""}`,
+        `${className}`,
       )}
     >
       <Text
         variant={textVariantMap[variant]}
         className={cn(
-          "flex",
+          "flex items-center justify-center",
           variant === "NORMAL" && "text-gray-700",
           variant === "STROKE" && "gap-[0.62rem] text-gray-500",
           variant === "FILL" && "gap-2 text-gray-700",
-          variant === "SMALL" && "gap-2 text-gray-700",
+          variant === "SMALL" && "gap-2 text-gray-500",
           variant === "LONG" && "gap-2",
         )}
       >
