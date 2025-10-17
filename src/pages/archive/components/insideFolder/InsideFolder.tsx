@@ -14,9 +14,10 @@ interface InsideFolderProps {
   folderName: string;
   color: string;
   folders?: Folder[];
+  className?: string;
 }
 
-const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color }) => {
+const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color, className }) => {
   const folders = InsideFolderItemData;
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -41,7 +42,9 @@ const InsideFolder: React.FC<InsideFolderProps> = ({ folderId, folderName, color
   };
 
   return (
-    <div className="w-[11.75rem] h-[3rem] pl-4 pr-2 py-2 rounded-lg border border-solid border-gray-150 flex items-center bg-white">
+    <div
+      className={`w-full h-[3rem] pl-4 pr-2 py-2 rounded-lg border border-solid border-gray-150 flex items-center bg-white ${className ?? ""}`}
+    >
       <Link
         to={`/archive/${parentFolderId}/${folderId}`}
         className="flex items-center gap-2 flex-1 min-w-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 rounded-md"

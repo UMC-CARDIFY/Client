@@ -12,6 +12,7 @@ import {
   SubFolderPage,
   Subscribe,
 } from "../pages";
+import AllFolders from "../pages/archive/pages/all-folders";
 import { PATHS } from "./paths";
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: PATHS.ARCHIVE_SUB_FOLDER,
         element: <SubFolderPage />,
+      },
+      {
+        path: PATHS.ARCHIVE_ALL_FOLDERS,
+        element: <AllFolders />,
       },
       {
         path: PATHS.FLASHCARD,
