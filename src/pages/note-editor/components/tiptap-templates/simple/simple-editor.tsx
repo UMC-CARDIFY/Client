@@ -53,6 +53,7 @@ import { ArrowLeftIcon } from "../../tiptap-icons/arrow-left-icon";
 import { HighlighterIcon } from "../../tiptap-icons/highlighter-icon";
 import { LinkIcon } from "../../tiptap-icons/link-icon";
 
+import { CustomDragHandle } from "../../../../../components/tiptap-ui/custom-drag-handle";
 // --- Components ---
 import { EditorTitle } from "./editor-title";
 
@@ -274,9 +275,10 @@ export function SimpleEditor() {
       </Toolbar>
 
       <div className="content-wrapper">
-        <div className="simple-editor-content">
+        <div className="simple-editor-content" style={{ position: "relative" }}>
           <EditorTitle title={title} onTitleChange={handleTitleChange} />
           <EditorContent editor={editor} role="presentation" />
+          {editor && <CustomDragHandle editor={editor} />}
         </div>
       </div>
     </EditorContext.Provider>
