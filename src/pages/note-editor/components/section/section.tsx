@@ -10,11 +10,11 @@ export default function Section({ title, children }: SectionProps) {
   return (
     <>
       <div className="w-full h-[1px] bg-gray-150 my-4" />
-      <div className="flex flex-col ml-4">
-        <Text variant="caption" className="text-gray-700 mb-4">
+      <div className="flex flex-col">
+        <Text variant="caption1" className="text-gray-700 mb-4">
           {title}
         </Text>
-        {children}
+        <div className="flex flex-col gap-1">{children}</div>
       </div>
     </>
   );

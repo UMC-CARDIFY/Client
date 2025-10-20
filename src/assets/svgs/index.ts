@@ -16,6 +16,8 @@ export { default as InnerFolderIcon } from "./ic_inner_folder.svg?react";
 export { default as DropdownIcon } from "./ic_dropdown.svg?react";
 export { default as FolderIcon } from "./ic_folder.svg?react";
 export { default as FullFlashcardIcon } from "./ic_full_flashcard.svg?react";
+export { default as TistoryIcon } from "./ic_tistory.svg?react";
+export { default as InstagramIcon } from "./ic_instagram.svg?react";
 
 export * from "./archive";
 export * from "./btn";

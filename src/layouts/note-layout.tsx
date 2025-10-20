@@ -1,21 +1,64 @@
 import Editor from "@pages/note-editor/components/editor";
 import Header from "@pages/note-editor/components/header/header";
 import Sidebar from "@pages/note-editor/components/sidebar/sidebar";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+
+const SIDEBAR_WIDTH = 352;
+const DURATION = 0.35;
 
 const NoteLayout = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   return (
-    <div className="h-screen flex overflow-hidden">
-      <Sidebar isCollapsed={isSidebarCollapsed} onToggle={() => setIsSidebarCollapsed((prev) => !prev)} />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <Header isSidebarCollapsed={isSidebarCollapsed} onOpenSidebar={() => setIsSidebarCollapsed((prev) => !prev)} />
+    <motion.div className="h-screen flex overflow-hidden relative" layout>
+      <motion.div
+        aria-hidden
+        initial={false}
+        animate={{ width: isSidebarCollapsed ? SIDEBAR_WIDTH : 0 }}
+        transition={{ duration: DURATION, ease: "easeInOut" }}
+        style={{ width: isSidebarCollapsed ? SIDEBAR_WIDTH : 0 }}
+      />
+
+      <AnimatePresence initial={false}>
+        {isSidebarCollapsed && (
+          <motion.div
+            key="sidebar-overlay"
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              bottom: 0,
+              width: SIDEBAR_WIDTH,
+              zIndex: 40,
+              willChange: "transform",
+            }}
+            initial={{ x: -24, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -SIDEBAR_WIDTH, opacity: 1 }}
+            transition={{ duration: DURATION, ease: "easeInOut" }}
+          >
+            <Sidebar isCollapsed={true} onToggle={() => setIsSidebarCollapsed((prev) => !prev)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.div
+        className="flex-1 flex flex-col overflow-hidden"
+        layout
+        transition={{ duration: DURATION, ease: "easeInOut" }}
+      >
+        <motion.div layout>
+          <Header
+            isSidebarCollapsed={isSidebarCollapsed}
+            onOpenSidebar={() => setIsSidebarCollapsed((prev) => !prev)}
+          />
+        </motion.div>
         <main className="flex-1 overflow-hidden">
           <Editor />
         </main>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
