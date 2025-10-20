@@ -1,7 +1,6 @@
 import { Text } from "@components/typography/Text";
 import { HalfArrowLightIcon } from "@svgs/index";
 import { truncate } from "@utils/truncate";
-import React from "react";
 import { Link } from "react-router-dom";
 
 type CrumbItem = {
@@ -9,11 +8,11 @@ type CrumbItem = {
   to?: string;
 };
 
-type BreadcrumbsProps = {
-  items: CrumbItem[];
-};
+export interface BreadcrumbsProps {
+  items?: CrumbItem[];
+}
 
-const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
+export function Breadcrumbs({ items = [] }: BreadcrumbsProps) {
   return (
     <nav className="flex items-center" aria-label="브레드크럼">
       {items.map((item, index) => {
@@ -48,6 +47,6 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
       })}
     </nav>
   );
-};
+}
 
 export default Breadcrumbs;

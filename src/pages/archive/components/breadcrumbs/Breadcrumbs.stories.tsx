@@ -5,13 +5,9 @@ export default {
   title: "Archive/Components/Breadcrumbs",
   component: Breadcrumbs,
   argTypes: {
-    username: {
-      control: { type: "text" },
-      description: "사용자 이름",
-    },
-    pathSegments: {
+    items: {
       control: { type: "object" },
-      description: "현재 경로를 나타내는 문자열 배열",
+      description: "크럼 아이템 배열 (label / to?)",
     },
   },
 } as Meta<typeof Breadcrumbs>;
@@ -20,10 +16,10 @@ const Template: StoryFn<typeof Breadcrumbs> = (args) => <Breadcrumbs {...args} /
 
 export const Default = Template.bind({});
 Default.args = {
-  pathSegments: ["프로젝트"],
+  items: [{ label: "홈", to: "/" }, { label: "프로젝트" }],
 };
 
-export const PathSegments = Template.bind({});
-PathSegments.args = {
-  pathSegments: ["카디파이", "프론트엔드"],
+export const WithLinks = Template.bind({});
+WithLinks.args = {
+  items: [{ label: "홈", to: "/" }, { label: "카디파이", to: "/projects/cardify" }, { label: "프론트엔드" }],
 };
