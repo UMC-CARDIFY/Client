@@ -43,23 +43,16 @@ function SubFolderPage() {
     folderTitle: currentFolderTitle,
     folderColor,
     folderMarkState,
-    isLoading: isCurrentLoading,
     isError: isCurrentError,
   } = useFolderList(isValid ? { parentFolderId: currentFolderId, order: "edit-newest" } : undefined);
 
   // 부모 폴더 메타
-  const {
-    folderTitle: parentFolderTitle,
-    isLoading: isParentLoading,
-    isError: isParentError,
-  } = useFolderList(isValid ? { parentFolderId, order: "edit-newest" } : undefined);
+  const { folderTitle: parentFolderTitle, isError: isParentError } = useFolderList(
+    isValid ? { parentFolderId, order: "edit-newest" } : undefined,
+  );
 
   // 노트 목록
-  const {
-    noteList,
-    isLoading: isNotesLoading,
-    isError: isNotesError,
-  } = useNoteList(
+  const { noteList, isError: isNotesError } = useNoteList(
     isValid
       ? {
           folderId: currentFolderId,
@@ -101,8 +94,6 @@ function SubFolderPage() {
   };
 
   if (!isValid) return <div className="w-full flex justify-center mt-10">잘못된 경로입니다.</div>; //TODO: fallback UI
-  if (isCurrentLoading || isParentLoading || isNotesLoading)
-    return <div className="w-full flex justify-center mt-10">로딩 중...</div>; //TODO: 로딩 컴포넌트
   if (isCurrentError || isParentError || isNotesError)
     return <div className="w-full flex justify-center mt-10">에러가 발생했습니다</div>; //TODO: fallback UI
 

@@ -4,7 +4,7 @@ import FolderItemData from "@mocks/folder-item-data";
 import EmptyState from "@pages/home/components/EmptyState/EmptyState";
 import { useState } from "react";
 import MainFolderItem from "../MainFolderItem/MainFolderItem";
-import NewFolderMain from "../newFolder/NewFolderMain";
+import NewFolderMain from "../new-folder/NewFolderMain";
 
 export interface MainFolderProps {
   folderId: number;

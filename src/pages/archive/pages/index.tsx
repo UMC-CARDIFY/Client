@@ -6,7 +6,7 @@ import { useState } from "react";
 import EmptyState from "../components/EmptyState/EmptyState";
 import MainFolderList from "../components/MainFolderList/MainFolderList";
 import { LimitAddFolderModal } from "../components/modal/LimitAddFolderModal/LimitAddFolderModal";
-import NewFolderMain from "../components/newFolder/NewFolderMain";
+import NewFolderMain from "../components/new-folder/NewFolderMain";
 import { useFolderList } from "../hooks/use-archive-folder";
 
 const Archive = () => {
