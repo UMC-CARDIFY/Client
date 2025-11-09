@@ -1,5 +1,6 @@
-import { Node as ProsemirrorNode } from "@tiptap/pm/model";
+import { Fragment, Node as ProsemirrorNode, Slice } from "@tiptap/pm/model";
 import { TextSelection } from "@tiptap/pm/state";
+import { dropPoint } from "@tiptap/pm/transform";
 import { type Editor } from "@tiptap/react";
 import * as React from "react";
 
@@ -18,7 +19,7 @@ interface BlockInfo {
   rect: DOMRect;
 }
 
-export const CustomDragHandle: React.FC<CustomDragHandleProps> = ({ editor, onContextMenu }) => {
+export const CustomDragHandle = ({ editor, onContextMenu }: CustomDragHandleProps) => {
   const [blocks, setBlocks] = React.useState<BlockInfo[]>([]);
   const [isDragging, setIsDragging] = React.useState(false);
   const [dragData, setDragData] = React.useState<{
@@ -93,10 +94,21 @@ export const CustomDragHandle: React.FC<CustomDragHandleProps> = ({ editor, onCo
 
       // 드래그 이미지 설정
       const dragImage = block.dom.cloneNode(true) as HTMLElement;
-      dragImage.style.opacity = "0.5";
-      dragImage.style.transform = "rotate(5deg)";
+      Object.assign(dragImage.style, {
+        position: "fixed",
+        top: "-10000px",
+        left: "-10000px",
+        opacity: "0.6",
+        pointerEvents: "none",
+      });
       document.body.appendChild(dragImage);
       event.dataTransfer.setDragImage(dragImage, 0, 0);
+
+      try {
+        event.dataTransfer.setData("text/plain", "");
+      } catch {
+        // Ignore error
+      }
 
       // 정리
       setTimeout(() => {
@@ -115,14 +127,14 @@ export const CustomDragHandle: React.FC<CustomDragHandleProps> = ({ editor, onCo
   }, []);
 
   // 드롭 오버
-  const handleDragOver = React.useCallback((event: React.DragEvent) => {
+  const handleDragOver = React.useCallback((event: DragEvent) => {
     event.preventDefault();
-    event.dataTransfer.dropEffect = "move";
+    event.dataTransfer!.dropEffect = "move";
   }, []);
 
   // 드롭
   const handleDrop = React.useCallback(
-    (event: React.DragEvent) => {
+    (event: DragEvent) => {
       event.preventDefault();
 
       if (!dragData) return;
@@ -138,18 +150,32 @@ export const CustomDragHandle: React.FC<CustomDragHandleProps> = ({ editor, onCo
       let targetPos = dropPos.pos;
 
       // 같은 위치면 무시
-      if (Math.abs(sourcePos - targetPos) < sourceNode.nodeSize) return;
+      if (Math.abs(sourcePos - targetPos) < sourceNode.nodeSize) {
+        setIsDragging(false);
+        setDragData(null);
+        return;
+      }
 
       // 타겟 위치 조정
       if (targetPos > sourcePos) {
         targetPos -= sourceNode.nodeSize;
       }
 
-      // 트랜잭션으로 노드 이동
-      const tr = editor.state.tr;
+      // 안전한 드롭 지점 계산 후 이동
+      let tr = editor.state.tr;
       tr.delete(sourcePos, sourcePos + sourceNode.nodeSize);
-      tr.insert(targetPos, sourceNode);
+      const docAfterDelete = tr.doc;
+      const slice = new Slice(Fragment.from(sourceNode), 0, 0);
+      const safePos = dropPoint(docAfterDelete, targetPos, slice);
 
+      if (safePos == null) {
+        // 삽입 불가 지점이면 삭제만 취소
+        setIsDragging(false);
+        setDragData(null);
+        return;
+      }
+
+      tr = tr.insert(safePos, sourceNode);
       editor.view.dispatch(tr);
 
       setIsDragging(false);
@@ -197,12 +223,12 @@ export const CustomDragHandle: React.FC<CustomDragHandleProps> = ({ editor, onCo
     const editorElement = editor.view.dom.parentElement;
     if (!editorElement) return;
 
-    editorElement.addEventListener("dragover", handleDragOver as any);
-    editorElement.addEventListener("drop", handleDrop as any);
+    editorElement.addEventListener("dragover", handleDragOver);
+    editorElement.addEventListener("drop", handleDrop);
 
     return () => {
-      editorElement.removeEventListener("dragover", handleDragOver as any);
-      editorElement.removeEventListener("drop", handleDrop as any);
+      editorElement.removeEventListener("dragover", handleDragOver);
+      editorElement.removeEventListener("drop", handleDrop);
     };
   }, [editor, handleDragOver, handleDrop]);
 
