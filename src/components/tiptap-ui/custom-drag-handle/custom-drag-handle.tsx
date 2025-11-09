@@ -27,8 +27,6 @@ export const CustomDragHandle = ({ editor, onContextMenu }: CustomDragHandleProp
     sourceNode: ProsemirrorNode;
   } | null>(null);
 
-  const handleRef = React.useRef<HTMLDivElement>(null);
-
   // 모든 블록 찾기
   const findAllBlocks = React.useCallback((): BlockInfo[] => {
     const blocks: BlockInfo[] = [];
@@ -47,35 +45,6 @@ export const CustomDragHandle = ({ editor, onContextMenu }: CustomDragHandleProp
 
     return blocks;
   }, [editor]);
-
-  // 현재 마우스 위치에서 블록 찾기 (드롭 시에만 사용)
-  const findBlockAtPos = React.useCallback(
-    (clientX: number, clientY: number): BlockInfo | null => {
-      const pos = editor.view.posAtCoords({ left: clientX, top: clientY });
-      if (!pos) return null;
-
-      const $pos = editor.state.doc.resolve(pos.pos);
-      let depth = $pos.depth;
-
-      // 블록 레벨 노드 찾기
-      while (depth > 0) {
-        const node = $pos.node(depth);
-        const nodePos = $pos.before(depth);
-
-        if (node.isBlock && node.type.name !== "doc") {
-          const dom = editor.view.nodeDOM(nodePos) as HTMLElement;
-          if (dom) {
-            const rect = dom.getBoundingClientRect();
-            return { node, pos: nodePos, dom, rect };
-          }
-        }
-        depth--;
-      }
-
-      return null;
-    },
-    [editor],
-  );
 
   // 블록 업데이트
   const updateBlocks = React.useCallback(() => {
