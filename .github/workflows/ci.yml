@@ -7,8 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DISABLE_ESLINT_PLUGIN: true
 
     steps:
       - uses: actions/checkout@v3
@@ -19,7 +17,10 @@ jobs:
           cache: "pnpm"
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: |
+          npm install -g pnpm
+          echo "PNPM PATH: $(which pnpm)"
+          pnpm --version
 
       - name: Install dependencies
         run: pnpm install
