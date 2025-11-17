@@ -11,19 +11,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3.5.1
+      - name: 🧰 Setup Node.js 20
+        uses: actions/setup-node@v3
         with:
-          node-version: "21.2.0"
-          cache: "pnpm"
+          node-version: 20
 
-      - name: Install pnpm
+      - name: 📦 Install pnpm
         run: |
           npm install -g pnpm
           echo "PNPM PATH: $(which pnpm)"
           pnpm --version
 
-      - name: Install dependencies
+      - name: 📥 Install dependencies
         run: pnpm install
 
-      - name: Try build
-        run: pnpm run build
+      - name: 🛠 Run build
+        run: pnpm build
