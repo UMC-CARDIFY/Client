@@ -13,7 +13,6 @@ function App() {
         <ReactQueryDevtools initialIsOpen={false} />
       </LoadingProvider>
     </QueryClientProvider>
-    // 테스트용 주석
   );
 }
 
