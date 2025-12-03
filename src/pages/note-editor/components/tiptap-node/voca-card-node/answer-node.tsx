@@ -23,17 +23,19 @@ const ArrowIcon: React.FC<ArrowIconProps> = ({ reversed, onClick }) => (
   </span>
 );
 
-export const AnswerNodeComponent: React.FC<NodeViewProps> = ({ editor }) => {
+export const AnswerNodeComponent: React.FC<NodeViewProps> = ({ editor, getPos }) => {
   // 부모 vocacard 노드에서 reversed 속성 가져오기
   const [reversed, setReversed] = React.useState(false);
 
   React.useEffect(() => {
     const updateReversed = () => {
-      const { selection } = editor.state;
-      const { $from } = selection;
+      const pos = getPos();
+      if (typeof pos !== "number") return;
 
-      for (let depth = $from.depth; depth >= 0; depth--) {
-        const node = $from.node(depth);
+      // 현재 노드의 위치에서 부모 vocacard 찾기
+      const resolvedPos = editor.state.doc.resolve(pos);
+      for (let depth = resolvedPos.depth; depth >= 0; depth--) {
+        const node = resolvedPos.node(depth);
         if (node.type.name === "vocacard") {
           setReversed(node.attrs.reversed as boolean);
           break;
@@ -41,17 +43,12 @@ export const AnswerNodeComponent: React.FC<NodeViewProps> = ({ editor }) => {
       }
     };
 
-    // 초기 값 설정을 위해 DOM에서 직접 찾기
-    const wrapper = document.querySelector('[data-type="vocacard"]');
-    if (wrapper) {
-      setReversed(wrapper.getAttribute("data-reversed") === "true");
-    }
-
+    updateReversed();
     editor.on("transaction", updateReversed);
     return () => {
       editor.off("transaction", updateReversed);
     };
-  }, [editor]);
+  }, [editor, getPos]);
 
   const handleArrowClick = React.useCallback(
     (e: React.MouseEvent) => {
