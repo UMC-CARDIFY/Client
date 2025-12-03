@@ -1,13 +1,14 @@
 import type { NodeViewProps } from "@tiptap/react";
 import { NodeViewContent, NodeViewWrapper } from "@tiptap/react";
-import * as React from "react";
+import type { MouseEvent } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface ArrowIconProps {
   reversed: boolean;
-  onClick: () => void;
+  onClick: (e: MouseEvent) => void;
 }
 
-const ArrowIcon: React.FC<ArrowIconProps> = ({ reversed, onClick }) => (
+const ArrowIcon = ({ reversed, onClick }: ArrowIconProps) => (
   <span
     contentEditable={false}
     onClick={onClick}
@@ -23,11 +24,11 @@ const ArrowIcon: React.FC<ArrowIconProps> = ({ reversed, onClick }) => (
   </span>
 );
 
-export const AnswerNodeComponent: React.FC<NodeViewProps> = ({ editor, getPos }) => {
+export const AnswerNodeComponent = ({ editor, getPos }: NodeViewProps) => {
   // 부모 vocacard 노드에서 reversed 속성 가져오기
-  const [reversed, setReversed] = React.useState(false);
+  const [reversed, setReversed] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const updateReversed = () => {
       const pos = getPos();
       if (typeof pos !== "number") return;
@@ -50,8 +51,8 @@ export const AnswerNodeComponent: React.FC<NodeViewProps> = ({ editor, getPos })
     };
   }, [editor, getPos]);
 
-  const handleArrowClick = React.useCallback(
-    (e: React.MouseEvent) => {
+  const handleArrowClick = useCallback(
+    (e: MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
       editor.chain().focus().toggleVocaCardDirection().run();
