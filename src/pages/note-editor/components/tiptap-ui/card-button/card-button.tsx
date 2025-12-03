@@ -61,8 +61,20 @@ export function isCardActive(editor: Editor | null, type: Card): boolean {
 
 export function insertCard(editor: Editor | null, type: Card): void {
   if (!editor) return;
-  // TODO: 실제 카드 삽입 로직 구현
-  console.log(`Inserting ${type} card`);
+
+  switch (type) {
+    case "voca":
+      editor.chain().focus().setVocaCardNode().run();
+      break;
+    case "blank":
+      // TODO: blank card 삽입 로직 구현
+      console.log(`Inserting ${type} card`);
+      break;
+    case "image":
+      // TODO: image card 삽입 로직 구현
+      console.log(`Inserting ${type} card`);
+      break;
+  }
 }
 
 export function isCardButtonDisabled(editor: Editor | null, type: Card, userDisabled = false): boolean {
