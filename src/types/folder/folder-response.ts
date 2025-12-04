@@ -49,9 +49,9 @@ export interface NoteItem {
   folderName: string;
   folderColor: string;
   markState: "INACTIVE" | "ACTIVE";
-  flashCardCount: 0;
-  viewAt: null;
-  markAt: "25/12/04";
+  flashCardCount: number;
+  viewAt: string;
+  markAt: string;
   editDate: string;
   createdAt: string;
   isDownload: boolean;
