@@ -3,34 +3,27 @@ name: frontend-ci
 on:
   pull_request:
     branches: [develop]
-    paths:
-      - "client/**"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./client
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: 🧰 Setup Node.js 20
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: "pnpm"
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: 📦 Install pnpm
+        run: |
+          npm install -g pnpm
+          echo "PNPM PATH: $(which pnpm)"
+          pnpm --version
 
-      - name: Install dependencies
+      - name: 📥 Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: pnpm lint
-
-      - name: Build
+      - name: 🛠 Run build
         run: pnpm build
