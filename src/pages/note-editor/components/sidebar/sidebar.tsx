@@ -17,14 +17,12 @@ interface SidebarProps {
 const Sidebar = ({ isCollapsed, onToggle }: SidebarProps) => {
   const [activeTab, setActiveTab] = useState<"폴더" | "플래시 카드">("폴더");
 
-  if (!isCollapsed) return null;
-
   //TODO: 추후 useParams로 변경
   const folderId = 3;
 
   const { data, isLoading, isError } = useFoldersElement(folderId);
 
-  console.log(data);
+  if (!isCollapsed) return null;
 
   //TODO: 로딩 ui 받으면 suspense로 수정 및 에러도 에러바운더리로 리팩토링 예정
   if (isLoading) return <div>로딩 중...</div>;
