@@ -33,6 +33,40 @@ export const QuestionNode = Node.create({
       as: "span",
     });
   },
+
+  addKeyboardShortcuts() {
+    return {
+      Enter: ({ editor }) => {
+        const { selection } = editor.state;
+        const { $from } = selection;
+
+        // 현재 question 노드 안에 있는지 확인
+        for (let depth = $from.depth; depth >= 0; depth--) {
+          const node = $from.node(depth);
+          if (node.type.name === "question") {
+            // 다음 형제 노드(answer)로 이동
+            const parentDepth = depth - 1;
+            if (parentDepth >= 0) {
+              const parent = $from.node(parentDepth);
+              if (parent.type.name === "vocacard") {
+                // answer 노드의 시작 위치로 이동
+                const questionPos = $from.before(depth);
+                const questionNode = $from.node(depth);
+                const answerPos = questionPos + questionNode.nodeSize;
+                editor
+                  .chain()
+                  .focus()
+                  .setTextSelection(answerPos + 1)
+                  .run();
+                return true;
+              }
+            }
+          }
+        }
+        return false;
+      },
+    };
+  },
 });
 
 export default QuestionNode;
