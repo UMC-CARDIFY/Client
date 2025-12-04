@@ -22,6 +22,10 @@ import { Toolbar, ToolbarGroup, ToolbarSeparator } from "../../../components/tip
 import { Button } from "../../tiptap-ui-primitive/button";
 import { Spacer } from "../../tiptap-ui-primitive/spacer";
 
+import { BlankCardNode } from "../../tiptap-node/blank-card-node/blank-card-node-extension";
+import { BlankNode } from "../../tiptap-node/blank-card-node/blank-node-extension";
+import { PrefixNode } from "../../tiptap-node/blank-card-node/prefix-node-extension";
+import { SuffixNode } from "../../tiptap-node/blank-card-node/suffix-node-extension";
 // --- Tiptap Node ---
 import { ImageUploadNode } from "../../tiptap-node/image-upload-node/image-upload-node-extension";
 import { AnswerNode } from "../../tiptap-node/voca-card-node/answer-node-extension";
@@ -32,6 +36,7 @@ import "../../tiptap-node/list-node/list-node.scss";
 import "../../tiptap-node/image-node/image-node.scss";
 import "../../tiptap-node/paragraph-node/paragraph-node.scss";
 import "../../tiptap-node/voca-card-node/voca-card-node.scss";
+import "../../tiptap-node/blank-card-node/blank-card-node.scss";
 import "../../tiptap-ui/search-note/search-note.scss";
 
 // --- Tiptap UI ---
@@ -229,6 +234,10 @@ export function SimpleEditor() {
       VocaCardNode,
       QuestionNode,
       AnswerNode,
+      BlankCardNode,
+      PrefixNode,
+      BlankNode,
+      SuffixNode,
     ],
     content: "",
   });
