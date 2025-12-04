@@ -1,5 +1,6 @@
 import Button from "@components/common/button/button";
 import { Text } from "@components/typography/Text";
+import { useFoldersElement } from "@pages/note-editor/hooks/use-folders";
 import { FolderIcon, HalfDoubleArrowBoldIcon, LogoIcon, PlusIcon, SortIcon } from "@svgs/index";
 import { useState } from "react";
 import FlashcardList from "../flashcard-list/flashcard-list";
@@ -17,6 +18,17 @@ const Sidebar = ({ isCollapsed, onToggle }: SidebarProps) => {
   const [activeTab, setActiveTab] = useState<"폴더" | "플래시 카드">("폴더");
 
   if (!isCollapsed) return null;
+
+  //TODO: 추후 useParams로 변경
+  const folderId = 3;
+
+  const { data, isLoading, isError } = useFoldersElement(folderId);
+
+  console.log(data);
+
+  //TODO: 로딩 ui 받으면 suspense로 수정 및 에러도 에러바운더리로 리팩토링 예정
+  if (isLoading) return <div>로딩 중...</div>;
+  if (isError) return <div>에러가 발생했습니다</div>;
 
   return (
     <div className="w-[22rem] min-h-full bg-white border-r relative h-screen transition-all duration-300 ease-in-out">
@@ -48,19 +60,27 @@ const Sidebar = ({ isCollapsed, onToggle }: SidebarProps) => {
         <div className="pt-4 px-10">
           <>
             <div className="flex gap-2 items-center">
-              <FolderIcon />
-              <Text variant="sub_heading3">생물학</Text>
+              {/* TODO: 색상 변경 */}
+              <FolderIcon /> {/* data.color */}
+              <Text variant="sub_heading3">{data?.name}</Text>
             </div>
             <Section title="즐겨찾기 한 항목">
-              <FolderList>진화와 분류학</FolderList>
-              <NoteList>CH3. 세포막과 물질 이동</NoteList>
+              {data?.markElementList.folderList.map((folder) => (
+                <FolderList key={folder.folderId}>{folder.name}</FolderList>
+              ))}
+              {data?.markElementList.noteList.map((note) => (
+                <NoteList key={note.noteId}>{note.name}</NoteList>
+              ))}
             </Section>
             <Section title="폴더">
-              <FolderList>진화와 분류학</FolderList>
+              {data?.notMarkElementList.folderList.map((folder) => (
+                <FolderList key={folder.folderId}>{folder.name}</FolderList>
+              ))}
             </Section>
             <Section title="노트">
-              <NoteList>CH3. 세포막과 물질 이동</NoteList>
-              <NoteList>CH3. 세포막과 물질 이동</NoteList>
+              {data?.notMarkElementList.noteList.map((note) => (
+                <NoteList key={note.noteId}>{note.name}</NoteList>
+              ))}
             </Section>
             <Button
               variant="SMALL"
