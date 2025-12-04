@@ -24,10 +24,14 @@ import { Spacer } from "../../tiptap-ui-primitive/spacer";
 
 // --- Tiptap Node ---
 import { ImageUploadNode } from "../../tiptap-node/image-upload-node/image-upload-node-extension";
+import { AnswerNode } from "../../tiptap-node/voca-card-node/answer-node-extension";
+import { QuestionNode } from "../../tiptap-node/voca-card-node/question-node-extension";
+import { VocaCardNode } from "../../tiptap-node/voca-card-node/voca-card-node-extension";
 import "../../tiptap-node/code-block-node/code-block-node.scss";
 import "../../tiptap-node/list-node/list-node.scss";
 import "../../tiptap-node/image-node/image-node.scss";
 import "../../tiptap-node/paragraph-node/paragraph-node.scss";
+import "../../tiptap-node/voca-card-node/voca-card-node.scss";
 import "../../tiptap-ui/search-note/search-note.scss";
 
 // --- Tiptap UI ---
@@ -222,6 +226,9 @@ export function SimpleEditor() {
       }),
       TrailingNode,
       Link.configure({ openOnClick: false }),
+      VocaCardNode,
+      QuestionNode,
+      AnswerNode,
     ],
     content: "",
   });
