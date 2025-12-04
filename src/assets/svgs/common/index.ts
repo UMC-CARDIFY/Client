@@ -6,3 +6,4 @@ export { default as HalfArrowLightIcon } from "./ic_common_halfarrowlight.svg?re
 export { default as SlashIcon } from "./ic_common_slash.svg?react";
 export { default as HalfArrowBoldIcon } from "./ic_common_halfarrowbold.svg?react";
 export { default as HalfDoubleArrowBoldIcon } from "./ic_common_halfarrowdoublebold.svg?react";
+export { default as ArrowIcon } from "./ic_common_arrow.svg?react";

@@ -1,26 +1,22 @@
+import { ArrowIcon } from "@svgs/index";
 import type { NodeViewProps } from "@tiptap/react";
 import { NodeViewContent, NodeViewWrapper } from "@tiptap/react";
 import type { MouseEvent } from "react";
 import { useCallback, useEffect, useState } from "react";
 
-interface ArrowIconProps {
+interface ArrowButtonProps {
   reversed: boolean;
   onClick: (e: MouseEvent) => void;
 }
 
-const ArrowIcon = ({ reversed, onClick }: ArrowIconProps) => (
+const ArrowButton = ({ reversed, onClick }: ArrowButtonProps) => (
   <span
     contentEditable={false}
     onClick={onClick}
     className="voca-arrow-btn w-6 h-6 rounded inline-flex justify-center items-center text-blue-600 hover:bg-black/5 cursor-pointer shrink-0 select-none"
     style={{ transform: reversed ? "rotate(180deg)" : "none" }}
   >
-    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="9" viewBox="0 0 10 9" fill="none">
-      <path
-        d="M5.5918 8.69531L4.82617 7.95703L7.88867 4.89453H0V3.81445H7.88867L4.82617 0.751953L5.5918 0L9.93945 4.34766L5.5918 8.69531Z"
-        fill="currentColor"
-      />
-    </svg>
+    <ArrowIcon />
   </span>
 );
 
@@ -62,7 +58,7 @@ export const AnswerNodeComponent = ({ editor, getPos }: NodeViewProps) => {
 
   return (
     <NodeViewWrapper as="span" data-type="answer" className="voca-answer-wrapper inline-flex items-center gap-1">
-      <ArrowIcon reversed={reversed} onClick={handleArrowClick} />
+      <ArrowButton reversed={reversed} onClick={handleArrowClick} />
       <NodeViewContent as="span" className="text-gray-900 text-base font-normal font-['Pretendard'] leading-6" />
     </NodeViewWrapper>
   );
