@@ -31,7 +31,11 @@ export const Modal: React.FC<ModalProps> = ({
         <Text variant="heading3" className="text-alert-500 mt-3 mb-4">
           {title}
         </Text>
-        <div className="text-center">{description}</div>
+        <div className="text-center">
+          <Text variant="body2" className="text-center text-black">
+            {description}
+          </Text>
+        </div>
         <div className="flex justify-center gap-2 mt-6">
           <button type="button" onClick={onClose} className="h-8 px-5 py-1 rounded-md bg-gray-50 hover:bg-gray-100">
             <Text variant="sub_heading3" className="text-gray-700">

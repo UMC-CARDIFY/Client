@@ -1,4 +1,5 @@
 import { Modal } from "@components/common/Modal";
+import { truncate } from "@utils/truncate"; // ✅ 추가
 import React from "react";
 import { useDeleteFolderMutation } from "../../../hooks/use-archive-folder";
 
@@ -18,6 +19,7 @@ export const DeleteFolderModal: React.FC<DeleteFolderModalProps> = ({
   folderName,
 }) => {
   const deleteFolderMutation = useDeleteFolderMutation();
+
   const handleDeleteFolder = async () => {
     try {
       await deleteFolderMutation.mutateAsync(folderId);
@@ -27,13 +29,15 @@ export const DeleteFolderModal: React.FC<DeleteFolderModalProps> = ({
     }
   };
 
+  const displayName = truncate(folderName, 16);
+
   return (
     <Modal
       isOpen={isOpen}
       title="폴더 삭제"
       description={
         <>
-          <p>‘{folderName}’을 삭제하시겠습니까?</p>
+          <p>‘{displayName}’을(를) 삭제하시겠습니까?</p>
           <p>이 폴더 안의 노트가 함께 삭제됩니다.</p>
         </>
       }

@@ -8,3 +8,4 @@ export { default as PlusIcon } from "./ic_archive_plus.svg?react";
 export { default as EmptyStarIcon } from "./ic_archive_emptystar.svg?react";
 export { default as SortIcon } from "./ic_archive_sort.svg?react";
 export { default as FilteringIcon } from "./ic_archive_filtering.svg?react";
+export { default as EmptyNoteIcon } from "./ic_archive_empty_note.svg?react";

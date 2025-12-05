@@ -3,9 +3,9 @@ import { FetchFoldersParams } from "@typedefs";
 import { fetchFolderList, getFoldersElement } from "./folder";
 
 export const FOLDER_QUERY_KEY = {
-  ALL: () => ["folders"],
-  LIST: (params?: FetchFoldersParams) => ["folders", "list", params],
-  ELEMENT: (folderId: number) => ["folders", "element", folderId],
+  ALL: () => ["folders"] as const,
+  LIST: (params?: FetchFoldersParams) => ["folders", "list", params] as const,
+  ELEMENT: (folderId: number) => ["folders", "element", folderId] as const,
 } as const;
 
 export const FOLDER_QUERY_OPTION = {

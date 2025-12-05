@@ -4,7 +4,7 @@ import FolderItemData from "@mocks/folder-item-data";
 import EmptyState from "@pages/home/components/EmptyState/EmptyState";
 import { useState } from "react";
 import MainFolderItem from "../MainFolderItem/MainFolderItem";
-import NewFolderMain from "../newFolder/NewFolderMain";
+import NewFolderMain from "../new-folder/NewFolderMain";
 
 export interface MainFolderProps {
   folderId: number;
@@ -19,23 +19,32 @@ interface MainFolderListProps {
   folders?: MainFolderProps[];
   variant?: "home" | "archive";
   maxItems?: number;
+  onLimitReached?: () => void;
 }
 
-const ITEMS_PER_PAGE = 16; // 한 페이지당 표시할 폴더 개수
+const ITEMS_PER_PAGE = 16;
+const FIRST_PAGE_CAP = ITEMS_PER_PAGE - 1;
+const OTHER_PAGE_CAP = ITEMS_PER_PAGE;
 
-const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemData, variant = "archive", maxItems }) => {
+const MainFolderList: React.FC<MainFolderListProps> = ({
+  folders = FolderItemData,
+  variant = "archive",
+  maxItems,
+  onLimitReached,
+}) => {
   const isHome = variant === "home";
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalItems = maxItems ? Math.min(folders.length, maxItems) : folders.length;
-  const totalPages = Math.ceil((folders.length + 1) / ITEMS_PER_PAGE);
 
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const adjustedItemsPerPage = currentPage === 1 ? ITEMS_PER_PAGE - 1 : ITEMS_PER_PAGE;
-  const displayedFolders = folders.slice(startIndex, startIndex + adjustedItemsPerPage);
+  const totalPages = totalItems <= FIRST_PAGE_CAP ? 1 : 1 + Math.ceil((totalItems - FIRST_PAGE_CAP) / OTHER_PAGE_CAP);
 
-  if (folders.length === 0) {
+  const pageCapacity = currentPage === 1 ? FIRST_PAGE_CAP : OTHER_PAGE_CAP;
+  const startIndex = currentPage === 1 ? 0 : FIRST_PAGE_CAP + (currentPage - 2) * OTHER_PAGE_CAP;
+
+  const displayedFolders = folders.slice(startIndex, Math.min(startIndex + pageCapacity, totalItems));
+
+  if (totalItems === 0) {
     return isHome ? (
       <EmptyState type="favoriteFolder" />
     ) : (
@@ -46,16 +55,18 @@ const MainFolderList: React.FC<MainFolderListProps> = ({ folders = FolderItemDat
       </div>
     );
   }
+
   return (
     <div className="w-[50rem]">
       <div className="gap-4 flex flex-wrap">
-        {currentPage === 1 && <NewFolderMain />}
+        {currentPage === 1 && <NewFolderMain onLimitReached={onLimitReached} />}
+
         {displayedFolders.map((folder) => (
           <MainFolderItem key={folder.folderId} {...folder} variant={variant} />
         ))}
       </div>
 
-      {totalItems > ITEMS_PER_PAGE - 1 && (
+      {totalPages > 1 && (
         <div className="mt-14 mb-[4.69rem] flex justify-center">
           <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
         </div>
