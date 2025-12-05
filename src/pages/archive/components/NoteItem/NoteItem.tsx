@@ -33,6 +33,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
   return (
     <div className={`${GRID} pl-4 py-2`}>
       <button
+        type="button"
         className="w-4 h-4 inline-flex items-center justify-center justify-self-start"
         onClick={handleToggleMark}
         aria-label="즐겨찾기 토글"
@@ -43,6 +44,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
       <div />
 
       <button
+        type="button"
         onClick={onToggleCheck}
         className="w-4 h-4 inline-flex items-center justify-center cursor-pointer"
         aria-label="노트 선택"

@@ -51,6 +51,7 @@ const NoteList: React.FC<NoteListProps> = ({ notes = [], checkedNoteIds, onToggl
         <div />
         <div />
         <button
+          type="button"
           onClick={handleToggleAll}
           className="w-4 h-4 inline-flex items-center justify-center cursor-pointer"
           aria-label="현재 페이지 전체 선택"

@@ -65,7 +65,12 @@ const FolderNameHeader: React.FC<FolderNameHeaderProps> = ({ folderId, folderNam
   return (
     <div className="w-full">
       <div className="flex items-center w-full py-5">
-        <button className="ml-3 mr-5 cursor-pointer" onClick={handleToggleMark} aria-label="즐겨찾기 토글">
+        <button
+          type="button"
+          className="ml-3 mr-5 cursor-pointer"
+          onClick={handleToggleMark}
+          aria-label="즐겨찾기 토글"
+        >
           {markState === "ACTIVE" ? <StarIcon /> : <EmptyStarIcon className="text-gray-400" />}
         </button>
 

@@ -8,7 +8,7 @@ type NewFolderMainProps = {
   onLimitReached?: () => void;
 };
 
-const NewFolderMain: React.FC<NewFolderMainProps> = ({ onLimitReached }) => {
+const NewFolderMain = ({ onLimitReached }: NewFolderMainProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { mutate } = usePostFolders();
 

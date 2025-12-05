@@ -9,6 +9,7 @@ type DeleteButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export default function DeleteButton({ className, ariaLabel = "삭제", ...props }: DeleteButtonProps) {
   return (
     <button
+      type="button"
       aria-label={ariaLabel}
       className={cn(
         "inline-flex items-center justify-center w-10 h-8",

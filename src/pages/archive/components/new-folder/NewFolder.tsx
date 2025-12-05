@@ -4,7 +4,7 @@ interface NewFolderProps {
   onClick: () => void;
 }
 
-const NewFolder: React.FC<NewFolderProps> = ({ onClick }) => {
+const NewFolder = ({ onClick }: NewFolderProps) => {
   return (
     <img
       src={NewfolderImage}

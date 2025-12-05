@@ -46,6 +46,7 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
     <div className="inline-block text-left" ref={dropdownRef}>
       <div className="relative">
         <button
+          type="button"
           className={`flex justify-center items-center gap-2 rounded transition ${
             isKebab
               ? "p-0 hover:bg-gray-100 rounded-[0.24rem]"

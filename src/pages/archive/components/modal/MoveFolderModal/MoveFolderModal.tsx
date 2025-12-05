@@ -65,6 +65,7 @@ export const MoveFolderModal: React.FC<MoveFolderModalProps> = ({
         <div className="flex flex-col pl-2 overflow-auto w-[45rem] h-[23.4375rem]">
           {filteredFolders.map((folder) => (
             <button
+              type="button"
               key={folder.folderId}
               className="flex items-center h-12 cursor-pointer hover:bg-gray-100"
               onClick={() => onSubmit(folder.folderId)}
