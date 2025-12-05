@@ -1,0 +1,34 @@
+.voca-card-content {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
+
+  // question과 answer 노드가 inline으로 배치되도록
+  [data-type="question"],
+  [data-type="answer"] {
+    display: inline;
+  }
+
+  // NodeViewWrapper span 스타일
+  [data-node-view-wrapper] {
+    display: inline;
+  }
+
+  // 내부 편집 영역
+  [data-node-view-content] {
+    display: inline;
+    outline: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// 화살표 버튼
+.voca-arrow-btn {
+  display: inline-flex !important;
+  vertical-align: middle;
+}
