@@ -10,14 +10,15 @@ interface ArrowButtonProps {
 }
 
 const ArrowButton = ({ reversed, onClick }: ArrowButtonProps) => (
-  <span
+  <button
+    type="button"
     contentEditable={false}
     onClick={onClick}
-    className="voca-arrow-btn w-6 h-6 rounded inline-flex justify-center items-center text-blue-600 hover:bg-black/5 cursor-pointer shrink-0 select-none"
+    className="voca-arrow-btn w-6 h-6 rounded inline-flex justify-center items-center text-blue-600 hover:bg-black/5 cursor-pointer shrink-0 select-none bg-transparent border-none p-0"
     style={{ transform: reversed ? "rotate(180deg)" : "none" }}
   >
     <ArrowIcon />
-  </span>
+  </button>
 );
 
 export const AnswerNodeComponent = ({ editor, getPos }: NodeViewProps) => {
