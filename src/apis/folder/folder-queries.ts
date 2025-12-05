@@ -1,10 +1,11 @@
 import { queryOptions } from "@tanstack/react-query";
 import { FetchFoldersParams } from "@typedefs";
-import { fetchFolderList } from "./folder";
+import { fetchFolderList, getFoldersElement } from "./folder";
 
 export const FOLDER_QUERY_KEY = {
-  ALL: () => ["folders"],
-  LIST: (params?: FetchFoldersParams) => ["folders", "list", params],
+  ALL: () => ["folders"] as const,
+  LIST: (params?: FetchFoldersParams) => ["folders", "list", params] as const,
+  ELEMENT: (folderId: number) => ["folders", "element", folderId] as const,
 } as const;
 
 export const FOLDER_QUERY_OPTION = {
@@ -17,5 +18,10 @@ export const FOLDER_QUERY_OPTION = {
     queryOptions({
       queryKey: FOLDER_QUERY_KEY.ALL(),
       queryFn: () => fetchFolderList(),
+    }),
+  ELEMENT: (folderId: number) =>
+    queryOptions({
+      queryKey: FOLDER_QUERY_KEY.ELEMENT(folderId),
+      queryFn: () => getFoldersElement(folderId),
     }),
 };

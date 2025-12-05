@@ -27,5 +27,5 @@ Default.args = {
   folderId: 1,
   folderName: "INSIDE ENGLISH 4",
   color: "sage",
-  markState: false,
+  markState: "ACTIVE",
 };

@@ -1,11 +1,13 @@
-export const mockRecentMarkedNotes = [
+import type { NoteItemProps } from "@typedefs";
+
+export const mockRecentMarkedNotes: NoteItemProps[] = [
   {
     noteId: 1,
     name: "데이터베이스 관리 시스템",
     folderId: 1,
     folderName: "폴더1 이름",
     folderColor: "plum",
-    markState: true,
+    markState: "ACTIVE",
     viewAt: "25/02/24",
     editDate: "24/05/06",
     createdAt: "24/05/06",
@@ -21,7 +23,7 @@ export const mockRecentMarkedNotes = [
     folderId: 2,
     folderName: "폴더2 이름",
     folderColor: "sage",
-    markState: true,
+    markState: "ACTIVE",
     viewAt: "25/02/24",
     editDate: "24/05/06",
     createdAt: "24/05/06",
@@ -37,7 +39,7 @@ export const mockRecentMarkedNotes = [
     folderId: 3,
     folderName: "폴더3 이름",
     folderColor: "lavender",
-    markState: true,
+    markState: "ACTIVE",
     viewAt: "25/02/24",
     editDate: "24/05/06",
     createdAt: "24/05/06",

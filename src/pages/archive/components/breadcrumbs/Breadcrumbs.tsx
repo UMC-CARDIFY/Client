@@ -1,34 +1,52 @@
 import { Text } from "@components/typography/Text";
-import { SlashIcon } from "@svgs/index";
-import React from "react";
+import { HalfArrowLightIcon } from "@svgs/index";
+import { truncate } from "@utils/truncate";
+import { Link } from "react-router-dom";
 
-type BreadcrumbsProps = {
-  username: string;
-  pathSegments?: string[];
+type CrumbItem = {
+  label: string;
+  to?: string;
 };
 
-const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ username, pathSegments = [] }) => {
-  const renderSegment = (segment: string, isUsername?: boolean) => (
-    <div className="flex items-center">
-      <div className="px-3 py-1 cursor-pointer hover:bg-gray-100 rounded-lg">
-        <Text variant="sub_heading4" className={`text-gray-500 ${isUsername ? "font-semibold" : ""}`}>
-          {segment}
-        </Text>
-      </div>
-    </div>
-  );
+export interface BreadcrumbsProps {
+  items?: CrumbItem[];
+}
 
+export function Breadcrumbs({ items = [] }: BreadcrumbsProps) {
   return (
-    <nav className="flex items-center" aria-label="Breadcrumbs">
-      {renderSegment(`${username}의 아카이브`, true)}
-      {pathSegments.map((segment, index) => (
-        <React.Fragment key={index}>
-          <SlashIcon />
-          {renderSegment(segment)}
-        </React.Fragment>
-      ))}
+    <nav className="flex items-center" aria-label="브레드크럼">
+      {items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        const displayLabel = truncate(item.label ?? "", 20);
+        const isLink = !!item.to && !isLast;
+
+        const Label = (
+          <Text variant="sub_heading4" className="text-gray-500">
+            {displayLabel}
+          </Text>
+        );
+
+        return (
+          <div key={`${item.label}-${index}`} className="flex items-center">
+            {isLink ? (
+              <Link to={item.to!} className="px-3 py-2 rounded hover:bg-gray-100 inline-flex items-center">
+                {Label}
+              </Link>
+            ) : (
+              <span className="px-3 py-2 rounded inline-flex items-center cursor-default">{Label}</span>
+            )}
+
+            {!isLast && (
+              <HalfArrowLightIcon
+                className="w-4 h-4 rotate-180 shrink-0 text-gray-300 ml-1.5 mr-1.5"
+                aria-hidden="true"
+              />
+            )}
+          </div>
+        );
+      })}
     </nav>
   );
-};
+}
 
 export default Breadcrumbs;
