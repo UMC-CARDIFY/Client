@@ -8,6 +8,7 @@ export const END_POINTS = {
   PATCH_FOLDERS: (folderId: number) => `/folders/${folderId}`,
   DELETE_FOLDER: (folderId: number) => `/folders/${folderId}`,
   MARK_FOLDER: (folderId: number) => `/folders/${folderId}/mark-folders`,
+  GET_FOLDERS_ELEMENT: (folderId: number) => `/folders/${folderId}/element`,
   POST_SUB_FOLDER: (folderId: number) => `/folders/${folderId}/addSubFolder`,
 
   //NOTE

@@ -4,6 +4,7 @@ import {
   CreateFolderRequest,
   DeleteFolderResponse,
   FetchFoldersParams,
+  FolderElementResponse,
   FolderListResponse,
   PatchFolderResponse,
   ToggleFolderMarkResponse,
@@ -32,4 +33,8 @@ export const patchFolders = (folderId: number, body: UpdateFolderRequest) => {
 
 export const postSubFolder = (parentFolderId: number, body: { name: string }) => {
   return apiPost(END_POINTS.POST_SUB_FOLDER(parentFolderId), body);
+};
+
+export const getFoldersElement = (folderId: number) => {
+  return apiGet<FolderElementResponse>(END_POINTS.GET_FOLDERS_ELEMENT(folderId));
 };

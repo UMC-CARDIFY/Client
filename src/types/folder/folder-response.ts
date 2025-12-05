@@ -1,3 +1,5 @@
+import { NoteItem } from "@typedefs/note";
+
 export interface DeleteFolderResponse {
   isSuccess: boolean;
 }
@@ -46,4 +48,22 @@ export interface PatchFolderResponse {
   name: string;
   color: string;
   editDate: string;
+}
+
+export interface FolderElementResponse {
+  folderId: number;
+  name: string;
+  color: string;
+  markElementList: MarkElementList;
+  notMarkElementList: NotMarkElementList;
+}
+
+export interface MarkElementList {
+  folderList: FolderItem[];
+  noteList: NoteItem[];
+}
+
+export interface NotMarkElementList {
+  folderList: FolderItem[];
+  noteList: NoteItem[];
 }
