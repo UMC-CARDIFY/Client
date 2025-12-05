@@ -1,3 +1,5 @@
+import { NoteItem } from "@typedefs/note";
+
 export interface DeleteFolderResponse {
   isSuccess: boolean;
 }
@@ -59,22 +61,6 @@ export interface FolderElementResponse {
 export interface MarkElementList {
   folderList: FolderItem[];
   noteList: NoteItem[];
-}
-
-export interface NoteItem {
-  noteId: number;
-  name: string;
-  folderId: number;
-  folderName: string;
-  folderColor: string;
-  markState: "INACTIVE" | "ACTIVE";
-  flashCardCount: number;
-  viewAt: string;
-  markAt: string;
-  editDate: string;
-  createdAt: string;
-  isDownload: boolean;
-  isUpload: boolean;
 }
 
 export interface NotMarkElementList {
