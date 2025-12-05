@@ -46,9 +46,10 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
     <div className="inline-block text-left" ref={dropdownRef}>
       <div className="relative">
         <button
-          className={`flex justify-center items-center gap-2 rounded-lg transition ${
+          type="button"
+          className={`flex justify-center items-center gap-2 rounded transition ${
             isKebab
-              ? "p-0 hover:bg-gray-100 rounded-md"
+              ? "p-0 hover:bg-gray-100 rounded-[0.24rem]"
               : isNoteFilterActive
                 ? "bg-brand-100 hover:bg-brand-150 px-3 py-2 text-brand-700"
                 : "bg-gray-100 hover:bg-gray-200 px-3 py-2 text-gray-700"
@@ -57,7 +58,7 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
         >
           {icon}
           {label && !isKebab && (
-            <Text variant="sub_heading4" className={isNoteFilterActive ? "text-brand-700" : "text-gray-700"}>
+            <Text variant="sub_heading5" className={isNoteFilterActive ? "text-brand-700" : "text-gray-700"}>
               {label}
             </Text>
           )}
@@ -65,7 +66,7 @@ const DropdownContainer: React.FC<DropdownButtonProps> = ({
 
         {openState && (
           <div
-            className="absolute z-10 left-0 mt-2 bg-white border border-gray-150 rounded-lg"
+            className="absolute z-10 left-0 mt-2 bg-white border border-gray-150 rounded"
             style={{
               boxShadow: "0px 4px 12px 0px rgba(0, 0, 0, 0.04)",
               width: "auto",

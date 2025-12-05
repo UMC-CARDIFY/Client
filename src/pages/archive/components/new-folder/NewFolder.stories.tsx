@@ -7,7 +7,9 @@ export default {
   argTypes: {},
 } as Meta<typeof NewFolder>;
 
-const Template: StoryFn<typeof NewFolder> = () => <NewFolder />;
+const Template: StoryFn<typeof NewFolder> = (args) => <NewFolder {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  onClick: () => alert("새 폴더 클릭됨"),
+};

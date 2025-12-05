@@ -1,13 +1,13 @@
 import { Text } from "@components/typography/Text";
+import useAccessTokenFromUrl from "@hooks/use-access-token-from-url";
 import { mockRecentMarkedNotes } from "@mocks/mock-recent-marked-notes";
 import { mockScheduledLearningItems } from "@mocks/mock-scheduled-learning-items";
 import MainFolderList from "@pages/archive/components/MainFolderList/MainFolderList";
-import { requestAccessTokenOnce } from "@utils/access-token";
 import RecentMarkedNoteList from "./components/RecentMarkedNote/RecentMarkedNoteList";
 import ScheduledLearningList from "./components/ScheduledLearning/ScheduledLearningList";
 
 const Home = () => {
-  requestAccessTokenOnce();
+  useAccessTokenFromUrl();
 
   return (
     <div className="w-[50rem] mx-auto pb-20 text-base-black">
