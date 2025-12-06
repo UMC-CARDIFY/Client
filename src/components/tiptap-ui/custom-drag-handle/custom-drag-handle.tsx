@@ -26,6 +26,7 @@ export const CustomDragHandle = ({ editor, onContextMenu }: CustomDragHandleProp
     sourcePos: number;
     sourceNode: ProsemirrorNode;
   } | null>(null);
+  const [hoveredBlockPos, setHoveredBlockPos] = React.useState<number | null>(null);
 
   // 모든 블록 찾기
   const findAllBlocks = React.useCallback((): BlockInfo[] => {
@@ -164,6 +165,22 @@ export const CustomDragHandle = ({ editor, onContextMenu }: CustomDragHandleProp
     [onContextMenu],
   );
 
+  // 마우스 이동 시 호버된 블록 찾기
+  const handleMouseMove = React.useCallback(
+    (event: MouseEvent) => {
+      const { clientX, clientY } = event;
+
+      // 현재 마우스 위치에 해당하는 블록 찾기
+      const hoveredBlock = blocks.find((block) => {
+        const { rect } = block;
+        return clientY >= rect.top && clientY <= rect.bottom && clientX >= rect.left - 50 && clientX <= rect.right;
+      });
+
+      setHoveredBlockPos(hoveredBlock ? hoveredBlock.pos : null);
+    },
+    [blocks],
+  );
+
   // 에디터 변경 감지 및 블록 업데이트
   React.useEffect(() => {
     if (!editor) return;
@@ -194,56 +211,64 @@ export const CustomDragHandle = ({ editor, onContextMenu }: CustomDragHandleProp
 
     editorElement.addEventListener("dragover", handleDragOver);
     editorElement.addEventListener("drop", handleDrop);
+    document.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       editorElement.removeEventListener("dragover", handleDragOver);
       editorElement.removeEventListener("drop", handleDrop);
+      document.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [editor, handleDragOver, handleDrop]);
+  }, [editor, handleDragOver, handleDrop, handleMouseMove]);
 
   return (
     <>
-      {blocks.map((block, index) => (
-        <div
-          key={`${block.pos}-${index}`}
-          style={{
-            position: "fixed",
-            left: block.rect.left - 40,
-            top: block.rect.top,
-            height: block.rect.height,
-            display: "flex",
-            alignItems: "center",
-            zIndex: 10,
-            opacity: isDragging ? 0.5 : 1,
-            transition: "opacity 0.1s ease",
-            pointerEvents: "auto",
-          }}
-          onContextMenu={handleContextMenu(block)}
-        >
-          <Button
-            data-style="ghost"
-            data-weight="small"
-            draggable
-            onDragStart={handleDragStart(block)}
-            onDragEnd={handleDragEnd}
+      {blocks.map((block, index) => {
+        const isHovered = hoveredBlockPos === block.pos;
+        const isVisible = isHovered || isDragging;
+
+        return (
+          <div
+            key={`${block.pos}-${index}`}
             style={{
-              cursor: "grab",
-              padding: "4px",
-              minHeight: "24px",
-              minWidth: "24px",
+              position: "fixed",
+              left: block.rect.left - 40,
+              top: block.rect.top,
+              height: block.rect.height,
+              display: "flex",
+              alignItems: "center",
+              zIndex: 10,
+              opacity: isVisible ? (isDragging ? 0.5 : 1) : 0,
+              transition: "opacity 0.15s ease",
+              pointerEvents: isVisible ? "auto" : "none",
             }}
-            onMouseDown={() => {
-              // 노드 선택
-              const tr = editor.state.tr;
-              const $pos = editor.state.doc.resolve(block.pos);
-              tr.setSelection(TextSelection.near($pos));
-              editor.view.dispatch(tr);
-            }}
+            onMouseEnter={() => setHoveredBlockPos(block.pos)}
+            onContextMenu={handleContextMenu(block)}
           >
-            <GripVerticalIcon className="tiptap-button-icon" style={{ width: "16px", height: "16px" }} />
-          </Button>
-        </div>
-      ))}
+            <Button
+              data-style="ghost"
+              data-weight="small"
+              draggable
+              onDragStart={handleDragStart(block)}
+              onDragEnd={handleDragEnd}
+              style={{
+                cursor: "grab",
+                padding: "4px",
+                minHeight: "24px",
+                minWidth: "24px",
+              }}
+              onMouseDown={() => {
+                // 노드 선택
+                const tr = editor.state.tr;
+                const $pos = editor.state.doc.resolve(block.pos);
+                tr.setSelection(TextSelection.near($pos));
+                editor.view.dispatch(tr);
+              }}
+            >
+              <GripVerticalIcon className="tiptap-button-icon" style={{ width: "16px", height: "16px" }} />
+            </Button>
+          </div>
+        );
+      })}
     </>
   );
 };
