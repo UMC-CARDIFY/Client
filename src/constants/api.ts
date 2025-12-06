@@ -4,6 +4,7 @@ export const END_POINTS = {
 
   //FOLDER
   GET_SORT_FILTER: "/folders/sort-filter",
+  GET_RECENT_MARKED_FOLDERS: "/folders/recent-marks",
   POST_FOLDERS: "/folders/addFolder",
   PATCH_FOLDERS: (folderId: number) => `/folders/${folderId}`,
   DELETE_FOLDER: (folderId: number) => `/folders/${folderId}`,
@@ -13,9 +14,13 @@ export const END_POINTS = {
 
   //NOTE
   GET_NOTES_SORT_FILTER: "/folders/notes/sort-filter",
+  GET_RECENT_MARKED_NOTES: "/notes/recent-marks",
   GET_NOTE: "/notes/getNote",
   MARK_NOTE: "/notes/markNote",
   DELETE_NOTE: "/notes/deleteNote",
   WRITE_NOTE: "/notes/write",
   ADD_NOTE: "/notes/addNote",
+
+  //CARD
+  GET_CARDS_SORT_FILTER: "/cards/sort-filter",
 };

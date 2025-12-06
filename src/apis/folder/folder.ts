@@ -7,6 +7,7 @@ import {
   FolderElementResponse,
   FolderListResponse,
   PatchFolderResponse,
+  RecentMarkedFoldersResponse,
   ToggleFolderMarkResponse,
   UpdateFolderRequest,
 } from "@typedefs";
@@ -37,4 +38,8 @@ export const postSubFolder = (parentFolderId: number, body: { name: string }) =>
 
 export const getFoldersElement = (folderId: number) => {
   return apiGet<FolderElementResponse>(END_POINTS.GET_FOLDERS_ELEMENT(folderId));
+};
+
+export const fetchRecentMarkedFolders = () => {
+  return apiGet<RecentMarkedFoldersResponse>(END_POINTS.GET_RECENT_MARKED_FOLDERS);
 };

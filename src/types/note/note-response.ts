@@ -59,3 +59,17 @@ export interface GetNoteResponse {
   isUpload: boolean;
   cardList: CardItem[];
 }
+
+export interface RecentMarkedNote {
+  noteId: number;
+  name: string;
+  folderId: number;
+  folderName: string;
+  folderColor: string;
+  flashCardCount: number;
+  markState: "ACTIVE" | "INACTIVE";
+  markAt: string;
+  noteContentPreview: string | null;
+}
+
+export type RecentMarkedNotesResponse = RecentMarkedNote[];

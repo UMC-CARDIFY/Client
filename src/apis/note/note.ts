@@ -9,6 +9,7 @@ import {
   GetNoteRequest,
   GetNoteResponse,
   NoteListResponse,
+  RecentMarkedNotesResponse,
   ToggleNoteMarkRequest,
   ToggleNoteMarkResponse,
   WriteNoteRequest,
@@ -55,4 +56,9 @@ export const addNote = (request: AddNoteRequest) => {
 // 노트 내용 조회
 export const getNote = (params: GetNoteRequest) => {
   return apiGet<GetNoteResponse, GetNoteRequest>(END_POINTS.GET_NOTE, params);
+};
+
+// 최근 즐겨찾기한 노트 목록 조회
+export const fetchRecentMarkedNotes = () => {
+  return apiGet<RecentMarkedNotesResponse>(END_POINTS.GET_RECENT_MARKED_NOTES);
 };
