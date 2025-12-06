@@ -1,7 +1,10 @@
 import { Text } from "@components/typography/Text";
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { usePostSubFolder } from "../../hooks/use-archive-folder";
 import InsideFolder from "../insideFolder/InsideFolder";
-import NewFolder from "../newFolder/NewFolder";
+import { AddSubFolderModal } from "../modal/AddSubFolderModal/AddSubFolderModal";
+import NewFolder from "../new-folder/NewFolder";
 
 interface FolderData {
   folderId: number;
@@ -10,50 +13,79 @@ interface FolderData {
 }
 
 interface InsideFolderListProps {
-  folders?: FolderData[];
+  folders: FolderData[];
+  parentFolderId: number;
+  isAllFoldersView?: boolean;
 }
 
-const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders = defaultFolders }) => {
-  if (folders.length === 0) {
-    return <div>empty</div>;
-  }
-  const displayedFolders = folders.slice(0, 7);
-  const shouldShowViewAll = folders.length > 7;
+const InsideFolderList: React.FC<InsideFolderListProps> = ({ folders, parentFolderId, isAllFoldersView = false }) => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const { mutate: createSubFolder } = usePostSubFolder(parentFolderId);
+
+  const handleAddFolderClick = () => setIsAddModalOpen(true);
+  const handleModalClose = () => setIsAddModalOpen(false);
+  const handleModalSubmit = (folderName: string) => {
+    if (!folderName.trim()) return;
+    createSubFolder({ name: folderName });
+    setIsAddModalOpen(false);
+  };
+
+  const handleViewAllClick = () => {
+    navigate(`/archive/${parentFolderId}/all`);
+  };
+
+  const validFolders = folders.filter(
+    (folder) =>
+      typeof folder.folderName === "string" &&
+      folder.folderName.trim() !== "" &&
+      typeof folder.color === "string" &&
+      folder.color.trim() !== "",
+  );
+
+  // 표시 갯수
+  const displayedFolders = isAllFoldersView ? validFolders : validFolders.slice(0, 7);
+  const shouldShowViewAll = !isAllFoldersView && validFolders.length > 7;
+
+  // 모드별 그리드/아이템 폭
+  const gridColsClass = isAllFoldersView
+    ? "grid grid-cols-[repeat(2,392px)] justify-between" // 2열 × 392px
+    : "grid grid-cols-[repeat(4,188px)] justify-between"; // 4열 × 188px
+
+  const itemWidthClass = isAllFoldersView ? "w-[392px]" : "w-[188px]";
 
   return (
     <div className="w-[50rem] flex flex-col">
-      <div className="grid grid-cols-4 gap-4">
-        <NewFolder />
+      <div className={`gap-4 ${gridColsClass}`}>
+        <div className={itemWidthClass}>
+          <NewFolder onClick={handleAddFolderClick} />
+        </div>
+
         {displayedFolders.map((folder) => (
           <InsideFolder
             key={folder.folderId}
             folderId={folder.folderId}
             folderName={folder.folderName}
             color={folder.color}
+            className={itemWidthClass}
           />
         ))}
       </div>
+
+      <AddSubFolderModal isOpen={isAddModalOpen} onClose={handleModalClose} onSubmit={handleModalSubmit} />
+
       {shouldShowViewAll && (
         <Text
           variant="sub_heading4"
-          className="text-gray-500 mt-3 mr-2 px-2 py-1 self-end hover:bg-gray-50 rounded cursor-pointer"
+          className="text-gray-500 mt-3 px-2 py-1 self-end hover:bg-gray-50 rounded cursor-pointer"
+          onClick={handleViewAllClick}
         >
-          전체보기
+          전체 보기
         </Text>
       )}
     </div>
   );
 };
-
-const defaultFolders: FolderData[] = [
-  { folderId: 1, folderName: "1강 빈칸 채우기", color: "sage" },
-  { folderId: 2, folderName: "2강 빈칸 채우기", color: "sage" },
-  { folderId: 3, folderName: "3강 빈칸 채우기", color: "sage" },
-  { folderId: 4, folderName: "4강 빈칸 채우기", color: "sage" },
-  { folderId: 5, folderName: "5강 빈칸 채우기", color: "sage" },
-  { folderId: 6, folderName: "6강 빈칸 채우기", color: "sage" },
-  { folderId: 7, folderName: "긴폴더이름긴폴더이름", color: "sage" },
-  { folderId: 8, folderName: "8강 빈칸 채우기", color: "sage" },
-];
 
 export default InsideFolderList;

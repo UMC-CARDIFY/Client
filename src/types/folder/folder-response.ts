@@ -1,3 +1,5 @@
+import { NoteItem } from "@typedefs/note";
+
 export interface DeleteFolderResponse {
   isSuccess: boolean;
 }
@@ -20,6 +22,10 @@ export interface FolderItem {
 }
 
 export interface FolderListResponse {
+  parentFolderId: number;
+  parentFolderName: string;
+  parentFolderColor: string;
+  parentMarkState: "INACTIVE" | "ACTIVE";
   foldersList: FolderItem[];
   listSize: number;
   currentPage: number;
@@ -27,4 +33,37 @@ export interface FolderListResponse {
   totalElements: number;
   isFirst: boolean;
   isLast: boolean;
+}
+
+export interface PostSubFolderResponse {
+  parent_folderId: number;
+  folderId: number;
+  name: string;
+  color: string;
+  createdAt: string;
+}
+
+export interface PatchFolderResponse {
+  folderId: number;
+  name: string;
+  color: string;
+  editDate: string;
+}
+
+export interface FolderElementResponse {
+  folderId: number;
+  name: string;
+  color: string;
+  markElementList: MarkElementList;
+  notMarkElementList: NotMarkElementList;
+}
+
+export interface MarkElementList {
+  folderList: FolderItem[];
+  noteList: NoteItem[];
+}
+
+export interface NotMarkElementList {
+  folderList: FolderItem[];
+  noteList: NoteItem[];
 }

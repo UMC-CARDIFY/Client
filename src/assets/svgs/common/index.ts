@@ -7,3 +7,4 @@ export { default as SlashIcon } from "./ic_common_slash.svg?react";
 export { default as HalfArrowBoldIcon } from "./ic_common_halfarrowbold.svg?react";
 export { default as HalfDoubleArrowBoldIcon } from "./ic_common_halfarrowdoublebold.svg?react";
 export { default as ArrowIcon } from "./ic_common_arrow.svg?react";
+export { default as CommonTrashIcon } from "./ic_common_trash.svg?react";

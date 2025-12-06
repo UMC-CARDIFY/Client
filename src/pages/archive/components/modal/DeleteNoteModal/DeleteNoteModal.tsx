@@ -1,4 +1,5 @@
 import { Modal } from "@components/common/Modal";
+import { truncate } from "@utils/truncate";
 import React from "react";
 
 interface DeleteNoteModalProps {
@@ -17,6 +18,9 @@ export const DeleteNoteModal: React.FC<DeleteNoteModalProps> = ({
   noteName,
   additionalCount,
 }) => {
+  const displayName = truncate(noteName, 14);
+  const isMulti = additionalCount > 0;
+
   return (
     <Modal
       isOpen={isOpen}
@@ -24,7 +28,13 @@ export const DeleteNoteModal: React.FC<DeleteNoteModalProps> = ({
       description={
         <>
           <p>
-            '{noteName}'{additionalCount > 0 && ` 외 ${additionalCount}개의 노트`}를 삭제하시겠습니까?
+            {isMulti ? (
+              <>
+                ‘{displayName}’ 외 {additionalCount}개의 노트를 삭제하시겠습니까?
+              </>
+            ) : (
+              <>‘{displayName}’을(를) 삭제하시겠습니까?</>
+            )}
           </p>
           <p>이 노트 안의 플래시카드가 함께 삭제됩니다.</p>
         </>
