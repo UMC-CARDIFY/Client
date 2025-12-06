@@ -70,8 +70,10 @@ export function canToggleList(editor: Editor | null, type: ListType): boolean {
 
   switch (type) {
     case "bulletList":
+      // @ts-expect-error - toggleBulletList exists when StarterKit is used
       return editor.can().toggleBulletList();
     case "orderedList":
+      // @ts-expect-error - toggleOrderedList exists when StarterKit is used
       return editor.can().toggleOrderedList();
     default:
       return false;
@@ -96,9 +98,11 @@ export function toggleList(editor: Editor | null, type: ListType): void {
 
   switch (type) {
     case "bulletList":
+      // @ts-expect-error - toggleBulletList exists when StarterKit is used
       editor.chain().focus().toggleBulletList().run();
       break;
     case "orderedList":
+      // @ts-expect-error - toggleOrderedList exists when StarterKit is used
       editor.chain().focus().toggleOrderedList().run();
       break;
   }

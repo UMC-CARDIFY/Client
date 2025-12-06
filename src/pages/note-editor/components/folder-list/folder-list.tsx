@@ -6,7 +6,7 @@ interface NoteListProps {
   children: string;
 }
 
-export default function FolderList({ color, children }: NoteListProps) {
+export default function FolderList({ children }: NoteListProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {

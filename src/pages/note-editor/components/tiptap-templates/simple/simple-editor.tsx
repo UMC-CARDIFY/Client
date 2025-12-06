@@ -207,6 +207,7 @@ export function SimpleEditor() {
       },
     },
     extensions: [
+      // @ts-expect-error - StarterKit type compatibility issue with tiptap versions
       StarterKit.configure({
         blockquote: false,
         codeBlock: false,

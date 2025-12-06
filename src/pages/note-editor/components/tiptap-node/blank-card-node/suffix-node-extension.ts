@@ -51,7 +51,12 @@ export const SuffixNode = Node.create({
               if (parent.type.name === "blankcard") {
                 const blankcardPos = $from.before(blankcardDepth);
                 const endPos = blankcardPos + parent.nodeSize;
-                editor.chain().focus().setTextSelection(endPos).insertContent({ type: "paragraph" }).run();
+                editor
+                  .chain()
+                  .focus()
+                  .insertContentAt(endPos, { type: "paragraph" })
+                  .setTextSelection(endPos + 1)
+                  .run();
                 return true;
               }
             }
