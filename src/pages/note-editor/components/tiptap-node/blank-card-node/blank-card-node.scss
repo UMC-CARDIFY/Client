@@ -1,0 +1,35 @@
+.blank-card-content {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+
+  // prefix, blank, suffix 노드가 inline으로 배치되도록
+  [data-type="prefix"],
+  [data-type="blank"],
+  [data-type="suffix"] {
+    display: inline;
+  }
+
+  // NodeViewWrapper span 스타일
+  [data-node-view-wrapper] {
+    display: inline;
+  }
+
+  // 내부 편집 영역
+  [data-node-view-content] {
+    display: inline;
+    outline: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// 빈칸(정답) 스타일
+.blank-answer {
+  display: inline-flex !important;
+  min-width: 2rem;
+}

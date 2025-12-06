@@ -1,12 +1,12 @@
 import { Node, mergeAttributes } from "@tiptap/react";
 import { ReactNodeViewRenderer } from "@tiptap/react";
-import { QuestionNodeComponent } from "./question-node";
+import { BlankNodeComponent } from "./blank-node";
 
 /**
- * A TipTap node extension for Question component inside VocaCard.
+ * A TipTap node extension for Blank (빈칸 정답) component inside BlankCard.
  */
-export const QuestionNode = Node.create({
-  name: "question",
+export const BlankNode = Node.create({
+  name: "blank",
 
   group: "",
 
@@ -21,15 +21,15 @@ export const QuestionNode = Node.create({
   selectable: false,
 
   parseHTML() {
-    return [{ tag: 'span[data-type="question"]' }];
+    return [{ tag: 'span[data-type="blank"]' }];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ["span", mergeAttributes({ "data-type": "question" }, HTMLAttributes), 0];
+    return ["span", mergeAttributes({ "data-type": "blank" }, HTMLAttributes), 0];
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(QuestionNodeComponent, {
+    return ReactNodeViewRenderer(BlankNodeComponent, {
       as: "span",
     });
   },
@@ -40,23 +40,23 @@ export const QuestionNode = Node.create({
         const { selection } = editor.state;
         const { $from } = selection;
 
-        // 현재 question 노드 안에 있는지 확인
+        // 현재 blank 노드 안에 있는지 확인
         for (let depth = $from.depth; depth >= 0; depth--) {
           const node = $from.node(depth);
-          if (node.type.name === "question") {
-            // 다음 형제 노드(answer)로 이동
+          if (node.type.name === "blank") {
+            // 다음 형제 노드(suffix)로 이동
             const parentDepth = depth - 1;
             if (parentDepth >= 0) {
               const parent = $from.node(parentDepth);
-              if (parent.type.name === "vocacard") {
-                // answer 노드의 시작 위치로 이동
-                const questionPos = $from.before(depth);
-                const questionNode = $from.node(depth);
-                const answerPos = questionPos + questionNode.nodeSize;
+              if (parent.type.name === "blankcard") {
+                // suffix 노드의 시작 위치로 이동
+                const blankPos = $from.before(depth);
+                const blankNode = $from.node(depth);
+                const suffixPos = blankPos + blankNode.nodeSize;
                 editor
                   .chain()
                   .focus()
-                  .setTextSelection(answerPos + 1)
+                  .setTextSelection(suffixPos + 1)
                   .run();
                 return true;
               }
@@ -69,4 +69,4 @@ export const QuestionNode = Node.create({
   },
 });
 
-export default QuestionNode;
+export default BlankNode;

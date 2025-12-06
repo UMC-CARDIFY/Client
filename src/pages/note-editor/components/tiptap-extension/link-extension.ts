@@ -16,9 +16,10 @@ export const Link = TiptapLink.extend({
 
   addProseMirrorPlugins() {
     const { editor } = this;
+    const parentPlugins = (this as unknown as { parent?: () => Plugin[] }).parent?.() || [];
 
     return [
-      ...(this.parent?.() || []),
+      ...parentPlugins,
       new Plugin({
         props: {
           handleKeyDown: (_: EditorView, event: KeyboardEvent) => {
