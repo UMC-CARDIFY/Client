@@ -10,17 +10,18 @@ const SIDEBAR_WIDTH = 352;
 const DURATION = 0.35;
 
 const NoteLayout = () => {
-  const { noteId } = useParams<{ noteId: string }>();
+  const { folderId, noteId } = useParams<{ folderId: string; noteId: string }>();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
+  const numericFolderId = Number(folderId);
   const numericNoteId = Number(noteId);
 
-  if (!noteId || Number.isNaN(numericNoteId)) {
-    return <div>잘못된 접근입니다. noteId가 필요합니다.</div>;
+  if (!folderId || !noteId || Number.isNaN(numericFolderId) || Number.isNaN(numericNoteId)) {
+    return <div>잘못된 접근입니다. folderId와 noteId가 필요합니다.</div>;
   }
 
   return (
-    <NoteEditorProvider noteId={numericNoteId}>
+    <NoteEditorProvider noteId={numericNoteId} folderId={numericFolderId}>
       <motion.div className="h-screen flex overflow-hidden relative" layout>
         <motion.div
           aria-hidden

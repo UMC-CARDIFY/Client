@@ -16,6 +16,7 @@ const SEP = "flex items-center before:content-[''] before:block before:w-px befo
 const NoteItem: React.FC<NoteItemProps> = ({
   noteId,
   name,
+  folderId,
   createdAt,
   editDate,
   flashCardCount,
@@ -33,7 +34,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
   };
 
   const handleNoteClick = () => {
-    navigate(`/note-editor/${noteId}`);
+    navigate(`/note-editor/${folderId}/${noteId}`);
   };
 
   return (

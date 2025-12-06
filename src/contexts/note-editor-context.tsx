@@ -5,6 +5,7 @@ import React, { createContext, useContext, useState, ReactNode, useCallback, use
 
 interface NoteEditorContextType {
   noteId: number;
+  folderId: number;
   title: string;
   setTitle: (title: string) => void;
   editor: Editor | null;
@@ -28,9 +29,10 @@ export const useNoteEditor = () => {
 interface NoteEditorProviderProps {
   children: ReactNode;
   noteId: number;
+  folderId: number;
 }
 
-export const NoteEditorProvider: React.FC<NoteEditorProviderProps> = ({ children, noteId }) => {
+export const NoteEditorProvider: React.FC<NoteEditorProviderProps> = ({ children, noteId, folderId }) => {
   const [title, setTitle] = useState("");
   const [editor, setEditor] = useState<Editor | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -114,6 +116,7 @@ export const NoteEditorProvider: React.FC<NoteEditorProviderProps> = ({ children
     <NoteEditorContext.Provider
       value={{
         noteId,
+        folderId,
         title,
         setTitle,
         editor,

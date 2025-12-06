@@ -1,5 +1,6 @@
 import Button from "@components/common/button/button";
 import { Text } from "@components/typography/Text";
+import { useNoteEditor } from "@contexts/note-editor-context";
 import { useFoldersElement } from "@pages/note-editor/hooks/use-folders";
 import { FolderIcon, HalfDoubleArrowBoldIcon, LogoIcon, PlusIcon, SortIcon } from "@svgs/index";
 import { useState } from "react";
@@ -16,9 +17,7 @@ interface SidebarProps {
 
 const Sidebar = ({ isCollapsed, onToggle }: SidebarProps) => {
   const [activeTab, setActiveTab] = useState<"폴더" | "플래시 카드">("폴더");
-
-  //TODO: 추후 useParams로 변경
-  const folderId = 3;
+  const { folderId } = useNoteEditor();
 
   const { data, isLoading, isError } = useFoldersElement(folderId);
 

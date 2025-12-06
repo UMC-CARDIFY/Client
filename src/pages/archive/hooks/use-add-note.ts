@@ -21,7 +21,7 @@ export const useAddNote = ({ folderId }: UseAddNoteOptions) => {
     try {
       const response = await addNote({ folderId });
       setIsModalOpen(false);
-      navigate(`/note-editor/${response.noteId}`);
+      navigate(`/note-editor/${folderId}/${response.noteId}`);
     } catch (error) {
       console.error("노트 생성 실패:", error);
       alert("노트 생성에 실패했습니다.");
