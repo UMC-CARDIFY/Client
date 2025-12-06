@@ -13,6 +13,9 @@ export const END_POINTS = {
 
   //NOTE
   GET_NOTES_SORT_FILTER: "/folders/notes/sort-filter",
+  GET_NOTE: "/notes/getNote",
   MARK_NOTE: "/notes/markNote",
   DELETE_NOTE: "/notes/deleteNote",
+  WRITE_NOTE: "/notes/write",
+  ADD_NOTE: "/notes/addNote",
 };

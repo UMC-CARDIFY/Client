@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { addNote } from "@apis/note/note";
 import DeleteButton from "@components/common/delete-button/delete-button";
 import NoteFilter from "@components/common/dropdown/NoteFilter";
 import Sort, { SortOrder } from "@components/common/dropdown/Sort";
@@ -11,6 +12,7 @@ import NoteList from "../components/NoteList/NoteList";
 import Breadcrumbs from "../components/breadcrumbs/Breadcrumbs";
 import FolderNameHeader from "../components/folderNameHeader/FolderNameHeader";
 import InsideFolderList from "../components/insideFolderList/InsideFolderList";
+import { AddNoteModal } from "../components/modal/AddNoteModal/AddNoteModal";
 import { DeleteNoteModal } from "../components/modal/DeleteNoteModal/DeleteNoteModal";
 import { useFolderList } from "../hooks/use-archive-folder";
 import { useDeleteNote, useNoteList } from "../hooks/use-archive-note";
@@ -27,6 +29,8 @@ const NotesInsideFolderPage = () => {
   const [noteFilter, setNoteFilter] = useState<string | null>(null);
 
   const [checkedNoteIds, setCheckedNoteIds] = useState<number[]>([]);
+  const [isAddNoteModalOpen, setIsAddNoteModalOpen] = useState(false);
+  const [isAddingNote, setIsAddingNote] = useState(false);
 
   const handleToggleNoteCheck = (noteId: number) => {
     setCheckedNoteIds((prev) => (prev.includes(noteId) ? prev.filter((id) => id !== noteId) : [...prev, noteId]));
@@ -87,6 +91,30 @@ const NotesInsideFolderPage = () => {
     }
   };
 
+  const handleOpenAddNoteModal = () => {
+    setIsAddNoteModalOpen(true);
+  };
+
+  const handleCloseAddNoteModal = () => {
+    setIsAddNoteModalOpen(false);
+  };
+
+  const handleAddNote = async (_noteName: string) => {
+    // TODO: 서버 수정 후 noteName을 함께 전달하도록 변경 필요
+    setIsAddingNote(true);
+    try {
+      const response = await addNote({ folderId: parentFolderId });
+      setIsAddNoteModalOpen(false);
+      // 노트 에디터 페이지로 이동
+      navigate(`/note-editor/${response.noteId}`);
+    } catch (error) {
+      console.error("노트 생성 실패:", error);
+      alert("노트 생성에 실패했습니다.");
+    } finally {
+      setIsAddingNote(false);
+    }
+  };
+
   const crumbs = [{ label: "사용자의 아카이브", to: PATHS.ARCHIVE }, { label: folderTitle || "" }];
 
   return (
@@ -133,7 +161,7 @@ const NotesInsideFolderPage = () => {
 
             <div className="flex gap-2 items-center">
               {checkedNoteIds.length > 0 && <DeleteButton onClick={openDeleteModal} />}
-              <AddNoteButton />
+              <AddNoteButton onClick={handleOpenAddNoteModal} />
             </div>
           </div>
 
@@ -152,6 +180,13 @@ const NotesInsideFolderPage = () => {
           noteId={noteId}
           noteName={noteName}
           additionalCount={additionalCount}
+        />
+
+        <AddNoteModal
+          isOpen={isAddNoteModalOpen}
+          onClose={handleCloseAddNoteModal}
+          onSubmit={handleAddNote}
+          isLoading={isAddingNote}
         />
       </div>
     </div>

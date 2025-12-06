@@ -63,20 +63,20 @@ const Sidebar = ({ isCollapsed, onToggle }: SidebarProps) => {
               <Text variant="sub_heading3">{data?.name}</Text>
             </div>
             <Section title="즐겨찾기 한 항목">
-              {data?.markElementList.folderList.map((folder) => (
+              {data?.markElementList?.folderList?.map((folder) => (
                 <FolderList key={folder.folderId}>{folder.name}</FolderList>
               ))}
-              {data?.markElementList.noteList.map((note) => (
+              {data?.markElementList?.noteList?.map((note) => (
                 <NoteList key={note.noteId}>{note.name}</NoteList>
               ))}
             </Section>
             <Section title="폴더">
-              {data?.notMarkElementList.folderList.map((folder) => (
+              {data?.notMarkElementList?.folderList?.map((folder) => (
                 <FolderList key={folder.folderId}>{folder.name}</FolderList>
               ))}
             </Section>
             <Section title="노트">
-              {data?.notMarkElementList.noteList.map((note) => (
+              {data?.notMarkElementList?.noteList?.map((note) => (
                 <NoteList key={note.noteId}>{note.name}</NoteList>
               ))}
             </Section>

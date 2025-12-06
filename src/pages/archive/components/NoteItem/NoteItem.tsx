@@ -2,6 +2,7 @@ import { Text } from "@components/typography/Text";
 import { ArchiveNoteIcon, CheckboxFilledIcon, CheckboxIcon, EmptyStarIcon, FlashcardIcon } from "@svgs/index";
 import type { NoteItem as NoteItemType } from "@typedefs";
 import { truncate } from "@utils/truncate";
+import { useNavigate } from "react-router-dom";
 import { useNoteMark } from "../../hooks/use-archive-note";
 import { StarIcon } from "../StarIcon";
 interface NoteItemProps extends NoteItemType {
@@ -23,11 +24,16 @@ const NoteItem: React.FC<NoteItemProps> = ({
   isChecked,
   onToggleCheck,
 }) => {
+  const navigate = useNavigate();
   const displayFlashcardNum = flashCardCount > 99 ? "99+" : String(flashCardCount);
   const { mutate } = useNoteMark();
 
   const handleToggleMark = () => {
     mutate({ noteId, isMark: markState === "INACTIVE" });
+  };
+
+  const handleNoteClick = () => {
+    navigate(`/note-editor/${noteId}`);
   };
 
   return (
@@ -54,13 +60,19 @@ const NoteItem: React.FC<NoteItemProps> = ({
 
       <div />
 
-      <ArchiveNoteIcon className={`w-7 h-7 fill-icon-${folderColor}`} />
+      <button type="button" onClick={handleNoteClick} className="cursor-pointer">
+        <ArchiveNoteIcon className={`w-7 h-7 fill-icon-${folderColor}`} />
+      </button>
 
-      <div className={`${SEP} before:ml-[26px] before:mr-4 min-w-0`}>
+      <button
+        type="button"
+        onClick={handleNoteClick}
+        className={`${SEP} before:ml-[26px] before:mr-4 min-w-0 cursor-pointer hover:underline text-left`}
+      >
         <Text variant="sub_heading2" className="text-base-black">
           {truncate(name ?? "", 25)}
         </Text>
-      </div>
+      </button>
 
       <div className={`${SEP} before:mr-4`}>
         <Text variant="sub_heading3" className="text-gray-500">

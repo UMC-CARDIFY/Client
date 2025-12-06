@@ -32,3 +32,30 @@ export interface ToggleNoteMarkResponse {
 export interface DeleteNoteResponse {
   isSuccess: boolean;
 }
+
+export interface WriteNoteResponse {
+  isSuccess: boolean;
+}
+
+export interface AddNoteResponse {
+  noteId: number;
+  createdAt: string;
+}
+
+export interface CardItem {
+  cardId: number;
+  cardName: string;
+  contents: string;
+  contentsFront: string;
+  contentsBack: string;
+}
+
+export interface GetNoteResponse {
+  noteId: number;
+  noteName: string;
+  noteContent: Record<string, unknown> | null;
+  markState: boolean;
+  isEdit: boolean;
+  isUpload: boolean;
+  cardList: CardItem[];
+}
