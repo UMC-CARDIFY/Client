@@ -13,12 +13,14 @@ const NoteLayout = () => {
   const { noteId } = useParams<{ noteId: string }>();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
-  if (!noteId) {
+  const numericNoteId = Number(noteId);
+
+  if (!noteId || Number.isNaN(numericNoteId)) {
     return <div>잘못된 접근입니다. noteId가 필요합니다.</div>;
   }
 
   return (
-    <NoteEditorProvider noteId={Number(noteId)}>
+    <NoteEditorProvider noteId={numericNoteId}>
       <motion.div className="h-screen flex overflow-hidden relative" layout>
         <motion.div
           aria-hidden
