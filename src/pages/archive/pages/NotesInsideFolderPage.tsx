@@ -12,8 +12,10 @@ import Breadcrumbs from "../components/breadcrumbs/Breadcrumbs";
 import FolderNameHeader from "../components/folderNameHeader/FolderNameHeader";
 import InsideFolderList from "../components/insideFolderList/InsideFolderList";
 import { DeleteNoteModal } from "../components/modal/DeleteNoteModal/DeleteNoteModal";
+import { AddNoteModal } from "../components/modal/add-note-modal/add-note-modal";
+import { useAddNote } from "../hooks/use-add-note";
 import { useFolderList } from "../hooks/use-archive-folder";
-import { useDeleteNote, useNoteList } from "../hooks/use-archive-note";
+import { useNoteList } from "../hooks/use-archive-note";
 import { useDeleteNoteModal } from "../hooks/use-delete-note-modal";
 
 const NotesInsideFolderPage = () => {
@@ -64,28 +66,20 @@ const NotesInsideFolderPage = () => {
     noteId,
     noteName,
     additionalCount,
-    selectedIds,
-  } = useDeleteNoteModal(noteList, checkedNoteIds);
+    handleConfirmDelete,
+  } = useDeleteNoteModal({
+    noteList,
+    checkedNoteIds,
+    onDeleteSuccess: () => setCheckedNoteIds([]),
+  });
 
-  const { mutateAsync: deleteNoteMutate } = useDeleteNote();
-
-  const handleConfirmDelete = async () => {
-    try {
-      if (selectedIds.length === 0) {
-        closeDeleteModal();
-        return;
-      }
-      if (selectedIds.length === 1) {
-        await deleteNoteMutate({ noteId: selectedIds[0] });
-      } else {
-        await Promise.allSettled(selectedIds.map((id) => deleteNoteMutate({ noteId: id })));
-      }
-      setCheckedNoteIds([]);
-      closeDeleteModal();
-    } catch {
-      closeDeleteModal();
-    }
-  };
+  const {
+    isModalOpen: isAddNoteModalOpen,
+    isAdding: isAddingNote,
+    openModal: openAddNoteModal,
+    closeModal: closeAddNoteModal,
+    handleAddNote,
+  } = useAddNote({ folderId: parentFolderId });
 
   const crumbs = [{ label: "사용자의 아카이브", to: PATHS.ARCHIVE }, { label: folderTitle || "" }];
 
@@ -133,7 +127,7 @@ const NotesInsideFolderPage = () => {
 
             <div className="flex gap-2 items-center">
               {checkedNoteIds.length > 0 && <DeleteButton onClick={openDeleteModal} />}
-              <AddNoteButton />
+              <AddNoteButton onClick={openAddNoteModal} />
             </div>
           </div>
 
@@ -152,6 +146,13 @@ const NotesInsideFolderPage = () => {
           noteId={noteId}
           noteName={noteName}
           additionalCount={additionalCount}
+        />
+
+        <AddNoteModal
+          isOpen={isAddNoteModalOpen}
+          onClose={closeAddNoteModal}
+          onSubmit={handleAddNote}
+          isLoading={isAddingNote}
         />
       </div>
     </div>

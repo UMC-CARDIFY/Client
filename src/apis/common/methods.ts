@@ -24,3 +24,12 @@ export const apiDelete = async <T, P = undefined>(url: string, params?: P): Prom
   const response = await axiosInstance.delete<T>(url, { params });
   return response.data;
 };
+
+export const apiPostMultipart = async <T>(url: string, formData: FormData): Promise<T> => {
+  const response = await axiosInstance.post<T>(url, formData, {
+    headers: {
+      "Content-Type": undefined,
+    },
+  });
+  return response.data;
+};

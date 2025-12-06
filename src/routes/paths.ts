@@ -8,6 +8,6 @@ export const PATHS = {
   LIBRARY: "/library",
   MYPAGE: "/my-page",
   LOGIN: "/login",
-  NOTE_EDITOR: "/note-editor",
+  NOTE_EDITOR: "/note-editor/:folderId/:noteId",
   SUBSCRIBE: "/subscribe",
 };

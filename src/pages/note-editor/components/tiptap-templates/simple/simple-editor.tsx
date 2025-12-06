@@ -1,3 +1,4 @@
+import { useNoteEditor } from "@contexts/note-editor-context";
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
 import * as React from "react";
 
@@ -193,7 +194,7 @@ export function SimpleEditor() {
   const isMobile = useMobile();
   const windowSize = useWindowSize();
   const [mobileView, setMobileView] = React.useState<"main" | "highlighter" | "link">("main");
-  const [title, setTitle] = React.useState<string>(""); // 제목 상태 추가
+  const { title, setTitle, setEditor, isLoading, initialContent } = useNoteEditor();
   const toolbarRef = React.useRef<HTMLDivElement>(null);
 
   const editor = useEditor({
@@ -253,6 +254,23 @@ export function SimpleEditor() {
       setMobileView("main");
     }
   }, [isMobile, mobileView]);
+
+  // Context에 editor 인스턴스 등록
+  React.useEffect(() => {
+    if (editor) {
+      setEditor(editor);
+    }
+    return () => {
+      setEditor(null);
+    };
+  }, [editor, setEditor]);
+
+  // 초기 콘텐츠 로드
+  React.useEffect(() => {
+    if (editor && initialContent && !isLoading) {
+      editor.commands.setContent(initialContent);
+    }
+  }, [editor, initialContent, isLoading]);
 
   const handleTitleChange = (newTitle: string) => {
     setTitle(newTitle);

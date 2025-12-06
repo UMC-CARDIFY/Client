@@ -1,8 +1,19 @@
+import { deleteNote } from "@apis/note/note";
+import { NOTE_QUERY_KEY } from "@apis/note/note-queries";
+import { useQueryClient } from "@tanstack/react-query";
 import type { NoteItem } from "@typedefs";
 import { useMemo, useState } from "react";
 
-export function useDeleteNoteModal(noteList: NoteItem[], checkedNoteIds: number[]) {
+interface UseDeleteNoteModalOptions {
+  noteList: NoteItem[];
+  checkedNoteIds: number[];
+  onDeleteSuccess?: () => void;
+}
+
+export function useDeleteNoteModal({ noteList, checkedNoteIds, onDeleteSuccess }: UseDeleteNoteModalOptions) {
+  const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const selectedNotes = useMemo(
     () => (checkedNoteIds.length ? noteList.filter((n) => checkedNoteIds.includes(n.noteId)) : []),
@@ -13,13 +24,44 @@ export function useDeleteNoteModal(noteList: NoteItem[], checkedNoteIds: number[
   const additionalCount = Math.max(0, selectedNotes.length - 1);
   const selectedIds = useMemo(() => selectedNotes.map((n) => n.noteId), [selectedNotes]);
 
+  const close = () => setIsOpen(false);
+
+  const handleConfirmDelete = async () => {
+    if (selectedIds.length === 0) {
+      close();
+      return;
+    }
+
+    setIsDeleting(true);
+    try {
+      if (selectedIds.length === 1) {
+        await deleteNote({ noteId: selectedIds[0] });
+      } else {
+        const results = await Promise.allSettled(selectedIds.map((id) => deleteNote({ noteId: id })));
+        const failures = results.filter((r) => r.status === "rejected");
+        if (failures.length > 0) {
+          console.error(`${failures.length}개 노트 삭제 실패`);
+        }
+      }
+      queryClient.invalidateQueries({ queryKey: NOTE_QUERY_KEY.ALL() });
+      onDeleteSuccess?.();
+      close();
+    } catch {
+      close();
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return {
     isOpen,
+    isDeleting,
     open: () => setIsOpen(true),
-    close: () => setIsOpen(false),
+    close,
     noteId: first?.noteId ?? 0,
     noteName: first?.name ?? "",
     additionalCount,
     selectedIds,
+    handleConfirmDelete,
   };
 }
