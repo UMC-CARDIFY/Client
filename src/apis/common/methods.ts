@@ -1,5 +1,4 @@
 import axiosInstance from "@apis/config/instance";
-import axios from "axios";
 
 export const apiGet = async <T, P = undefined>(url: string, params?: P): Promise<T> => {
   const response = await axiosInstance.get<T>(url, { params });
@@ -27,14 +26,10 @@ export const apiDelete = async <T, P = undefined>(url: string, params?: P): Prom
 };
 
 export const apiPostMultipart = async <T>(url: string, formData: FormData): Promise<T> => {
-  const baseURL = `${import.meta.env.VITE_SERVER_URL}${import.meta.env.VITE_API_VERSION}`;
-  const token = localStorage.getItem("accessToken");
-
-  const response = await axios.post<T>(`${baseURL}${url}`, formData, {
+  const response = await axiosInstance.post<T>(url, formData, {
     headers: {
-      ...(token && { Authorization: `Bearer ${token}` }),
+      "Content-Type": undefined,
     },
-    withCredentials: true,
   });
   return response.data;
 };
