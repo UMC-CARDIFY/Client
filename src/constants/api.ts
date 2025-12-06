@@ -20,4 +20,7 @@ export const END_POINTS = {
   DELETE_NOTE: "/notes/deleteNote",
   WRITE_NOTE: "/notes/write",
   ADD_NOTE: "/notes/addNote",
+
+  //CARD
+  GET_CARDS_SORT_FILTER: "/cards/sort-filter",
 };
