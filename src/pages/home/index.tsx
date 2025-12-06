@@ -1,60 +1,16 @@
-import { CARD_QUERY_OPTION } from "@apis/card/card-queries";
-import { FOLDER_QUERY_OPTION } from "@apis/folder/folder-queries";
-import { NOTE_QUERY_OPTION } from "@apis/note/note-queries";
 import { Text } from "@components/typography/Text";
 import useAccessTokenFromUrl from "@hooks/use-access-token-from-url";
-import { MainFolderProps } from "@pages/archive/components/MainFolderList/MainFolderList";
 import MainFolderList from "@pages/archive/components/MainFolderList/MainFolderList";
-import { useQuery } from "@tanstack/react-query";
-import { NoteItemProps, RecentMarkedFolder, RecentMarkedNote, ScheduledLearningItemProps, StudyCard } from "@typedefs";
 import RecentMarkedNoteList from "./components/RecentMarkedNote/RecentMarkedNoteList";
 import ScheduledLearningList from "./components/ScheduledLearning/ScheduledLearningList";
-
-const mapToMainFolderProps = (folder: RecentMarkedFolder): MainFolderProps => ({
-  folderId: folder.folderId,
-  folderName: folder.name,
-  folderColor: folder.color,
-  noteCount: folder.noteCount,
-  markState: folder.markState === "ACTIVE",
-  createdAt: folder.markDate,
-});
-
-const mapToNoteItemProps = (note: RecentMarkedNote): NoteItemProps => ({
-  noteId: note.noteId,
-  name: note.name,
-  folderId: note.folderId,
-  folderName: note.folderName,
-  folderColor: note.folderColor,
-  flashCardCount: note.flashCardCount,
-  markState: note.markState,
-  viewAt: null,
-  editDate: note.markAt,
-  createdAt: note.markAt,
-  isDownload: false,
-  isUpload: false,
-  content: note.noteContentPreview ?? undefined,
-});
-
-const mapToScheduledLearningProps = (card: StudyCard): ScheduledLearningItemProps => ({
-  noteid: card.studyCardSetId,
-  name: card.noteName,
-  folderId: 0,
-  folderName: card.folderName,
-  folderColor: card.color,
-  completedCards: card.studyStatus,
-  timeReachedCards: 5,
-});
+import { useRecentMarkedFolders, useRecentMarkedNotes, useScheduledLearningItems } from "./hooks/use-home-data";
 
 const Home = () => {
   useAccessTokenFromUrl();
 
-  const { data: recentMarkedFolders = [] } = useQuery(FOLDER_QUERY_OPTION.RECENT_MARKED());
-  const { data: recentMarkedNotes = [] } = useQuery(NOTE_QUERY_OPTION.RECENT_MARKED());
-  const { data: studyCards = [] } = useQuery(CARD_QUERY_OPTION.LIST({ order: "edit-newest" }));
-
-  const folders = recentMarkedFolders.map(mapToMainFolderProps);
-  const notes = recentMarkedNotes.map(mapToNoteItemProps);
-  const scheduledItems = studyCards.slice(0, 3).map(mapToScheduledLearningProps);
+  const folders = useRecentMarkedFolders();
+  const notes = useRecentMarkedNotes();
+  const scheduledItems = useScheduledLearningItems();
 
   return (
     <div className="w-[50rem] mx-auto pb-20 text-base-black">
