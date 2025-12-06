@@ -59,7 +59,7 @@ const MainFolderList: React.FC<MainFolderListProps> = ({
   return (
     <div className="w-[50rem]">
       <div className="gap-4 flex flex-wrap">
-        {currentPage === 1 && <NewFolderMain onLimitReached={onLimitReached} />}
+        {!isHome && currentPage === 1 && <NewFolderMain onLimitReached={onLimitReached} />}
 
         {displayedFolders.map((folder) => (
           <MainFolderItem key={folder.folderId} {...folder} variant={variant} />

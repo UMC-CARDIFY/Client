@@ -67,3 +67,14 @@ export interface NotMarkElementList {
   folderList: FolderItem[];
   noteList: NoteItem[];
 }
+
+export interface RecentMarkedFolder {
+  folderId: number;
+  name: string;
+  color: string;
+  markState: "ACTIVE" | "INACTIVE";
+  markDate: string;
+  noteCount: number;
+}
+
+export type RecentMarkedFoldersResponse = RecentMarkedFolder[];

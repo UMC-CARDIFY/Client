@@ -4,6 +4,7 @@ export const END_POINTS = {
 
   //FOLDER
   GET_SORT_FILTER: "/folders/sort-filter",
+  GET_RECENT_MARKED_FOLDERS: "/folders/recent-marks",
   POST_FOLDERS: "/folders/addFolder",
   PATCH_FOLDERS: (folderId: number) => `/folders/${folderId}`,
   DELETE_FOLDER: (folderId: number) => `/folders/${folderId}`,
