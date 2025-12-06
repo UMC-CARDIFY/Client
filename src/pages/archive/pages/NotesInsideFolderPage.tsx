@@ -15,7 +15,7 @@ import { AddNoteModal } from "../components/modal/AddNoteModal/AddNoteModal";
 import { DeleteNoteModal } from "../components/modal/DeleteNoteModal/DeleteNoteModal";
 import { useAddNote } from "../hooks/use-add-note";
 import { useFolderList } from "../hooks/use-archive-folder";
-import { useDeleteNote, useNoteList } from "../hooks/use-archive-note";
+import { useNoteList } from "../hooks/use-archive-note";
 import { useDeleteNoteModal } from "../hooks/use-delete-note-modal";
 
 const NotesInsideFolderPage = () => {
@@ -66,10 +66,12 @@ const NotesInsideFolderPage = () => {
     noteId,
     noteName,
     additionalCount,
-    selectedIds,
-  } = useDeleteNoteModal(noteList, checkedNoteIds);
-
-  const { mutateAsync: deleteNoteMutate } = useDeleteNote();
+    handleConfirmDelete,
+  } = useDeleteNoteModal({
+    noteList,
+    checkedNoteIds,
+    onDeleteSuccess: () => setCheckedNoteIds([]),
+  });
 
   const {
     isModalOpen: isAddNoteModalOpen,
@@ -78,24 +80,6 @@ const NotesInsideFolderPage = () => {
     closeModal: closeAddNoteModal,
     handleAddNote,
   } = useAddNote({ folderId: parentFolderId });
-
-  const handleConfirmDelete = async () => {
-    try {
-      if (selectedIds.length === 0) {
-        closeDeleteModal();
-        return;
-      }
-      if (selectedIds.length === 1) {
-        await deleteNoteMutate({ noteId: selectedIds[0] });
-      } else {
-        await Promise.allSettled(selectedIds.map((id) => deleteNoteMutate({ noteId: id })));
-      }
-      setCheckedNoteIds([]);
-      closeDeleteModal();
-    } catch {
-      closeDeleteModal();
-    }
-  };
 
   const crumbs = [{ label: "사용자의 아카이브", to: PATHS.ARCHIVE }, { label: folderTitle || "" }];
 

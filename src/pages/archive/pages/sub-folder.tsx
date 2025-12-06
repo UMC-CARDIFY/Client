@@ -14,7 +14,7 @@ import { AddNoteModal } from "../components/modal/AddNoteModal/AddNoteModal";
 import { DeleteNoteModal } from "../components/modal/DeleteNoteModal/DeleteNoteModal";
 import { useAddNote } from "../hooks/use-add-note";
 import { useFolderList } from "../hooks/use-archive-folder";
-import { useDeleteNote, useNoteList } from "../hooks/use-archive-note";
+import { useNoteList } from "../hooks/use-archive-note";
 import { useDeleteNoteModal } from "../hooks/use-delete-note-modal";
 
 function SubFolderPage() {
@@ -72,10 +72,12 @@ function SubFolderPage() {
     noteId,
     noteName,
     additionalCount,
-    selectedIds,
-  } = useDeleteNoteModal(noteList, checkedNoteIds);
-
-  const { mutateAsync: deleteNoteMutate } = useDeleteNote();
+    handleConfirmDelete,
+  } = useDeleteNoteModal({
+    noteList,
+    checkedNoteIds,
+    onDeleteSuccess: () => setCheckedNoteIds([]),
+  });
 
   const {
     isModalOpen: isAddNoteModalOpen,
@@ -84,24 +86,6 @@ function SubFolderPage() {
     closeModal: closeAddNoteModal,
     handleAddNote,
   } = useAddNote({ folderId: currentFolderId });
-
-  const handleConfirmDelete = async () => {
-    try {
-      if (selectedIds.length === 0) {
-        closeDeleteModal();
-        return;
-      }
-      if (selectedIds.length === 1) {
-        await deleteNoteMutate({ noteId: selectedIds[0] });
-      } else {
-        await Promise.allSettled(selectedIds.map((id) => deleteNoteMutate({ noteId: id })));
-      }
-      setCheckedNoteIds([]);
-      closeDeleteModal();
-    } catch {
-      closeDeleteModal();
-    }
-  };
 
   if (!isValid) return <div className="w-full flex justify-center mt-10">잘못된 경로입니다.</div>; //TODO: fallback UI
   if (isCurrentError || isParentError || isNotesError)
