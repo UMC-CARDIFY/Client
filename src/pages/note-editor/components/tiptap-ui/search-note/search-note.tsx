@@ -28,7 +28,7 @@ const HighlightedText: React.FC<{ text: string; query: string }> = ({ text, quer
   return (
     <>
       {parts.map((part, index) =>
-        regex.test(part) ? (
+        part.toLowerCase() === query.toLowerCase() ? (
           <span key={index} className="search-result-highlight">
             {part}
           </span>
@@ -49,6 +49,7 @@ export const SearchNote = React.forwardRef<HTMLInputElement, SearchNoteProps>(
     const [dropdownPosition, setDropdownPosition] = React.useState({ top: 0, left: 0 });
     const containerRef = React.useRef<HTMLDivElement>(null);
     const wrapperRef = React.useRef<HTMLDivElement>(null);
+    const dropdownRef = React.useRef<HTMLDivElement>(null);
 
     const findAllMatches = React.useCallback(
       (query: string): SearchResult[] => {
@@ -167,7 +168,11 @@ export const SearchNote = React.forwardRef<HTMLInputElement, SearchNoteProps>(
 
     React.useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
-        if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        const target = event.target as Node;
+        const isOutsideContainer = containerRef.current && !containerRef.current.contains(target);
+        const isOutsideDropdown = !dropdownRef.current || !dropdownRef.current.contains(target);
+
+        if (isOutsideContainer && isOutsideDropdown) {
           setIsDropdownOpen(false);
         }
       };
@@ -200,6 +205,7 @@ export const SearchNote = React.forwardRef<HTMLInputElement, SearchNoteProps>(
           searchResults.length > 0 &&
           ReactDOM.createPortal(
             <div
+              ref={dropdownRef}
               className="search-results-dropdown"
               style={{
                 position: "fixed",
