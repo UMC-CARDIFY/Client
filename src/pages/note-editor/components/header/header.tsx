@@ -25,6 +25,7 @@ const Header = ({ isSidebarCollapsed, onOpenSidebar }: HeaderProps) => {
 
   const handleSave = async () => {
     const success = await saveNote();
+    // TODO: alert를 토스트로 변경
     if (success) {
       alert("노트가 저장되었습니다.");
     } else {
