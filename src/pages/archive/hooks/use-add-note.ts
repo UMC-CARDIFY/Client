@@ -15,11 +15,10 @@ export const useAddNote = ({ folderId }: UseAddNoteOptions) => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const handleAddNote = async (_noteName: string) => {
-    // TODO: 서버 수정 후 noteName을 함께 전달하도록 변경 필요
+  const handleAddNote = async (noteName: string) => {
     setIsAdding(true);
     try {
-      const response = await addNote({ folderId });
+      const response = await addNote({ folderId, name: noteName });
       setIsModalOpen(false);
       navigate(`/note-editor/${folderId}/${response.noteId}`);
     } catch (error) {

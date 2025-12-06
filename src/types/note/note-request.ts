@@ -59,6 +59,7 @@ export interface WriteNoteRequest {
 
 export interface AddNoteRequest {
   folderId: number;
+  name: string;
 }
 
 export interface GetNoteRequest {
