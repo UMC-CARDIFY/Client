@@ -37,7 +37,11 @@ export function useDeleteNoteModal({ noteList, checkedNoteIds, onDeleteSuccess }
       if (selectedIds.length === 1) {
         await deleteNote({ noteId: selectedIds[0] });
       } else {
-        await Promise.allSettled(selectedIds.map((id) => deleteNote({ noteId: id })));
+        const results = await Promise.allSettled(selectedIds.map((id) => deleteNote({ noteId: id })));
+        const failures = results.filter((r) => r.status === "rejected");
+        if (failures.length > 0) {
+          console.error(`${failures.length}개 노트 삭제 실패`);
+        }
       }
       queryClient.invalidateQueries({ queryKey: NOTE_QUERY_KEY.ALL() });
       onDeleteSuccess?.();
