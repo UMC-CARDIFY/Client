@@ -14,6 +14,7 @@ export const END_POINTS = {
 
   //NOTE
   GET_NOTES_SORT_FILTER: "/folders/notes/sort-filter",
+  GET_RECENT_MARKED_NOTES: "/notes/recent-marks",
   GET_NOTE: "/notes/getNote",
   MARK_NOTE: "/notes/markNote",
   DELETE_NOTE: "/notes/deleteNote",
