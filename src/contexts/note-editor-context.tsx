@@ -1,6 +1,7 @@
 import { getNote, writeNote } from "@apis/note/note";
 import { Editor } from "@tiptap/react";
 import { NoteContent, WriteNoteRequest } from "@typedefs";
+import { transformContentForApi, transformContentFromApi } from "@utils/note-content-transformer";
 import React, { createContext, useContext, useState, ReactNode, useCallback, useEffect } from "react";
 
 interface NoteEditorContextType {
@@ -56,7 +57,10 @@ export const NoteEditorProvider: React.FC<NoteEditorProviderProps> = ({ children
           const content =
             typeof response.noteContent === "string" ? JSON.parse(response.noteContent) : response.noteContent;
           console.log("=== 파싱된 노트 콘텐츠 ===", content);
-          setInitialContent(content as NoteContent);
+          // 백엔드 형식을 TipTap 형식으로 역변환
+          const transformedContent = transformContentFromApi(content as NoteContent);
+          console.log("=== 변환된 노트 콘텐츠 ===", transformedContent);
+          setInitialContent(transformedContent);
         }
       } catch (error) {
         console.error("노트 조회 중 오류 발생:", error);
@@ -78,22 +82,16 @@ export const NoteEditorProvider: React.FC<NoteEditorProviderProps> = ({ children
 
     try {
       const editorContent = editor.getJSON() as NoteContent;
+      // TipTap JSON을 백엔드 API 형식으로 변환
+      const transformedContent = transformContentForApi(editorContent);
 
       const request: WriteNoteRequest = {
         noteId,
         name: title || "제목 없음",
         // TODO: mode 값 - "light" / "standard"
         mode: "standard",
-        contents: editorContent,
+        contents: transformedContent,
       };
-
-      // 디버깅: 전송되는 데이터 확인
-      // console.log("=== 노트 저장 요청 데이터 ===");
-      // console.log("noteId:", noteId);
-      // console.log("name:", request.name);
-      // console.log("mode:", request.mode);
-      // console.log("contents:", JSON.stringify(editorContent, null, 2));
-      // console.log("==============================");
 
       // TODO: 이미지 파일 처리 로직 추가 필요
       const response = await writeNote(request);

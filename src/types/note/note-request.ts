@@ -26,6 +26,7 @@ export interface ImageOverlay {
 
 export interface NoteContentAttrs {
   level?: number;
+  reversed?: boolean;
   question_front?: string;
   question_back?: string;
   answer?: string[];
