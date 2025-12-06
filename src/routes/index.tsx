@@ -13,8 +13,8 @@ import {
   Subscribe,
 } from "../pages";
 import AllFolders from "../pages/archive/pages/all-folders";
-import ProtectedRoute from "./ProtectedRoute";
 import { PATHS } from "./paths";
+import ProtectedRoute from "./protected-route";
 
 const router = createBrowserRouter([
   {
